@@ -6,7 +6,6 @@
 
 # from flask import Flask, render_template, request, url_for, redirect, json, json
 
-
 import requests
 import base64
 
