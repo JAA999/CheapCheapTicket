@@ -11,14 +11,34 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/artists">Artists</Link></li>
-            <li><Link to="/venue">Venue</Link></li>
-            <li><Link to="/genre">Genre</Link></li>
-          </ul>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+              {/* <img src="chick.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"></img> */}
+              CheapCheapTickets</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/Venue">Venues</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/Artists">Artists</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/Genre">Genre</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
