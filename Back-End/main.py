@@ -9,54 +9,119 @@
 import requests
 import base64
 
-# Spotify API credentials
-client_id = '50effcfa2b804d1bafe4b0e9371b079a'
-client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
+def main():
+    spotify_access_token = getSpotifyAccessToken() # Get Authorization for Spotify API
 
-auth_str = f"{client_id}:{client_secret}"
-b64_auth_str = base64.b64encode(auth_str.encode()).decode()
+    artist_instances = []
+    # venue_instances = []
 
-# Define the headers and data for the POST request
-auth_url = 'https://accounts.spotify.com/api/token'
-headers = {
-    'Authorization': f'Basic {b64_auth_str}'
-}
-data = {
-    'grant_type': 'client_credentials'
-}
+    # ISSUE: Genres in this list are not comprehensive to those used in artist_instances
+    genre_instances = populateGenres(spotify_access_token)
 
-# Obtain the access token
-response = requests.post(auth_url, headers=headers, data=data)
-auth_response_data = response.json()
-access_token = auth_response_data['access_token']
+    artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean']
 
-# Define the headers with the access token
-headers = {
-    'Authorization': f'Bearer {access_token}'
-}
+    # Data storage for Artist Model
+    for artist_name in artist_names:
+        artist_id = getArtistId(spotify_access_token, artist_name)
+        artist_instances += [getArtistInformation(artist_id, spotify_access_token)]
 
-# Get a list of venues from Stub Hub, get the artists name from the each venue's lineup, pass that into a search request to get artist id, then do an artist request
+    # FOR DEBUGGING PURPOSES ONLY
+    # for artist in artist_instances:
+        print(artist)
+    
+    
+def getSpotifyAccessToken():
+    # Spotify API credentials
+    spotify_client_id = '50effcfa2b804d1bafe4b0e9371b079a'
+    spotify_client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
+    auth_str = f"{spotify_client_id}:{spotify_client_secret}"
+    b64_auth_str = base64.b64encode(auth_str.encode()).decode()
 
-# Make a GET request to the Spotify API using search request
-# To obtain uri of artists and extract artist id
-search_url = 'https://api.spotify.com/v1/search'
-params = {
-    'q': 'Zach Bryan+Billie Eilish',
-    'type': 'artist',
-    'limit': 2,
-    'offset': 0
-}
+    # Define the headers and data for the POST request
+    spotify_auth_url = 'https://accounts.spotify.com/api/token'
+    b64_headers = {
+        'Authorization': f'Basic {b64_auth_str}'
+    }
+    data = {
+        'grant_type': 'client_credentials'
+    }
 
-response = requests.get(search_url, headers=headers, params=params)
-search_results = response.json()
+    # Obtain the access token
+    response = requests.post(spotify_auth_url, headers=b64_headers, data=data)
+    auth_response_data = response.json()
+    access_token = auth_response_data['access_token']
+    return access_token
 
-artist_id = (search_results['artists']['items'][0]['uri']).split(':')[-1]
+def getArtistId(access_token, artist_name) :
+    # Define the headers with the access token
+    spotify_headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
 
-# Get artist information 
-search_url = f'https://api.spotify.com/v1/artists/{artist_id}'
-response = requests.get(search_url, headers=headers)
-print(response.json())
+    # Make a GET request to the Spotify API using search request
+    # To obtain uri of artists and extract artist id
+    search_url = 'https://api.spotify.com/v1/search'
+    params = {
+        'q': artist_name,
+        'type': 'artist',
+        'limit': 2,
+        'offset': 0
+    }
 
-# Artist Name
-# popularity
-# genre 
+    response = requests.get(search_url, headers=spotify_headers, params=params)
+    search_results = response.json()
+
+    artist_id = (search_results['artists']['items'][0]['id'])
+
+    return artist_id
+
+def getArtistInformation(artist_id, access_token):
+    artist_request = f'https://api.spotify.com/v1/artists/{artist_id}'
+    access_token_headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+
+    response = (requests.get(artist_request, headers=access_token_headers)).json()
+
+    artist_information = {
+        'name': response['name'],
+        'id': f'{artist_id}',
+        'yearOfBirth': '',
+        'country': '',
+        'popularity': response['popularity'],
+        'genre': response['genres'][0],
+        'albums': populateAlbums(access_token, artist_id),
+        'futureEvents': []
+    }
+
+    return artist_information
+
+def populateAlbums(access_token, artist_id):
+    # Define the headers with the access token
+    spotify_headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+
+    search_url = f'https://api.spotify.com/v1/artists/{artist_id}/albums'
+
+    response = (requests.get(search_url, headers=spotify_headers)).json()
+    albums = []
+    for item in response['items']:
+        if item['album_type'] == 'album':
+            albums += [item['name']]
+    
+    return albums
+
+def populateGenres(access_token):
+    # Define the headers with the access token
+    spotify_headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+
+    search_url = 'https://api.spotify.com/v1/recommendations/available-genre-seeds'
+
+    response = (requests.get(search_url, headers=spotify_headers)).json()
+    return response['genres']
+
+if __name__ == "__main__":
+    main()
