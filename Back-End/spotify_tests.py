@@ -1,3 +1,4 @@
+# Authored By: Christopher Huelitl
 from unittest import main, TestCase
 from main import getArtistInformation, getArtistId, getSpotifyAccessToken, populateGenres, populateAlbums
 import base64
@@ -45,11 +46,21 @@ class MyUnitTests (TestCase):
         self.assertEqual(beyonce, "6vWDO969PvNqNYHIOW5v0m")  
         self.assertEqual(adele, "4dpARuHxo51G3z768sgnrY")
         self.assertEqual(dualipa, "6M2wZ9GZgrQXHCFfjv46we")      
+    
+    #Testing if all proper albums are returned for a given artist ID
+    def test_getArtistInfo_albums(self):
+        theStrokes, maluma, ariana_grande = "0epOFNiUfyON9EYx7Tpr6V", "1r4hJ1h58CWwUQe3MxPuau", "66CXWjxzNUsdJxJ2JdwvnR"
+        strokes_lst = getArtistInformation("0epOFNiUfyON9EYx7Tpr6V", token)
+        maluma_lst = getArtistInformation("1r4hJ1h58CWwUQe3MxPuau", token)
+        ari_lst = getArtistInformation("66CXWjxzNUsdJxJ2JdwvnR", token)
         
-    def test_populateGenres(self):
-        pass
-    def test_populateAlbums(self):
-        pass
+        strokes_ans = ["The Singles - Volume 01", "The New Abnormal", "Comedown Machine", "Angles", "First Impressions Of Earth", "Room On Fire", "Is This It"]
+        maluma_ans = ["Don Juan", "The Love & Sex Tape (Deluxe Edition)", "The Love & Sex Tape", "Marry Me (Original Motion Picture Soundtrack)", "#7DJ (7 Días En Jamaica)", "PAPI JUANCHO", "11:11", "F.A.M.E.", "Pretty Boy, Dirty Boy", "PB.DB. The Mixtape", "Magia"]
+        ari_ans = ["eternal sunshine (slightly deluxe)", "eternal sunshine", "Yours Truly (Tenth Anniversary Edition)", "Positions (Deluxe)", "Positions", "k bye for now (swt live)", "thank u, next", "Sweetener", "Dangerous Woman", "My Everything (Deluxe)", "Yours Truly"]
+        
+        self.assertEqual(strokes_ans, strokes_lst['albums'])
+        self.assertEqual(maluma_ans, maluma_lst['albums'])
+        self.assertEqual(ari_ans, ari_lst['albums'])
     
 if __name__ == "__main__":
     main()
