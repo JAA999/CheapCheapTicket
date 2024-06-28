@@ -75,7 +75,7 @@ function Artists(props) {
 
             {/* static dont' use */}
 
-            <div class="row g-5 m-2" >
+            <div class="row g-5 m-2 " >
                 <h1>Artists</h1>
 
                 <div class="col-xl-3 h-25" >
@@ -85,7 +85,7 @@ function Artists(props) {
                     <ArtistsCardStaticTwo ArtistsName={"Tony Stark"} Genre={"Country"} />
                 </div >
                 <div class="col-xl-3 h-25" >
-                    <ArtistsCardStaticThree ArtistsName={"John Doe"} Genre={"Pop"} />
+                    <ArtistsCardStaticThree ArtistsName={"Tyler the Creator"} Genre={"Pop"} />
                 </div >
             </div>
 

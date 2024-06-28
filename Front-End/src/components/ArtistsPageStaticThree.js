@@ -7,7 +7,7 @@ import { artist_information } from "./Artists";
 function ArtistsPageStaticThree() {
     let { artistId } = useParams();
     const artist = {
-        name: "John Doe",
+        name: "Tyler the Creator",
         id: 3,
         birth: "Aug 12",
         country: "Europe",
