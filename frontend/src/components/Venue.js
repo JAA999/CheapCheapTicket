@@ -17,7 +17,7 @@ function Venue() {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">Long Center</h5> <p>Ticket Price: <strong>$15-$320</strong></p>
+              <a href="/venueinfo"><h5 className="card-title">Long Center</h5></a> <p>Ticket Price: <strong>$15-$320</strong></p>
               <p className="card-text">October 12th, 2024</p>
               <a href="https://heyaustin.com/wp-content/uploads/2015/05/bp_long_center_03-e1581877716911.jpg" className="btn btn-primary">Travis Scott</a>
               <p className="card-text"><small className="text-body-secondary">701 W Riverside Dr, Austin, TX 78704</small></p>

@@ -5,6 +5,7 @@ import About from './components/About';
 import Venue from './components/Venue';
 import Artists from './components/Artists';
 import Genre from './components/Genre';
+import VenueInfo from './components/VenueInfo';
 import './App.css';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/venue" element={<Venue />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/venue" element={<Venue />} />
+          <Route path="/venueinfo" element={<VenueInfo />} />
           <Route path="/genre" element={<Genre />} />
           
         </Routes>
