@@ -1,10 +1,13 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-# from flask import Flask, render_template
-# from flask import Flask, render_template, request, url_for, redirect, json, json
-
+from flask import Flask
 import requests
 import base64
+
+app = Flask(__name__)
+@app.route('/')
+def index():
+    return "Hello World"
 
 def main():
     # Get Authorization for Spotify API
@@ -13,18 +16,19 @@ def main():
 
     artist_instances = []
     venue_instances = []
-
+    place_info_instance = []
     # ISSUE: Genres in this list are not comprehensive to those used in artist_instances
     genre_instances = populateGenres(spotify_access_token)
 
     # Sample artists 
-    artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean', 'Sabrina Carpenter']
+    artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean']
 
     # Populate artist_instances with dictionaries of each artist
     for artist_name in artist_names:
         artist_id = getArtistId(spotify_access_token, artist_name)
         artist_instances += [getArtistInformation(artist_id, spotify_access_token)]
         venue_instances += getEventsForArtist(ticketmaster_access_token, artist_name)
+        place_info_instance +=  getPlaceId("1 Patriot Place, Foxborough, Massachusetts") #zach bryan example
 
     # FOR DEBUGGING PURPOSES ONLY
     # for artist in artist_instances:
@@ -54,7 +58,7 @@ def getSpotifyAccessToken():
     access_token = auth_response_data['access_token']
     return access_token
 
-# Perform a search request for the artist using their name and return their id
+# Perform a search request for a single artist using their name and return their id
 def getArtistId(access_token, artist_name) :
     # Define the headers with the access token
     spotify_headers = {
@@ -172,11 +176,36 @@ def getEventsForArtist(access_token, artist_name) :
             'priceRange': "TBD" if 'priceRanges' not in event else f"${event['priceRanges'][0]['min']} to ${event['priceRanges'][0]['max']}",
             'genre': event['classifications'][0]['genre']['name'],
             'venueName': event['_embedded']['venues'][0]['name'],
-            'ticketmasterURL': event['url']
+            'ticketmasterURL': event['url'] #venue website
         }
+        print(str(event_instance) + "for " + str(event_instance['event_name']))
         events += [event_instance]
-
     return events
 
+# Return a given place's id given the address
+def getPlaceId(address): 
+    #Google Maps API key
+    google_api_key = "AIzaSyCmYlMf69YSjXh4KB1YNImR-HXkn62CG94"
+    BASE_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
+    #Define the text query and fields you want to retrieve
+    query = address
+    fields = 'place_id,name'
+    
+    # Construct the request URL with parameters
+    url = f"{BASE_URL}?query={query}&fields={fields}&key={google_api_key}"
+
+    # Send GET request to Places API
+    response = requests.get(url)
+
+    # Parse JSON response
+    data = response.json()
+    print(str(data))
+    res = data['results'][0]['place_id']
+    return res
+
+def getVenueReviews():
+    
+    pass
 if __name__ == "__main__":
-    main()
+    #main()
+    app.run()
