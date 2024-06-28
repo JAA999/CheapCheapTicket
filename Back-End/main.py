@@ -1,34 +1,35 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-from flask import Flask
+# from flask import Flask
 import requests
 import base64
 
-app = Flask(__name__)
-@app.route('/')
-def index():
-    return "Hello World"
+# app = Flask(__name__)
+# @app.route('/')
+# def index():
+#     return "Hello World"
 
 def main():
     # Get Authorization for Spotify API
     spotify_access_token = getSpotifyAccessToken() 
     ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
+    google_access_token = 'AIzaSyAVFsqiUBPbEIyxqbjoJlAh9ylHNnWT4k8'
 
     artist_instances = []
     venue_instances = []
     place_info_instance = []
+
     # ISSUE: Genres in this list are not comprehensive to those used in artist_instances
     genre_instances = populateGenres(spotify_access_token)
 
     # Sample artists 
-    artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean']
+    artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean', 'Sabrina Carpenter']
 
     # Populate artist_instances with dictionaries of each artist
     for artist_name in artist_names:
         artist_id = getArtistId(spotify_access_token, artist_name)
         artist_instances += [getArtistInformation(artist_id, spotify_access_token)]
-        venue_instances += getEventsForArtist(ticketmaster_access_token, artist_name)
-        place_info_instance +=  getPlaceId("1 Patriot Place, Foxborough, Massachusetts") #zach bryan example
+        venue_instances += getEventsForArtist(ticketmaster_access_token, artist_name, google_access_token)
 
     # FOR DEBUGGING PURPOSES ONLY
     # for artist in artist_instances:
@@ -146,7 +147,7 @@ def populateGenres(access_token):
     return genre_instances
 
 # Return a list of events for a particular artist
-def getEventsForArtist(access_token, artist_name) :
+def getEventsForArtist(access_token, artist_name, google_api_key) :
     event_search_url = 'https://app.ticketmaster.com/discovery/v2/events.json'
 
     params = {
@@ -155,14 +156,14 @@ def getEventsForArtist(access_token, artist_name) :
         'classificationName': 'music',
         'locale': 'en-us', #filter only in the USA
     }
+
     response = (requests.get(event_search_url, params=params)).json()
     events = []
     for event in response['_embedded']['events']: 
         address = event['_embedded']['venues'][0]['address']['line1']
         address += f", {event['_embedded']['venues'][0]['city']['name']}"
-        #print("current address : " + str(address) + "\n")
         address += f", {event['_embedded']['venues'][0]['state']['name']}"
-        #print("wanted address : " + str(address) + "\n")
+
         salesDateRange = f"{event['sales']['public']['startDateTime']} to "
         salesDateRange += event['sales']['public']['endDateTime']
 
@@ -170,42 +171,55 @@ def getEventsForArtist(access_token, artist_name) :
             'event_id': event['id'],
             'event_name': event['name'],
             'artist_names': [artist_name],
-            'address': address,
             'dateAndTime': event['dates']['start']['localDate'] if not (event['dates']['start']['dateTBD']) else 'TBD',
             'salesStart-End': salesDateRange,
             'priceRange': "TBD" if 'priceRanges' not in event else f"${event['priceRanges'][0]['min']} to ${event['priceRanges'][0]['max']}",
             'genre': event['classifications'][0]['genre']['name'],
-            'venueName': event['_embedded']['venues'][0]['name'],
-            'ticketmasterURL': event['url'] #venue website
+            'venue': {},
+            'ticketmasterURL': event['url']
         }
-        print(str(event_instance) + "for " + str(event_instance['event_name']))
+
+        venue_id = getVenueId(event['_embedded']['venues'][0]['name'], google_api_key)
+        event_instance['venue'] = getVenueInformation(google_api_key, venue_id)
+
+        event_instance['venue']['name'] = event['_embedded']['venues'][0]['name']
+        event_instance['venue']['address'] = address
+
         events += [event_instance]
+
     return events
 
 # Return a given place's id given the address
-def getPlaceId(address): 
-    #Google Maps API key
-    google_api_key = "AIzaSyCmYlMf69YSjXh4KB1YNImR-HXkn62CG94"
+def getVenueId(venue_name, google_api_key): 
+    # Text search request based on venue address
     BASE_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
-    #Define the text query and fields you want to retrieve
-    query = address
+    
+    # Fields to retrieve
     fields = 'place_id,name'
     
     # Construct the request URL with parameters
-    url = f"{BASE_URL}?query={query}&fields={fields}&key={google_api_key}"
+    url = f"{BASE_URL}?query={venue_name}&fields={fields}&key={google_api_key}"
+    response = (requests.get(url)).json()
 
-    # Send GET request to Places API
-    response = requests.get(url)
+    return response['results'][0]['place_id']
 
-    # Parse JSON response
-    data = response.json()
-    print(str(data))
-    res = data['results'][0]['place_id']
-    return res
+# Populate the venue with its website, phone number, and rating
+def getVenueInformation(google_api_key, venue_id):
 
-def getVenueReviews():
-    
-    pass
+    venue_details_url = f'https://places.googleapis.com/v1/places/{venue_id}?fields=nationalPhoneNumber,rating,websiteUri&key={google_api_key}'
+
+    response = (requests.get(venue_details_url)).json()
+
+    venue_information = {
+        'name': '',
+        'address': '',
+        'phoneNumber': "Unavailable" if 'nationalPhoneNumber' not in response else response['nationalPhoneNumber'],
+        'rating': "Unavailable" if 'rating' not in response else f"{response['rating']} / 5",
+        'website': "Unavailable" if 'websiteUri' not in response else response['websiteUri']
+    }
+
+    return venue_information
+
 if __name__ == "__main__":
-    #main()
-    app.run()
+    main()
+    #app.run()
