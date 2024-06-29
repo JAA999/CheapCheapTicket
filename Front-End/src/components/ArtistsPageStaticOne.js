@@ -48,7 +48,7 @@ function ArtistsPageStaticOne() {
                 </div>
                 <div class="card text-black col-lg-2 ms-4 p-0 border-0">
                     <img class="card-img-top " src="/StaticImages/me.jpg" alt="albumCover" />
-                    <p><b>My Eyes</b></p>
+                    <p><b>Uptopia</b></p>
                 </div>
 
             </div>

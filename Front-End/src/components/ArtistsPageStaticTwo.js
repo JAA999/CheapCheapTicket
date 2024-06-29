@@ -15,7 +15,7 @@ function ArtistsPageStaticTwo() {
         popularity: 1,
         genre: "Country",
         albums: ["mark1", "mark2", "mark3", "mark4", "mark5"],
-        futureEvents: ["Austin,TX", "NewJeresy, TX", "NYC, NY", "Deep, Sea"],
+        futureEvents: ["Austin,TX", "NewJeresy, TX", "NYC, NY"],
         image_url: "www"
 
 
