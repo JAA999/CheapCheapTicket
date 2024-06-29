@@ -4,6 +4,8 @@ import Home from './components/Home';
 import About from './components/About';
 import Venue from './components/Venue';
 import Genre from './components/Genre';
+import VenueInfo from './components/VenueInfo';
+
 import Artists from './components/Artists';
 import ArtistsPage from './components/ArtistsPage';
 import './App.css';
@@ -59,6 +61,7 @@ function App() {
           <Route path="/artists/artistspage/:artistsId" element={<ArtistsPage />} />
 
           <Route path="/venue" element={<Venue />} />
+          <Route path="/venueinfo" element={<VenueInfo />} />
           <Route path="/genre" element={<Genre />} />
 
 
