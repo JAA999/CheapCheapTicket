@@ -1,6 +1,6 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-# from flask import Flask
+# from flask import Flask, jsonify
 import requests
 import base64
 
@@ -10,26 +10,37 @@ import base64
 #     return "Hello World"
 
 def main():
-    # Get Authorization for Spotify API
+    artist_names = set()
+    artist_instances = []
+    venue_instances = []
+    genre_instances = []    
+
+    # Access tokens for each API
     spotify_access_token = getSpotifyAccessToken() 
     ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
     google_access_token = 'AIzaSyAVFsqiUBPbEIyxqbjoJlAh9ylHNnWT4k8'
 
-    artist_instances = []
-    venue_instances = []
-    place_info_instance = []
-
-    # ISSUE: Genres in this list are not comprehensive to those used in artist_instances
     genre_instances = populateGenres(ticketmaster_access_token)
+    sortInstances(genre_instances, 'name', '', False)
+    
+    playlist_names = ['The New Alt', 'Blues Classics', 'Classical Essentials', 'Hot Country', 'mint', 'Roots Rising', 'RapCaviar', 'Jazz Classics', 'Viva Latino', 'Kickass Metal', 'Summer Pop', 'RNB X', 'Reggae Classics', 'Top Christian & Gospel', 'Legends Only']
 
-    # Sample artists 
-    artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean', 'Sabrina Carpenter']
+    # print(getArtistInformation('40ZNYROS4zLfyyBSs2PGe2', spotify_access_token))
+
+    # playlist_index = 0
+    # for genre in genre_instances:
+    #     print(f"---------{playlist_names[playlist_index]}---------\n")
+
+    #     populateGenreFromPlaylist(spotify_access_token, genre, playlist_names[playlist_index], artist_names, artist_instances)
+
+    #     playlist_index += 1
+    #     print("\n")
 
     # Populate artist_instances with dictionaries of each artist
-    for artist_name in artist_names:
-        artist_id = getArtistId(spotify_access_token, artist_name)
-        artist_instances += [getArtistInformation(artist_id, spotify_access_token)]
-        venue_instances += getEventsForArtist(ticketmaster_access_token, artist_name, google_access_token)
+    # for artist_name in artist_names:
+    #     artist_id = getArtistId(spotify_access_token, artist_name)
+    #     artist_instances += [getArtistInformation(artist_id, spotify_access_token)]
+    #     venue_instances += getEventsForArtist(ticketmaster_access_token, artist_name, google_access_token)
 
     # FOR DEBUGGING PURPOSES ONLY
     # for artist in artist_instances:
@@ -147,27 +158,66 @@ def populateAlbums(access_token, artist_id, artist_information):
 def populateGenres(access_token):
     genres_request = 'https://app.ticketmaster.com/discovery/v2/classifications.json'
 
+    excluded_genres = ('Ballads/Romantic', 'Chanson Francaise', 'Children\'s Music', 'Holiday', 'Medieval/Renaissance', 'New Age', 'Other', 'Undefined', 'World')
+
     params = {'apikey': access_token}
     response = (requests.get(genres_request, params=params)).json()
-    # print(response)
 
     genre_instances = []
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
+                if (genre['name'] not in excluded_genres):
+                    genre_instance = {
+                        'genreId': genre['id'],
+                        'name': genre['name'],
+                        'popularArtists': [],
+                        'upcomingEvents': [],
+                        'topSongs': [],
+                        'eventsPriceRange': ''
+                    }
+                    genre_instances += [genre_instance]
 
-                genre_instance = {
-                    'genreId': genre['id'],
-                    'name': genre['name'],
-                    'popularArtist': [],
-                    'upcomingEvents': [],
-                    # 'popularityInUSA': '',
-                    'topSongs': [],
-                    'eventsPriceRange': ''
-                }
-                #print(genre_instance)
-                genre_instances += [genre_instance]
     return genre_instances
+
+# Given a playlist name, it populates a genre with artists and songs from the playlist
+def populateGenreFromPlaylist(access_token, genre_instance, playlist_name, artist_names, artist_instances):
+    if (not playlist_name):
+        return
+    spotify_headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+
+    search_url = 'https://api.spotify.com/v1/search'
+    params = {
+        'q': playlist_name,
+        'type': 'playlist',
+        'limit': 1,
+        'offset': 0
+    }
+
+    response = (requests.get(search_url, headers=spotify_headers,params=params)).json()
+
+    playlist_id = response['playlists']['items'][0]['id']
+
+    playlist_items_url = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks'
+
+    response = (requests.get(playlist_items_url, headers=spotify_headers)).json()
+
+    for item in response['items']:
+        track = item['track']
+        artist_name = track['artists'][0]['name']
+        artist_id = track['artists'][0]['id']
+
+        if (artist_name not in artist_names):
+            artist_names.add(artist_name)
+            print(f"Artist Id: {artist_id}\n")
+            print(f"Genre Name: {genre_instance['name']}\n")
+            artist_instances += getArtistInformation(artist_id, access_token)
+
+        # FOR DEBUGGING PURPOSES ONLY
+        print(f"Track Name: {track['name']}, By: {artist_name}\n")
+
 
 # Return a list of events for a particular artist
 def getEventsForArtist(access_token, artist_name, google_api_key) :
@@ -177,11 +227,12 @@ def getEventsForArtist(access_token, artist_name, google_api_key) :
         'apikey': access_token,
         'keyword': artist_name, 
         'classificationName': 'music',
-        'locale': 'en-us', #filter only in the USA
+        'locale': 'en-us', # filter only in the USA
     }
 
     response = (requests.get(event_search_url, params=params)).json()
-    events = []
+
+    venue_instances = []
     for event in response['_embedded']['events']: 
         address = event['_embedded']['venues'][0]['address']['line1']
         address += f", {event['_embedded']['venues'][0]['city']['name']}"
@@ -208,9 +259,10 @@ def getEventsForArtist(access_token, artist_name, google_api_key) :
         event_instance['venue']['name'] = event['_embedded']['venues'][0]['name']
         event_instance['venue']['address'] = address
 
-        events += [event_instance]
+        venue_instances += [event_instance]
 
-    return events
+        return venue_instances
+
 
 # Return a given place's id given the address
 def getVenueId(venue_name, google_api_key): 
@@ -242,6 +294,23 @@ def getVenueInformation(google_api_key, venue_id):
     }
 
     return venue_information
+
+# GitLab REST API
+gitlab_project_id = '59330677'
+gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
+gitlab_api_url = f'https://https://gitlab.com/api/v4/projects/{59330677}/repository/commits'
+
+# @app.route('/commits', methods=['GET'])
+def get_commits():
+    headers = {'PRIVATE-TOKEN': gitlab_access_token}
+    response = requests.get(gitlab_api_url, headers=headers)
+    
+    if response.status_code == 200:
+        commits = response.json()
+        return jsonify(commits)
+    else:
+        return jsonify({'error': 'Failed to fetch commits'}), response.status_code
+
 
 if __name__ == "__main__":
     main()
