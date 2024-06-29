@@ -20,7 +20,7 @@ def main():
     place_info_instance = []
 
     # ISSUE: Genres in this list are not comprehensive to those used in artist_instances
-    genre_instances = populateGenres(spotify_access_token)
+    genre_instances = populateGenres(ticketmaster_access_token)
 
     # Sample artists 
     artist_names = ['Zach Bryan', 'Billie Eilish', 'Jason Aldean', 'Sabrina Carpenter']
@@ -35,7 +35,26 @@ def main():
     # for artist in artist_instances:
        # print(artist)
 
-    
+# Sorts an array of instances based on an attribute of said instances
+    # Artist Model Attributes: name, popularity, genre
+    # Venue/Event Model Attributes: event_name, artist_names, dateAndTime, priceRange, venue['name'], venue['rating']
+    # Genre Model Attributes:
+
+    # Example call: sortInstances(venue_instances, 'venue', 'name', False)
+# def sortInstances(instances, attribute_one, attribute_two, reverse):
+#     if (not attribute_two):
+#         if attribute_one not in instances:
+#             return "Attribute not found for instances"
+
+#         if isinstance(instances[attribute_one], list):
+#             return sorted(instances, key=lambda instance: instance[attribute_one][0])
+
+#         return sorted(instances, key=lambda instance: instance[attribute_one], reverse=reverse)
+#     else:
+#         if attribute_one not in instances or attribute_two not in instances[attribute_one]:
+#             return "Attributes not found for instances"
+#         return sorted(instances, key=lambda instance: instance[attribute_one][attribute_two], reverse=reverse)
+
     
 # Create access point to the Spotify API and return given access token
 def getSpotifyAccessToken():
@@ -126,24 +145,28 @@ def populateAlbums(access_token, artist_id, artist_information):
 
 # Retrieve a list of all genres used by spotify to populate Genre Model
 def populateGenres(access_token):
-    spotify_headers = {
-        'Authorization': f'Bearer {access_token}'
-    }
+    genres_request = 'https://app.ticketmaster.com/discovery/v2/classifications.json'
 
-    search_url = 'https://api.spotify.com/v1/recommendations/available-genre-seeds'
+    params = {'apikey': access_token}
+    response = (requests.get(genres_request, params=params)).json()
+    # print(response)
 
-    response = (requests.get(search_url, headers=spotify_headers)).json()
     genre_instances = []
-    for genre in response['genres']:
-        genre_instance = {
-            'name': f'{genre}',
-            'popularArtist': [],
-            'upcomingEvents': [],
-            'popularityInUSA': '',
-            'topSongs': [],
-            'eventsPriceRange': ''
-        }
-        genre_instances += [genre_instance]
+    for classification in response['_embedded']['classifications']:
+        if 'segment' in classification and classification['segment']['name'] == 'Music':
+            for genre in classification['segment']['_embedded']['genres']:
+
+                genre_instance = {
+                    'genreId': genre['id'],
+                    'name': genre['name'],
+                    'popularArtist': [],
+                    'upcomingEvents': [],
+                    # 'popularityInUSA': '',
+                    'topSongs': [],
+                    'eventsPriceRange': ''
+                }
+                #print(genre_instance)
+                genre_instances += [genre_instance]
     return genre_instances
 
 # Return a list of events for a particular artist
@@ -170,7 +193,7 @@ def getEventsForArtist(access_token, artist_name, google_api_key) :
         event_instance = {
             'event_id': event['id'],
             'event_name': event['name'],
-            'artist_names': [artist_name],
+            'artist_names': [artist_name,],
             'dateAndTime': event['dates']['start']['localDate'] if not (event['dates']['start']['dateTBD']) else 'TBD',
             'salesStart-End': salesDateRange,
             'priceRange': "TBD" if 'priceRanges' not in event else f"${event['priceRanges'][0]['min']} to ${event['priceRanges'][0]['max']}",
