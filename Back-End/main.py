@@ -41,19 +41,19 @@ def main():
     # Genre Model Attributes:
 
     # Example call: sortInstances(venue_instances, 'venue', 'name', False)
-# def sortInstances(instances, attribute_one, attribute_two, reverse):
-#     if (not attribute_two):
-#         if attribute_one not in instances:
-#             return "Attribute not found for instances"
+def sortInstances(instances, attribute_one, attribute_two, reverse):
+    if (not attribute_two):
+        if attribute_one not in instances:
+            return "Attribute not found for instances"
 
-#         if isinstance(instances[attribute_one], list):
-#             return sorted(instances, key=lambda instance: instance[attribute_one][0])
+        if isinstance(instances[attribute_one], list):
+            return sorted(instances, key=lambda instance: instance[attribute_one][0])
 
-#         return sorted(instances, key=lambda instance: instance[attribute_one], reverse=reverse)
-#     else:
-#         if attribute_one not in instances or attribute_two not in instances[attribute_one]:
-#             return "Attributes not found for instances"
-#         return sorted(instances, key=lambda instance: instance[attribute_one][attribute_two], reverse=reverse)
+        return sorted(instances, key=lambda instance: instance[attribute_one], reverse=reverse)
+    else:
+        if attribute_one not in instances or attribute_two not in instances[attribute_one]:
+            return "Attributes not found for instances"
+        return sorted(instances, key=lambda instance: instance[attribute_one][attribute_two], reverse=reverse)
 
     
 # Create access point to the Spotify API and return given access token
