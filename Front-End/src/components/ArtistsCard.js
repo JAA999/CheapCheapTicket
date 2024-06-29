@@ -13,6 +13,12 @@ function ArtistsCard(props) {
             </div>
             
             <div class="card-body p-5">{props.VenueList}</div>
+            {/* <div class="card-footer d-flex flex-column align-items-center">
+                <p><b>Venues:</b></p>
+                <span>Austin,TX</span>
+                <span>NewJeresy, TX</span>
+                <span>NYC, NY</span>
+            </div> */}
             
             
 
