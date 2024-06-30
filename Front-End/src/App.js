@@ -5,14 +5,19 @@ import About from './components/About';
 import Venue from './components/Venue';
 import Genre from './components/Genre';
 import VenueInfo from './components/VenueInfo';
-
 import Artists from './components/Artists';
 import ArtistsPage from './components/ArtistsPage';
 import './App.css';
-
 import ArtistsPageStaticOne from './components/ArtistsPageStaticOne';
 import ArtistsPageStaticTwo from './components/ArtistsPageStaticTwo';
 import ArtistsPageStaticThree from './components/ArtistsPageStaticThree';
+import GenreInstance from './components/GenreInstance';
+import GenreInstanceOne from './components/GenreInstanceOne';
+import GenreInstanceTwo from './components/GenreInstanceTwo';
+import GenreInstanceThree from './components/GenreInstanceThree';
+
+
+
 
 function App() {
   return (
@@ -55,14 +60,14 @@ function App() {
           <Route path="/artists" element={<Artists />} />
           <Route path="/artists/artistspage/staticinstance1" element={<ArtistsPageStaticOne />} />
           <Route path="/artists/artistspage/staticinstance2" element={<ArtistsPageStaticTwo />} />
-
           <Route path="/artists/artistspage/staticinstance3" element={<ArtistsPageStaticThree />} />
-
           <Route path="/artists/artistspage/:artistsId" element={<ArtistsPage />} />
-
           <Route path="/venue" element={<Venue />} />
           <Route path="/venueinfo" element={<VenueInfo />} />
           <Route path="/genre" element={<Genre />} />
+          <Route path="/genre/genrestaticinstance1" element={<GenreInstanceOne/>}/>
+          <Route path="/genre/genrestaticinstance2" element={<GenreInstanceTwo/>}/>
+          <Route path="/genre/genrestaticinstance3" element={<GenreInstanceThree/>}/>
 
 
         </Routes>

@@ -8,9 +8,9 @@
   width: 100%; 
 }
 
-.artists-card{
+.artist-card{
   background-color: #f8f9f9;
-  min-height: 200px;
+  min-height: 180px;
 }
 
 .genre-custom-col {
@@ -19,7 +19,7 @@
 }
 
 .genre-colors{
-  background-color: #FFA5A5;
+  background-color: #f8f9f9;
 }
 
 .genre-fixed-height {
@@ -29,3 +29,4 @@
 .genre-fixed-body{
   max-height: 150px;
 }
+

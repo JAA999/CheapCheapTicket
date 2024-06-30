@@ -92,13 +92,6 @@ function Artists(props) {
 
 
 
-
-
-
-
-
-
-
         </>
 
     );

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Genre() {
   return (
@@ -9,7 +11,8 @@ function Genre() {
         <div class="row g-5 m-2">
           <div class="genre-custom-col" >
             <div class="card genre-fixed-height border-0 genre-colors">
-              <div class="card-header">Pop</div>
+              <div class="card-header"><Link to={'/genre/genrestaticinstance1'}><b>Pop</b></Link> </div>
+
               <p><b>#44</b></p>
               <div class="card-body  d-flex flex-column align-items-center genre-fixed-body">
                 <p><b>Artists:</b></p>
@@ -34,7 +37,7 @@ function Genre() {
 
           <div class="genre-custom-col" >
           <div class="card genre-fixed-height border-0 genre-colors">
-              <div class="card-header">Pop</div>
+              <div class="card-header"><Link to={'/genre/genrestaticinstance2'}><b>Country</b></Link></div>
               <p><b>#44</b></p>
               <div class="card-body  d-flex flex-column align-items-center genre-fixed-body">
                 <p><b>Artists:</b></p>
@@ -57,7 +60,7 @@ function Genre() {
             </div>
           </div ><div class="genre-custom-col" >
           <div class="card genre-fixed-height border-0 genre-colors">
-              <div class="card-header">Pop</div>
+              <div class="card-header"><Link to={'/genre/genrestaticinstance3'}><b>Rap</b></Link></div>
               <p><b>#44</b></p>
               <div class="card-body  d-flex flex-column align-items-center genre-fixed-body">
                 <p><b>Artists:</b></p>
@@ -80,7 +83,7 @@ function Genre() {
             </div>
           </div ><div class="genre-custom-col" >
           <div class="card genre-fixed-height border-0 genre-colors">
-              <div class="card-header">Pop</div>
+              <div class="card-header">Hip Hop</div>
               <p><b>#44</b></p>
               <div class="card-body  d-flex flex-column align-items-center genre-fixed-body">
                 <p><b>Artists:</b></p>
@@ -103,7 +106,7 @@ function Genre() {
             </div>
           </div ><div class="genre-custom-col" >
           <div class="card genre-fixed-height border-0 genre-colors">
-              <div class="card-header">Pop</div>
+              <div class="card-header">Jazz</div>
               <p><b>#44</b></p>
               <div class="card-body  d-flex flex-column align-items-center genre-fixed-body">
                 <p><b>Artists:</b></p>

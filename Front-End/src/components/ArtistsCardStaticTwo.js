@@ -6,10 +6,9 @@ function ArtistsCardStaticTwo(props) {
     return (
         <div class="card  text-black">
             <img class="card-img-top fixed-height-img" src="StaticImages/imp.jpeg" alt="artistsPic" />
-            <div class="card-body artists-card">
+            <div class="card-body artist-card">
 
-
-            <div class ="d-flex justify-content-center">
+                <div class="d-flex justify-content-center">
                     <Link to={`/artists/artistspage/staticinstance2`}><h5><b>{props.ArtistsName}</b></h5></Link>
                     <p style={{ marginLeft: '10px' }}>#1</p>
                 </div>
