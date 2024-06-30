@@ -25,33 +25,17 @@ def main():
     
     playlist_names = ['The New Alt', 'Blues Classics', 'Classical Essentials', 'Hot Country', 'mint', 'Roots Rising', 'RapCaviar', 'Jazz Classics', 'Viva Latino', 'Kickass Metal', 'Summer Pop', 'RNB X', 'Reggae Classics', 'Top Christian & Gospel', 'Legends Only']
 
-    # print(getArtistInformation('40ZNYROS4zLfyyBSs2PGe2', spotify_access_token))
-
-    # playlist_index = 0
-    # for genre in genre_instances:
-    #     print(f"---------{playlist_names[playlist_index]}---------\n")
-
-    #     populateGenreFromPlaylist(spotify_access_token, genre, playlist_names[playlist_index], artist_names, artist_instances)
-
-    #     playlist_index += 1
-    #     print("\n")
-
-    # Populate artist_instances with dictionaries of each artist
-    # for artist_name in artist_names:
-    #     artist_id = getArtistId(spotify_access_token, artist_name)
-    #     artist_instances += [getArtistInformation(artist_id, spotify_access_token)]
-    #     venue_instances += getEventsForArtist(ticketmaster_access_token, artist_name, google_access_token)
+    playlist_index = 0
+    for genre in genre_instances:
+        # print(f"---------{playlist_names[playlist_index]}---------\n")
+        populateGenreFromPlaylist(spotify_access_token, genre, playlist_names[playlist_index], artist_names, artist_instances)
+        playlist_index += 1
 
     # FOR DEBUGGING PURPOSES ONLY
     # for artist in artist_instances:
        # print(artist)
 
 # Sorts an array of instances based on an attribute of said instances
-    # Artist Model Attributes: name, popularity, genre
-    # Venue/Event Model Attributes: event_name, artist_names, dateAndTime, priceRange, venue['name'], venue['rating']
-    # Genre Model Attributes:
-
-    # Example call: sortInstances(venue_instances, 'venue', 'name', False)
 def sortInstances(instances, attribute_one, attribute_two, reverse):
     if (not attribute_two):
         if attribute_one not in instances:
@@ -182,8 +166,6 @@ def populateGenres(access_token):
 
 # Given a playlist name, it populates a genre with artists and songs from the playlist
 def populateGenreFromPlaylist(access_token, genre_instance, playlist_name, artist_names, artist_instances):
-    if (not playlist_name):
-        return
     spotify_headers = {
         'Authorization': f'Bearer {access_token}'
     }
@@ -211,12 +193,10 @@ def populateGenreFromPlaylist(access_token, genre_instance, playlist_name, artis
 
         if (artist_name not in artist_names):
             artist_names.add(artist_name)
-            print(f"Artist Id: {artist_id}\n")
-            print(f"Genre Name: {genre_instance['name']}\n")
             artist_instances += getArtistInformation(artist_id, access_token)
 
         # FOR DEBUGGING PURPOSES ONLY
-        print(f"Track Name: {track['name']}, By: {artist_name}\n")
+        # print(f"Track Name: {track['name']}, By: {artist_name}\n")
 
 
 # Return a list of events for a particular artist
