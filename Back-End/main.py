@@ -1,18 +1,25 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-# from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template
 import requests
 import base64
+
+app = Flask(__name__)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 artist_names = set()
 artists_instances = {}
 venue_instances = {}
 genre_instances = {}
 
+
 # Access tokens for each API
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
 google_access_token = 'AIzaSyAVFsqiUBPbEIyxqbjoJlAh9ylHNnWT4k8'
+
 
 def main():
     get_spotify_access_token()
@@ -368,5 +375,4 @@ def check_request_status(response):
         response.raise_for_status()
 
 if __name__ == "__main__":
-    main()
-    #app.run()
+    app.run()
