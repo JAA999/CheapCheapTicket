@@ -1,13 +1,13 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-from flask import Flask, jsonify, render_template
+# from flask import Flask, jsonify, render_template
 import requests
 import base64
 
-app = Flask(__name__)
-@app.route('/')
-def index():
-    return render_template('index.html')
+# app = Flask(__name__)
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 artist_names = set()
 artists_instances = {}
@@ -33,25 +33,25 @@ def main():
 
     playlist_names_limited = ['The New Alt', 'Hot Country', 'RapCaviar', 'Viva Latino', 'Summer Pop', 'Legends Only']
 
-    playlist_names_test = ['Hot Country']
+    playlist_names_test = ['Hot Country', 'RapCaviar', 'Summer Pop']
 
     playlist_index = 0
     for genre_id in genre_instances:
         create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
         playlist_index += 1
 
-    # print("---Artists---")
-    # for artist_key in artists_instances:
-    #     print(artists_instances[artist_key])
-    #     print("\n")
-    # print("---Genres---")
-    # for genre_key in genre_instances:
-    #     print(genre_instances[genre_key])
-    #     print("\n")
-    # print("---Events---")
-    # for event_key in venue_instances:
-    #     print(venue_instances[event_key])
-    #     print("\n")
+    print("---Artists---")
+    for artist_key in artists_instances:
+        print(artists_instances[artist_key])
+        print("\n")
+    print("---Genres---")
+    for genre_key in genre_instances:
+        print(genre_instances[genre_key])
+        print("\n")
+    print("---Events---")
+    for event_key in venue_instances:
+        print(venue_instances[event_key])
+        print("\n")
 
 
 # Sorts an array of instances based on an attribute of said instances
@@ -172,7 +172,7 @@ def populate_genres():
 
     excluded_genres_limited = ('Ballads/Romantic', 'Blues', 'Chanson Francaise', 'Children\'s Music', 'Classical', 'Dance/Electronic', 'Folk', 'Holiday', 'Jazz', 'Medieval/Renaissance', 'Metal', 'New Age', 'Other', 'R&B', 'Reggae', 'Religious', 'Undefined', 'World')
 
-    excluded_genres_test = ('Alternative', 'Ballads/Romantic', 'Blues', 'Chanson Francaise', 'Children\'s Music', 'Classical', 'Dance/Electronic', 'Folk', 'Hip-Hop/Rap', 'Holiday', 'Jazz', 'Latin', 'Medieval/Renaissance', 'Metal', 'New Age', 'Other', 'Pop', 'R&B', 'Reggae', 'Religious', 'Rock', 'Undefined', 'World')
+    excluded_genres_test = ('Alternative', 'Ballads/Romantic', 'Blues', 'Chanson Francaise', 'Children\'s Music', 'Classical', 'Dance/Electronic', 'Folk', 'Holiday', 'Jazz', 'Latin', 'Medieval/Renaissance', 'Metal', 'New Age', 'Other', 'R&B', 'Reggae', 'Religious', 'Rock', 'Undefined', 'World')
 
     global ticketmaster_access_token
     params = {'apikey': ticketmaster_access_token}
@@ -284,8 +284,10 @@ def get_events_for_artist(artist_name):
 
             address += f", {event['_embedded']['venues'][0]['state']['name']}" if 'state' in event['_embedded']['venues'][0] else ''
 
-            salesDateRange = f"{event['sales']['public']['startDateTime']} to "
-            salesDateRange += event['sales']['public']['endDateTime']
+            salesDateRange = ''
+            if 'startDateTime' in event['sales']['public']:
+                salesDateRange += f"{event['sales']['public']['startDateTime']} to "
+                salesDateRange += event['sales']['public']['endDateTime']
 
             event_instance = {
                 'eventId': event['id'],
@@ -375,4 +377,5 @@ def check_request_status(response):
         response.raise_for_status()
 
 if __name__ == "__main__":
-    app.run()
+    #app.run()
+    main()
