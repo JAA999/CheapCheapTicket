@@ -3,6 +3,11 @@ import ArtistsCard from "./ArtistsCard";
 import ArtistsCardStaticOne from './ArtistsCardStaticOne';
 import ArtistsCardStaticTwo from './ArtistsCardStaticTwo';
 import ArtistsCardStaticThree from './ArtistsCardStaticThree';
+import ArtistsCardStaticFour from './ArtistsCardStaticFour';
+import ArtistsCardStaticFive from "./ArtistsCardStaticFive";
+import ArtistsCardStaticSix from "./ArtistsCardStaticSix";
+
+
 
 
 
@@ -79,15 +84,27 @@ function Artists(props) {
                 <h1>Artists</h1>
 
                 <div class="col-xl-3 h-25" >
-                    <ArtistsCardStaticOne ArtistsName={"Travis Scott"} Genre={"Hip Hop"} />
+                    <ArtistsCardStaticOne ArtistsName={"Kelsea Ballerini'"} Genre={"Country"} />
                 </div >
                 <div class="col-xl-3 h-25" >
-                    <ArtistsCardStaticTwo ArtistsName={"Tony Stark"} Genre={"Country"} />
+                    <ArtistsCardStaticTwo ArtistsName={"Chris Stapleton"} Genre={"Country"} />
                 </div >
                 <div class="col-xl-3 h-25" >
-                    <ArtistsCardStaticThree ArtistsName={"Tyler the Creator"} Genre={"Pop"} />
+                    <ArtistsCardStaticThree ArtistsName={"Ella Langley"} Genre={"Country"} />
                 </div >
+                <div class="col-xl-3 h-25" >
+                    <ArtistsCardStaticFour ArtistsName={"Central Cee"} Genre={"Hip-Hop/Rap"} />
+                </div >
+                <div class="col-xl-3 h-25" >
+                    <ArtistsCardStaticFive ArtistsName={"Gunna"} Genre={"Hip-Hop/Rap"} />
+                </div >
+                <div class="col-xl-3 h-25" >
+                    <ArtistsCardStaticSix ArtistsName={"Capital Cities"} Genre={"Pop"} />
+                </div >
+                
+                
             </div>
+            
 
 
 

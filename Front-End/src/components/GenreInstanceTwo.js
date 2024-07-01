@@ -1,18 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function GenreInstanceTwo() {
     return (
         <>
-            <h1 class="text-align-center pt-5">Country #44</h1>
+            <h1 class="text-align-center pt-5">Hip-Hop/Rap</h1>
             <div class="row p-5 g-5">
 
                 <div class="col-lg-4 ">
                     <div class="card">
                         <div class="card-header"> <h5>Top Songs</h5></div>
                         <div class="card-body  d-flex flex-column align-items-center ">
-                            <p>Travis Scott</p>
-                            <p>First, Last</p>
-                            <p>First, Last</p>
+                            <p><Link to={`/artists/artistspage/staticinstance4`}>Central Cee</Link></p>
+                            <p><Link to={`/artists/artistspage/staticinstance5`}>Gunna</Link></p>
+                            <p>Kendrick Lamar</p>
                         </div>
 
                     </div>
@@ -33,9 +35,9 @@ function GenreInstanceTwo() {
                     <div class="card">
                         <div class="card-header"> <h5>Top Artists</h5></div>
                         <div class="card-body d-flex flex-column align-items-center">
-                            <p>Song1</p>
-                            <p>Song2</p>
-                            <p>Song3</p>
+                            <p>BAND4BAND (feat. Lil Baby)"</p>
+                            <p>"One of Wun"</p>
+                            <p>"Not Like Us"</p>
                         </div>
                     </div>
                 </div>

@@ -6,18 +6,19 @@ import { Link } from 'react-router-dom';
 
 // File not to be used
 
-function ArtistsPageStaticThree() {
+function ArtistsPageStaticSix() {
     let { artistId } = useParams();
     const artist = {
-        name: "Ella Langley",
-        id: 3,
-        birth: "Aug 12",
-        country: "Europe",
-        popularity: 64,
-        genre: "Country",
-        albums: ["Pork", "Man Man"],
-        futureEvents: ["Ella Langley", "Ella Langley", "Ella Langley", "Ella Langley"],
+        name: "Capital Cities",
+        id: 65,
+        birth: "May 1",
+        country: "America",
+        popularity: 65,
+        genre: "Pop",
+        albums: ["astro world", "MBDTF"],
+        futureEvents: ["The 2nd Annual Capital City Blues Festival"],
         image_url: "www"
+
     }
 
     return (
@@ -25,7 +26,7 @@ function ArtistsPageStaticThree() {
             <div class="row m-2 p-5">
                 <h1 class="col-xl-7 text-start">{artist.name}</h1>
                 <h1 class="col-xl-3 text-end " >#{artist.popularity}</h1>
-                <h3 class="col-xl-3 text-start"><Link to={'/genre/genrestaticinstance1'}>{artist.genre}</Link></h3>
+                <h3 class="col-xl-3 text-start"><Link to={'/genre/genrestaticinstance3'}>{artist.genre}</Link></h3>
                 <div></div>
                 <p class="col-xl-3 text-start">Personal information :<br></br> Birthdate : {artist.birth} <br></br>Country : {artist.country} </p>
             </div>
@@ -36,16 +37,20 @@ function ArtistsPageStaticThree() {
                 {
                     // artist.albums.map((albums) => (
                     //     <div class="card bg-secondary text-white col-lg-2 ms-4">
-                    //         <img class="card-img-top " src="/chick.png" alt="albumCover" />
+                    //         <img class="card-img-top " src="/StaticImages/aw.jpg" alt="albumCover" />
                     //         <p>{albums}</p>
                     //     </div>
                     // ))
+
                 }
+
                 <div class="card text-black col-lg-2 ms-4 p-0 border-0">
-                    <img class="card-img-top " src="https://i.scdn.co/image/ab67616d0000b2735af0621852c2181c63954c20" alt="albumCover" />
-                    <p><b>Excuse The Mess</b></p>
+                    <img class="card-img-top " src="https://i.scdn.co/image/ab67616d0000b273f261d7143a111a182410490b" alt="albumCover" />
+                    <p><b>Napoleon</b></p>
                 </div>
                 
+                
+
             </div>
 
             <div class="row m-2 p-5 ">
@@ -64,4 +69,4 @@ function ArtistsPageStaticThree() {
     );
 }
 
-export default ArtistsPageStaticThree;
+export default ArtistsPageStaticSix;
