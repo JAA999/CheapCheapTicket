@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
 
 function VenueInfoTwo() {
     return (
@@ -17,7 +19,7 @@ function VenueInfoTwo() {
 
         <p className="card-text">2024-10-19</p>
               <p className="card-text"><small className="text-body-secondary">Township Auditorium 1703 Taylor Street, Columbia, South Carolina</small></p>
-              <p><strong>Genres: </strong> <a href="#">Pop</a> </p>
+              <p><strong>Genres: </strong> <Link to={'/genre/genrestaticinstance3'}>Pop</Link> </p>
     </div>
     )
 }

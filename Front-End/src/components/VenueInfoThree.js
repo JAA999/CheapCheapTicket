@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
 
 function VenueInfoThree() {
     return (
@@ -17,7 +19,7 @@ function VenueInfoThree() {
 
         <p className="card-text">2024-07-27</p>
               <p className="card-text"><small className="text-body-secondary">Audi Field 100 Potomac Ave. SW, Washington, District of Columbia</small></p>
-              <p><strong>Genres: </strong> <a href="#">Hip-Hop/Pop</a> </p>
+              <p><strong>Genres: </strong> <Link to={'/genre/genrestaticinstance2'}>Hip-Hop/Rap</Link></p>
     </div>
     )
 }

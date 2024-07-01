@@ -46,14 +46,21 @@ function ArtistsPageStaticFive() {
 
             <div class="row m-2 p-5 ">
                 <h1 class="col-xl-6 text-start">Future Events</h1>
-                {
+                {/* {
                     artist.futureEvents.map((events) => (
                         <div class="artist-venue-links col-lg-12 text-start mb-3 p-2 rounded">
                             <p>{events} <p>Venue Link here</p></p>
                         </div>
                     ))
-                }
+                } */}
+
+<div class="artist-venue-links col-lg-12 text-start mb-3 p-2 rounded">
+                    <p>Broccoli City Festival 2-day Ticket (7/27-7/28)
+                <p><Link to={'/venueinfothree'}>Link to Venue</Link></p></p>
+                        </div>
             </div>
+
+
 
 
         </>
