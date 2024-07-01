@@ -35,25 +35,28 @@ def main():
 
     playlist_names_test = ['Hot Country', 'RapCaviar', 'Summer Pop']
 
-    # playlist_index = 0
-    # for genre_id in genre_instances:
-    #     create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
-    #     playlist_index += 1
+    playlist_index = 0
+    for genre_id in genre_instances:
+        create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
+        playlist_index += 1
 
-    # print("---Artists---")
-    # for artist_key in artists_instances:
-    #     print(artists_instances[artist_key])
-    #     print("\n")
-    # print("---Genres---")
-    # for genre_key in genre_instances:
-    #     print(genre_instances[genre_key])
-    #     print("\n")
-    # print("---Events---")
-    # for event_key in venue_instances:
-    #     print(venue_instances[event_key])
-    #     print("\n")
+    print("---Artists---")
+    for artist_key in artists_instances:
+        print(artists_instances[artist_key])
+        print("\n")
+    print("---Genres---")
+    for genre_key in genre_instances:
+        print(genre_instances[genre_key])
+        print("\n")
+    print("---Events---")
+    for event_key in venue_instances:
+        print(venue_instances[event_key])
+        print("\n")
 
-    print(get_commits())
+    print("\n---NUMBER OF COMMITS PER MEMBER---\n")
+    get_commits()
+    print("\n---NUMBER OF ISSUES CLOSED BY MEMBER---\n")
+    get_issues()
 
 
 # Sorts an array of instances based on an attribute of said instances
@@ -357,17 +360,16 @@ def get_venue_information(venue_id):
 # GitLab REST API
 gitlab_project_id = '59330677'
 gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
-gitlab_api_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
 
-# @app.route('/commits', methods=['GET'])
 def get_commits():
+    gitlab_commits_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
+
     headers = {'PRIVATE-TOKEN': gitlab_access_token}
-    response = requests.get(gitlab_api_url, headers=headers)
 
     params = {'per_page': 100, 'page': 1}
     
     commits = []
-    response = requests.get(gitlab_api_url, headers=headers, params=params)
+    response = requests.get(gitlab_commits_url, headers=headers, params=params)
     if response.status_code == 200:
         response = response.json()
         commits.extend(response)
@@ -383,6 +385,34 @@ def get_commits():
     for author in commits_per_author:
         print(f"{author} has performed {commits_per_author[author]} commits")
 
+def get_issues():
+    gitlab_issues_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/issues'
+
+    headers = {'PRIVATE-TOKEN': gitlab_access_token}
+    params = {
+        'state': 'closed',
+        'per_page': 100,
+        'page': 1
+    }
+
+    issues = []
+    response = requests.get(gitlab_issues_url, headers=headers, params=params)
+
+    if response.status_code == 200:
+        response = response.json()
+        issues.extend(response)
+    
+    issues_closed_by_member = {}
+    for issue in issues:
+        if 'closed_by' in issue and issue['closed_by']:
+            member = issue['closed_by']['name']
+            if member not in issues_closed_by_member:
+                issues_closed_by_member[member] = 1
+            else:
+                issues_closed_by_member[member] += 1
+
+    for member in issues_closed_by_member:
+        print(f"{member} has closed {issues_closed_by_member[member]} issues")
 
 # Check if API call resulted in error
 def check_request_status(response):

@@ -1,0 +1,130 @@
+---Artists---
+{'name': 'Kelsea Ballerini', 'id': '3RqBeV12Tt7A8xH3zBDDUF', 'popularity': 67, 'genreId': 'KnvZfZ7vAv6', 'albums': ['Rolling Up the Welcome Mat (For Good)', 'SUBJECT TO CHANGE', 'ballerini', 'kelsea', 'Unapologetically (Deluxe Edition)', 'The First Time'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273cae570218a1b4e5572b8c279', 'https://i.scdn.co/image/ab67616d0000b2737de9d89cc5220c52c731db5c', 'https://i.scdn.co/image/ab67616d0000b2736cfd8376a0faaf6e9a5240b6', 'https://i.scdn.co/image/ab67616d0000b2739b166795e8069959a5c2645b', 'https://i.scdn.co/image/ab67616d0000b2737dab00afddeab0d3ee19ff7d', 'https://i.scdn.co/image/ab67616d0000b2737cc5cee7a9cce28c932661c8'], 'futureEvents': ['vvG1bZ9yp8E-kP'], 'image_url': 'https://i.scdn.co/image/ab6761610000f17855610aaacf2c2cceb1c7fb19'}
+
+
+{'name': 'Chris Stapleton', 'id': '4YLtscXsxbVgi031ovDDdh', 'popularity': 81, 'genreId': 'KnvZfZ7vAv6', 'albums': ['Higher', 'Starting Over', 'From A Room: Volume 2', 'From A Room: Volume 1', 'Traveller'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273de2e30cf7205b45a0ba3877f', 'https://i.scdn.co/image/ab67616d0000b2739408342067e2ff50d69a3c98', 'https://i.scdn.co/image/ab67616d0000b27303c4f794113255be4038e45d', 'https://i.scdn.co/image/ab67616d0000b2736b3e3357c9192722c1236b49', 'https://i.scdn.co/image/ab67616d0000b273540fc1d083eac5bcff8dad21'], 'futureEvents': ['vvG1fZbuwllpb0', 'vvG1HZ9Vmm0vUO', 'k7vGF9gERfPK9', 'G5dIZ9z6DVPVY', 'vvG1HZ9grzesRw'], 'image_url': 'https://i.scdn.co/image/ab6761610000f178a0c87c8f329b436eac8b9784'}
+
+
+{'name': 'Ella Langley', 'id': '6BRxQ8cD3eqnrVj6WKDok8', 'popularity': 64, 'genreId': 'KnvZfZ7vAv6', 'albums': ['Excuse The Mess'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b2735af0621852c2181c63954c20'], 'futureEvents': ['Z7r9jZ1A7GJZ4', 'Z7r9jZ1A7GJZK', 'Z7r9jZ1A7aNqY', 'rZ7HnEZ1AK_UuS', 'Z7r9jZ1A7Fs0P'], 'image_url': 'https://i.scdn.co/image/ab6761610000f17872f6aec99524045fbfd77598'}
+
+
+{'name': 'Central Cee', 'id': '5H4yInM5zmHqpKIoMNAx4r', 'popularity': 82, 'genreId': 'KnvZfZ7vAv1', 'albums': ['23', 'Wild West'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273e1f05c994777b79bc5c87547', 'https://i.scdn.co/image/ab67616d0000b2731675d50a0ba7919b5e5797fe'], 'futureEvents': [], 'image_url': 'https://i.scdn.co/image/ab6761610000f1785fe7cabb8de1c0266cd2179c'}
+
+
+{'name': 'Gunna', 'id': '2hlmm7s2ICUX0LVIhVFlZQ', 'popularity': 86, 'genreId': 'KnvZfZ7vAv1', 'albums': ['One of Wun', 'a Gift & a Curse', 'DS4EVER', 'Slime Language 2 (Deluxe)', 'Slime Language 2', 'WUNNA (Deluxe)', 'WUNNA', 'Drip or Drown 2', 'Drip Harder', 'Drip Season 3 (Deluxe)', 'Drip or Drown', 'Drip Season 2', 'Drip Season'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273c67636f3021f5869095c0fc5', 'https://i.scdn.co/image/ab67616d0000b273017d5e26552345c4b1575b6c', 'https://i.scdn.co/image/ab67616d0000b27314d91ebdd6d7e2931322cc1a', 'https://i.scdn.co/image/ab67616d0000b273bbb071648c950e560ae95b76', 'https://i.scdn.co/image/ab67616d0000b2737939ff11c32b23060cc22bb5', 'https://i.scdn.co/image/ab67616d0000b273fae944bd93dd1e47591a0df9', 'https://i.scdn.co/image/ab67616d0000b273d7547a7624116ac5f8a51fd2', 'https://i.scdn.co/image/ab67616d0000b273bddf008ccaea655e61892c27', 'https://i.scdn.co/image/ab67616d0000b273ce159a3ba2096e13fa9d4b4c', 'https://i.scdn.co/image/ab67616d0000b273d00a36fea0639c48eb0ee312', 'https://i.scdn.co/image/ab67616d0000b273dcb5f3bbd5e9fbe873ac68f4', 'https://i.scdn.co/image/ab67616d0000b273d7ee986deb6c2903b225ada4', 'https://i.scdn.co/image/ab67616d0000b273d85ca96db7186d800e75e895'], 'futureEvents': ['1AvfZbkGkyXU-8o', '17A8vOG61rsGNd9', 'G5djZ9mQDu9YJ', 'G5djZ9mhRYI-P', 'G5djZ9m9z5MMG'], 'image_url': 'https://i.scdn.co/image/ab6761610000f178b978b95b8e03351df8e103af'}
+
+
+{'name': 'Kendrick Lamar', 'id': '2YZyLoL8N0Wb9xBt1NhZWg', 'popularity': 92, 'genreId': 'KnvZfZ7vAv1', 'albums': ['Mr. Morale & The Big Steppers', 'Black Panther The Album Music From And Inspired By', 'DAMN. COLLECTORS EDITION.', 'DAMN.', 'untitled unmastered.', 'To Pimp A Butterfly', 'good kid, m.A.A.d city (Deluxe)', 'good kid, m.A.A.d city', 'Section.80', 'Overly Dedicated'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b2732e02117d76426a08ac7c174f', 'https://i.scdn.co/image/ab67616d0000b273c027ad28821777b00dcaa888', 'https://i.scdn.co/image/ab67616d0000b273add9eb25744782c3717c9368', 'https://i.scdn.co/image/ab67616d0000b2738b52c6b9bc4e43d873869699', 'https://i.scdn.co/image/ab67616d0000b2738c697f553a46006a5d8886b2', 'https://i.scdn.co/image/ab67616d0000b273cdb645498cd3d8a2db4d05e1', 'https://i.scdn.co/image/ab67616d0000b273d58e537cea05c2156792c53d', 'https://i.scdn.co/image/ab67616d0000b273d28d2ebdedb220e479743797', 'https://i.scdn.co/image/ab67616d0000b273eddb2639b74ac6c202032ebe', 'https://i.scdn.co/image/ab67616d0000b2739b035b031d9f0a6a75ae464e'], 'futureEvents': [], 'image_url': 'https://i.scdn.co/image/ab6761610000f178437b9e2a82505b3d93ff1022'}
+
+
+{'name': 'Capital Cities', 'id': '4gwpcMTbLWtBUlOijbVpuu', 'popularity': 65, 'genreId': 'KnvZfZ7vAev', 'albums': ['Napoleon', 'Solarize', 'In A Tidal Wave Of Mystery', 'In A Tidal Wave Of Mystery (Deluxe Edition)'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273f261d7143a111a182410490b', 'https://i.scdn.co/image/ab67616d0000b2735d96fc5f3ab23d93632aa846', 'https://i.scdn.co/image/ab67616d0000b273b59770bb9194e8d6e798c09a', 'https://i.scdn.co/image/ab67616d0000b27313c6cb6a81c8db4dbc8b9924'], 'futureEvents': ['G5eVZbGm8weSC', '17A8vOG6GSU5U2Y', '1A-ZkeKGkd5pOVa', 'k7vGFb5wizN5X', 'k7vGF9g3y-StB'], 'image_url': 'https://i.scdn.co/image/04ac605956b34c1a2f6a4872554248e4f2276be9'}
+
+
+{'name': 'Avicii', 'id': '1vCWHaC5f2uS3yhpwWbIA6', 'popularity': 80, 'genreId': 'KnvZfZ7vAev', 'albums': ['TIM', 'Stories', 'True: Avicii By Avicii', 'The Days / Nights', 'True (Bonus Edition)', 'True'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273660ee24281a547103f466ff5', 'https://i.scdn.co/image/ab67616d0000b2735393c5d3cac806092a9bc468', 'https://i.scdn.co/image/ab67616d0000b273182fe5b5d3e3c3fcc895a3c8', 'https://i.scdn.co/image/ab67616d0000b2730ae4f4d42e4a09f3a29f64ad', 'https://i.scdn.co/image/ab67616d0000b273c3760c26cc5374ddbd9fd530', 'https://i.scdn.co/image/ab67616d0000b273e14f11f796cef9f9a82691a7'], 'futureEvents': [], 'image_url': 'https://i.scdn.co/image/ab6761610000f178ae07171f989fb39736674113'}
+
+
+{'name': 'Zara Larsson', 'id': '1Xylc3o4UrD53lo9CvFvVg', 'popularity': 76, 'genreId': 'KnvZfZ7vAev', 'albums': ['VENUS', 'Poster Girl (Summer Edition)', 'Poster Girl', 'So Good', '1'], 'album_covers': ['https://i.scdn.co/image/ab67616d0000b273cdce2376bdd8bfe3fe2a40f2', 'https://i.scdn.co/image/ab67616d0000b273c548dd1245cedb39638b8397', 'https://i.scdn.co/image/ab67616d0000b273503b16348e47bc3c1c823eba', 'https://i.scdn.co/image/ab67616d0000b2739e1683774b22648f4f178ed3', 'https://i.scdn.co/image/ab67616d0000b273656987daa2f253b40f992f55'], 'futureEvents': ['1A4Zke3Gkd1ugxJ', '16eFZba7KG7i3Tg', 'vvG1YZba2DI7uA', 'vvG1zZba5WQ4HJ', 'Z7r9jZ1A71afw'], 'image_url': 'https://i.scdn.co/image/ab6761610000f1787619ca2683b434e139040f70'}
+
+
+---Genres---
+{'genreId': 'KnvZfZ7vAv6', 'name': 'Country', 'popularArtists': ['3RqBeV12Tt7A8xH3zBDDUF', '4YLtscXsxbVgi031ovDDdh', '6BRxQ8cD3eqnrVj6WKDok8'], 'upcomingEvents': ['vvG1bZ9yp8E-kP', 'vvG1fZbuwllpb0', 'vvG1HZ9Vmm0vUO', 'k7vGF9gERfPK9', 'G5dIZ9z6DVPVY', 'vvG1HZ9grzesRw', 'Z7r9jZ1A7GJZ4', 'Z7r9jZ1A7GJZK', 'Z7r9jZ1A7aNqY', 'rZ7HnEZ1AK_UuS', 'Z7r9jZ1A7Fs0P'], 'topSongs': ['Cowboys Cry Too (with Noah Kahan)', 'Think I’m In Love With You', 'you look like you love me (feat. Riley Green)'], 'eventsPriceRange': ''}
+
+
+{'genreId': 'KnvZfZ7vAv1', 'name': 'Hip-Hop/Rap', 'popularArtists': ['5H4yInM5zmHqpKIoMNAx4r', '2hlmm7s2ICUX0LVIhVFlZQ', '2YZyLoL8N0Wb9xBt1NhZWg'], 'upcomingEvents': ['1AvfZbkGkyXU-8o', '17A8vOG61rsGNd9', 'G5djZ9mQDu9YJ', 'G5djZ9mhRYI-P', 'G5djZ9m9z5MMG'], 'topSongs': ['BAND4BAND (feat. Lil Baby)', 'One of Wun', 'Not Like Us'], 'eventsPriceRange': ''}
+
+
+{'genreId': 'KnvZfZ7vAev', 'name': 'Pop', 'popularArtists': ['4gwpcMTbLWtBUlOijbVpuu', '1vCWHaC5f2uS3yhpwWbIA6', '1Xylc3o4UrD53lo9CvFvVg'], 'upcomingEvents': ['G5eVZbGm8weSC', '17A8vOG6GSU5U2Y', '1A-ZkeKGkd5pOVa', 'k7vGFb5wizN5X', 'k7vGF9g3y-StB', '1A4Zke3Gkd1ugxJ', '16eFZba7KG7i3Tg', 'vvG1YZba2DI7uA', 'vvG1zZba5WQ4HJ', 'Z7r9jZ1A71afw'], 'topSongs': ['In A Tidal Wave Of Mystery (Deluxe Edition)', 'Stories', 'So Good'], 'eventsPriceRange': ''}
+
+
+---Events---
+{'eventId': 'vvG1bZ9yp8E-kP', 'eventName': 'Hy-Vee INDYCAR Sunday Race + Post Malone & Kelsea Ballerini', 'artistNames': ['Kelsea Ballerini'], 'dateAndTime': '2024-07-14', 'salesStart-End': '2023-12-23T16:00:00Z to 2024-07-14T23:00:00Z', 'priceRange': '$75.0 to $1000.0', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'Iowa Speedway', 'address': '3333 Rusty Wallace Dr., Newton, Iowa', 'phoneNumber': '(866) 787-8946', 'rating': '4.4 / 5', 'website': 'http://www.iowaspeedway.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/hyvee-indycar-sunday-race-post-malone-newton-iowa-07-14-2024/event/06005F95909E11A5'}
+
+
+{'eventId': 'vvG1fZbuwllpb0', 'eventName': 'Chris Stapleton & Eric Church Tribute', 'artistNames': ['Chris Stapleton'], 'dateAndTime': '2024-10-18', 'salesStart-End': '2024-06-28T16:15:00Z to 2024-10-19T00:00:00Z', 'priceRange': '$15.0 to $107.85', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': "Lori's Road House", 'address': '4924 Union Centre Pavilion Dr, West Chester Township, Ohio', 'phoneNumber': '(513) 603-6200', 'rating': '4.3 / 5', 'website': 'http://www.lrhlive.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/chris-stapleton-eric-church-tribute-west-chester-township-ohio-10-18-2024/event/050060DCABAD6624'}
+
+
+{'eventId': 'vvG1HZ9Vmm0vUO', 'eventName': "Chris Stapleton's All-American Road Show", 'artistNames': ['Chris Stapleton'], 'dateAndTime': '2024-07-27', 'salesStart-End': '2023-11-03T17:00:00Z to 2024-07-28T03:30:00Z', 'priceRange': '$59.5 to $189.5', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'T-Mobile Park', 'address': '1250 1st Ave S., Seattle, Washington', 'phoneNumber': '(206) 346-4000', 'rating': '4.7 / 5', 'website': 'http://seattle.mariners.mlb.com/sea/ballpark/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-seattle-washington-07-27-2024/event/0F005F4BAE901DA0'}
+
+
+{'eventId': 'k7vGF9gERfPK9', 'eventName': "Chris Stapleton's All-American Road Show", 'artistNames': ['Chris Stapleton'], 'dateAndTime': '2024-07-11', 'salesStart-End': '2023-11-03T14:00:00Z to 2024-07-12T01:00:00Z', 'priceRange': '$54.75 to $159.75', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'Darien Lake Amphitheater', 'address': '9993 Alleghany Road, Darien Center, New York', 'phoneNumber': '(585) 599-5040', 'rating': '4.2 / 5', 'website': 'https://www.darienlakeamp.com/?utm_source=GMBlisting&utm_medium=organic'}, 'ticketmasterURL': 'https://concerts.livenation.com/chris-stapletons-allamerican-road-show-darien-center-new-york-07-11-2024/event/00005F59EF5254D7'}
+
+
+{'eventId': 'G5dIZ9z6DVPVY', 'eventName': "Chris Stapleton's All-American Road Show", 'artistNames': ['Chris Stapleton'], 'dateAndTime': '2024-08-24', 'salesStart-End': '2023-12-15T16:00:00Z to 2024-08-25T01:00:00Z', 'priceRange': '$54.95 to $194.95', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'Minute Maid Park', 'address': '501 Crawford, Houston, Texas', 'phoneNumber': '(713) 259-8000', 'rating': '4.7 / 5', 'website': 'http://houston.astros.mlb.com/hou/ballpark/index.jsp'}, 'ticketmasterURL': 'https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-houston-texas-08-24-2024/event/3A005F81FBD25D30'}
+
+
+{'eventId': 'vvG1HZ9grzesRw', 'eventName': "Chris Stapleton's All-American Road Show", 'artistNames': ['Chris Stapleton'], 'dateAndTime': '2024-07-26', 'salesStart-End': '2023-11-03T17:00:00Z to 2024-07-27T04:00:00Z', 'priceRange': '$54.75 to $159.75', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'RV Inn Style Resorts Amphitheater ', 'address': '17200 NE Delfel Road, Ridgefield, Washington', 'phoneNumber': '(360) 816-7000', 'rating': '4.2 / 5', 'website': 'https://www.rvinnstyleresortsamp.com/?utm_source=GMBlisting&utm_medium=organic'}, 'ticketmasterURL': 'https://concerts.livenation.com/chris-stapletons-allamerican-road-show-ridgefield-washington-07-26-2024/event/0F005F57B80B1BF2'}
+
+
+{'eventId': 'Z7r9jZ1A7GJZ4', 'eventName': 'Ella Langley', 'artistNames': ['Ella Langley'], 'dateAndTime': '2024-11-08', 'salesStart-End': '1900-01-01T06:00:00Z to 2024-11-09T02:30:00Z', 'priceRange': 'TBD', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'John T Floore Country Store', 'address': '14492 Old Bandera Rd, Helotes, Texas', 'phoneNumber': '(210) 695-8827', 'rating': '4.5 / 5', 'website': 'http://www.liveatfloores.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/event/Z7r9jZ1A7GJZ4'}
+
+
+{'eventId': 'Z7r9jZ1A7GJZK', 'eventName': 'Ella Langley', 'artistNames': ['Ella Langley'], 'dateAndTime': '2024-08-15', 'salesStart-End': '1900-01-01T06:00:00Z to 2024-08-16T01:00:00Z', 'priceRange': 'TBD', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'Old Rock House', 'address': '1200 South 7th Street, Saint Louis, Missouri', 'phoneNumber': '(314) 588-0505', 'rating': '4.6 / 5', 'website': 'http://oldrockhouse.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/event/Z7r9jZ1A7GJZK'}
+
+
+{'eventId': 'Z7r9jZ1A7aNqY', 'eventName': 'Ella Langley', 'artistNames': ['Ella Langley'], 'dateAndTime': '2024-07-24', 'salesStart-End': '1900-01-01T06:00:00Z to 2024-07-25T00:30:00Z', 'priceRange': 'TBD', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'The Newberry', 'address': '420 Central Avenue, Great Falls, Montana', 'phoneNumber': '(406) 315-1155', 'rating': '4.4 / 5', 'website': 'http://www.thenewberrymt.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/event/Z7r9jZ1A7aNqY'}
+
+
+{'eventId': 'rZ7HnEZ1AK_UuS', 'eventName': 'Ella Langley', 'artistNames': ['Ella Langley'], 'dateAndTime': '2024-10-31', 'salesStart-End': '2024-06-12T15:15:00Z to 2024-11-01T01:00:00Z', 'priceRange': '$22.63 to $22.63', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'Exit/In', 'address': '2208 Elliston Place, Nashville, Tennessee', 'phoneNumber': 'Unavailable', 'rating': '4.6 / 5', 'website': 'https://exitin.com/'}, 'ticketmasterURL': 'https://www.ticketweb.com/event/ella-langley-exitin-tickets/13676373'}
+
+
+{'eventId': 'Z7r9jZ1A7Fs0P', 'eventName': 'Riley Green w/ Ella Langley', 'artistNames': ['Ella Langley'], 'dateAndTime': '2024-09-14', 'salesStart-End': '1900-01-01T06:00:00Z to 2024-09-15T00:30:00Z', 'priceRange': 'TBD', 'genreId': 'KnvZfZ7vAv6', 'venue': {'name': 'Kansas State Fair Grandstand', 'address': ', Hutchinson, Kansas', 'phoneNumber': 'Unavailable', 'rating': '4.4 / 5', 'website': 'Unavailable'}, 'ticketmasterURL': 'https://www.ticketmaster.com/event/Z7r9jZ1A7Fs0P'}
+
+
+{'eventId': '1AvfZbkGkyXU-8o', 'eventName': 'Broccoli City Festival 2-day Ticket (7/27-7/28)', 'artistNames': ['Gunna'], 'dateAndTime': '2024-07-27', 'salesStart-End': '2024-03-22T14:00:00Z to 2024-07-29T00:30:00Z', 'priceRange': '$169.5 to $1069.5', 'genreId': 'KnvZfZ7vAv1', 'venue': {'name': 'Audi Field', 'address': '100 Potomac Ave. SW, Washington, District of Columbia', 'phoneNumber': 'Unavailable', 'rating': '4.6 / 5', 'website': 'https://www.audifield.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/broccoli-city-festival-2day-ticket-727728-washington-district-of-columbia-07-27-2024/event/1500606E7EDA1411'}
+
+
+{'eventId': '17A8vOG61rsGNd9', 'eventName': 'Broccoli City Festival - SUNDAY SINGLE DAY', 'artistNames': ['Gunna'], 'dateAndTime': '2024-07-28', 'salesStart-End': '2024-05-31T14:00:00Z to 2024-07-29T01:00:00Z', 'priceRange': '$99.5 to $544.5', 'genreId': 'KnvZfZ7vAv1', 'venue': {'name': 'Audi Field', 'address': '100 Potomac Ave. SW, Washington, District of Columbia', 'phoneNumber': 'Unavailable', 'rating': '4.6 / 5', 'website': 'https://www.audifield.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/broccoli-city-festival-sunday-single-day-washington-district-of-columbia-07-28-2024/event/150060A7B13230D7'}
+
+
+{'eventId': 'G5djZ9mQDu9YJ', 'eventName': 'Rockstar Energy presents Wireless - Saturday Payment Plan', 'artistNames': ['Gunna'], 'dateAndTime': '2024-07-13', 'salesStart-End': '2024-01-31T10:00:00Z to 2024-07-13T10:00:00Z', 'priceRange': '$49.0 to $49.0', 'genreId': 'KnvZfZ7vAv1', 'venue': 'Unavailable', 'ticketmasterURL': 'https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-saturday-payment-london-13-07-2024/event/37005EE6BB357C26'}
+
+
+{'eventId': 'G5djZ9mhRYI-P', 'eventName': 'Rockstar Energy Presents Wireless - Saturday Day Ticket', 'artistNames': ['Gunna'], 'dateAndTime': '2024-07-13', 'salesStart-End': '2024-01-31T10:00:00Z to 2024-07-13T10:00:00Z', 'priceRange': '$94.6 to $148.0', 'genreId': 'KnvZfZ7vAv1', 'venue': 'Unavailable', 'ticketmasterURL': 'https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-saturday-day-london-13-07-2024/event/37005EE6EFC28865'}
+
+
+{'eventId': 'G5djZ9m9z5MMG', 'eventName': 'Rockstar Energy Presents Wireless - 2 Day Payment Plan Sat & Sun', 'artistNames': ['Gunna'], 'dateAndTime': '2024-07-13', 'salesStart-End': '2024-01-31T10:00:00Z to 2024-07-14T10:00:00Z', 'priceRange': '$45.0 to $49.0', 'genreId': 'KnvZfZ7vAv1', 'venue': 'Unavailable', 'ticketmasterURL': 'https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-2-day-london-13-07-2024/event/37005EE5F82F7DCC'}
+
+
+{'eventId': 'G5eVZbGm8weSC', 'eventName': 'The 2nd Annual Capital City Blues Festival', 'artistNames': ['Capital Cities'], 'dateAndTime': '2024-10-19', 'salesStart-End': '2024-06-28T14:00:00Z to 2024-10-20T01:00:00Z', 'priceRange': '$55.0 to $175.0', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'Township Auditorium', 'address': '1703 Taylor Street, Columbia, South Carolina', 'phoneNumber': '(803) 576-2350', 'rating': '4.5 / 5', 'website': 'http://thetownship.org/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/the-2nd-annual-capital-city-blues-columbia-south-carolina-10-19-2024/event/2D0060CB90C82CCE'}
+
+
+{'eventId': '17A8vOG6GSU5U2Y', 'eventName': 'Maverick City Music', 'artistNames': ['Capital Cities'], 'dateAndTime': '2024-11-10', 'salesStart-End': '2024-06-21T14:00:00Z to 2024-11-11T00:00:00Z', 'priceRange': '$31.5 to $111.5', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'Capital One Arena', 'address': '601 F Street NW, Washington, District of Columbia', 'phoneNumber': '(202) 628-3200', 'rating': '4.5 / 5', 'website': 'http://www.capitalonearena.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/maverick-city-music-washington-district-of-columbia-11-10-2024/event/150060CCF62F63F0'}
+
+
+{'eventId': '1A-ZkeKGkd5pOVa', 'eventName': 'Killer Queen', 'artistNames': ['Capital Cities'], 'dateAndTime': '2024-10-05', 'salesStart-End': '2024-04-26T15:00:00Z to 2024-10-06T01:30:00Z', 'priceRange': '$34.0 to $69.0', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'MU Health Care Capital Region Amphitheater', 'address': '300 Ellis Porter Drive, Jefferson City, Missouri', 'phoneNumber': '(573) 424-4964', 'rating': '4.6 / 5', 'website': 'https://www.crmuamphitheater.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/killer-queen-jefferson-city-missouri-10-05-2024/event/21006093CB5A0D09'}
+
+
+{'eventId': 'k7vGFb5wizN5X', 'eventName': 'beabadoobee', 'artistNames': ['Capital Cities'], 'dateAndTime': '2024-09-11', 'salesStart-End': '2024-06-06T14:00:00Z to 2024-09-12T00:30:00Z', 'priceRange': '$59.5 to $79.5', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'Capital One City Parks Foundation SummerStage', 'address': '69th St at 5th Ave Entrance / Rumsey Playfield, , New York, New York', 'phoneNumber': '(212) 360-2777', 'rating': '4.6 / 5', 'website': 'https://cityparksfoundation.org/summerstage/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/beabadoobee-new-york-new-york-09-11-2024/event/000060BCACE232FE'}
+
+
+{'eventId': 'k7vGF9g3y-StB', 'eventName': 'The Saw Doctors', 'artistNames': ['Capital Cities'], 'dateAndTime': '2024-07-17', 'salesStart-End': '2023-10-27T14:00:00Z to 2024-07-18T00:00:00Z', 'priceRange': '$65.0 to $85.0', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'Capital One City Parks Foundation SummerStage', 'address': '69th St at 5th Ave Entrance / Rumsey Playfield, , New York, New York', 'phoneNumber': '(212) 360-2777', 'rating': '4.6 / 5', 'website': 'https://cityparksfoundation.org/summerstage/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/the-saw-doctors-new-york-new-york-07-17-2024/event/00005F54B9873A7A'}
+
+
+{'eventId': '1A4Zke3Gkd1ugxJ', 'eventName': 'Zara Larsson', 'artistNames': ['Zara Larsson'], 'dateAndTime': '2024-11-01', 'salesStart-End': '2024-04-26T14:00:00Z to 2024-11-02T03:59:00Z', 'priceRange': '$30.0 to $30.0', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': '9:30 CLUB', 'address': '815 V Street N.W. , Washington, District of Columbia', 'phoneNumber': '(202) 265-0930', 'rating': '4.6 / 5', 'website': 'https://www.930.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/zara-larsson-washington-district-of-columbia-11-01-2024/event/15006092CA3758A6'}
+
+
+{'eventId': '16eFZba7KG7i3Tg', 'eventName': 'Zara Larsson', 'artistNames': ['Zara Larsson'], 'dateAndTime': '2024-10-30', 'salesStart-End': '2024-04-26T14:00:00Z to 2024-10-31T00:00:00Z', 'priceRange': '$25.0 to $75.0', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'House of Blues Orlando', 'address': '1490 East Lake Buena Vista Dr, Orlando, Florida', 'phoneNumber': '(689) 329-2583', 'rating': '4.4 / 5', 'website': 'https://locations.houseofblues.com/restaurant-and-bar/fl/orlando/1490-e-buena-vista-dr.?y_source=1_MTU2MzYxNjEtNzE1LWxvY2F0aW9uLndlYnNpdGU='}, 'ticketmasterURL': 'https://concerts.livenation.com/zara-larsson-orlando-florida-10-30-2024/event/2200609113B12FF5'}
+
+
+{'eventId': 'vvG1YZba2DI7uA', 'eventName': 'Zara Larsson', 'artistNames': ['Zara Larsson'], 'dateAndTime': '2024-10-27', 'salesStart-End': '2024-04-26T15:00:00Z to 2024-10-28T02:00:00Z', 'priceRange': '$25.0 to $25.0', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'House of Blues Dallas ', 'address': '2200 N Lamar St, Dallas, Texas', 'phoneNumber': '(214) 978-2583', 'rating': '4.5 / 5', 'website': 'https://www.houseofblues.com/dallas'}, 'ticketmasterURL': 'https://concerts.livenation.com/zara-larsson-dallas-texas-10-27-2024/event/0C006093FBA04345'}
+
+
+{'eventId': 'vvG1zZba5WQ4HJ', 'eventName': 'Zara Larsson', 'artistNames': ['Zara Larsson'], 'dateAndTime': '2024-10-29', 'salesStart-End': '2024-04-26T14:00:00Z to 2024-10-30T02:00:00Z', 'priceRange': '$29.5 to $29.5', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'Center Stage Theater', 'address': '1374 W Peachtree St. NW, Atlanta, Georgia', 'phoneNumber': '(512) 259-0445', 'rating': '4.9 / 5', 'website': 'https://dancecenterstage.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/zara-larsson-atlanta-georgia-10-29-2024/event/0E006092FD695F26'}
+
+
+{'eventId': 'Z7r9jZ1A71afw', 'eventName': 'Zara Larsson', 'artistNames': ['Zara Larsson'], 'dateAndTime': '2024-11-07', 'salesStart-End': '1900-01-01T06:00:00Z to 2024-11-08T01:00:00Z', 'priceRange': 'TBD', 'genreId': 'KnvZfZ7vAev', 'venue': {'name': 'Webster Hall', 'address': '125 East 11th Street, New York, New York', 'phoneNumber': 'Unavailable', 'rating': '4.2 / 5', 'website': 'https://www.websterhall.com/'}, 'ticketmasterURL': 'https://www.ticketmaster.com/event/Z7r9jZ1A71afw'}
+
+
+
+---NUMBER OF COMMITS PER MEMBER---
+
+Christopher  Huelitl has performed 17 commits
+Joseph Arteaga has performed 7 commits
+Austin Nguyen has performed 6 commits
+hudsonwhipple has performed 6 commits
+Christopher Huelitl has performed 6 commits
+
+---NUMBER OF ISSUES CLOSED BY MEMBER---
+
+Joseph Anthony Arteaga has closed 4 issues
+Joseph J Lee has closed 1 issues
