@@ -25,15 +25,15 @@ function About() {
         </div>
         <div class="genre-custom-col" >
           <div class="card about-fixed-height border-0 genre-colors">
-            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPagePostman.png" alt="artistsPic1" />
-            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body">
-              <p><b>(enter name)</b></p>
-              <p><b>Role: </b>(enter role(s))</p>
-              <p class="text-start"><b>About: </b>(enter bio)</p>
+            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPageHudson.jpg" alt="artistsPic1" />
+            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body item">
+              <p><b>Hudson Whipple              </b></p>
+              <p><b>Role: </b>Frontend and Database</p>
+              <p class="text-start"><b>About: </b>I’m a junior in CS at UT Austin that is fascinated by the innovation of Machine Learning, Data Science, and Software Engineering.</p>
               <p><b>Stats: </b></p>
-              <span>Commits: (enter num commits)</span>
-              <span>Issues closed: (enter num tickets)</span>
-              <span>Unit tests: (enter num tests)</span>
+              <span>Commits: 0</span>
+              <span>Issues closed: 0</span>
+              <span>Unit tests: 0</span>
             </div>
           </div>
         </div>
