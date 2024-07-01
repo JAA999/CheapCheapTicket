@@ -30,3 +30,22 @@
   max-height: 150px;
 }
 
+.about-fixed-height {
+  min-height: 400px;
+}
+
+.about-custom-col{
+  
+  max-width: 60%;
+}
+
+.about-fixed-height-group {
+  min-height: 800px;
+}
+
+.about-tool-photo{
+  max-height: 150px;
+  min-width: 150px;
+  aspect-ratio: 1;
+  width: auto;
+}
