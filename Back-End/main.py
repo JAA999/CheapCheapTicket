@@ -35,23 +35,25 @@ def main():
 
     playlist_names_test = ['Hot Country', 'RapCaviar', 'Summer Pop']
 
-    playlist_index = 0
-    for genre_id in genre_instances:
-        create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
-        playlist_index += 1
+    # playlist_index = 0
+    # for genre_id in genre_instances:
+    #     create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
+    #     playlist_index += 1
 
-    print("---Artists---")
-    for artist_key in artists_instances:
-        print(artists_instances[artist_key])
-        print("\n")
-    print("---Genres---")
-    for genre_key in genre_instances:
-        print(genre_instances[genre_key])
-        print("\n")
-    print("---Events---")
-    for event_key in venue_instances:
-        print(venue_instances[event_key])
-        print("\n")
+    # print("---Artists---")
+    # for artist_key in artists_instances:
+    #     print(artists_instances[artist_key])
+    #     print("\n")
+    # print("---Genres---")
+    # for genre_key in genre_instances:
+    #     print(genre_instances[genre_key])
+    #     print("\n")
+    # print("---Events---")
+    # for event_key in venue_instances:
+    #     print(venue_instances[event_key])
+    #     print("\n")
+
+    print(get_commits())
 
 
 # Sorts an array of instances based on an attribute of said instances
@@ -355,18 +357,32 @@ def get_venue_information(venue_id):
 # GitLab REST API
 gitlab_project_id = '59330677'
 gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
-gitlab_api_url = f'https://https://gitlab.com/api/v4/projects/{59330677}/repository/commits'
+gitlab_api_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
 
 # @app.route('/commits', methods=['GET'])
 def get_commits():
     headers = {'PRIVATE-TOKEN': gitlab_access_token}
     response = requests.get(gitlab_api_url, headers=headers)
+
+    params = {'per_page': 100, 'page': 1}
     
+    commits = []
+    response = requests.get(gitlab_api_url, headers=headers, params=params)
     if response.status_code == 200:
-        commits = response.json()
-        return jsonify(commits)
-    else:
-        return jsonify({'error': 'Failed to fetch commits'}), response.status_code
+        response = response.json()
+        commits.extend(response)
+    
+    commits_per_author = {}
+    for commit in commits:
+        author_name = commit['author_name']
+        if (author_name not in commits_per_author):
+            commits_per_author[author_name] = 1
+        else:
+            commits_per_author[author_name] += 1
+    
+    for author in commits_per_author:
+        print(f"{author} has performed {commits_per_author[author]} commits")
+
 
 # Check if API call resulted in error
 def check_request_status(response):
