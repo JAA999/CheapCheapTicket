@@ -6,13 +6,15 @@ import Venue from './components/Venue';
 import Artists from './components/Artists';
 import Genre from './components/Genre';
 import VenueInfo from './components/VenueInfo';
+import VenueInfoTwo from './components/VenueInfoTwo';
+import VenueInfoThree from './components/VenueInfoThree';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" >
           <div class="container-fluid">
             <a class="navbar-brand" href="/home">
               {/* <img src="chick.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"></img> */}
@@ -29,7 +31,7 @@ function App() {
                   <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/Venue">Venues</a>
+                  <a class="nav-link" href="/Venue">Events</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/Artists">Artists</a>
@@ -48,6 +50,8 @@ function App() {
           <Route path="/artists" element={<Artists />} />
           <Route path="/venue" element={<Venue />} />
           <Route path="/venueinfo" element={<VenueInfo />} />
+          <Route path="/venueinfotwo" element={<VenueInfoTwo />} />
+          <Route path="/venueinfothree" element={<VenueInfoThree />} />
           <Route path="/genre" element={<Genre />} />
           
         </Routes>
