@@ -14,12 +14,14 @@ artists_instances = {}
 venue_instances = {}
 genre_instances = {}
 
-
 # Access tokens for each API
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
 google_access_token = 'AIzaSyAVFsqiUBPbEIyxqbjoJlAh9ylHNnWT4k8'
 
+# GitLab REST API
+gitlab_project_id = '59330677'
+gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
 
 def main():
     get_spotify_access_token()
@@ -40,24 +42,23 @@ def main():
         create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
         playlist_index += 1
 
-    print("---Artists---")
-    for artist_key in artists_instances:
-        print(artists_instances[artist_key])
-        print("\n")
-    print("---Genres---")
-    for genre_key in genre_instances:
-        print(genre_instances[genre_key])
-        print("\n")
-    print("---Events---")
-    for event_key in venue_instances:
-        print(venue_instances[event_key])
-        print("\n")
+    # print("---Artists---")
+    # for artist_key in artists_instances:
+    #     print(artists_instances[artist_key])
+    #     print("\n")
+    # print("---Genres---")
+    # for genre_key in genre_instances:
+    #     print(genre_instances[genre_key])
+    #     print("\n")
+    # print("---Events---")
+    # for event_key in venue_instances:
+    #     print(venue_instances[event_key])
+    #     print("\n")
 
-    print("\n---NUMBER OF COMMITS PER MEMBER---\n")
-    get_commits()
-    print("\n---NUMBER OF ISSUES CLOSED BY MEMBER---\n")
-    get_issues()
-
+    # print("\n---NUMBER OF COMMITS PER MEMBER---\n")
+    # get_commits()
+    # print("\n---NUMBER OF ISSUES CLOSED BY MEMBER---\n")
+    # get_issues()
 
 # Sorts an array of instances based on an attribute of said instances
 def sort_instances(instances, attribute_one, attribute_two, reverse):
@@ -104,8 +105,6 @@ def get_spotify_access_token():
 
 # Perform a search request for a single artist using their name and return their id
 def get_artist_id(artist_name) :
-    global spotify_access_token
-
     # Define the headers with the access token
     spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
 
@@ -125,8 +124,6 @@ def get_artist_id(artist_name) :
 
 # Perform an artist request and populate a dictionary with relevant info
 def get_artist_information(artist_id):
-    global spotify_access_token
-
     artist_request = f'https://api.spotify.com/v1/artists/{artist_id}'
 
     access_token_headers = {'Authorization': f'Bearer {spotify_access_token}'}
@@ -154,8 +151,6 @@ def get_artist_information(artist_id):
 
 # Given the artist id, perform an album request and return an array of album names
 def populate_albums(artist_id, artist_instance):
-    global spotify_access_token
-
     spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
 
     search_url = f'https://api.spotify.com/v1/artists/{artist_id}/albums'
@@ -179,7 +174,6 @@ def populate_genres():
 
     excluded_genres_test = ('Alternative', 'Ballads/Romantic', 'Blues', 'Chanson Francaise', 'Children\'s Music', 'Classical', 'Dance/Electronic', 'Folk', 'Holiday', 'Jazz', 'Latin', 'Medieval/Renaissance', 'Metal', 'New Age', 'Other', 'R&B', 'Reggae', 'Religious', 'Rock', 'Undefined', 'World')
 
-    global ticketmaster_access_token
     params = {'apikey': ticketmaster_access_token}
 
     response = requests.get(genres_request, params=params)
@@ -203,8 +197,6 @@ def populate_genres():
 
 # Given a playlist name, it populates a genre with artists and songs from the playlist
 def create_instances_from_playlist(genre_instance, playlist_name):
-    global spotify_access_token
-
     spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
 
     search_url = 'https://api.spotify.com/v1/search'
@@ -262,8 +254,6 @@ def create_instances_from_playlist(genre_instance, playlist_name):
 
 # Return a list of events for a particular artist
 def get_events_for_artist(artist_name):
-    global ticketmaster_access_token
-
     event_search_url = 'https://app.ticketmaster.com/discovery/v2/events.json'
 
     params = {
@@ -308,9 +298,12 @@ def get_events_for_artist(artist_name):
 
             if 'name' in event['_embedded']['venues'][0]:
                 venue_id = get_venue_id(event['_embedded']['venues'][0]['name'])
-                event_instance['venue'] = get_venue_information(venue_id)
-                event_instance['venue']['name'] = event['_embedded']['venues'][0]['name']
-                event_instance['venue']['address'] = address
+                if (venue_id == ''):
+                    event_instance['venue'] = 'Unavailable'
+                else:
+                    event_instance['venue'] = get_venue_information(venue_id)
+                    event_instance['venue']['name'] = event['_embedded']['venues'][0]['name']
+                    event_instance['venue']['address'] = address
             else:
                 event_instance['venue'] = 'Unavailable'
 
@@ -321,8 +314,6 @@ def get_events_for_artist(artist_name):
 
 # Return a given place's id given the address
 def get_venue_id(venue_name): 
-    global google_access_token
-
     # Text search request based on venue address
     BASE_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
     
@@ -334,13 +325,10 @@ def get_venue_id(venue_name):
     response = requests.get(url)
     check_request_status(response)
     response = response.json()
-
-    return response['results'][0]['place_id']
+    return response['results'][0]['place_id'] if response['results'] else ''
 
 # Populate the venue with its website, phone number, and rating
 def get_venue_information(venue_id):
-    global google_access_token
-
     venue_details_url = f'https://places.googleapis.com/v1/places/{venue_id}?fields=nationalPhoneNumber,rating,websiteUri&key={google_access_token}'
 
     response = requests.get(venue_details_url)
@@ -357,10 +345,7 @@ def get_venue_information(venue_id):
 
     return venue_information
 
-# GitLab REST API
-gitlab_project_id = '59330677'
-gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
-
+# Prints out the number of commits performed by each project member
 def get_commits():
     gitlab_commits_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
 
@@ -385,6 +370,7 @@ def get_commits():
     for author in commits_per_author:
         print(f"{author} has performed {commits_per_author[author]} commits")
 
+# Prints out the number of issues closed by each project member
 def get_issues():
     gitlab_issues_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/issues'
 

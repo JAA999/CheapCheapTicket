@@ -1,8 +1,8 @@
-
+#Authored By: Christopher Huelitl
 FILES :=                              \
     main.py                     	  \
 	spotify_tests.py				  \
-	tcktmstr_tests.py				  \
+	ticketmaster_tests.py				  \
 
 
 ifeq ($(shell uname), Darwin)          # Apple
@@ -40,15 +40,15 @@ TestSpotify: main.py
 	cat spotify_results.tmp
 
 TestTick: main.py
-	$(COVERAGE) run    --branch tcktmstr_tests.py >  tcktmstr_results.tmp 2>&1
-	$(COVERAGE) report -m                      >> tcktmstr_results.tmp
-	cat tcktmstr_results.tmp
+	$(COVERAGE) run    --branch ticketmaster_tests.py >  ticketmaster_results.tmp 2>&1
+	$(COVERAGE) report -m                      >> ticketmaster_results.tmp
+	cat ticketmaster_results.tmp
 
 clean:
 	rm -f  .coverage
 	rm -f  *.pyc
 	rm -f  spotify_results.tmp
-	rm -f tcktmstr_results.tmp
+	rm -f ticketmaster_results.tmp
 	rm -rf __pycache__
 	
 config:
@@ -57,7 +57,7 @@ config:
 format:
 	$(AUTOPEP8) -i main.py
 	$(AUTOPEP8) -i spotify_tests.py
-	$(AUTOPEP8) -i tcktmstr_tests.py
+	$(AUTOPEP8) -i ticketmaster_tests.py
 
 status:
 	make clean
