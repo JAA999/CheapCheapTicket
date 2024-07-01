@@ -55,13 +55,20 @@ function ArtistsPageStaticSix() {
 
             <div class="row m-2 p-5 ">
                 <h1 class="col-xl-6 text-start">Future Events</h1>
-                {
+                {/* {
                     artist.futureEvents.map((events) => (
-                        <div class="bg-secondary col-lg-12 text-start mb-3 p-2 rounded">
+                        <div class="artist-venue-links col-lg-12 text-start mb-3 p-2 rounded">
                             <p>{events} <p>Venue Link here</p></p>
                         </div>
                     ))
-                }
+                } */}
+                <div class="artist-venue-links col-lg-12 text-start mb-3 p-2 rounded">
+                    <p>The 2nd Annual Capital City Blues Festival
+                <p><Link to={'/venueinfotwo'}>Link to Venue</Link></p></p>
+                        </div>
+
+
+
             </div>
 
 

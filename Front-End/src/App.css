@@ -13,6 +13,10 @@
   min-height: 180px;
 }
 
+.artist-venue-links{
+  background-color: #f8f9f9;
+}
+
 .genre-custom-col {
   flex: 0 0 20%;
   max-width: 20%;

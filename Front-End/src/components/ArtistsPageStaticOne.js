@@ -64,24 +64,23 @@ function ArtistsPageStaticOne() {
                     <img class="card-img-top " src="https://i.scdn.co/image/ab67616d0000b2737dab00afddeab0d3ee19ff7d" alt="albumCover" />
                     <p><b>Unapologetically (Deluxe Edition)</b></p>
                 </div>
-                
+
                 <div class="card text-black col-lg-2 ms-4 p-0 border-0">
                     <img class="card-img-top " src="https://i.scdn.co/image/ab67616d0000b2737cc5cee7a9cce28c932661c8" alt="albumCover" />
                     <p><b>The First Time</b></p>
                 </div>
-                
+
 
             </div>
 
             <div class="row m-2 p-5 ">
                 <h1 class="col-xl-6 text-start">Future Events</h1>
-                {
-                    artist.futureEvents.map((events) => (
-                        <div class="bg-secondary col-lg-12 text-start mb-3 p-2 rounded">
-                            <p>{events} <p>Venue Link here</p></p>
-                        </div>
-                    ))
-                }
+                
+                <div class="artist-venue-links col-lg-12 text-start mb-3 p-2 rounded">
+                    <p>Hy-Vee INDYCAR Sunday Race + Post Malone & Kelsea Ballerini
+                        <p><Link to={'/venueinfo'}>Link to Venue</Link></p></p>
+
+                </div>
             </div>
 
 
