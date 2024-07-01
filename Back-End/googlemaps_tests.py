@@ -1,5 +1,5 @@
 from unittest import main, TestCase
-from main import getPlaceId, getVenueReviews
+from main import getVenueId, getVenueReviews
 
 class myTestCases(TestCase):
     def test_getPlaceId(self):
