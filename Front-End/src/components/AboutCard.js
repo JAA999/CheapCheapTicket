@@ -12,10 +12,10 @@ function AboutCard(props) {
                         <p><b>Role: </b>{props.role}</p>
                         <p class="text-start"><b>About: </b>{props.bio}</p>
                     </div>
-                    <p><b>Stats:</b></p>
-                    <span>Commits: 0</span>
-                    <span>Issues closed: 0</span>
-                    <span>Unit tests: 0</span>
+                    <p><b>Stats: </b></p>
+                    <span>Commits: {props.commits}</span>
+                    <span>Issues closed: {props.issues}</span>
+                    <span>Unit tests: {props.tests}</span>
                 </div>
             </div>
         </div>
