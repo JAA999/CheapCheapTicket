@@ -39,7 +39,6 @@ function Venue() {
               <a href="/venueinfotwo"><h5 className="card-title">The 2nd Annual Capital City Blues Festival</h5></a> <p>Ticket Price: <strong>$55.0 to $175.0</strong></p>
               <p className="card-text">2024-10-19</p>
               <Link to={`/artists/artistspage/staticinstance6`} className="btn btn-primary" >Capital Ciites</Link>
-
               <p className="card-text"><small className="text-body-secondary">Township Auditorium 1703 Taylor Street, Columbia, South Carolina</small></p>
               <p><strong>Genres: </strong>  <Link to={'/genre/genrestaticinstance3'}>Pop</Link>  </p>
             </div>

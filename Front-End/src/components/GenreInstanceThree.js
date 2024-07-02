@@ -24,7 +24,7 @@ function GenreInstanceThree() {
                     <div class="card">
                         <div class="card-header"><h5>Venues</h5></div>
                         <div class="card-body d-flex flex-column align-items-center ">
-                            <p>The 2nd Annual Capital City Blues Festival' : <b>$55.0 to $175.0</b></p>
+                            <p><Link to="/venueinfotwo">The 2nd Annual Capital City Blues Festival </Link><b> : $55.0 to $175.0 </b></p>
                             <p>Maverick City Music : <b>$31.5 to $111.5</b></p>
                             <p>Killer Queen : <b>$34.0 to $69.0</b></p>
                         </div>

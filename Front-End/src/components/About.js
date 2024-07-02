@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AboutCard from './AboutCard';
 
 
 function About() {
@@ -7,86 +8,16 @@ function About() {
     <>
       <h1 class="text-align mt-5">About Us</h1>
       <div class="row g-5 m-2">
-        <div class="genre-custom-col" >
-          <div class="card about-fixed-height border-0 genre-colors">
-            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPageReact.png" alt="artistsPic1" />
+        
+        <AboutCard name ="Austin Nguyen" role="Frontend" image ="aboutPageAustin.jpg" bio="Junior Computer Science student at Univeristy of Texas at Austin."/>
+        <AboutCard name ="Hudson Whipple" role="Frontend and Database" image = "aboutPageHudson.jpg"bio="I’m a junior in CS at UT Austin that is fascinated by the innovation of Machine Learning, Data Science, and Software Engineering."/>
+        <AboutCard name ="Christopher Huelitl" role="Backend" image="aboutPageChris.jpg" bio="I am a sophomore CS major at UT Austin. I like to workout, play chess, and volunteer in my free time."/>
+        <AboutCard name ="Joseph Arteaga" role="APIs and Flask" image ="aboutPageJosephArteaga.jpg"bio="Third year CS major at UT Austin with interest in cybersecurity and artificial intelligence."/>
+        <AboutCard name ="Joseph Lee" image ="" role="(insert)" bio="(insert)"/>
 
-            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body">
-              <p><b>Austin Nguyen</b></p>
-              <p><b>Role: </b>Front-End</p>
-              <p class="text-start"><b>About: </b>Junior Computer Science student at Univeristy of Texas at Austin.</p>
-              <p><b>Stats:</b></p>
-              <span>Commits: 6</span>
-              <span>Issues closed:</span>
-              <span>Unit tests:</span>
-            </div>
-          </div>
-
-        </div>
-        <div class="genre-custom-col" >
-          <div class="card about-fixed-height border-0 genre-colors">
-            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPageHudson.jpg" alt="artistsPic1" />
-            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body item">
-              <p><b>Hudson Whipple              </b></p>
-              <p><b>Role: </b>Frontend and Database</p>
-              <p class="text-start"><b>About: </b>I’m a junior in CS at UT Austin that is fascinated by the innovation of Machine Learning, Data Science, and Software Engineering.</p>
-              <p><b>Stats: </b></p>
-              <span>Commits: 0</span>
-              <span>Issues closed: 0</span>
-              <span>Unit tests: 0</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="genre-custom-col" >
-          <div class="card about-fixed-height border-0 genre-colors">
-            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPagePostman.png" alt="artistsPic1" />
-            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body">
-              <p><b>(enter name)</b></p>
-              <p><b>Role: </b>(enter role(s))</p>
-              <p class="text-start"><b>About: </b>(enter bio)</p>
-              <p><b>Stats: </b></p>
-              <span>Commits: (enter num commits)</span>
-              <span>Issues closed: (enter num tickets)</span>
-              <span>Unit tests: (enter num tests)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="genre-custom-col" >
-          <div class="card about-fixed-height border-0 genre-colors">
-            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPagePostman.png" alt="artistsPic1" />
-            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body">
-              <p><b>(enter name)</b></p>
-              <p><b>Role: </b>(enter role(s))</p>
-              <p class="text-start"><b>About: </b>(enter bio)</p>
-              <p><b>Stats: </b></p>
-              <span>Commits: (enter num commits)</span>
-              <span>Issues closed: (enter num tickets)</span>
-              <span>Unit tests: (enter num tests)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="genre-custom-col" >
-          <div class="card about-fixed-height border-0 genre-colors">
-            <img class="card-img-top fixed-height-img" src="StaticImages/aboutPagePostman.png" alt="artistsPic1" />
-            <div class="card-body  d-flex flex-column align-items-start genre-fixed-body">
-              <p><b>(enter name)</b></p>
-              <p><b>Role: </b>(enter role(s))</p>
-              <p class="text-start"><b>About: </b>(enter bio)</p>
-              <p><b>Stats: </b></p>
-              <span>Commits: (enter num commits)</span>
-              <span>Issues closed: (enter num tickets)</span>
-              <span>Unit tests: (enter num tests)</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      </div >
 
       <div class="row g-5 m-2 d-flex justify-content-center">
-
         <div class="about-custom-col" >
           <div class="card about-fixed-height-group border-0 genre-colors">
             <div class="card-header"> <b>Group Stats & Tools</b> </div>
@@ -111,17 +42,10 @@ function About() {
               <br></br>
               <p><b>Data:  </b></p>
               <span>(insert links here)</span>
-
             </div>
           </div>
         </div>
-
-
       </div>
-
-
-
-
 
     </>
   );

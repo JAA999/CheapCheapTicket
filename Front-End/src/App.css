@@ -54,3 +54,7 @@
   aspect-ratio: 1;
   width: auto;
 }
+
+.about-bio{
+  min-height: 230px;
+}
