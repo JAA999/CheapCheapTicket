@@ -24,7 +24,9 @@ function GenreInstanceTwo() {
                     <div class="card">
                         <div class="card-header"><h5>Venues</h5></div>
                         <div class="card-body d-flex flex-column align-items-center ">
-                            <p>Austin,TX : <b>$150-200</b></p>
+
+                            <p><Link to="/venueinfothree">Broccoli City Festival 2-day Ticket (7/27-7/28): </Link><b>$169.5 to $1069.5</b></p>
+
                             <p>Dallas, TX : <b>$150-200</b></p>
                             <p>Dallas, TX : <b>$150-500</b></p>
                         </div>

@@ -13,7 +13,7 @@ function VenueInfoThree() {
         <span class="badge rounded-pill text-bg-secondary">Ticket Price <strong>$169.5 to $1069.5</strong></span>
         <br></br>
         <br></br>
-        <h6 className="inline">Artists: </h6> <a href="#" className="btn btn-primary">Gunna</a>
+        <h6 className="inline">Artists: </h6><Link to={`/artists/artistspage/staticinstance5`} className="btn btn-primary" >Gunna</Link>
         <br></br>
         <br></br>
 

@@ -24,7 +24,7 @@ function GenreInstanceOne() {
                     <div class="card">
                         <div class="card-header"><h5>Venues</h5></div>
                         <div class="card-body d-flex flex-column align-items-center ">
-                            <p>Austin,TX : <b>$150-200</b></p>
+                            <p><a href="/venueinfo">Hy-Vee INDYCAR Sunday Race + Post Malone & Kelsea Ballerini</a> <b>$75.0 to $1000</b></p>
                             <p>Dallas, TX : <b>$150-200</b></p>
                             <p>Dallas, TX : <b>$150-500</b></p>
                         </div>
@@ -41,7 +41,7 @@ function GenreInstanceOne() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
