@@ -13,7 +13,7 @@ function ArtistsCardStaticFour(props) {
                 </div>                <p><Link to={'/genre/genrestaticinstance2'}>{props.Genre}</Link></p>
                 <p><b>Albums : </b>23, Wild West</p>
             </div>
-            <div class="card-footer d-flex flex-column align-items-center">
+            <div class="card-footer d-flex flex-column align-items-center artist-card-footer">
                 <p><b>Venues:</b></p>
                
             </div>

@@ -13,7 +13,7 @@ function ArtistsCardStaticFour(props) {
                 </div>                <p><Link to={'/genre/genrestaticinstance3'}>{props.Genre}</Link></p>
                 <p><b>Albums : </b>Napoleon, Solarize, In A Tidal Wave Of Mystery</p>
             </div>
-            <div class="card-footer d-flex flex-column align-items-center">
+            <div class="card-footer d-flex flex-column align-items-center artist-card-footer">
                 <p><b>Venues:</b></p>
                 <span>The 2nd Annual Capital City Blues Festival</span>
                

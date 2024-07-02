@@ -13,7 +13,7 @@ function ArtistsCardStaticThree(props) {
                 </div>                <p><Link to={'/genre/genrestaticinstance1'}>{props.Genre}</Link></p>
                 <p><b>Albums : </b>Excuse The Mess</p>
             </div>
-            <div class="card-footer d-flex flex-column align-items-center">
+            <div class="card-footer d-flex flex-column align-items-center artist-card-footer">
                 <p><b>Venues:</b></p>
                 <span>Ella Langley</span>
                 <span>Ella Langley</span>

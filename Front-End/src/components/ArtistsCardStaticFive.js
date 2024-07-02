@@ -18,7 +18,7 @@ function ArtistsCardStaticFive(props) {
                 <p><b>Albums : </b>One of Wun, a Gift & a Curse, DS4EVER, ...</p>
 
             </div>
-            <div class="card-footer d-flex flex-column align-items-center">
+            <div class="card-footer d-flex flex-column align-items-center artist-card-footer">
                 <p><b>Venues:</b></p>
                 <span>Broccoli City Festival 2-day Ticket (7/27-7/28)</span>
                 <span>Broccoli City Festival - SUNDAY SINGLE DAY</span>

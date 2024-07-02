@@ -18,7 +18,7 @@ function ArtistsCardStaticOne(props) {
                 <p><b>Albums : </b>Rolling Up the Welcome Mat (For Good), SUBJECT TO CHANGE, ballerini, ...</p>
 
             </div>
-            <div class="card-footer d-flex flex-column align-items-center">
+            <div class="card-footer d-flex flex-column align-items-center artist-card-footer">
                 <p><b>Venues:</b></p>
                 <span>Hy-Vee INDYCAR Sunday Race + Post Malone & Kelsea Ballerini</span>
             </div>

@@ -15,7 +15,7 @@ function ArtistsCardStaticTwo(props) {
                 <p><Link to={'/genre/genrestaticinstance1'}>{props.Genre}</Link></p>
                 <p><b>Albums : </b>Higher, Starting Over, From A Room: Volume 2, ...</p>
             </div>
-            <div class="card-footer d-flex flex-column align-items-center">
+            <div class="card-footer d-flex flex-column align-items-center artist-card-footer">
                 <p><b>Venues:</b></p>
                 <span>Chris Stapleton & Eric Church Tribute</span>
                 <span>Chris Stapleton's All-American Road Show</span>

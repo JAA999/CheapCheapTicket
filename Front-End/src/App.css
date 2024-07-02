@@ -10,9 +10,11 @@
 
 .artist-card {
   background-color: #f8f9f9;
-  min-height: 180px;
+  min-height: 200px;
 }
-
+.artist-card-footer{
+  min-height: 200px;
+}
 .artist-venue-links{
   background-color: #f8f9f9;
 }
