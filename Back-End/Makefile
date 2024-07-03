@@ -1,8 +1,7 @@
 #Authored By: Christopher Huelitl
 FILES :=                              \
-    main.py                     	  \
-	spotify_tests.py				  \
-	ticketmaster_tests.py				  \
+    data.py                     	  \
+	api_tests.py				  	  \
 
 
 ifeq ($(shell uname), Darwin)          # Apple
@@ -34,21 +33,15 @@ endif
 Cheap.log:
 	git log > Cheap.log
 
-TestSpotify: main.py
-	$(COVERAGE) run    --branch spotify_tests.py >  spotify_results.tmp 2>&1
-	$(COVERAGE) report -m                      >> spotify_results.tmp
-	cat spotify_results.tmp
-
-TestTick: main.py
-	$(COVERAGE) run    --branch ticketmaster_tests.py >  ticketmaster_results.tmp 2>&1
-	$(COVERAGE) report -m                      >> ticketmaster_results.tmp
-	cat ticketmaster_results.tmp
+tests: data.py
+	$(COVERAGE) run    --branch api_tests.py > test_results.tmp 2>&1
+	$(COVERAGE) report -m                      >> test_results.tmp
+	cat test_results.tmp
 
 clean:
 	rm -f  .coverage
 	rm -f  *.pyc
-	rm -f  spotify_results.tmp
-	rm -f ticketmaster_results.tmp
+	rm -f  test_results.tmp
 	rm -rf __pycache__
 	
 config:
