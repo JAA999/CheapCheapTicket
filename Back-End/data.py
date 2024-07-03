@@ -1,72 +1,66 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-# from flask import Flask, jsonify, render_template
 import requests
 import base64
 
-# app = Flask(__name__)
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+genres_playlist = {
+    'Alternative': 'The New Alt',
+    'Blues': 'Blues Classics',
+    'Classical': 'Classical Essentials',
+    'Country': 'Hot Country',
+    'Dance/Electronic': 'mint',
+    'Folk': 'Roots Rising',
+    'Hip-Hop/Rap': 'RapCaviar',
+    'Jazz': 'Jazz Classics',
+    'Latin': 'Viva Latino',
+    'Metal': 'Kickass Metal',
+    'Pop': 'Summer Pop',
+    'R&B': 'RNB X',
+    'Reggae': 'Reggae Classics',
+    'Religious': 'Top Christian & Gospel',
+    'Rock': 'Legends Only'
+}
+
+genres_playlist_limited = {
+    'Alternative': 'The New Alt',
+    'Country': 'Hot Country',
+    'Hip-Hop/Rap': 'RapCaviar',
+    'Latin': 'Viva Latino',
+    'Pop': 'Summer Pop',
+    'Rock': 'Legends Only'
+}
+
+genres_playlist_test = {
+    'Country': 'Hot Country',
+    'Hip-Hop/Rap': 'RapCaviar',
+    'Pop': 'Summer Pop'
+}
 
 artist_names = set()
 artists_instances = {}
 venue_instances = {}
 genre_instances = {}
 
-# Access tokens for each API
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
 google_access_token = 'AIzaSyAVFsqiUBPbEIyxqbjoJlAh9ylHNnWT4k8'
 
-# GitLab REST API
 gitlab_project_id = '59330677'
 gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
 
 def main():
     get_spotify_access_token()
     populate_genres()
-
-    # global genre_instances
-    # for key in genre_instances:
-    #     print(f"{key} points to: {genre_instances[key]}\n\n")
+    populate_models()
+    # print_all_instances()
     
-    playlist_names = ['The New Alt', 'Blues Classics', 'Classical Essentials', 'Hot Country', 'mint', 'Roots Rising', 'RapCaviar', 'Jazz Classics', 'Viva Latino', 'Kickass Metal', 'Summer Pop', 'RNB X', 'Reggae Classics', 'Top Christian & Gospel', 'Legends Only']
-
-    playlist_names_limited = ['The New Alt', 'Hot Country', 'RapCaviar', 'Viva Latino', 'Summer Pop', 'Legends Only']
-
-    playlist_names_test = ['Hot Country', 'RapCaviar', 'Summer Pop']
-
-    playlist_index = 0
+# Populates all the models, using playlists as starting points
+def populate_models():
+    # CHANGE FROM TEST WHEN CREATING DATABASE
     for genre_id in genre_instances:
-        create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
-        playlist_index += 1
+        genre_name = genre_instances[genre_id]['name']
 
-    print("\n---Artists---\n")
-    print(artists_instances)
-    print("\n---Genres---\n")
-    print(genre_instances)
-    print("\n---Events---\n")
-    print(venue_instances)
-
-
-    # print("---Artists---")
-    # for artist_key in artists_instances:
-    #     print(artists_instances[artist_key])
-    #     print("\n")
-    # print("---Genres---")
-    # for genre_key in genre_instances:
-    #     print(genre_instances[genre_key])
-    #     print("\n")
-    # print("---Events---")
-    # for event_key in venue_instances:
-    #     print(venue_instances[event_key])
-    #     print("\n")
-
-    # print("\n---NUMBER OF COMMITS PER MEMBER---\n")
-    # get_commits()
-    # print("\n---NUMBER OF ISSUES CLOSED BY MEMBER---\n")
-    # get_issues()
+        create_instances_from_playlist(genre_instances[genre_id], genres_playlist_test[genre_name])
 
 # Sorts an array of instances based on an attribute of said instances
 def sort_instances(instances, attribute_one, attribute_two, reverse):
@@ -176,12 +170,6 @@ def populate_albums(artist_id, artist_instance):
 def populate_genres():
     genres_request = 'https://app.ticketmaster.com/discovery/v2/classifications.json'
 
-    excluded_genres = ('Ballads/Romantic', 'Chanson Francaise', 'Children\'s Music', 'Holiday', 'Medieval/Renaissance', 'New Age', 'Other', 'Undefined', 'World')
-
-    excluded_genres_limited = ('Ballads/Romantic', 'Blues', 'Chanson Francaise', 'Children\'s Music', 'Classical', 'Dance/Electronic', 'Folk', 'Holiday', 'Jazz', 'Medieval/Renaissance', 'Metal', 'New Age', 'Other', 'R&B', 'Reggae', 'Religious', 'Undefined', 'World')
-
-    excluded_genres_test = ('Alternative', 'Ballads/Romantic', 'Blues', 'Chanson Francaise', 'Children\'s Music', 'Classical', 'Dance/Electronic', 'Folk', 'Holiday', 'Jazz', 'Latin', 'Medieval/Renaissance', 'Metal', 'New Age', 'Other', 'R&B', 'Reggae', 'Religious', 'Rock', 'Undefined', 'World')
-
     params = {'apikey': ticketmaster_access_token}
 
     response = requests.get(genres_request, params=params)
@@ -192,7 +180,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] not in excluded_genres_test):
+                if (genre['name'] in genres_playlist_test):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -227,7 +215,7 @@ def create_instances_from_playlist(genre_instance, playlist_name):
     check_request_status(response)
     response = response.json()
 
-    # PHASE #1: Only Three Instances
+    # FOR PHASE #1, REMOVE AFTERWARDS
     max_artists = 3
     num_artists = 0
 
@@ -256,9 +244,6 @@ def create_instances_from_playlist(genre_instance, playlist_name):
                 artist_instance['futureEvents'] += [venue['eventId']]
                 genre_instance['upcomingEvents'] += [venue['eventId']]
 
-        # FOR DEBUGGING PURPOSES ONLY
-        # print(f"Track Name: {track['name']}, By: {artist_name}\n")
-
 
 # Return a list of events for a particular artist
 def get_events_for_artist(artist_name):
@@ -267,9 +252,9 @@ def get_events_for_artist(artist_name):
     params = {
         'apikey': ticketmaster_access_token,
         'keyword': artist_name, 
-        'size': 5, # Limit the number of events returned for artist
+        'size': 10, # Limit the number of events returned for artist
         'classificationName': 'music',
-        'locale': 'en-us', # filter only in the USA
+        'locale': 'en-us', # Filter only in the USA
     }
 
     response = requests.get(event_search_url, params=params)
@@ -416,6 +401,20 @@ def check_request_status(response):
         print(f"Response headers: {response.headers}")
         response.raise_for_status()
 
+# Prints all the data retrieved from APIs
+def print_all_instances():
+    print("---Artists---")
+    for artist_key in artists_instances:
+        print(artists_instances[artist_key])
+        print("\n")
+    print("---Genres---")
+    for genre_key in genre_instances:
+        print(genre_instances[genre_key])
+        print("\n")
+    print("---Events---")
+    for event_key in venue_instances:
+        print(venue_instances[event_key])
+        print("\n")
+
 if __name__ == "__main__":
-    #app.run()
     main()
