@@ -42,6 +42,14 @@ def main():
         create_instances_from_playlist(genre_instances[genre_id], playlist_names_test[playlist_index])
         playlist_index += 1
 
+    print("\n---Artists---\n")
+    print(artists_instances)
+    print("\n---Genres---\n")
+    print(genre_instances)
+    print("\n---Events---\n")
+    print(venue_instances)
+
+
     # print("---Artists---")
     # for artist_key in artists_instances:
     #     print(artists_instances[artist_key])
