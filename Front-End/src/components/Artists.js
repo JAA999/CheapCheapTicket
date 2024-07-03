@@ -1,6 +1,8 @@
 import React from 'react';
 import ArtistsCard from "./ArtistsCard";
 import { useState } from 'react';
+import axios from 'axios'
+
 
 import ArtistsCardStaticOne from './ArtistsCardStaticOne';
 import ArtistsCardStaticTwo from './ArtistsCardStaticTwo';
