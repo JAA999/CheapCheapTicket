@@ -1,5 +1,6 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
+import json
 import requests
 import base64
 
@@ -51,7 +52,7 @@ gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
 def main():
     get_spotify_access_token()
     populate_genres()
-    populate_models()
+    # populate_models()
     # print_all_instances()
     
 # Populates all the models, using playlists as starting points
@@ -61,6 +62,19 @@ def populate_models():
         genre_name = genre_instances[genre_id]['name']
 
         create_instances_from_playlist(genre_instances[genre_id], genres_playlist_test[genre_name])
+
+    create_json_files()
+
+# Creates JSON files for each model
+def create_json_files():
+    with open ('artists.json', 'w') as fp:
+        json.dump(artists_instances, fp, indent=4)
+
+    with open ('events.json', 'w') as fp:
+        json.dump(venue_instances, fp, indent=4)
+    
+    with open ('genres.json', 'w') as fp:
+        json.dump(genre_instances, fp, indent=4)
 
 # Sorts an array of instances based on an attribute of said instances
 def sort_instances(instances, attribute_one, attribute_two, reverse):
@@ -156,7 +170,7 @@ def populate_albums(artist_id, artist_instance):
     spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
 
     search_url = f'https://api.spotify.com/v1/artists/{artist_id}/albums'
-    params = {'include_groups': 'album'}
+    params = {'include_groups': 'album', 'limit': 3}
 
     response = requests.get(search_url, headers=spotify_headers, params=params)
     check_request_status(response)
