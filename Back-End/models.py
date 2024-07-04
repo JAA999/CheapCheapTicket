@@ -12,15 +12,14 @@ PASSWORD ="asd123"
 PUBLIC_IP_ADDRESS ="localhost:5432" 
 DBNAME ="ticketsdb" 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = \ 
-os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}') 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}') 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True 
 db = SQLAlchemy(app) 
 
 link = db.Table('link',
-    db.Column('artist_id', db.Integer, db.ForeignKey('artist.id')), 
-    db.Column('venue_id', db.Integer, db.ForeignKey('venue.id')), 
-    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id')), 
+    db.Column('artist_id', db.Integer, db.ForeignKey('artist.id'),primary_key=True),
+    db.Column('venue_id', db.Integer, db.ForeignKey('venue.id'),primary_key=True),
+    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'),primary_key=True),
     ) 
 
 
@@ -41,18 +40,19 @@ class artist(db.Model):
 class venue(db.Model): 
     __tablename__ = 'venue' 
     genreId = db.Column(db.String(80), primary_key = True)
-    name = db.Column(db.String(80)) 
+    name = db.Column(db.String(80), nullable = False) 
     popularArtists = db.Column(ARRAY(db.String))
     upcomingEvents = db.Column(ARRAY(db.String)) 
     topsongs = db.Column(ARRAY(db.String)) 
-    eventsPriceRange = db.Column(db.Integer) a
-    rtist = db.relationship('artist', secondary = 'link', backref='wrote') 
+    eventsPriceRange = db.Column(db.Integer) 
+    
+    artist = db.relationship('artist', secondary = 'link', backref='wrote') 
     genre = db.relationship('genre', secondary = 'link', backref='wrote') 
     
 class genres(db.Model): 
     __tablename__ = 'genre' 
     eventId = db.Column(db.String(80), primary_key = True) 
-    eventName = db.Column(ARRAY(db.String)) 
+    eventName = db.Column(ARRAY(db.String) , nullable = False) 
     artistNames = db.Column(ARRAY(db.String)) 
     dateAndTime = db.Column(db.String)
     salesStartEnd = db.Column(db.String) 
@@ -60,7 +60,9 @@ class genres(db.Model):
     genreId =  db.Column(db.String) 
     venue = db.Column(JSON) 
     ticketmasterURL = db.Column(db.String) 
-    venue = db.relationship('venue', secondary = 'link', backref='wrote')
-    artist = db.relationship('artist', secondary = 'link', backref='wrote')
+    
+    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
+    venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'))
 
 
+db.create_all()

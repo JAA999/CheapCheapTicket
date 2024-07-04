@@ -1,13 +1,13 @@
 # Authored By: Joseph Arteaga
 # Co-Authored By: Christopher Huelitl
-# from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template
 import requests
 import base64
 
-# app = Flask(__name__)
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+app = Flask(__name__)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 artist_names = set()
 artists_instances = {}
@@ -85,6 +85,7 @@ def sort_instances(instances, attribute_one, attribute_two, reverse):
 
     
 # Create access point to the Spotify API and return given access token
+@app.route('/gettoken', methods=['GET'])
 def get_spotify_access_token():
     global spotify_access_token
 
@@ -173,6 +174,7 @@ def populate_albums(artist_id, artist_instance):
         artist_instance['album_covers'] += [album['images'][0]['url']]
 
 # Retrieve a list of all genres used by spotify to populate Genre Model
+@app.route('/getgenres', methods=['GET', 'POST'])
 def populate_genres():
     genres_request = 'https://app.ticketmaster.com/discovery/v2/classifications.json'
 
@@ -354,6 +356,7 @@ def get_venue_information(venue_id):
     return venue_information
 
 # Prints out the number of commits performed by each project member
+@app.route('/getcommits', methods=['GET', 'POST'])
 def get_commits():
     gitlab_commits_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
 
@@ -377,6 +380,8 @@ def get_commits():
     
     for author in commits_per_author:
         print(f"{author} has performed {commits_per_author[author]} commits")
+    
+    return commits_per_author
 
 # Prints out the number of issues closed by each project member
 def get_issues():

@@ -1,11 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { artist_information } from "./Artists";
 
 
 function ArtistsPage() {
     let { artistId } = useParams();
-    const artist = artist_information.find(artist => artist.id === parseInt(artistId));
+    const artist = {
+        name :"poop",
+        popularity: 12,
+        genre : "pop",
+        birth: "s",
+        country: "asd",
+    }
     console.log(artist.name);
     if (!artist) {
         return <p>Artist not found.</p>;

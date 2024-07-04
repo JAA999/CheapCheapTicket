@@ -1,7 +1,6 @@
 import React from 'react';
 import ArtistsCard from "./ArtistsCard";
 import { useState } from 'react';
-import axios from 'axios'
 
 
 import ArtistsCardStaticOne from './ArtistsCardStaticOne';
@@ -19,7 +18,7 @@ function Artists(props) {
     return (
         <>
 
-            <div class="row g-5 m-2" >
+            {/* <div class="row g-5 m-2" >
                 <h1>Artists</h1>
                 {
                     artist_information.map((artist) => (
@@ -28,7 +27,7 @@ function Artists(props) {
                         </div>
                     ))
                 }
-            </div>
+            </div> */}
 
 
 
