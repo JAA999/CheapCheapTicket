@@ -9,9 +9,25 @@ def load_json_file(filename):
         fp.close()
     return jsn
 
-# def create_genres:
+def create_genres(data):
+    for genre in data['genre']:
+        i = Genre(
+            name=genre['name'],
+            popularArtists=genre['popularArtists'],
+            upcomingEvents=genre['upcomingEvents'],
+            topsongs=genre['topsongs'],
+            eventsPriceRange=genre['eventsPriceRange']
+        )
+        db.session.add(genre)
 
-# def create_artists:
+    db.session.commit()
+
+def create_artists(data):
+    for artist in data['artist']:
+        i = Artist(
+            name=artist['name'],
+            
+        )
 
 # def create_events:
 
