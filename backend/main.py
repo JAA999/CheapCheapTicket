@@ -12,11 +12,11 @@ def index():
 # About Page
 @app.route('/gitlab', methods=['GET'])
 def about_page():
-    pass
+    return
 
 # Genres Page
 @app.route('/genres', methods=['GET'])
-@app.route('/genres/<genre_name>', methods=['POST'])
+@app.route('/genres/<string:genre_name>', methods=['POST'])
 def genres_page(genre_name):
     # When genres are listed as cards in grid view
     if request.methods == 'GET':
@@ -25,21 +25,28 @@ def genres_page(genre_name):
     elif request.methods == 'POST':
         # When user clicks on genre card (or name)
         data = request.json
-        if 'sort_by' in data:
-            pass
-        elif 'genre_id' in data:
+        if 'genre_id' in data:
             # Search database based on genre_id
             genre_id = data['genre_id']
             tgt = Genre.query.get(genre_id)
             return tgt.to_dict()
+        elif 'sort_by' in data:
+            return
 
 # Artists Page
-@app.route('/artists', methods=['GET','POST'])
-def artists_page():
-    if request.methods == 'POST':
+@app.route('/artists', methods=['GET'])
+@app.route('/artists/<string:artist_name>' methods=['POST'])
+def artists_page(artist_name):
+    if request.methods == 'GET':
+        artists = db.session.query('Artist').all()
+        return jsonify([artist.to_dict() for artist in artists])
+    elif request.methods == 'POST':
         data = request.json
-        artist_name = data['name']
-        # Insert code to return data for that one artist, search database
+        if artist_name != '':
+            tgt = Artist.query.get(artist_name)
+            return tgt.to_dict()
+        elif 'sort_by' in data:
+            return
 
 # Get list of genre instances
     # Iterate through list of instances
@@ -50,5 +57,17 @@ def artists_page():
 
 # Events Page
 @app.route('/events', methods=['GET'])
+@app.route('/events/<string:event_name>', methods=['POST'])
+def events_page(event_name):
+    if requests.methods == 'GET':
+        events = db.session.query('Event').all()
+        return jsonify([event.to_dict() for event in events])
+    elif request.methods == 'POST':
+        data = request.json
+        if event_name != '':
+            tgt = Event.query.get(event_name)
+            return tgt.to_dict()
+        elif 'sort_by' in data:
+            return
 
 
