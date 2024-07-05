@@ -10,7 +10,7 @@ def index():
    pass
 
 # About Page
-@app.route('/gitlab', methods=['GET'])
+@app.route('/about', methods=['GET'])
 def about_page():
     return
 

@@ -63,7 +63,7 @@ def populate_models():
 
         create_instances_from_playlist(genre_instances[genre_id], genres_playlist_test[genre_name])
 
-    create_json_files()
+    # create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
@@ -75,22 +75,6 @@ def create_json_files():
     
     with open ('genres.json', 'w') as fp:
         json.dump(genre_instances, fp, indent=4)
-
-# Sorts an array of instances based on an attribute of said instances
-def sort_instances(instances, attribute_one, attribute_two, reverse):
-    if (not attribute_two):
-        if attribute_one not in instances:
-            return "Attribute not found for instances"
-
-        if isinstance(instances[attribute_one], list):
-            return sorted(instances, key=lambda instance: instance[attribute_one][0])
-
-        return sorted(instances, key=lambda instance: instance[attribute_one], reverse=reverse)
-    else:
-        if attribute_one not in instances or attribute_two not in instances[attribute_one]:
-            return "Attributes not found for instances"
-        return sorted(instances, key=lambda instance: instance[attribute_one][attribute_two], reverse=reverse)
-
     
 # Create access point to the Spotify API and return given access token
 def get_spotify_access_token():
@@ -118,67 +102,6 @@ def get_spotify_access_token():
     response = response.json()
 
     spotify_access_token = response['access_token']
-
-# Perform a search request for a single artist using their name and return their id
-def get_artist_id(artist_name) :
-    # Define the headers with the access token
-    spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
-
-    search_url = 'https://api.spotify.com/v1/search'
-    params = {
-        'q': artist_name,
-        'type': 'artist',
-        'limit': 1,
-        'offset': 0
-    }
-
-    response = requests.get(search_url, headers=spotify_headers, params=params)
-    check_request_status(response)
-    search_results = response.json()
-
-    return search_results['artists']['items'][0]['id']
-
-# Perform an artist request and populate a dictionary with relevant info
-def get_artist_information(artist_id):
-    artist_request = f'https://api.spotify.com/v1/artists/{artist_id}'
-
-    access_token_headers = {'Authorization': f'Bearer {spotify_access_token}'}
-
-    response = requests.get(artist_request, headers=access_token_headers)
-    check_request_status(response)
-    response = response.json()
-
-    artist_instance = {
-        'name': response['name'],
-        'id': artist_id,
-        'popularity': response['popularity'],
-        'genreId': '',
-        'albums': [],
-        'album_covers': [],
-        'futureEvents': [],
-        'image_url': 'None' if response['images'] == [] else response['images'][-1]['url']
-    }
-    
-    populate_albums(artist_id, artist_instance)
-
-    venue_results = get_events_for_artist(response['name'])
-
-    return venue_results, artist_instance
-
-# Given the artist id, perform an album request and return an array of album names
-def populate_albums(artist_id, artist_instance):
-    spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
-
-    search_url = f'https://api.spotify.com/v1/artists/{artist_id}/albums'
-    params = {'include_groups': 'album', 'limit': 3}
-
-    response = requests.get(search_url, headers=spotify_headers, params=params)
-    check_request_status(response)
-    response = response.json()
-
-    for album in response['items']:
-        artist_instance['albums'] += [album['name']]
-        artist_instance['album_covers'] += [album['images'][0]['url']]
 
 # Retrieve a list of all genres used by spotify to populate Genre Model
 def populate_genres():
@@ -258,6 +181,66 @@ def create_instances_from_playlist(genre_instance, playlist_name):
                 artist_instance['futureEvents'] += [venue['eventId']]
                 genre_instance['upcomingEvents'] += [venue['eventId']]
 
+# Perform a search request for a single artist using their name and return their id
+def get_artist_id(artist_name) :
+    # Define the headers with the access token
+    spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
+
+    search_url = 'https://api.spotify.com/v1/search'
+    params = {
+        'q': artist_name,
+        'type': 'artist',
+        'limit': 1,
+        'offset': 0
+    }
+
+    response = requests.get(search_url, headers=spotify_headers, params=params)
+    check_request_status(response)
+    search_results = response.json()
+
+    return search_results['artists']['items'][0]['id']
+
+# Perform an artist request and populate a dictionary with relevant info
+def get_artist_information(artist_id):
+    artist_request = f'https://api.spotify.com/v1/artists/{artist_id}'
+
+    access_token_headers = {'Authorization': f'Bearer {spotify_access_token}'}
+
+    response = requests.get(artist_request, headers=access_token_headers)
+    check_request_status(response)
+    response = response.json()
+
+    artist_instance = {
+        'name': response['name'],
+        'id': artist_id,
+        'popularity': response['popularity'],
+        'genreId': '',
+        'albums': [],
+        'album_covers': [],
+        'futureEvents': [],
+        'image_url': 'None' if response['images'] == [] else response['images'][-1]['url']
+    }
+    
+    populate_albums(artist_id, artist_instance)
+
+    venue_results = get_events_for_artist(response['name'])
+
+    return venue_results, artist_instance
+
+# Given the artist id, perform an album request and return an array of album names
+def populate_albums(artist_id, artist_instance):
+    spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
+
+    search_url = f'https://api.spotify.com/v1/artists/{artist_id}/albums'
+    params = {'include_groups': 'album', 'limit': 3}
+
+    response = requests.get(search_url, headers=spotify_headers, params=params)
+    check_request_status(response)
+    response = response.json()
+
+    for album in response['items']:
+        artist_instance['albums'] += [album['name']]
+        artist_instance['album_covers'] += [album['images'][0]['url']]
 
 # Return a list of events for a particular artist
 def get_events_for_artist(artist_name):
