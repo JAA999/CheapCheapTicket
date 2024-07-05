@@ -67,8 +67,8 @@ def populate_models():
 
 # Creates JSON files for each model
 def create_json_files():
-    with open ('artists.json', 'w') as fp:
-        json.dump({'Artists': artist_instances}, fp, indent=4)
+    # with open ('artists.json', 'w') as fp:
+    #     json.dump({'Artists': artist_instances}, fp, indent=4)
 
     with open ('events.json', 'w') as fp:
         json.dump({'Events': event_instances}, fp, indent=4)
@@ -124,7 +124,7 @@ def populate_genres():
                         'popularArtists': [],
                         'upcomingEvents': [],
                         'topSongs': [],
-                        'eventsPriceRange': ''
+                        'eventsPriceRange': []
                     }
                     genre_instances += [genre_instance]
 
@@ -159,6 +159,9 @@ def create_instances_from_playlist(genre_instance, playlist_name):
     max_artists = 3
     num_artists = 0
 
+    min_price = 100000
+    max_price = -1
+
     for item in response['items']:
         if (num_artists >= max_artists):
                 break
@@ -179,10 +182,18 @@ def create_instances_from_playlist(genre_instance, playlist_name):
             artist_instances += [artist_instance]
 
             for event in event_results:
+                if (event['priceRange']):
+                    if (event['priceRange'][0] < min_price):
+                        min_price = event['priceRange'][0]
+                    if (event['priceRange'][1] > max_price):
+                        max_price = event['priceRange'][1]
                 event['genreId'] = genre_instance['genreId']
                 event_instances += [event]
                 artist_instance['futureEvents'] += [event['eventId']]
                 genre_instance['upcomingEvents'] += [event['eventId']]
+
+    genre_instance['eventsPriceRange'].append(min_price)
+    genre_instance['eventsPriceRange'].append(max_price)
 
 # Perform a search request for a single artist using their name and return their id
 def get_artist_id(artist_name) :
@@ -283,7 +294,7 @@ def get_events_for_artist(artist_name):
                 'artistNames': [artist_name,],
                 'dateAndTime': event['dates']['start']['localDate'] if not (event['dates']['start']['dateTBD']) else 'TBD',
                 'salesStart-End': salesDateRange,
-                'priceRange': "TBD" if 'priceRanges' not in event else f"${event['priceRanges'][0]['min']} to ${event['priceRanges'][0]['max']}",
+                'priceRange': [] if 'priceRanges' not in event else [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']],
                 'genreId': '',
                 'venue': {},
                 'ticketmasterURL': event['url']

@@ -1,0 +1,104 @@
+{
+    "Genres": [
+        {
+            "genreId": "KnvZfZ7vAv6",
+            "name": "Country",
+            "popularArtists": [
+                "40ZNYROS4zLfyyBSs2PGe2",
+                "3RqBeV12Tt7A8xH3zBDDUF",
+                "4YLtscXsxbVgi031ovDDdh"
+            ],
+            "upcomingEvents": [
+                "vvG17Z9wMn7kNz",
+                "vvG1FZ9shZ_7r0",
+                "vvG1VZ9shCmGrd",
+                "vvG1zZ9sr9vsgR",
+                "vvG1FZ9shZ_VOi",
+                "vvG1zZ9w_XC-xz",
+                "G5eVZ9seruvXB",
+                "G5dIZ9YTMcPVS",
+                "G5eFZ9VK5j-Z_",
+                "vvG1bZ9s6W7yu-",
+                "vvG1bZ9yp8E-kP",
+                "vvG1fZbuwllpb0",
+                "vvG1HZ9Vmm0vUO",
+                "k7vGF9gERfPK9",
+                "G5dIZ9z6DVPVY",
+                "vvG1HZ9grzesRw",
+                "G5vbZ9gEOmdKW",
+                "G5viZ9glaSgKE",
+                "G5viZ9gEXIpRW",
+                "vvG1fZ9gJXowJS",
+                "G5eZZ9gE8z-AV"
+            ],
+            "topSongs": [
+                "The Great American Bar Scene",
+                "Cowboys Cry Too (with Noah Kahan)",
+                "Think I\u2019m In Love With You"
+            ],
+            "eventsPriceRange": [
+                15.0,
+                1000.0
+            ]
+        },
+        {
+            "genreId": "KnvZfZ7vAv1",
+            "name": "Hip-Hop/Rap",
+            "popularArtists": [
+                "5H4yInM5zmHqpKIoMNAx4r",
+                "2hlmm7s2ICUX0LVIhVFlZQ",
+                "7dGJo4pcD2V6oG8kP0tJRR"
+            ],
+            "upcomingEvents": [
+                "1AvfZbkGkyXU-8o",
+                "17A8vOG61rsGNd9",
+                "G5djZ9mQDu9YJ",
+                "G5djZ9mhRYI-P",
+                "G5djZ9m9z5MMG",
+                "G5djZ9mQJK33R",
+                "G5djZ9m9NK6gx",
+                "G5djZ9mQjIvaa",
+                "G5djZ9mhkD9Vd",
+                "G5djZ9mQAY8wM",
+                "vvG1IZbGlnc0fw",
+                "G5dIZba6G0gdB"
+            ],
+            "topSongs": [
+                "BAND4BAND (feat. Lil Baby)",
+                "One of Wun",
+                "Tobey (feat. Big Sean and BabyTron)"
+            ],
+            "eventsPriceRange": [
+                45.0,
+                7506.5
+            ]
+        },
+        {
+            "genreId": "KnvZfZ7vAev",
+            "name": "Pop",
+            "popularArtists": [
+                "6M2wZ9GZgrQXHCFfjv46we",
+                "5Rl15oVamLq7FbSb0NNBNy",
+                "6S2OmqARrzebs0tKUEyXyp"
+            ],
+            "upcomingEvents": [
+                "G5vHZb6hwoPSX",
+                "17FYvOG6unVeZm0",
+                "vvG1jZbCC72sFM",
+                "Z698xZ2qZaaoy",
+                "Z698xZG2ZaCrW",
+                "G5dIZ9zxJG322",
+                "G5dIZ9zxJb323"
+            ],
+            "topSongs": [
+                "Dance The Night (From Barbie The Album)",
+                "Youngblood (Deluxe)",
+                "Confident"
+            ],
+            "eventsPriceRange": [
+                9.5,
+                134.0
+            ]
+        }
+    ]
+}

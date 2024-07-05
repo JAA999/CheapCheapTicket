@@ -1,0 +1,635 @@
+{
+    "Events": [
+        {
+            "eventId": "vvG17Z9wMn7kNz",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-07-17",
+            "salesStart-End": "2023-10-20T14:00:00Z to 2024-07-17T23:00:00Z",
+            "priceRange": [
+                25.0,
+                430.0
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-foxborough-massachusetts-07-17-2024/event/01005F2DEA1068F8"
+        },
+        {
+            "eventId": "vvG1FZ9shZ_7r0",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-06",
+            "salesStart-End": "2023-09-08T14:00:00Z to 2024-08-07T01:00:00Z",
+            "priceRange": [
+                20.0,
+                444.5
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-philadelphia-pennsylvania-08-06-2024/event/02005F16C06447A4"
+        },
+        {
+            "eventId": "vvG1VZ9shCmGrd",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-14",
+            "salesStart-End": "2023-09-08T16:00:00Z to 2024-08-15T01:00:00Z",
+            "priceRange": [
+                20.5,
+                445.0
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-tampa-florida-08-14-2024/event/0D005F16CEB8C783"
+        },
+        {
+            "eventId": "vvG1zZ9sr9vsgR",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-10",
+            "salesStart-End": "2023-09-08T14:00:00Z to 2024-08-11T01:00:00Z",
+            "priceRange": [
+                20.0,
+                444.5
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-atlanta-georgia-08-10-2024/event/0E005F1797071D6F"
+        },
+        {
+            "eventId": "vvG1FZ9shZ_VOi",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-07",
+            "salesStart-End": "2023-09-08T14:00:00Z to 2024-08-08T01:00:00Z",
+            "priceRange": [
+                20.0,
+                444.5
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-philadelphia-pennsylvania-08-07-2024/event/02005F16C067482C"
+        },
+        {
+            "eventId": "vvG1zZ9w_XC-xz",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-11",
+            "salesStart-End": "2023-10-20T14:00:00Z to 2024-08-12T01:00:00Z",
+            "priceRange": [
+                20.0,
+                294.5
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-atlanta-georgia-08-11-2024/event/0E005F267E3A18B8"
+        },
+        {
+            "eventId": "G5eVZ9seruvXB",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-03",
+            "salesStart-End": "2023-09-08T16:00:00Z to 2024-08-04T00:00:00Z",
+            "priceRange": [
+                57.0,
+                423.0
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-greensboro-north-carolina-08-03-2024/event/2D005F109E341FBA"
+        },
+        {
+            "eventId": "G5dIZ9YTMcPVS",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-07-30",
+            "salesStart-End": "2023-09-08T15:00:00Z to 2024-07-31T00:30:00Z",
+            "priceRange": [
+                99.0,
+                425.0
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-san-antonio-texas-07-30-2024/event/3A005F0FF7B65D33"
+        },
+        {
+            "eventId": "G5eFZ9VK5j-Z_",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-07-21",
+            "salesStart-End": "2023-10-20T14:00:00Z to 2024-07-22T00:00:00Z",
+            "priceRange": [
+                75.0,
+                390.49
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-orlando-florida-07-21-2024/event/22005F44CB721019"
+        },
+        {
+            "eventId": "vvG1bZ9s6W7yu-",
+            "eventName": "Zach Bryan",
+            "artistNames": [
+                "Zach Bryan"
+            ],
+            "dateAndTime": "2024-08-25",
+            "salesStart-End": "2023-09-08T17:00:00Z to 2024-08-26T02:00:00Z",
+            "priceRange": [
+                95.0,
+                420.0
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/zach-bryan-grand-forks-north-dakota-08-25-2024/event/06005F11FD139361"
+        },
+        {
+            "eventId": "vvG1bZ9yp8E-kP",
+            "eventName": "Hy-Vee INDYCAR Sunday Race + Post Malone & Kelsea Ballerini",
+            "artistNames": [
+                "Kelsea Ballerini"
+            ],
+            "dateAndTime": "2024-07-14",
+            "salesStart-End": "2023-12-23T16:00:00Z to 2024-07-14T23:00:00Z",
+            "priceRange": [
+                75.0,
+                1000.0
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/hyvee-indycar-sunday-race-post-malone-newton-iowa-07-14-2024/event/06005F95909E11A5"
+        },
+        {
+            "eventId": "vvG1fZbuwllpb0",
+            "eventName": "Chris Stapleton & Eric Church Tribute",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-10-18",
+            "salesStart-End": "2024-06-28T16:15:00Z to 2024-10-19T00:00:00Z",
+            "priceRange": [
+                15.0,
+                107.85
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapleton-eric-church-tribute-west-chester-ohio-10-18-2024/event/050060DCABAD6624"
+        },
+        {
+            "eventId": "vvG1HZ9Vmm0vUO",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-07-27",
+            "salesStart-End": "2023-11-03T17:00:00Z to 2024-07-28T03:30:00Z",
+            "priceRange": [
+                59.5,
+                189.5
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-seattle-washington-07-27-2024/event/0F005F4BAE901DA0"
+        },
+        {
+            "eventId": "k7vGF9gERfPK9",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-07-11",
+            "salesStart-End": "2023-11-03T14:00:00Z to 2024-07-12T01:00:00Z",
+            "priceRange": [
+                54.75,
+                159.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://concerts.livenation.com/chris-stapletons-allamerican-road-show-darien-center-new-york-07-11-2024/event/00005F59EF5254D7"
+        },
+        {
+            "eventId": "G5dIZ9z6DVPVY",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-08-24",
+            "salesStart-End": "2023-12-15T16:00:00Z to 2024-08-25T01:00:00Z",
+            "priceRange": [
+                54.95,
+                194.95
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-houston-texas-08-24-2024/event/3A005F81FBD25D30"
+        },
+        {
+            "eventId": "vvG1HZ9grzesRw",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-07-26",
+            "salesStart-End": "2023-11-03T17:00:00Z to 2024-07-27T04:00:00Z",
+            "priceRange": [
+                54.75,
+                159.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://concerts.livenation.com/chris-stapletons-allamerican-road-show-ridgefield-washington-07-26-2024/event/0F005F57B80B1BF2"
+        },
+        {
+            "eventId": "G5vbZ9gEOmdKW",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-07-12",
+            "salesStart-End": "2023-11-03T14:00:00Z to 2024-07-13T01:00:00Z",
+            "priceRange": [
+                54.75,
+                159.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://concerts.livenation.com/chris-stapletons-allamerican-road-show-burgettstown-pennsylvania-07-12-2024/event/16005F59E0B834FD"
+        },
+        {
+            "eventId": "G5viZ9glaSgKE",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-08-10",
+            "salesStart-End": "2023-11-10T16:00:00Z to 2024-08-11T01:00:00Z",
+            "priceRange": [
+                63.1,
+                152.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-nashville-tennessee-08-10-2024/event/1B005F5AC9CF54E7"
+        },
+        {
+            "eventId": "G5viZ9gEXIpRW",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-08-09",
+            "salesStart-End": "2023-11-03T15:00:00Z to 2024-08-10T01:00:00Z",
+            "priceRange": [
+                63.1,
+                152.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-nashville-tennessee-08-09-2024/event/1B005F59FEA16BFD"
+        },
+        {
+            "eventId": "vvG1fZ9gJXowJS",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-07-19",
+            "salesStart-End": "2023-11-03T14:00:00Z to 2024-07-20T01:00:00Z",
+            "priceRange": [
+                69.75,
+                159.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-columbus-ohio-07-19-2024/event/05005F59BE4729B3"
+        },
+        {
+            "eventId": "G5eZZ9gE8z-AV",
+            "eventName": "Chris Stapleton's All-American Road Show",
+            "artistNames": [
+                "Chris Stapleton"
+            ],
+            "dateAndTime": "2024-08-21",
+            "salesStart-End": "2023-11-03T15:00:00Z to 2024-08-22T02:00:00Z",
+            "priceRange": [
+                65.75,
+                155.75
+            ],
+            "genreId": "KnvZfZ7vAv6",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/chris-stapletons-allamerican-road-show-birmingham-alabama-08-21-2024/event/20005F59D0E21174"
+        },
+        {
+            "eventId": "1AvfZbkGkyXU-8o",
+            "eventName": "Broccoli City Festival 2-day Ticket (7/27-7/28)",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-27",
+            "salesStart-End": "2024-03-22T14:00:00Z to 2024-07-29T00:30:00Z",
+            "priceRange": [
+                169.5,
+                1069.5
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/broccoli-city-festival-2day-ticket-727728-washington-district-of-columbia-07-27-2024/event/1500606E7EDA1411"
+        },
+        {
+            "eventId": "17A8vOG61rsGNd9",
+            "eventName": "Broccoli City Festival - SUNDAY SINGLE DAY",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-28",
+            "salesStart-End": "2024-05-31T14:00:00Z to 2024-07-29T01:00:00Z",
+            "priceRange": [
+                99.5,
+                544.5
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/broccoli-city-festival-sunday-single-day-washington-district-of-columbia-07-28-2024/event/150060A7B13230D7"
+        },
+        {
+            "eventId": "G5djZ9mQDu9YJ",
+            "eventName": "Rockstar Energy presents Wireless - Saturday Payment Plan",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-13",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-13T10:00:00Z",
+            "priceRange": [
+                49.0,
+                49.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-saturday-payment-london-13-07-2024/event/37005EE6BB357C26"
+        },
+        {
+            "eventId": "G5djZ9mhRYI-P",
+            "eventName": "Rockstar Energy Presents Wireless - Saturday Day Ticket",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-13",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-13T10:00:00Z",
+            "priceRange": [
+                94.6,
+                148.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-saturday-day-london-13-07-2024/event/37005EE6EFC28865"
+        },
+        {
+            "eventId": "G5djZ9m9z5MMG",
+            "eventName": "Rockstar Energy Presents Wireless - 2 Day Payment Plan Sat & Sun",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-13",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-14T10:00:00Z",
+            "priceRange": [
+                45.0,
+                49.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-2-day-london-13-07-2024/event/37005EE5F82F7DCC"
+        },
+        {
+            "eventId": "G5djZ9mQJK33R",
+            "eventName": "Rockstar Energy presents Wireless - 2 Day Ticket Sat & Sun",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-13",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-14T10:00:00Z",
+            "priceRange": [
+                140.4,
+                219.5
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-2-day-london-13-07-2024/event/37005EE6A64D24AF"
+        },
+        {
+            "eventId": "G5djZ9m9NK6gx",
+            "eventName": "Rockstar Energy Presents Wireless - 2 Day Payment Plan Fri & Sat",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-12",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-13T10:00:00Z",
+            "priceRange": [
+                45.0,
+                49.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-2-day-london-12-07-2024/event/37005EE5E34C7D62"
+        },
+        {
+            "eventId": "G5djZ9mQjIvaa",
+            "eventName": "Rockstar Energy presents Wireless - 2 Day Ticket Fri & Sat",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-12",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-13T10:00:00Z",
+            "priceRange": [
+                149.2,
+                219.5
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-2-day-london-12-07-2024/event/37005EE69CA01249"
+        },
+        {
+            "eventId": "G5djZ9mhkD9Vd",
+            "eventName": "Rockstar Energy presents Wireless - 3 Day Weekend Ticket",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-12",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-14T10:00:00Z",
+            "priceRange": [
+                206.6,
+                280.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-3-day-london-12-07-2024/event/37005EE6C6ED7D03"
+        },
+        {
+            "eventId": "G5djZ9mQAY8wM",
+            "eventName": "Rockstar Energy presents Wireless - 3 Day Payment Plan",
+            "artistNames": [
+                "Gunna"
+            ],
+            "dateAndTime": "2024-07-12",
+            "salesStart-End": "2024-01-31T10:00:00Z to 2024-07-14T10:00:00Z",
+            "priceRange": [
+                47.0,
+                49.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/rockstar-energy-presents-wireless-3-day-london-12-07-2024/event/37005EE685C10CB7"
+        },
+        {
+            "eventId": "vvG1IZbGlnc0fw",
+            "eventName": "Riyadh Season Card: Crawford v Madrimov (ft. Eminem)",
+            "artistNames": [
+                "Eminem"
+            ],
+            "dateAndTime": "2024-08-03",
+            "salesStart-End": "2024-06-14T21:00:00Z to 2024-08-03T22:00:00Z",
+            "priceRange": [
+                105.5,
+                7506.5
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/riyadh-season-card-crawford-v-madrimov-los-angeles-california-08-03-2024/event/0A0060CAEAB64532"
+        },
+        {
+            "eventId": "G5dIZba6G0gdB",
+            "eventName": "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
+            "artistNames": [
+                "Eminem"
+            ],
+            "dateAndTime": "2024-10-19",
+            "salesStart-End": "2024-04-29T15:00:00Z to 2024-10-19T13:00:00Z",
+            "priceRange": [
+                179.0,
+                200.0
+            ],
+            "genreId": "KnvZfZ7vAv1",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA"
+        },
+        {
+            "eventId": "G5vHZb6hwoPSX",
+            "eventName": "Dua Lipa",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2024-10-17",
+            "salesStart-End": "2024-04-12T09:00:00Z to 2024-10-17T21:00:00Z",
+            "priceRange": [
+                45.0,
+                130.0
+            ],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/dua-lipa-london-17-10-2024/event/1F006076F2465CFE"
+        },
+        {
+            "eventId": "17FYvOG6unVeZm0",
+            "eventName": "Dua Lipa - Radical Optimism Tour",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2025-06-20",
+            "salesStart-End": "2024-07-12T09:00:00Z to 2025-06-20T18:00:00Z",
+            "priceRange": [],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.co.uk/dua-lipa-radical-optimism-tour-london-20-06-2025/event/230060DAB4080BA4"
+        },
+        {
+            "eventId": "vvG1jZbCC72sFM",
+            "eventName": "Glitz Drag: Taylor Swift vs Dua Lipa",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2024-08-09",
+            "salesStart-End": "2024-07-03T15:00:00Z to 2024-08-10T02:00:00Z",
+            "priceRange": [
+                15.0,
+                15.0
+            ],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.com/glitz-drag-taylor-swift-vs-dua-madison-wisconsin-08-09-2024/event/070060E3843F1237"
+        },
+        {
+            "eventId": "Z698xZ2qZaaoy",
+            "eventName": "Mad Cool 2024 | Wednesday Ticket",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2024-07-10",
+            "salesStart-End": "2024-01-03T11:00:00Z to 2024-07-10T21:59:00Z",
+            "priceRange": [
+                9.5,
+                97.9
+            ],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.es/event/mad-cool-2024-%7C-wednesday-ticket-tickets/38009?language=en-us"
+        },
+        {
+            "eventId": "Z698xZG2ZaCrW",
+            "eventName": "Rock Werchter 2024 - Saturday",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2024-07-06",
+            "salesStart-End": "2023-12-01T09:00:00Z to 2024-07-06T21:00:00Z",
+            "priceRange": [
+                134.0,
+                134.0
+            ],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://www.ticketmaster.be/event/rock-werchter-2024-saturday-tickets/59325"
+        },
+        {
+            "eventId": "G5dIZ9zxJG322",
+            "eventName": "Austin City Limits Music Festival - Weekend One",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2024-10-04",
+            "salesStart-End": "",
+            "priceRange": [],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://on.fgtix.com/trk/v8SK"
+        },
+        {
+            "eventId": "G5dIZ9zxJb323",
+            "eventName": "Austin City Limits Music Festival - Weekend Two",
+            "artistNames": [
+                "Dua Lipa"
+            ],
+            "dateAndTime": "2024-10-11",
+            "salesStart-End": "",
+            "priceRange": [],
+            "genreId": "KnvZfZ7vAev",
+            "venue": "Unavailable",
+            "ticketmasterURL": "https://on.fgtix.com/trk/y8SK"
+        }
+    ]
+}
