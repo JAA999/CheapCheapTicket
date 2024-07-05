@@ -1,0 +1,829 @@
+{
+    "_embedded": {
+        "events": [
+            {
+                "name": "Zach Bryan",
+                "type": "event",
+                "id": "vvG17Z9wMn7kNz",
+                "test": false,
+                "url": "https://www.ticketmaster.com/zach-bryan-foxborough-massachusetts-07-17-2024/event/01005F2DEA1068F8",
+                "locale": "en-us",
+                "images": [
+                    {
+                        "ratio": "3_2",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_TABLET_LANDSCAPE_3_2.jpg",
+                        "width": 1024,
+                        "height": 683,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "3_2",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_ARTIST_PAGE_3_2.jpg",
+                        "width": 305,
+                        "height": 203,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_EVENT_DETAIL_PAGE_16_9.jpg",
+                        "width": 205,
+                        "height": 115,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RETINA_LANDSCAPE_16_9.jpg",
+                        "width": 1136,
+                        "height": 639,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RETINA_PORTRAIT_16_9.jpg",
+                        "width": 640,
+                        "height": 360,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_TABLET_LANDSCAPE_16_9.jpg",
+                        "width": 1024,
+                        "height": 576,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "4_3",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_CUSTOM.jpg",
+                        "width": 305,
+                        "height": 225,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "3_2",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RETINA_PORTRAIT_3_2.jpg",
+                        "width": 640,
+                        "height": 427,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RECOMENDATION_16_9.jpg",
+                        "width": 100,
+                        "height": 56,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_SOURCE",
+                        "width": 2426,
+                        "height": 1365,
+                        "fallback": false
+                    },
+                    {
+                        "ratio": "16_9",
+                        "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                        "width": 2048,
+                        "height": 1152,
+                        "fallback": false
+                    }
+                ],
+                "sales": {
+                    "public": {
+                        "startDateTime": "2023-10-20T14:00:00Z",
+                        "startTBD": false,
+                        "startTBA": false,
+                        "endDateTime": "2024-07-17T23:00:00Z"
+                    },
+                    "presales": [
+                        {
+                            "startDateTime": "2023-10-18T14:00:00Z",
+                            "endDateTime": "2023-10-20T02:00:00Z",
+                            "name": "Official Platinum Presale"
+                        },
+                        {
+                            "startDateTime": "2023-10-20T14:00:00Z",
+                            "endDateTime": "2024-07-17T16:00:00Z",
+                            "name": "Official Platinum Onsale"
+                        },
+                        {
+                            "startDateTime": "2023-10-18T14:00:00Z",
+                            "endDateTime": "2023-10-20T02:00:00Z",
+                            "name": "Early Entry GA Ticket Offer Presale"
+                        },
+                        {
+                            "startDateTime": "2023-10-20T14:00:00Z",
+                            "endDateTime": "2024-07-17T16:00:00Z",
+                            "name": "Early Entry GA Ticket Offer"
+                        },
+                        {
+                            "startDateTime": "2023-10-18T14:00:00Z",
+                            "endDateTime": "2023-10-20T02:00:00Z",
+                            "name": "Zach Bryan Presale"
+                        },
+                        {
+                            "startDateTime": "2023-10-19T14:00:00Z",
+                            "endDateTime": "2023-10-20T02:00:00Z",
+                            "name": "Spotify Presale"
+                        },
+                        {
+                            "startDateTime": "2023-10-19T14:00:00Z",
+                            "endDateTime": "2023-10-20T02:00:00Z",
+                            "name": "Support Presale"
+                        },
+                        {
+                            "startDateTime": "2023-10-19T14:00:00Z",
+                            "endDateTime": "2023-10-20T02:00:00Z",
+                            "name": "Local Presales"
+                        }
+                    ]
+                },
+                "dates": {
+                    "start": {
+                        "localDate": "2024-07-17",
+                        "localTime": "19:00:00",
+                        "dateTime": "2024-07-17T23:00:00Z",
+                        "dateTBD": false,
+                        "dateTBA": false,
+                        "timeTBA": false,
+                        "noSpecificTime": false
+                    },
+                    "timezone": "America/New_York",
+                    "status": {
+                        "code": "onsale"
+                    },
+                    "spanMultipleDays": false
+                },
+                "classifications": [
+                    {
+                        "primary": true,
+                        "segment": {
+                            "id": "KZFzniwnSyZfZ7v7nJ",
+                            "name": "Music"
+                        },
+                        "genre": {
+                            "id": "KnvZfZ7vAva",
+                            "name": "Folk"
+                        },
+                        "subGenre": {
+                            "id": "KZazBEonSMnZfZ7va1F",
+                            "name": "Indie Folk"
+                        },
+                        "type": {
+                            "id": "KZAyXgnZfZ7v7nI",
+                            "name": "Undefined"
+                        },
+                        "subType": {
+                            "id": "KZFzBErXgnZfZ7v7lJ",
+                            "name": "Undefined"
+                        },
+                        "family": false
+                    }
+                ],
+                "promoter": {
+                    "id": "830",
+                    "name": "AEG LIVE",
+                    "description": "AEG LIVE / NTL / USA"
+                },
+                "promoters": [
+                    {
+                        "id": "830",
+                        "name": "AEG LIVE",
+                        "description": "AEG LIVE / NTL / USA"
+                    },
+                    {
+                        "id": "494",
+                        "name": "PROMOTED BY VENUE",
+                        "description": "PROMOTED BY VENUE / NTL / USA"
+                    }
+                ],
+                "info": "Delivery delay until 17-JUN-2024 7:00 pm Ticket Transfer unavailable until 17-JUN-2024 7:00 pm",
+                "priceRanges": [
+                    {
+                        "type": "standard",
+                        "currency": "USD",
+                        "min": 25.0,
+                        "max": 430.0
+                    }
+                ],
+                "products": [
+                    {
+                        "name": "PARKWHIZ GILLETTE STADIUM",
+                        "id": "vvG17Z9Vw_4opM",
+                        "url": "https://www.ticketmaster.com/parkwhiz-gillette-stadium-foxborough-massachusetts-07-17-2024/event/01005F4C995515B7",
+                        "type": "Upsell",
+                        "classifications": [
+                            {
+                                "primary": true,
+                                "segment": {
+                                    "id": "KZFzniwnSyZfZ7v7n1",
+                                    "name": "Miscellaneous"
+                                },
+                                "genre": {
+                                    "id": "KnvZfZ7v7ll",
+                                    "name": "Undefined"
+                                },
+                                "subGenre": {
+                                    "id": "KZazBEonSMnZfZ7vAv1",
+                                    "name": "Undefined"
+                                },
+                                "type": {
+                                    "id": "KZAyXgnZfZ7vAva",
+                                    "name": "Parking"
+                                },
+                                "subType": {
+                                    "id": "KZFzBErXgnZfZ7vAFe",
+                                    "name": "Regular"
+                                },
+                                "family": false
+                            }
+                        ]
+                    }
+                ],
+                "seatmap": {
+                    "staticUrl": "https://maps.ticketmaster.com/maps/geometry/3/event/01005F2DEA1068F8/staticImage?type=png&systemId=HOST",
+                    "id": "seatmap"
+                },
+                "accessibility": {
+                    "ticketLimit": 4,
+                    "id": "accessibility"
+                },
+                "ticketLimit": {
+                    "info": "There is a 8 ticket limit for this event",
+                    "id": "ticketLimit"
+                },
+                "ageRestrictions": {
+                    "legalAgeEnforced": false,
+                    "id": "ageRestrictions"
+                },
+                "ticketing": {
+                    "safeTix": {
+                        "enabled": true,
+                        "inAppOnlyEnabled": false
+                    },
+                    "allInclusivePricing": {
+                        "enabled": false
+                    },
+                    "id": "ticketing"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/discovery/v2/events/vvG17Z9wMn7kNz?locale=en-us"
+                    },
+                    "attractions": [
+                        {
+                            "href": "/discovery/v2/attractions/K8vZ917_NoV?locale=en-us"
+                        },
+                        {
+                            "href": "/discovery/v2/attractions/K8vZ917phs0?locale=en-us"
+                        },
+                        {
+                            "href": "/discovery/v2/attractions/K8vZ917hi4V?locale=en-us"
+                        }
+                    ],
+                    "venues": [
+                        {
+                            "href": "/discovery/v2/venues/KovZpZA6kvlA?locale=en-us"
+                        }
+                    ]
+                },
+                "_embedded": {
+                    "venues": [
+                        {
+                            "name": "Gillette Stadium",
+                            "type": "venue",
+                            "id": "KovZpZA6kvlA",
+                            "test": false,
+                            "url": "https://www.ticketmaster.com/gillette-stadium-tickets-foxborough/venue/8759",
+                            "locale": "en-us",
+                            "aliases": [
+                                "gilette",
+                                "gillette",
+                                "gilette stadium",
+                                "gillete stadium"
+                            ],
+                            "images": [
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dbimages/23010v.jpg",
+                                    "width": 640,
+                                    "height": 360,
+                                    "fallback": false
+                                }
+                            ],
+                            "postalCode": "02035",
+                            "timezone": "America/New_York",
+                            "city": {
+                                "name": "Foxborough"
+                            },
+                            "state": {
+                                "name": "Massachusetts",
+                                "stateCode": "MA"
+                            },
+                            "country": {
+                                "name": "United States Of America",
+                                "countryCode": "US"
+                            },
+                            "address": {
+                                "line1": "1 Patriot Place"
+                            },
+                            "location": {
+                                "longitude": "-71.264321",
+                                "latitude": "42.090918"
+                            },
+                            "markets": [
+                                {
+                                    "name": "Boston",
+                                    "id": "11"
+                                },
+                                {
+                                    "name": "New England",
+                                    "id": "33"
+                                },
+                                {
+                                    "name": "Connecticut",
+                                    "id": "124"
+                                }
+                            ],
+                            "dmas": [
+                                {
+                                    "id": 225
+                                },
+                                {
+                                    "id": 235
+                                },
+                                {
+                                    "id": 238
+                                },
+                                {
+                                    "id": 296
+                                },
+                                {
+                                    "id": 361
+                                },
+                                {
+                                    "id": 363
+                                },
+                                {
+                                    "id": 364
+                                },
+                                {
+                                    "id": 392
+                                }
+                            ],
+                            "social": {
+                                "twitter": {
+                                    "handle": "@gillettestadium"
+                                }
+                            },
+                            "boxOfficeInfo": {
+                                "openHoursDetail": "The Gillette Stadium Ticket Office is located in the Enel Plaza, outside of the Ticketmaster gate at the north end of the stadium. The Gillette Stadium Ticket Office is open on event days only and will open with parking lots.",
+                                "acceptedPaymentDetail": "Visa only for New England Patriots. Visa, Mastercard, Amex, Cash-For all other events",
+                                "willCallDetail": "Will call is located at the ticket office. Customers must present photo I.D., the actual credit card used to purchase tickets and the confirmation number. NOTE: If picking up your tickets at Will Call, we strongly recommend arriving at the Ticket Office with a photo I.D. one hour prior to kickoff to claim your seats and avoid any prolonged wait times."
+                            },
+                            "parkingDetail": "Opening and price varies per event. Please check www.gillettestadium.com for more information.",
+                            "accessibleSeatingDetail": "Accessible Seating available through Ticketmaster and the box office.",
+                            "generalInfo": {
+                                "generalRule": "No umbrellas, coolers, cans, bottles or alcohol allowed in stadium. Tailgating, picnicing, BBQ's allowed in specific areas of parking lots. No open fires. Gillette has a new Clear Bag Policy! Bags of any kind will not be permitted except for gallon size clear freezer or authorized clear bags measuring 12\"x 12\" x 6\" and women's clutches not to exceed 7\" x 4\" x 2\" (approximately the size of a hand). For more information visit: WWW.GILLETTESTADIUM.COM/BAGPOLICY"
+                            },
+                            "upcomingEvents": {
+                                "archtics": 44,
+                                "ticketmaster": 27,
+                                "_total": 71,
+                                "_filtered": 0
+                            },
+                            "_links": {
+                                "self": {
+                                    "href": "/discovery/v2/venues/KovZpZA6kvlA?locale=en-us"
+                                }
+                            }
+                        }
+                    ],
+                    "attractions": [
+                        {
+                            "name": "Zach Bryan",
+                            "type": "attraction",
+                            "id": "K8vZ917_NoV",
+                            "test": false,
+                            "url": "https://www.ticketmaster.com/zach-bryan-tickets/artist/2811359",
+                            "locale": "en-us",
+                            "images": [
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_TABLET_LANDSCAPE_3_2.jpg",
+                                    "width": 1024,
+                                    "height": 683,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_ARTIST_PAGE_3_2.jpg",
+                                    "width": 305,
+                                    "height": 203,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_EVENT_DETAIL_PAGE_16_9.jpg",
+                                    "width": 205,
+                                    "height": 115,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RETINA_LANDSCAPE_16_9.jpg",
+                                    "width": 1136,
+                                    "height": 639,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RETINA_PORTRAIT_16_9.jpg",
+                                    "width": 640,
+                                    "height": 360,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_TABLET_LANDSCAPE_16_9.jpg",
+                                    "width": 1024,
+                                    "height": 576,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "4_3",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_CUSTOM.jpg",
+                                    "width": 305,
+                                    "height": 225,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RETINA_PORTRAIT_3_2.jpg",
+                                    "width": 640,
+                                    "height": 427,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_RECOMENDATION_16_9.jpg",
+                                    "width": 100,
+                                    "height": 56,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_SOURCE",
+                                    "width": 2426,
+                                    "height": 1365,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/6a3/70eaea85-e3c5-4975-924e-ebde32e266a3_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                                    "width": 2048,
+                                    "height": 1152,
+                                    "fallback": false
+                                }
+                            ],
+                            "classifications": [
+                                {
+                                    "primary": true,
+                                    "segment": {
+                                        "id": "KZFzniwnSyZfZ7v7nJ",
+                                        "name": "Music"
+                                    },
+                                    "genre": {
+                                        "id": "KnvZfZ7vAva",
+                                        "name": "Folk"
+                                    },
+                                    "subGenre": {
+                                        "id": "KZazBEonSMnZfZ7vAn7",
+                                        "name": "Folk"
+                                    },
+                                    "type": {
+                                        "id": "KZAyXgnZfZ7v7la",
+                                        "name": "Individual"
+                                    },
+                                    "subType": {
+                                        "id": "KZFzBErXgnZfZ7vAd7",
+                                        "name": "Musician"
+                                    },
+                                    "family": false
+                                }
+                            ],
+                            "upcomingEvents": {
+                                "tmr": 14,
+                                "ticketmaster": 25,
+                                "_total": 39,
+                                "_filtered": 0
+                            },
+                            "_links": {
+                                "self": {
+                                    "href": "/discovery/v2/attractions/K8vZ917_NoV?locale=en-us"
+                                }
+                            }
+                        },
+                        {
+                            "name": "The War and Treaty",
+                            "type": "attraction",
+                            "id": "K8vZ917phs0",
+                            "test": false,
+                            "url": "https://www.ticketmaster.com/the-war-and-treaty-tickets/artist/2148628",
+                            "locale": "en-us",
+                            "externalLinks": {
+                                "youtube": [
+                                    {
+                                        "url": "https://www.youtube.com/c/TheWarAndTreatyOfficial"
+                                    }
+                                ],
+                                "twitter": [
+                                    {
+                                        "url": "http://www.twitter.com/warandtreaty"
+                                    }
+                                ],
+                                "itunes": [
+                                    {
+                                        "url": "https://music.apple.com/us/artist/the-war-and-treaty/951165936"
+                                    }
+                                ],
+                                "spotify": [
+                                    {
+                                        "url": "https://open.spotify.com/artist/6HhV0jtMMK5HYnYgG0xgtz?si=dmQ3rJZ1QpS78GCtKDMslw"
+                                    }
+                                ],
+                                "facebook": [
+                                    {
+                                        "url": "http://www.facebook.com/thewarandtreaty"
+                                    }
+                                ],
+                                "instagram": [
+                                    {
+                                        "url": "http://www.instagram.com/thewarandtreaty"
+                                    }
+                                ],
+                                "homepage": [
+                                    {
+                                        "url": "https://www.thewarandtreaty.com/"
+                                    }
+                                ]
+                            },
+                            "images": [
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_TABLET_LANDSCAPE_3_2.jpg",
+                                    "width": 1024,
+                                    "height": 683,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_RETINA_PORTRAIT_16_9.jpg",
+                                    "width": 640,
+                                    "height": 360,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_ARTIST_PAGE_3_2.jpg",
+                                    "width": 305,
+                                    "height": 203,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_RETINA_PORTRAIT_3_2.jpg",
+                                    "width": 640,
+                                    "height": 427,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_TABLET_LANDSCAPE_16_9.jpg",
+                                    "width": 1024,
+                                    "height": 576,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_RETINA_LANDSCAPE_16_9.jpg",
+                                    "width": 1136,
+                                    "height": 639,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                                    "width": 2048,
+                                    "height": 1152,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "4_3",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_CUSTOM.jpg",
+                                    "width": 305,
+                                    "height": 225,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_SOURCE",
+                                    "width": 3600,
+                                    "height": 2025,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_EVENT_DETAIL_PAGE_16_9.jpg",
+                                    "width": 205,
+                                    "height": 115,
+                                    "fallback": false
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/a/2c8/7ff67b78-2e72-4d2a-a5db-5672f5c662c8_RECOMENDATION_16_9.jpg",
+                                    "width": 100,
+                                    "height": 56,
+                                    "fallback": false
+                                }
+                            ],
+                            "classifications": [
+                                {
+                                    "primary": true,
+                                    "segment": {
+                                        "id": "KZFzniwnSyZfZ7v7nJ",
+                                        "name": "Music"
+                                    },
+                                    "genre": {
+                                        "id": "KnvZfZ7vAva",
+                                        "name": "Folk"
+                                    },
+                                    "subGenre": {
+                                        "id": "KZazBEonSMnZfZ7vAna",
+                                        "name": "Americana"
+                                    },
+                                    "type": {
+                                        "id": "KZAyXgnZfZ7v7l1",
+                                        "name": "Group"
+                                    },
+                                    "subType": {
+                                        "id": "KZFzBErXgnZfZ7vA71",
+                                        "name": "Band"
+                                    },
+                                    "family": false
+                                }
+                            ],
+                            "upcomingEvents": {
+                                "tmr": 7,
+                                "ticketmaster": 10,
+                                "ticketweb": 3,
+                                "_total": 20,
+                                "_filtered": 0
+                            },
+                            "_links": {
+                                "self": {
+                                    "href": "/discovery/v2/attractions/K8vZ917phs0?locale=en-us"
+                                }
+                            }
+                        },
+                        {
+                            "name": "Levi Turner",
+                            "type": "attraction",
+                            "id": "K8vZ917hi4V",
+                            "test": false,
+                            "url": "https://www.ticketmaster.com/levi-turner-tickets/artist/3052125",
+                            "locale": "en-us",
+                            "images": [
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_EVENT_DETAIL_PAGE_16_9.jpg",
+                                    "width": 205,
+                                    "height": 115,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_RETINA_PORTRAIT_16_9.jpg",
+                                    "width": 640,
+                                    "height": 360,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_TABLET_LANDSCAPE_16_9.jpg",
+                                    "width": 1024,
+                                    "height": 576,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_RETINA_PORTRAIT_3_2.jpg",
+                                    "width": 640,
+                                    "height": 427,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_RECOMENDATION_16_9.jpg",
+                                    "width": 100,
+                                    "height": 56,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_ARTIST_PAGE_3_2.jpg",
+                                    "width": 305,
+                                    "height": 203,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "3_2",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_TABLET_LANDSCAPE_3_2.jpg",
+                                    "width": 1024,
+                                    "height": 683,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "4_3",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_CUSTOM.jpg",
+                                    "width": 305,
+                                    "height": 225,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                                    "width": 2048,
+                                    "height": 1152,
+                                    "fallback": true
+                                },
+                                {
+                                    "ratio": "16_9",
+                                    "url": "https://s1.ticketm.net/dam/c/779/d4bc7e11-1b50-4aa4-a2be-0a21569f5779_106531_RETINA_LANDSCAPE_16_9.jpg",
+                                    "width": 1136,
+                                    "height": 639,
+                                    "fallback": true
+                                }
+                            ],
+                            "classifications": [
+                                {
+                                    "primary": true,
+                                    "segment": {
+                                        "id": "KZFzniwnSyZfZ7v7nJ",
+                                        "name": "Music"
+                                    },
+                                    "genre": {
+                                        "id": "KnvZfZ7vAva",
+                                        "name": "Folk"
+                                    },
+                                    "subGenre": {
+                                        "id": "KZazBEonSMnZfZ7vAn7",
+                                        "name": "Folk"
+                                    },
+                                    "type": {
+                                        "id": "KZAyXgnZfZ7v7la",
+                                        "name": "Individual"
+                                    },
+                                    "subType": {
+                                        "id": "KZFzBErXgnZfZ7vAde",
+                                        "name": "Singer/Vocalist"
+                                    },
+                                    "family": false
+                                }
+                            ],
+                            "upcomingEvents": {
+                                "ticketmaster": 25,
+                                "_total": 25,
+                                "_filtered": 0
+                            },
+                            "_links": {
+                                "self": {
+                                    "href": "/discovery/v2/attractions/K8vZ917hi4V?locale=en-us"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "_links": {
+        "first": {
+            "href": "/discovery/v2/events.json?classificationName=music&locale=en-us&keyword=Zach+Bryan&page=0&size=1"
+        },
+        "self": {
+            "href": "/discovery/v2/events.json?size=1&classificationName=music&locale=en-us&keyword=Zach+Bryan"
+        },
+        "next": {
+            "href": "/discovery/v2/events.json?classificationName=music&locale=en-us&keyword=Zach+Bryan&page=1&size=1"
+        },
+        "last": {
+            "href": "/discovery/v2/events.json?classificationName=music&locale=en-us&keyword=Zach+Bryan&page=45&size=1"
+        }
+    },
+    "page": {
+        "size": 1,
+        "totalElements": 46,
+        "totalPages": 46,
+        "number": 0
+    }
+}
