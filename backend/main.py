@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from database import app, db, create_events, create_artists, create_genres
+from models import Genre, Artist, Event
+from data import get_gitlab_stats
 
 app = Flask(__name__)
 
@@ -12,12 +14,13 @@ def index():
 # About Page
 @app.route('/about', methods=['GET'])
 def about_page():
-    return
+    if request.methods == 'GET':
+        return get_gitlab_stats()
 
 # Genres Page
-@app.route('/genres', methods=['GET'])
-@app.route('/genres/<string:genre_name>', methods=['POST'])
-def genres_page(genre_name):
+@app.route('/api/GetAllGenres/', methods=['GET'])
+@app.route('/api/GetGenre/<string:genre_id>', methods=['POST'])
+def genres_page(genre_id):
     # When genres are listed as cards in grid view
     if request.methods == 'GET':
         genres = db.session.query('Genre').all()
@@ -31,19 +34,19 @@ def genres_page(genre_name):
             tgt = Genre.query.get(genre_id)
             return tgt.to_dict()
         elif 'sort_by' in data:
-            return
+            return 
 
 # Artists Page
-@app.route('/artists', methods=['GET'])
-@app.route('/artists/<string:artist_name>' methods=['POST'])
-def artists_page(artist_name):
+@app.route('/api/GetAllArtists/', methods=['GET'])
+@app.route('/api/GetArtist/<artist_id>', methods=['POST'])
+def artists_page(artist_id):
     if request.methods == 'GET':
         artists = db.session.query('Artist').all()
         return jsonify([artist.to_dict() for artist in artists])
     elif request.methods == 'POST':
         data = request.json
-        if artist_name != '':
-            tgt = Artist.query.get(artist_name)
+        if artist_id != '':
+            tgt = Artist.query.get(artist_id)
             return tgt.to_dict()
         elif 'sort_by' in data:
             return
@@ -56,16 +59,16 @@ def artists_page(artist_name):
                 # <a href="url_for("/artists", method='POST', name=ArtistName)">Artist Name
 
 # Events Page
-@app.route('/events', methods=['GET'])
-@app.route('/events/<string:event_name>', methods=['POST'])
-def events_page(event_name):
-    if requests.methods == 'GET':
+@app.route('/api/GetAllEvents/', methods=['GET'])
+@app.route('/api/GetEvent/<string:event_id>', methods=['POST'])
+def events_page(event_id):
+    if request.methods == 'GET':
         events = db.session.query('Event').all()
         return jsonify([event.to_dict() for event in events])
     elif request.methods == 'POST':
         data = request.json
-        if event_name != '':
-            tgt = Event.query.get(event_name)
+        if event_id != '':
+            tgt = Event.query.get(event_id)
             return tgt.to_dict()
         elif 'sort_by' in data:
             return

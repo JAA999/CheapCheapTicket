@@ -53,7 +53,6 @@ def main():
     get_spotify_access_token()
     populate_genres()
     populate_models()
-    # print_all_instances()
     
 # Populates all the models, using playlists as starting points
 def populate_models():
@@ -63,7 +62,7 @@ def populate_models():
 
         create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
 
-    create_json_files()
+    # create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
@@ -370,14 +369,18 @@ def get_commits():
     
     commits_per_author = {}
     for commit in commits:
-        author_name = commit['author_name']
-        if (author_name not in commits_per_author):
-            commits_per_author[author_name] = 1
+        new_name = commit['author_name'].split(' ')
+        if (len(new_name) > 1):
+            new_name = new_name[0] + new_name[-1]
         else:
-            commits_per_author[author_name] += 1
+            new_name = new_name[0]
+
+        if (new_name not in commits_per_author):
+            commits_per_author[new_name] = 1
+        else:
+            commits_per_author[new_name] += 1
     
-    for author in commits_per_author:
-        print(f"{author} has performed {commits_per_author[author]} commits")
+    return commits_per_author
 
 # Prints out the number of issues closed by each project member
 def get_issues():
@@ -400,14 +403,32 @@ def get_issues():
     issues_closed_by_member = {}
     for issue in issues:
         if 'closed_by' in issue and issue['closed_by']:
-            member = issue['closed_by']['name']
-            if member not in issues_closed_by_member:
-                issues_closed_by_member[member] = 1
+            new_name = issue['closed_by']['name'].split(' ')
+            if (len(new_name) > 1):
+                new_name = new_name[0] + new_name[-1]
             else:
-                issues_closed_by_member[member] += 1
+                new_name = new_name[0]
+            
+            if new_name not in issues_closed_by_member:
+                issues_closed_by_member[new_name] = 1
+            else:
+                issues_closed_by_member[new_name] += 1
 
-    for member in issues_closed_by_member:
-        print(f"{member} has closed {issues_closed_by_member[member]} issues")
+    return issues_closed_by_member
+
+# Creates dictionary of project members' stats
+def get_gitlab_stats():
+    stats = {}
+    commits_per_member = get_commits()
+    issues_per_member = get_issues()
+
+    for member in commits_per_member:
+        stats_for_member = []
+        stats_for_member.append(commits_per_member[member])
+        if member in issues_per_member:
+            stats_for_member.append(issues_per_member[member])
+        stats[member] = stats_for_member
+    return stats
 
 # Check if API call resulted in error
 def check_request_status(response):
