@@ -44,7 +44,7 @@ genre_instances = []
 
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
-google_access_token = 'AIzaSyAVFsqiUBPbEIyxqbjoJlAh9ylHNnWT4k8'
+google_access_token = 'AIzaSyBwv3sHVNL7xrJlSWvZyOF5NAV81y_XHrA'
 
 gitlab_project_id = '59330677'
 gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
@@ -67,8 +67,8 @@ def populate_models():
 
 # Creates JSON files for each model
 def create_json_files():
-    # with open ('artists.json', 'w') as fp:
-    #     json.dump({'Artists': artist_instances}, fp, indent=4)
+    with open ('artists.json', 'w') as fp:
+        json.dump({'Artists': artist_instances}, fp, indent=4)
 
     with open ('events.json', 'w') as fp:
         json.dump({'Events': event_instances}, fp, indent=4)
@@ -263,7 +263,7 @@ def get_events_for_artist(artist_name):
     params = {
         'apikey': ticketmaster_access_token,
         'keyword': artist_name, 
-        'size': 10, # Limit the number of events returned for artist
+        'size': 1, # Limit the number of events returned for artist
         'classificationName': 'music',
         'locale': 'en-us', # Filter only in the USA
     }
@@ -287,12 +287,17 @@ def get_events_for_artist(artist_name):
             if 'startDateTime' in event['sales']['public']:
                 salesDateRange += f"{event['sales']['public']['startDateTime']} to "
                 salesDateRange += event['sales']['public']['endDateTime']
+            
+            event_date = []
+            if (not event['dates']['start']['dateTBD']):
+                tokens = (event['dates']['start']['localDate']).split('-')
+                event_date = [int(token) for token in tokens]
 
             event_instance = {
                 'eventId': event['id'],
                 'eventName': event['name'],
                 'artistNames': [artist_name,],
-                'dateAndTime': event['dates']['start']['localDate'] if not (event['dates']['start']['dateTBD']) else 'TBD',
+                'dateAndTime': event_date, # [year, month, day]
                 'salesStart-End': salesDateRange,
                 'priceRange': [] if 'priceRanges' not in event else [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']],
                 'genreId': '',
