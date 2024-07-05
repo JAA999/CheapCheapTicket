@@ -6,20 +6,20 @@ import base64
 
 genres_playlist = {
     'Alternative': 'The New Alt',
-    'Blues': 'Blues Classics',
-    'Classical': 'Classical Essentials',
+    'Blues': 'Nu-Blue', # originally: 'Blues Classics'
+    'Classical': 'Classical New Releases', # originally: Classical Essentials
     'Country': 'Hot Country',
     'Dance/Electronic': 'mint',
     'Folk': 'Roots Rising',
     'Hip-Hop/Rap': 'RapCaviar',
-    'Jazz': 'Jazz Classics',
+    'Jazz': 'State of Jazz', # originally: 'Jazz Classics'
     'Latin': 'Viva Latino',
     'Metal': 'Kickass Metal',
     'Pop': 'Summer Pop',
     'R&B': 'RNB X',
-    'Reggae': 'Reggae Classics',
+    'Reggae': 'Irie', # originally: 'Reggae Classics'
     'Religious': 'Top Christian & Gospel',
-    'Rock': 'Legends Only'
+    'Rock': 'Legends Only' # originally: 'MARROW'
 }
 
 genres_playlist_limited = {
@@ -60,9 +60,9 @@ def populate_models():
     for genre_instance in genre_instances:
         genre_name = genre_instance['name']
 
-        create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
+        create_instances_from_playlist(genre_instance, genres_playlist[genre_name])
 
-    # create_json_files()
+    create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
@@ -116,7 +116,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_playlist_test):
+                if (genre['name'] in genres_playlist):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -155,7 +155,7 @@ def create_instances_from_playlist(genre_instance, playlist_name):
     response = response.json()
 
     # MODIFY BASED ON SPOTIFY API REQUEST LIMIT
-    max_artists = 3
+    max_artists = 15
     num_artists = 0
 
     min_price = 100000
@@ -262,7 +262,7 @@ def get_events_for_artist(artist_name):
     params = {
         'apikey': ticketmaster_access_token,
         'keyword': artist_name, 
-        'size': 1, # Limit the number of events returned for artist
+        'size': 5, # Limit the number of events returned for artist
         'classificationName': 'music',
         'locale': 'en-us', # Filter only in the USA
     }
@@ -278,9 +278,9 @@ def get_events_for_artist(artist_name):
             if 'address' in event['_embedded']['venues'][0]:
                 address += event['_embedded']['venues'][0]['address']['line1'] if 'line1' in event['_embedded']['venues'][0]['address'] else ''
 
-            address += f", {event['_embedded']['venues'][0]['city']['name']}" if 'city' in event['_embedded']['venues'][0] else ''
+            address += f", {event['_embedded']['venues'][0]['city']['name']}" if 'city' in event['_embedded']['venues'][0] and 'name' in event['_embedded']['venues'][0]['city'] else ''
 
-            address += f", {event['_embedded']['venues'][0]['state']['name']}" if 'state' in event['_embedded']['venues'][0] else ''
+            address += f", {event['_embedded']['venues'][0]['state']['name']}" if 'state' in event['_embedded']['venues'][0] and 'name' in event['_embedded']['venues'][0]['state'] else ''
 
             salesDateRange = ''
             if 'startDateTime' in event['sales']['public']:
@@ -292,13 +292,17 @@ def get_events_for_artist(artist_name):
                 tokens = (event['dates']['start']['localDate']).split('-')
                 event_date = [int(token) for token in tokens]
 
+            price_range = []
+            if ('priceRanges' in event and 'min' in event['priceRanges'][0] and 'max' in event['priceRanges'][0]):
+                price_range = [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']]
+
             event_instance = {
                 'eventId': event['id'],
                 'eventName': event['name'],
                 'artistNames': [artist_name,],
                 'dateAndTime': event_date, # [year, month, day]
                 'salesStart-End': salesDateRange,
-                'priceRange': [] if 'priceRanges' not in event else [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']],
+                'priceRange': price_range,
                 'genreId': '',
                 'venue': {},
                 'ticketmasterURL': event['url']
