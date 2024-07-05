@@ -73,12 +73,12 @@ class Events(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     # description = db.Column(db.String(250))
 
-    artistNames = db.Column(ARRAY(db.String)) 
-    dateAndTime = db.Column(db.String)
-    salesStartEnd = db.Column(db.String) 
-    priceRange = db.Column(db.Integer)
+    artist_names = db.Column(ARRAY(db.String)) 
+    date_and_time = db.Column(db.String)
+    sales_start_end = db.Column(db.String) 
+    price_range = db.Column(db.Integer)
     venue = db.Column(JSON) 
-    ticketmasterURL = db.Column(db.String) 
+    ticketmaster_URL = db.Column(db.String) 
 
     # Relationship
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'), nullable=False)
@@ -91,10 +91,10 @@ class Genres(db.model):
     id = db.Column(db.Integer, primary_key = True)
 
 
-    popularArtists = db.Column(ARRAY(db.String))
-    upcomingEvents = db.Column(ARRAY(db.String)) 
-    topsongs = db.Column(ARRAY(db.String)) 
-    eventsPriceRange = db.Column(db.Integer)
+    popular_artists = db.Column(ARRAY(db.String))
+    upcoming_events = db.Column(ARRAY(db.String)) 
+    top_songs = db.Column(ARRAY(db.String)) 
+    events_price_range = db.Column(db.Integer)
 
     # Relationship
     artists = db.relationship('Artist', back_populates='genre')
