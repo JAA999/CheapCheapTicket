@@ -38,9 +38,9 @@ genres_playlist_test = {
 }
 
 artist_names = set()
-artists_instances = {}
-venue_instances = {}
-genre_instances = {}
+artist_instances = []
+event_instances = []
+genre_instances = []
 
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
@@ -52,29 +52,29 @@ gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
 def main():
     get_spotify_access_token()
     populate_genres()
-    # populate_models()
+    populate_models()
     # print_all_instances()
     
 # Populates all the models, using playlists as starting points
 def populate_models():
     # CHANGE FROM TEST WHEN CREATING DATABASE
-    for genre_id in genre_instances:
-        genre_name = genre_instances[genre_id]['name']
+    for genre_instance in genre_instances:
+        genre_name = genre_instance['name']
 
-        create_instances_from_playlist(genre_instances[genre_id], genres_playlist_test[genre_name])
+        create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
 
-    # create_json_files()
+    create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
     with open ('artists.json', 'w') as fp:
-        json.dump(artists_instances, fp, indent=4)
+        json.dump({'Artists': artist_instances}, fp, indent=4)
 
     with open ('events.json', 'w') as fp:
-        json.dump(venue_instances, fp, indent=4)
+        json.dump({'Events': event_instances}, fp, indent=4)
     
     with open ('genres.json', 'w') as fp:
-        json.dump(genre_instances, fp, indent=4)
+        json.dump({'Genres': genre_instances}, fp, indent=4)
     
 # Create access point to the Spotify API and return given access token
 def get_spotify_access_token():
@@ -126,10 +126,13 @@ def populate_genres():
                         'topSongs': [],
                         'eventsPriceRange': ''
                     }
-                    genre_instances[genre['id']] = genre_instance
+                    genre_instances += [genre_instance]
 
 # Given a playlist name, it populates a genre with artists and songs from the playlist
 def create_instances_from_playlist(genre_instance, playlist_name):
+    global artist_instances
+    global event_instances
+
     spotify_headers = {'Authorization': f'Bearer {spotify_access_token}'}
 
     search_url = 'https://api.spotify.com/v1/search'
@@ -152,7 +155,7 @@ def create_instances_from_playlist(genre_instance, playlist_name):
     check_request_status(response)
     response = response.json()
 
-    # FOR PHASE #1, REMOVE AFTERWARDS
+    # MODIFY BASED ON SPOTIFY API REQUEST LIMIT
     max_artists = 3
     num_artists = 0
 
@@ -170,16 +173,16 @@ def create_instances_from_playlist(genre_instance, playlist_name):
             genre_instance['popularArtists'] += [artist_id]
 
             artist_names.add(artist_name)
-            venue_results, artist_instance = get_artist_information(artist_id)
+            event_results, artist_instance = get_artist_information(artist_id)
 
             artist_instance['genreId'] = genre_instance['genreId']
-            artists_instances[artist_instance['id']] = artist_instance
+            artist_instances += [artist_instance]
 
-            for venue in venue_results:
-                venue['genreId'] = genre_instance['genreId']
-                venue_instances[venue['eventId']] = venue
-                artist_instance['futureEvents'] += [venue['eventId']]
-                genre_instance['upcomingEvents'] += [venue['eventId']]
+            for event in event_results:
+                event['genreId'] = genre_instance['genreId']
+                event_instances += [event]
+                artist_instance['futureEvents'] += [event['eventId']]
+                genre_instance['upcomingEvents'] += [event['eventId']]
 
 # Perform a search request for a single artist using their name and return their id
 def get_artist_id(artist_name) :
@@ -258,7 +261,7 @@ def get_events_for_artist(artist_name):
     check_request_status(response)
     response = response.json()
 
-    venue_instances = []
+    event_instances_local = []
     if '_embedded' in response:
         for event in response['_embedded']['events']: 
             address = ''
@@ -297,9 +300,9 @@ def get_events_for_artist(artist_name):
             else:
                 event_instance['venue'] = 'Unavailable'
 
-            venue_instances += [event_instance]
+            event_instances_local += [event_instance]
 
-    return venue_instances
+    return event_instances_local
 
 
 # Return a given place's id given the address
@@ -401,16 +404,16 @@ def check_request_status(response):
 # Prints all the data retrieved from APIs
 def print_all_instances():
     print("---Artists---")
-    for artist_key in artists_instances:
-        print(artists_instances[artist_key])
+    for artist_instance in artist_instances:
+        print(artist_instance)
         print("\n")
     print("---Genres---")
-    for genre_key in genre_instances:
-        print(genre_instances[genre_key])
+    for genre_instance in genre_instances:
+        print(genre_instance)
         print("\n")
     print("---Events---")
-    for event_key in venue_instances:
-        print(venue_instances[event_key])
+    for event_instance in event_instances:
+        print(event_instance)
         print("\n")
 
 if __name__ == "__main__":
