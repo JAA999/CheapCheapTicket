@@ -85,7 +85,7 @@ class Events(db.Model):
     genre = db.relationship('Genre', back_populates='events')
     artists = db.relationship('Artist', secondary='artist_events', back_populates='events')
 
-class Genres(db.model):
+class Genres(db.Model):
     __tablename__ = 'genre'
     name = db.Column(db.String(80), nullable = False)
     id = db.Column(db.Integer, primary_key = True)
