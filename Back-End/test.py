@@ -1,4 +1,5 @@
 import unittest
+from flask import Flask
 from models import db, Artists, Events, Genres
 
 class DBTestCases(unittest.TestCase):
@@ -6,13 +7,25 @@ class DBTestCases(unittest.TestCase):
     # insertion
     # ---------
     def setUp(self):
+        # print("SETTING UP")
+        # db.create_all()
+
+        self.app = Flask(__name__)
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost:5432/ticketsdb'
+        self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        db.init_app(self.app)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+
         db.create_all()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
     
     def test_source_insert_1(self):
+        print("FIRST TEST")
         s = Artists(artist_name='Tyla', artist_id='20')
         db.session.add(s)
         db.session.commit()

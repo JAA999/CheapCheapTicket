@@ -18,31 +18,30 @@ PUBLIC_IP_ADDRESS ="localhost:5432"
 DBNAME ="ticketsdb"
 
 # Configuration 
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True  # To suppress a warning message
 db = SQLAlchemy(app)
 
-# Many-To-Many relation: Assume that an Author can have many Books 
-# and a Book can also have many Authors.
-#
-# You cannot setup a Many-To-Many where you have a relationship
-# on one object and an ID stored in the table becuase in this way 
-# you will only be able to store a single ID in that table
-# with the related object. So we need something to store
-# an ID of one object and an idea of the related object and maintain
-# multiple objects can relate to multiple other objects.
-#
-# link is a (joined or association) table with two columns.
-# It maintains the relationship between Author and Book
-# It has two forign keys (the primary keys of the tables)
-# To automatically update link table, one need to create
-# a connection within Author and Book via 'relationship()' 
-# in each corresponding table.
-artists_events = db.Table('link',
-   db.Column('artist_id', db.Integer, db.ForeignKey('artist.id')), 
-   db.Column('event_id', db.Integer, db.ForeignKey('event.id'))
-   )
+class Genres(db.Model):
+    __tablename__ = 'genres'
+    name = db.Column(db.String(80), nullable = False)
+    id = db.Column(db.Integer, primary_key = True)
+
+
+    popular_artists = db.Column(ARRAY(db.String))
+    upcoming_events = db.Column(ARRAY(db.String)) 
+    top_songs = db.Column(ARRAY(db.String)) 
+    events_price_range = db.Column(db.Integer)
+
+    # Relationship
+    artists = db.relationship('Artist', back_populates='genre')
+    events = db.relationship('Event', back_populates='genre')
+    # This attribute connects Genre with Artist
+    # The name stored in backref is a sort of virtual column 
+    # that will be inserted in the Artist table. This column will 
+    # refer back to the Genre.
+
+    # books = db.relationship('Artists', backref = 'genre')
   
 class Artists(db.Model):
     __tablename__ = 'artists'
@@ -85,26 +84,28 @@ class Events(db.Model):
     genre = db.relationship('Genre', back_populates='events')
     artists = db.relationship('Artist', secondary='artist_events', back_populates='events')
 
-class Genres(db.Model):
-    __tablename__ = 'genre'
-    name = db.Column(db.String(80), nullable = False)
-    id = db.Column(db.Integer, primary_key = True)
 
+# Many-To-Many relation: Assume that an Author can have many Books 
+# and a Book can also have many Authors.
+#
+# You cannot setup a Many-To-Many where you have a relationship
+# on one object and an ID stored in the table becuase in this way 
+# you will only be able to store a single ID in that table
+# with the related object. So we need something to store
+# an ID of one object and an idea of the related object and maintain
+# multiple objects can relate to multiple other objects.
+#
+# link is a (joined or association) table with two columns.
+# It maintains the relationship between Author and Book
+# It has two forign keys (the primary keys of the tables)
+# To automatically update link table, one need to create
+# a connection within Author and Book via 'relationship()' 
+# in each corresponding table.
+artists_events = db.Table('artist_events',
+   db.Column('artist_id', db.Integer, db.ForeignKey('artists.artist_id')), 
+   db.Column('event_id', db.Integer, db.ForeignKey('events.id'))
+   )
 
-    popular_artists = db.Column(ARRAY(db.String))
-    upcoming_events = db.Column(ARRAY(db.String)) 
-    top_songs = db.Column(ARRAY(db.String)) 
-    events_price_range = db.Column(db.Integer)
-
-    # Relationship
-    artists = db.relationship('Artist', back_populates='genre')
-    events = db.relationship('Event', back_populates='genre')
-    # This attribute connects Genre with Artist
-    # The name stored in backref is a sort of virtual column 
-    # that will be inserted in the Artist table. This column will 
-    # refer back to the Genre.
-
-    # books = db.relationship('Artists', backref = 'genre')
 
 db.create_all()
 
