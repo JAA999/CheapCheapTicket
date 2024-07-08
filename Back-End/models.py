@@ -20,9 +20,9 @@ db = SQLAlchemy(app)
 
 class Genres(db.Model):
     __tablename__ = 'genres'
+    
     name = db.Column(db.String(80), nullable = False)
     id = db.Column(db.Integer, primary_key = True)
-
 
     popular_artists = db.Column(ARRAY(db.String))
     upcoming_events = db.Column(ARRAY(db.String)) 
@@ -76,6 +76,6 @@ artists_events = db.Table('artist_events',
    )
 
 
-db.create_all()
+# db.create_all()
 
 
