@@ -22,19 +22,18 @@ def about_page():
 @app.route('/api/GetGenre/<string:genre_id>', methods=['POST'])
 def genres_page(genre_id):
     # When genres are listed as cards in grid view
-    if request.methods == 'GET': # is it request.method instead of methods
-        # genres = db.session.query('Genre').all()
-        genres = Genres.query.all()
-        return jsonify([genre.to_dict() for genre in genres])
-    elif request.methods == 'POST':
-        # When user clicks on genre card (or name)
-        data = request.json
-        if genre_id != '':
-            # Search database based on genre_id
-            genre_id = data['genre_id']
-            tgt = Genres.query.get(genre_id)
-            return tgt.to_dict()
+    # if request.methods == 'GET': # is it request.method instead of methods
+        # genres = Genres.query.all()
+        # return jsonify([genre.to_dict() for genre in genres])
+    # elif request.methods == 'POST':
+    #     # When user clicks on genre card (or name)
+    #     data = request.json
+    if genre_id != '':
+        # Search database based on genre_id
+        tgt = Genres.query.get(genre_id)
+        return tgt.to_dict()
 
+genres_page('KnvZfZ7vAvv')
 
 @app.route('/api/GetGenres/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
 def specific_genres(page, per_page, sort_by, sort_order):

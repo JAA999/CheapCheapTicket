@@ -22,12 +22,12 @@ class Genres(db.Model):
     __tablename__ = 'genres'
     
     name = db.Column(db.String(80), nullable = False)
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.String, primary_key = True)
 
     popular_artists = db.Column(ARRAY(db.String))
     upcoming_events = db.Column(ARRAY(db.String)) 
     top_songs = db.Column(ARRAY(db.String)) 
-    events_price_range = db.Column(db.Integer)
+    events_price_range = db.Column(ARRAY(db.Integer))
 
     # Relationship
     artists = db.relationship('Artists', back_populates='genre')
@@ -50,14 +50,14 @@ class Artists(db.Model):
     __tablename__ = 'artists'
 	
     artist_name = db.Column(db.String(80), nullable = False)
-    artist_id = db.Column(db.Integer, primary_key = True)
+    artist_id = db.Column(db.String, primary_key = True)
     popularity = db.Column(db.Integer)  
     albums = db.Column(ARRAY(db.String)) 
     album_covers = db.Column(ARRAY(db.String))
     future_events = db.Column(ARRAY(db.String))
     image_url = db.Column(db.String(80)) 
     # Relationship
-    genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'), nullable=False)
+    genre_id = db.Column(db.String, db.ForeignKey('genres.id'), nullable=False)
     genre = db.relationship('Genres', back_populates='artists')
     events = db.relationship('Events', secondary ='artist_events', back_populates='artists')
 
@@ -77,19 +77,19 @@ class Artists(db.Model):
 class Events(db.Model):
     __tablename__ = 'events'
 	
-    name = db.Column(db.String(80), nullable = False)
-    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    id = db.Column(db.String, primary_key = True)
     # description = db.Column(db.String(250))
 
     artist_names = db.Column(ARRAY(db.String)) 
-    date_and_time = db.Column(db.String)
+    date_and_time = db.Column(ARRAY(db.Integer))
     sales_start_end = db.Column(db.String) 
-    price_range = db.Column(db.Integer)
+    price_range = db.Column(ARRAY(db.Integer))
     venue = db.Column(JSON) 
     ticketmaster_URL = db.Column(db.String) 
 
     # Relationship
-    genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'), nullable=False)
+    genre_id = db.Column(db.String, db.ForeignKey('genres.id'), nullable=False)
     genre = db.relationship('Genres', back_populates='events')
     artists = db.relationship('Artists', secondary='artist_events', back_populates='events')
 
@@ -106,8 +106,8 @@ class Events(db.Model):
         return instance
 
 artists_events = db.Table('artist_events',
-   db.Column('artist_id', db.Integer, db.ForeignKey('artists.artist_id')), 
-   db.Column('event_id', db.Integer, db.ForeignKey('events.id'))
+   db.Column('artist_id', db.String, db.ForeignKey('artists.artist_id')), 
+   db.Column('event_id', db.String, db.ForeignKey('events.id'))
    )
 
 

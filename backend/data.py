@@ -38,6 +38,8 @@ genres_playlist_test = {
 }
 
 artist_names = set()
+event_ids = set()
+
 artist_instances = []
 event_instances = []
 genre_instances = []
@@ -187,7 +189,9 @@ def create_instances_from_playlist(genre_instance, playlist_name):
                     if (event['priceRange'][1] > max_price):
                         max_price = event['priceRange'][1]
                 event['genreId'] = genre_instance['genreId']
-                event_instances += [event]
+                if (event['eventId'] not in event_ids):
+                    event_instances.append(event)
+                    event_ids.add(event['eventId'])
                 artist_instance['futureEvents'] += [event['eventId']]
                 genre_instance['upcomingEvents'] += [event['eventId']]
 

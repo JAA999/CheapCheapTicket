@@ -15,10 +15,10 @@ def create_genres():
     for genre in genres['Genres']:
         i = Genres(
             name=genre['name'],
-            id=genre['id'],
+            id=genre['genreId'],
             popular_artists=genre['popularArtists'],
             upcoming_events=genre['upcomingEvents'],
-            top_songs=genre['topsongs'],
+            top_songs=genre['topSongs'],
             events_price_range=genre['eventsPriceRange']
         )
         db.session.add(i)
@@ -34,9 +34,9 @@ def create_artists():
             popularity=artist['popularity'],
             albums=artist['albums'],
             album_covers=artist['album_covers'],
-            future_events=artist['future_events'],
+            future_events=artist['futureEvents'],
             image_url=artist['image_url'],
-            genre_id=artist['genre_id']
+            genre_id=artist['genreId']
         )
         db.session.add(i)
     db.session.commit()
@@ -47,13 +47,13 @@ def create_events():
 
     for event in events['Events']:
         i = Events(
-            name=event['name'],
-            id=event["id"],
-            artist_names=event['artist_names'],
-            price_range=event['price_range'],
+            name=event['eventName'],
+            id=event["eventId"],
+            artist_names=event['artistNames'],
+            price_range=event['priceRange'],
             venue=event['venue'],
-            ticketmaster_URL=event['ticketmaster_URL'],
-            genre_id=event['genre_id']
+            ticketmaster_URL=event['ticketmasterURL'],
+            genre_id=event['genreId']
         )
         db.session.add(i)
     db.session.commit()

@@ -111,10 +111,10 @@
             ],
             "futureEvents": [
                 "G5vHZb7XlZsJm",
-                "G5vOZ9U5QSKxH",
                 "G5dbZ9U6Qn05X",
                 "Z7r9jZ1A7e6kA",
-                "Z7r9jZ1A7ek4g"
+                "Z7r9jZ1A7ek4g",
+                "1AefZbkGkR6U-bc"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178ad85a585103dfc2f3439119a"
         },
@@ -268,11 +268,11 @@
                 "https://i.scdn.co/image/ab67616d0000b27388883701231713b18429f80b"
             ],
             "futureEvents": [
-                "1Ad7ZbAGkl03V02",
-                "1Av0ZbAGkRYc7LT",
-                "1Av7ZbAGkwMg0Y5",
-                "1AvZZbAGkS7Dwu0",
-                "1AvbZbAGkRjdUvC"
+                "Z7r9jZ1A71Zv-",
+                "G5dIZbASLj4cW",
+                "G5dIZbAwBS4Fk",
+                "vv17FZbAGkRuSJtC",
+                "G5eVZbARktEeu"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f1784b895ec91da05e35c650fa60"
         },
@@ -316,11 +316,11 @@
                 "https://i.scdn.co/image/ab67616d0000b27362b60bfe9b3344965cfad6a8"
             ],
             "futureEvents": [
+                "Z7r9jZ1A7Ft7o",
                 "17AZvOG61UVIore",
                 "17AZvOG61UiYs3U",
                 "1AeFZb6GklhO-TF",
-                "1AdZZb6GkIx6dJh",
-                "G5eVZb6n8Te1V"
+                "1AdZZb6GkIx6dJh"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178274df4dfcb960867eccedfb5"
         },
@@ -382,8 +382,8 @@
                 "Wiyaala"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2733360bfc475458044140bcb12",
-                "https://i.scdn.co/image/ab67616d0000b2735b6f81b6f09c82f25dd874da"
+                "https://i.scdn.co/image/ab67616d0000b273d4cd0dd51a2752c6f6126c1f",
+                "https://i.scdn.co/image/ab67616d0000b2732294de9c104da5b22f020567"
             ],
             "futureEvents": [],
             "image_url": "https://i.scdn.co/image/ab67616d00004851abeede3881e6a4a0d1bea044"
@@ -543,18 +543,18 @@
                 "https://i.scdn.co/image/ab67616d0000b27338af221ea0295e2830d544f1"
             ],
             "futureEvents": [
-                "Z7r9jZ1A7Fpvk",
                 "Z7r9jZ1A7FpAo",
                 "Z7r9jZ1A7F4_S",
                 "Z7r9jZ1A7F4j0",
-                "Z7r9jZ1A7Fpj_"
+                "Z7r9jZ1A7Fpj_",
+                "Z7r9jZ1A7Fpov"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f17816bbce3d5fb8a51e7cc3dce0"
         },
         {
             "name": "Judith Hill",
             "id": "04ka9403wgTxmWFMY1PD5t",
-            "popularity": 37,
+            "popularity": 38,
             "genreId": "KnvZfZ7vAvd",
             "albums": [
                 "Letters from a Black Widow",
@@ -652,7 +652,7 @@
         {
             "name": "Akio Yashiro",
             "id": "7GCZ6IsJFw5pp4ntFeCQT2",
-            "popularity": 8,
+            "popularity": 14,
             "genreId": "KnvZfZ7vAeJ",
             "albums": [
                 "Landscapes. Takemitsu, Hosokowa & Nishimura",
@@ -690,13 +690,13 @@
             "genreId": "KnvZfZ7vAeJ",
             "albums": [
                 "Berliner Philharmoniker - Romantic Symphonies by Brahms, Berlioz, Schumann, Dvo\u0159\u00e1k...",
-                "Brahms: Piano Concerto No. 1 in D Minor, Op. 15 (Live)",
-                "Brahms: Cello Sonatas Nos. 1 & 2"
+                "Brahms: Cello Sonatas Nos. 1 & 2",
+                "Andante: Mozart, Beethoven, Chopin & Brahms"
             ],
             "album_covers": [
                 "https://i.scdn.co/image/ab67616d0000b2736a48186dc1a7379d27e6a4b7",
-                "https://i.scdn.co/image/ab67616d0000b273b26b60398e3e2f861048550a",
-                "https://i.scdn.co/image/ab67616d0000b273788e68ce385dc88f637cd823"
+                "https://i.scdn.co/image/ab67616d0000b273788e68ce385dc88f637cd823",
+                "https://i.scdn.co/image/ab67616d0000b273c10a94fd9d2f79946e0ed582"
             ],
             "futureEvents": [],
             "image_url": "https://i.scdn.co/image/39d3c79df7fed6b4c597babaa24586d40fa44a45"
@@ -707,14 +707,14 @@
             "popularity": 69,
             "genreId": "KnvZfZ7vAeJ",
             "albums": [
-                "Irish Roots",
-                "Andante: Vivaldi & Handel",
-                "Classical Occasions: Celebrations"
+                "Allemande & Gavotte",
+                "The Masters: Summer",
+                "Irish Roots"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273996379c8fce99c9f148f52d9",
-                "https://i.scdn.co/image/ab67616d0000b273769c7e5ce6f4ab0c8ec68abd",
-                "https://i.scdn.co/image/ab67616d0000b2738f0d8dd4ed0ddb166b12d399"
+                "https://i.scdn.co/image/ab67616d0000b27376f403ae8f99148277bb7e8b",
+                "https://i.scdn.co/image/ab67616d0000b273c2175450d9ff854588bda486",
+                "https://i.scdn.co/image/ab67616d0000b273996379c8fce99c9f148f52d9"
             ],
             "futureEvents": [],
             "image_url": "https://i.scdn.co/image/30702c2e565f3c36fcc65673cf2f19fe852ca7c0"
@@ -722,12 +722,12 @@
         {
             "name": "Judith Steenbrink",
             "id": "0qUWQL0pIvRtM7QrDjWWIC",
-            "popularity": 8,
+            "popularity": 11,
             "genreId": "KnvZfZ7vAeJ",
             "albums": [],
             "album_covers": [],
             "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab67616d000048513f376b16fef594065bf40031"
+            "image_url": "https://i.scdn.co/image/ab67616d00004851b8bcdc936f71906f82562856"
         },
         {
             "name": "Clara Schumann",
@@ -750,7 +750,7 @@
         {
             "name": "Redi Hasa",
             "id": "7HlXH3lEJtM1yO38Ghi20f",
-            "popularity": 47,
+            "popularity": 48,
             "genreId": "KnvZfZ7vAeJ",
             "albums": [
                 "My Nirvana",
@@ -807,7 +807,7 @@
         {
             "name": "Chen Gang",
             "id": "5UwRQg1yURCdW2YG1eqCt5",
-            "popularity": 21,
+            "popularity": 22,
             "genreId": "KnvZfZ7vAeJ",
             "albums": [],
             "album_covers": [],
@@ -853,7 +853,7 @@
         {
             "name": "VOCES8",
             "id": "32nW8kGbs65y8CSlIvREuc",
-            "popularity": 47,
+            "popularity": 48,
             "genreId": "KnvZfZ7vAeJ",
             "albums": [
                 "A Choral Christmas",
@@ -889,7 +889,7 @@
         {
             "name": "Zach Bryan",
             "id": "40ZNYROS4zLfyyBSs2PGe2",
-            "popularity": 89,
+            "popularity": 90,
             "genreId": "KnvZfZ7vAv6",
             "albums": [
                 "The Great American Bar Scene",
@@ -1007,7 +1007,7 @@
         {
             "name": "Bailey Zimmerman",
             "id": "3win9vGIxFfBRag9S63wwf",
-            "popularity": 74,
+            "popularity": 75,
             "genreId": "KnvZfZ7vAv6",
             "albums": [
                 "Religiously. The Album."
@@ -1016,18 +1016,18 @@
                 "https://i.scdn.co/image/ab67616d0000b2730c5d03daf39f254bb546cf3a"
             ],
             "futureEvents": [
-                "Z7r9jZ1A7vt_E",
-                "Z7r9jZ1A7vt_I",
                 "G5eVZ9gmTUpis",
                 "vvG1YZ9gXGGsw7",
-                "vvG1YZ9gRenSTH"
+                "vvG1YZ9gRenSTH",
+                "Z7r9jZ1A7e477",
+                "G5vzZ9SCczvhu"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178ed36422f0f4ab7564fd0a2d6"
         },
         {
             "name": "Ella Langley",
             "id": "6BRxQ8cD3eqnrVj6WKDok8",
-            "popularity": 65,
+            "popularity": 66,
             "genreId": "KnvZfZ7vAv6",
             "albums": [
                 "Excuse The Mess"
@@ -1087,7 +1087,7 @@
         {
             "name": "Redferrin",
             "id": "4oCk0xbmAtqXZFzXtH3AgF",
-            "popularity": 61,
+            "popularity": 62,
             "genreId": "KnvZfZ7vAv6",
             "albums": [],
             "album_covers": [],
@@ -1103,7 +1103,7 @@
         {
             "name": "Kelsea Ballerini",
             "id": "3RqBeV12Tt7A8xH3zBDDUF",
-            "popularity": 68,
+            "popularity": 69,
             "genreId": "KnvZfZ7vAv6",
             "albums": [
                 "Rolling Up the Welcome Mat (For Good)",
@@ -1123,7 +1123,7 @@
         {
             "name": "Lainey Wilson",
             "id": "6tPHARSq45lQ8BSALCfkFC",
-            "popularity": 72,
+            "popularity": 73,
             "genreId": "KnvZfZ7vAv6",
             "albums": [
                 "Bell Bottom Country",
@@ -1211,15 +1211,15 @@
                 "vv1A6ZkvaGkdd-deq",
                 "k7vGFbF1sZKxV",
                 "G5vYZbFkdEOzr",
-                "Z7r9jZ1A7aF-v",
-                "Z7r9jZ1A7a-rv"
+                "Z7r9jZ1A7a-rv",
+                "Z7r9jZ1A7agoa"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f1782ab77b8a1dbf0d195f5e8dae"
         },
         {
             "name": "Adam Port",
             "id": "2loEsOijJ6XiGzWYFXMIRk",
-            "popularity": 70,
+            "popularity": 71,
             "genreId": "KnvZfZ7vAvF",
             "albums": [
                 "Send Return",
@@ -1275,7 +1275,7 @@
         {
             "name": "Dom Dolla",
             "id": "205i7E8fNVfojowcQSfK9m",
-            "popularity": 69,
+            "popularity": 70,
             "genreId": "KnvZfZ7vAvF",
             "albums": [],
             "album_covers": [],
@@ -1303,7 +1303,6 @@
             ],
             "futureEvents": [
                 "G5v7Z9wxmZdCQ",
-                "1Av7Zb7Gkns2xLi",
                 "vvG1VZ9grc2ovo"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f17869dea5e9c932833f17b7ddce"
@@ -1345,18 +1344,18 @@
                 "https://i.scdn.co/image/ab67616d0000b27315a8ce875e83f1134d225aab"
             ],
             "futureEvents": [
-                "Z698xZG2ZaCrW",
                 "Z698xZbpZ17G7uA",
                 "Z698xZ8KZ17GY_t",
                 "G5vHZ9REWfgMD",
-                "G5vHZ9Rl3f4f8"
+                "G5vHZ9Rl3f4f8",
+                "G5vHZ9Rnlj0i4"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178dcbf8b16eaea624592b29a35"
         },
         {
             "name": "Sosa UK",
             "id": "3JlN0MeWVJq0vjvsvWCRZ5",
-            "popularity": 53,
+            "popularity": 54,
             "genreId": "KnvZfZ7vAvF",
             "albums": [],
             "album_covers": [],
@@ -1456,7 +1455,7 @@
         {
             "name": "Loofy",
             "id": "6zx3vuOK841XDu7XFozhFv",
-            "popularity": 55,
+            "popularity": 56,
             "genreId": "KnvZfZ7vAvF",
             "albums": [],
             "album_covers": [],
@@ -1595,7 +1594,9 @@
             "genreId": "KnvZfZ7vAva",
             "albums": [],
             "album_covers": [],
-            "futureEvents": [],
+            "futureEvents": [
+                "17FOvOG6CCfa8T-"
+            ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178f09e3fdd6c27c7426c99945a"
         },
         {
@@ -1859,7 +1860,7 @@
         {
             "name": "Jordan Adetunji",
             "id": "0jPHHnU8GUWEF7rwPE9osY",
-            "popularity": 66,
+            "popularity": 67,
             "genreId": "KnvZfZ7vAv1",
             "albums": [
                 "ROCK 'N' RAVE"
@@ -2060,11 +2061,11 @@
                 "https://i.scdn.co/image/ab67616d0000b273234bd6e89b3fdd30080447bd"
             ],
             "futureEvents": [
-                "Z7r9jZ1A7GFfJ",
                 "vvG1VZb6E4RSbw",
                 "vvG1VZb6rFfed1",
                 "vvG1zZb1NVnk3q",
-                "vvG1OZb1hSyMEt"
+                "1A4Zke_GkeB2Igi",
+                "vv1AvZkedGkeBB7gX"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f17849b6c5c3a7e46a3b9f5a100f"
         },
@@ -2104,7 +2105,6 @@
                 "https://i.scdn.co/image/ab67616d0000b273cc5a0e69d80edf1cd1ef4dad"
             ],
             "futureEvents": [
-                "vv17jZbAGkSxhgo0",
                 "Z7r9jZ1A7k6-b"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178078fdd734b7f0aa782328428"
@@ -2152,7 +2152,7 @@
         {
             "name": "Myele Manzanza",
             "id": "1UC8QBhdrzQGgnGPcdEMDd",
-            "popularity": 27,
+            "popularity": 28,
             "genreId": "KnvZfZ7vAvE",
             "albums": [
                 "Crisis & Opportunity, Vol.4 - Meditations",
@@ -2188,7 +2188,7 @@
         {
             "name": "NALEDI",
             "id": "0mfRVYU5HbWqITp6dR5lVA",
-            "popularity": 17,
+            "popularity": 18,
             "genreId": "KnvZfZ7vAvE",
             "albums": [
                 "Batho"
@@ -2204,7 +2204,7 @@
         {
             "name": "Yusuke Shima",
             "id": "0pJNX3A4a4Q6KuMLXgOfa8",
-            "popularity": 29,
+            "popularity": 30,
             "genreId": "KnvZfZ7vAvE",
             "albums": [
                 "Wind Loop Case 1",
@@ -2278,7 +2278,7 @@
         {
             "name": "Ezra Collective",
             "id": "5BRAUN0yN8557PLRZIr02W",
-            "popularity": 50,
+            "popularity": 51,
             "genreId": "KnvZfZ7vAvE",
             "albums": [
                 "Where I'm Meant To Be (Deluxe Edition)",
@@ -2307,7 +2307,6 @@
             "albums": [],
             "album_covers": [],
             "futureEvents": [
-                "1AsZkvVGket-NI0",
                 "Z7r9jZ1A7uvPz",
                 "k7vGFbu8iqnCh",
                 "G5dzZbuNtg3re",
@@ -2359,7 +2358,7 @@
         {
             "name": "Nubya Garcia",
             "id": "6O5k8LLRfDK8v9jj1GazAQ",
-            "popularity": 36,
+            "popularity": 37,
             "genreId": "KnvZfZ7vAvE",
             "albums": [
                 "SOURCE \u29fa WE MOVE",
@@ -2382,7 +2381,7 @@
         {
             "name": "Myles Sanko",
             "id": "0EeY17gAdOJIBjNrpi6q1G",
-            "popularity": 35,
+            "popularity": 36,
             "genreId": "KnvZfZ7vAvE",
             "albums": [
                 "Live at Philharmonie Luxembourg",
@@ -2453,18 +2452,18 @@
                 "https://i.scdn.co/image/ab67616d0000b27373456ed697350847810e52b3"
             ],
             "futureEvents": [
-                "vvG1VZb7Nucec1",
                 "1AfZkvEGkdPBwN9",
                 "1av8Zbkje8xZdCvd",
                 "G5dVZbAngr0Fk",
-                "G5dVZbAld9VhB"
+                "G5dVZbAld9VhB",
+                "1AfZke7Gkdlbw0g"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178e82c62cc8cf019aecfd71ee8"
         },
         {
             "name": "FloyyMenor",
             "id": "7CvTknweLr9feJtRGrpDBy",
-            "popularity": 81,
+            "popularity": 82,
             "genreId": "KnvZfZ7vAJ6",
             "albums": [],
             "album_covers": [],
@@ -2484,7 +2483,7 @@
         {
             "name": "Blessd",
             "id": "1TA5sGRlKUJXBN4ZyJuDIX",
-            "popularity": 77,
+            "popularity": 78,
             "genreId": "KnvZfZ7vAJ6",
             "albums": [
                 "BlessDeluxury",
@@ -2499,7 +2498,9 @@
             "futureEvents": [
                 "G5dIZ9EEuRVq5",
                 "G5eFZ9InEn5xH",
-                "17GOvOG6uxy0ACw"
+                "17GOvOG6uxy0ACw",
+                "vvG17ZbuCU-0IW",
+                "vvG1FZbuQ0vKh-"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178d7be2e09ffaab68986dd3d63"
         },
@@ -2591,7 +2592,7 @@
         {
             "name": "Key-Key",
             "id": "6GKbEjuVNKuuAKetDXA2Mi",
-            "popularity": 63,
+            "popularity": 64,
             "genreId": "KnvZfZ7vAJ6",
             "albums": [
                 "Bombas Del Tiempo"
@@ -2694,11 +2695,11 @@
                 "https://i.scdn.co/image/ab67616d0000b273805eb8c52b50fffc8a0b2e3c"
             ],
             "futureEvents": [
-                "rZ7HnEZ1AK_P7N",
                 "rZ7HnEZ1AKfkGS",
                 "vvG1VZ9UhC2-Eo",
                 "G5vzZ9UNS0NZ2",
-                "vvG1HZ9UQQOeAy"
+                "vvG1HZ9UQQOeAy",
+                "G5v0Z9UxFPsAi"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178e1b10b324e72e29fb54e51ca"
         },
@@ -2777,7 +2778,7 @@
         {
             "name": "Knocked Loose",
             "id": "4qrHkx5cgWIslciLXUMrYw",
-            "popularity": 64,
+            "popularity": 63,
             "genreId": "KnvZfZ7vAvt",
             "albums": [
                 "You Won't Go Before You're Supposed To",
@@ -2984,7 +2985,7 @@
         {
             "name": "Memphis May Fire",
             "id": "7cNNNhdJDrt3vgQjwSavNf",
-            "popularity": 59,
+            "popularity": 60,
             "genreId": "KnvZfZ7vAvt",
             "albums": [
                 "Remade In Misery",
@@ -3030,52 +3031,46 @@
             "image_url": "https://i.scdn.co/image/ab6761610000f178d07f0b3d8b5c9576f15f1fb1"
         },
         {
-            "name": "MAGIC!",
-            "id": "0DxeaLnv6SyYk2DOqkLO8c",
-            "popularity": 67,
+            "name": "Mike Posner",
+            "id": "2KsP6tYLJlTBvSUxnwlVWa",
+            "popularity": 70,
             "genreId": "KnvZfZ7vAev",
             "albums": [
-                "Inner Love Energy",
-                "Expectations",
-                "Primary Colours"
+                "Operation: Wake Up",
+                "Keep Going",
+                "A Real Good Kid"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273a91b7a0d9c5ffda1d1dff4dd",
-                "https://i.scdn.co/image/ab67616d0000b273b93db62470ed80d7d6a674b0",
-                "https://i.scdn.co/image/ab67616d0000b273628b74d5d7a567e071187e23"
+                "https://i.scdn.co/image/ab67616d0000b273f066c94496426b9fe804a679",
+                "https://i.scdn.co/image/ab67616d0000b273bec3e61c7729579ab4ca55d9",
+                "https://i.scdn.co/image/ab67616d0000b273ebb5ae1006e13f70019c3ee7"
             ],
-            "futureEvents": [
-                "rZ7HnEZ1AKu7O0",
-                "rZ7HnEZ1AKu7Of",
-                "vv1AaZkedGkdsTgih",
-                "rZ7HnEZ1AKfYbV",
-                "Z7r9jZ1A7a6Oe"
-            ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1788b68d29a8713b8260aa18e19"
+            "futureEvents": [],
+            "image_url": "https://i.scdn.co/image/ab6761610000f1785ca6c70cd9661b2eca98999f"
         },
         {
-            "name": "Zara Larsson",
-            "id": "1Xylc3o4UrD53lo9CvFvVg",
-            "popularity": 76,
+            "name": "Capital Cities",
+            "id": "4gwpcMTbLWtBUlOijbVpuu",
+            "popularity": 66,
             "genreId": "KnvZfZ7vAev",
             "albums": [
-                "VENUS",
-                "Poster Girl (Summer Edition)",
-                "Poster Girl"
+                "Napoleon",
+                "Solarize",
+                "In A Tidal Wave Of Mystery"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273cdce2376bdd8bfe3fe2a40f2",
-                "https://i.scdn.co/image/ab67616d0000b273c548dd1245cedb39638b8397",
-                "https://i.scdn.co/image/ab67616d0000b273503b16348e47bc3c1c823eba"
+                "https://i.scdn.co/image/ab67616d0000b273f261d7143a111a182410490b",
+                "https://i.scdn.co/image/ab67616d0000b2735d96fc5f3ab23d93632aa846",
+                "https://i.scdn.co/image/ab67616d0000b273b59770bb9194e8d6e798c09a"
             ],
             "futureEvents": [
-                "1A4Zke3Gkd1ugxJ",
-                "16eFZba7KG7i3Tg",
-                "vvG1YZba2DI7uA",
-                "vvG1zZba5WQ4HJ",
-                "Z7r9jZ1A7aEpK"
+                "G5eVZbGm8weSC",
+                "17A8vOG6GSU5U2Y",
+                "1A-ZkeKGkd5pOVa",
+                "k7vGFb5wizN5X",
+                "k7vGF9g3y-StB"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1787619ca2683b434e139040f70"
+            "image_url": "https://i.scdn.co/image/04ac605956b34c1a2f6a4872554248e4f2276be9"
         },
         {
             "name": "Dua Lipa",
@@ -3097,33 +3092,9 @@
                 "17FYvOG6unVeZm0",
                 "vvG1jZbCC72sFM",
                 "Z698xZ2qZaaoy",
-                "Z698xZG2ZaCrW"
+                "G5dIZ9zxJG322"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f1780c68f6c95232e716f0abee8d"
-        },
-        {
-            "name": "Kygo",
-            "id": "23fqKkggKUBHNkbKtXEls4",
-            "popularity": 81,
-            "genreId": "KnvZfZ7vAev",
-            "albums": [
-                "KYGO",
-                "Thrill Of The Chase",
-                "Golden Hour"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b27343c39d57c55a3580766551c9",
-                "https://i.scdn.co/image/ab67616d0000b273c5ebb5d70f71435fa7298607",
-                "https://i.scdn.co/image/ab67616d0000b27380368f0aa8f90c51674f9dd2"
-            ],
-            "futureEvents": [
-                "vvG1iZbaddt-Sj",
-                "1AYZke8Gkdhg-K-",
-                "vv1A7Zke8GkelTZTs",
-                "G5vzZbaFZC7-F",
-                "G5vYZbFYGT_Rg"
-            ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178e5ea1aa1404629c12ad86658"
         },
         {
             "name": "Justin Bieber",
@@ -3146,116 +3117,52 @@
             "image_url": "https://i.scdn.co/image/ab6761610000f1788ae7f2aaa9817a704a87ea36"
         },
         {
-            "name": "Flo Rida",
-            "id": "0jnsk9HBra6NMjO2oANoPY",
-            "popularity": 79,
+            "name": "Pitbull",
+            "id": "0TnOYISbd1XYRBk9myaseg",
+            "popularity": 84,
             "genreId": "KnvZfZ7vAev",
             "albums": [
-                "My House",
-                "Wild Ones (Deluxe)",
-                "Wild Ones"
+                "Trackhouse (Daytona 500 Edition)",
+                "Trackhouse",
+                "Libertad 548"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2737947bf3e8af32378de181b41",
-                "https://i.scdn.co/image/ab67616d0000b273ea73afbe3f6fe4afb15fccdc",
-                "https://i.scdn.co/image/ab67616d0000b273871d85943145dde548f4ae09"
+                "https://i.scdn.co/image/ab67616d0000b273a0bac1996f26274685db1520",
+                "https://i.scdn.co/image/ab67616d0000b27333a4ba8f73271a749c5d953d",
+                "https://i.scdn.co/image/ab67616d0000b273f0dd8e557b66318ea8e6978d"
             ],
             "futureEvents": [
-                "vv16aZkvK_vZACv52d",
-                "vvG1YZbG3Lgxh8",
-                "17AYvOG6GrXYK_F",
-                "Z7r9jZ1A7a889",
-                "Z7r9jZ1A7e4f4"
+                "vvG1YZb5MLV02w",
+                "vv1AeZke3Gke0rSU6",
+                "1ApZkeAGkd_hpQA",
+                "vvG1IZba5yX7rF",
+                "vv1A7Zke3Gkd3lw49"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178655ca8f3196953554b479452"
+            "image_url": "https://i.scdn.co/image/ab6761610000f178ee07b5820dd91d15d397e29c"
         },
         {
-            "name": "Nico & Vinz",
-            "id": "0awl5piYwO0CDTHEkCjUhn",
-            "popularity": 62,
+            "name": "David Guetta",
+            "id": "1Cs0zKBU1kc0i8ypK3B9ai",
+            "popularity": 88,
             "genreId": "KnvZfZ7vAev",
             "albums": [
-                "Black Star Elephant"
+                "She Knows (with Akon) [The Remixes]",
+                "7",
+                "7: Anniversary Edition"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273eb3c078694b007169dab4a4f"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178606d0660ba65b91a1d891154"
-        },
-        {
-            "name": "Sia",
-            "id": "5WUlDfRSoLAfcVSX1WnrxN",
-            "popularity": 83,
-            "genreId": "KnvZfZ7vAev",
-            "albums": [
-                "Reasonable Woman",
-                "Gimme Christmas (Sleep Soundscape)",
-                "Gimme Christmas (Lofi Soundscape)"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b27346b703e6f668d36b45755066",
-                "https://i.scdn.co/image/ab67616d0000b273dad21730683421ae7d865fda",
-                "https://i.scdn.co/image/ab67616d0000b273d92402973bee72bf4f6fae0d"
+                "https://i.scdn.co/image/ab67616d0000b273c8cdf1dec0c521453eb1a7cb",
+                "https://i.scdn.co/image/ab67616d0000b273361fc37abb522361121bc3c1",
+                "https://i.scdn.co/image/ab67616d0000b273274e9346f3ed6b53345a0d40"
             ],
             "futureEvents": [
-                "rZ7HnEZ1AKfE37"
+                "Z698xZ2qZaaPE",
+                "Z698xZ2qZaaPt",
+                "Z698xZ2qZaaPl",
+                "Z698xZ2qZaaPc",
+                "Z698xZ2qZaaPR"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1787c997fe6951bc0926f09ba38"
-        },
-        {
-            "name": "Camila Cabello",
-            "id": "4nDoRrQiYLoBzwC5BhVJzF",
-            "popularity": 81,
-            "genreId": "KnvZfZ7vAev",
-            "albums": [
-                "C,XOXO",
-                "Familia",
-                "Romance"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2738ef2562a1156ea6766e00ecb",
-                "https://i.scdn.co/image/ab67616d0000b27317f56db9be0ac58807c82899",
-                "https://i.scdn.co/image/ab67616d0000b2735f53c0dbe5190a0af0fa28f3"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1787ffadf2671159fbfdc5c87f4"
-        },
-        {
-            "name": "5 Seconds of Summer",
-            "id": "5Rl15oVamLq7FbSb0NNBNy",
-            "popularity": 75,
-            "genreId": "KnvZfZ7vAev",
-            "albums": [
-                "The Feeling of Falling Upwards (Live from The Royal Albert Hall)",
-                "5SOS5",
-                "CALM"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2738b80d3299c69e481882c2708",
-                "https://i.scdn.co/image/ab67616d0000b273e5b926c0a2cff846b48bf315",
-                "https://i.scdn.co/image/ab67616d0000b273726005f0f81903e157d9dbc7"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1785048d9616b459ef90f04b6d8"
-        },
-        {
-            "name": "Avicii",
-            "id": "1vCWHaC5f2uS3yhpwWbIA6",
-            "popularity": 80,
-            "genreId": "KnvZfZ7vAev",
-            "albums": [
-                "TIM",
-                "Stories",
-                "True: Avicii By Avicii"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273660ee24281a547103f466ff5",
-                "https://i.scdn.co/image/ab67616d0000b2735393c5d3cac806092a9bc468",
-                "https://i.scdn.co/image/ab67616d0000b273182fe5b5d3e3c3fcc895a3c8"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178ae07171f989fb39736674113"
+            "image_url": "https://i.scdn.co/image/ab6761610000f178f150017ca69c8793503c2d4f"
         },
         {
             "name": "Maroon 5",
@@ -3273,58 +3180,81 @@
                 "https://i.scdn.co/image/ab67616d0000b273fc4852898bc6ed85b3e3f89c"
             ],
             "futureEvents": [
-                "vv17jZbAGkUL_eVV",
                 "G5ezZ9MSpZ04X",
                 "G5ezZ9MS4y04a",
                 "G5ezZ9MS4B045",
-                "G5ezZ9MS4Df4u"
+                "G5ezZ9MS4Df4u",
+                "G5ezZ9MS4W74q"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178f8349dfb619a7f842242de77"
         },
         {
-            "name": "Sophie Ellis-Bextor",
-            "id": "2cBh5lVMg222FFuRU7EfDE",
-            "popularity": 69,
+            "name": "Lost Frequencies",
+            "id": "7f5Zgnp2spUuuzKplmRkt7",
+            "popularity": 78,
             "genreId": "KnvZfZ7vAev",
             "albums": [
-                "HANA (Deluxe)",
-                "HANA",
-                "Sophie Ellis-Bextor's Kitchen Disco (Live at The London Palladium)"
+                "All Stand Together (Deluxe)",
+                "All Stand Together",
+                "Cup Of Beats (Deluxe)"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2730503d55c442fb4eada5f270c",
-                "https://i.scdn.co/image/ab67616d0000b273cdb0fab5e4c47fe6e8bf2cf8",
-                "https://i.scdn.co/image/ab67616d0000b27395010ee268583279331cb283"
+                "https://i.scdn.co/image/ab67616d0000b273a3f02446d8c8654b765c4e7a",
+                "https://i.scdn.co/image/ab67616d0000b273580da30167c82db5fcc5f798",
+                "https://i.scdn.co/image/ab67616d0000b273ee8d918583183919d31f1e6c"
             ],
             "futureEvents": [
-                "vvG10Zb12ZiAXY",
-                "G5vYZb1Chye3q",
-                "vvG1HZb125W7Ou",
-                "Z7r9jZ1A71ejN",
-                "Z7r9jZ1A71oAE"
+                "G5eFZ9Mehi-Kp"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f17887e2b47c63f702b3ac5c0686"
+            "image_url": "https://i.scdn.co/image/ab6761610000f1786a77aaa2cde6783b1ca727e9"
         },
         {
-            "name": "Surfaces",
-            "id": "4ETSs924pXMzjIeD6E9b4u",
-            "popularity": 67,
+            "name": "Lana Del Rey",
+            "id": "00FQb4jTyendYWaN8pK0wa",
+            "popularity": 90,
             "genreId": "KnvZfZ7vAev",
             "albums": [
-                "Good Morning",
-                "Hidden Youth",
-                "Pacifico (Deluxe)"
+                "Did you know that there's a tunnel under Ocean Blvd",
+                "Blue Banisters",
+                "Chemtrails Over The Country Club"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273791589cdeb18df8ad14ff591",
-                "https://i.scdn.co/image/ab67616d0000b273afbb08ec54355ca735fc644d",
-                "https://i.scdn.co/image/ab67616d0000b273f51d828258bb2e6216348b16"
+                "https://i.scdn.co/image/ab67616d0000b27359ae8cf65d498afdd5585634",
+                "https://i.scdn.co/image/ab67616d0000b2736946deb6f548e464b385ee0e",
+                "https://i.scdn.co/image/ab67616d0000b273ca929c6e766cb8591a286e0d"
             ],
             "futureEvents": [
-                "17kZvOG65U-akAG",
-                "rZ7HnEZ1AKfP8V"
+                "rZ7HnEZ1AKjfGS",
+                "1AdFZbkGkwiQZlo",
+                "1AdFZbkGkwiQZnT",
+                "G5djZ9MNmHJyT",
+                "G5dfZ9gXRsS4Z"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178cfdf34f73285254900911485"
+            "image_url": "https://i.scdn.co/image/ab6761610000f178b99cacf8acd5378206767261"
+        },
+        {
+            "name": "Troye Sivan",
+            "id": "3WGpXCj9YhhfX11TToZcXP",
+            "popularity": 77,
+            "genreId": "KnvZfZ7vAev",
+            "albums": [
+                "Something To Give Each Other",
+                "Bloom",
+                "Blue Neighbourhood (The Remixes)"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b27367103283a4eb57578a428252",
+                "https://i.scdn.co/image/ab67616d0000b273aae542061ac42ee04779fb2f",
+                "https://i.scdn.co/image/ab67616d0000b273b9e2dc151bc01d1bc5b76b38"
+            ],
+            "futureEvents": [
+                "vv17OZbFGkS9oVeM",
+                "G5diZbFRelxnG",
+                "vv178ZbFGkRRpdz0",
+                "vvG1HZbFSd_Vxp",
+                "vv177ZbFGkmPfbte"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17826e8cb3ff6fc7744b312811b"
         },
         {
             "name": "Katy Perry",
@@ -3346,6 +3276,94 @@
                 "rZ7HnEZ1AKj7_K"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178c16e9a79a6262f2c72232942"
+        },
+        {
+            "name": "Calvin Harris",
+            "id": "7CajNmpbOovFoOoasH2HaY",
+            "popularity": 86,
+            "genreId": "KnvZfZ7vAev",
+            "albums": [
+                "Funk Wav Bounces Vol. 2",
+                "Funk Wav Bounces Vol.1",
+                "Motion"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273c5844aae8ac82f2a4fa6415e",
+                "https://i.scdn.co/image/ab67616d0000b2734d3fa5ce7ba599f4fd7803ef",
+                "https://i.scdn.co/image/ab67616d0000b273063c048e9ef6bd021b744756"
+            ],
+            "futureEvents": [
+                "Z698xZ2qZaa--",
+                "Z698xZ2qZaa-N",
+                "Z698xZ2qZaa-P",
+                "Z698xZ2qZaa-E",
+                "Z698xZ2qZaa-t"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17837bff6aa1d42bede9048750f"
+        },
+        {
+            "name": "Justin Timberlake",
+            "id": "31TPClRtHm23RisEBtV3X7",
+            "popularity": 80,
+            "genreId": "KnvZfZ7vAev",
+            "albums": [
+                "Everything I Thought It Was",
+                "Man of the Woods",
+                "The Book of Love (Original Motion Picture Soundtrack)"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273aac85c17ae742b399776cdab",
+                "https://i.scdn.co/image/ab67616d0000b2734626ff0fee963da605f6aa06",
+                "https://i.scdn.co/image/ab67616d0000b27341ff96cabb613b6a6d6d9238"
+            ],
+            "futureEvents": [
+                "Z7r9jZ1A718O8",
+                "vvG1bZb51t04Cd",
+                "1ApZkZzGkeiPdEA",
+                "Z698xZC2Z17fMPP",
+                "Z698xZbpZ17GdZS"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f1787a5cfe2597665a3d160e805e"
+        },
+        {
+            "name": "DJ Khaled",
+            "id": "0QHgL1lAIqAw0HtD7YldmP",
+            "popularity": 74,
+            "genreId": "KnvZfZ7vAev",
+            "albums": [
+                "GOD DID",
+                "KHALED KHALED",
+                "Father Of Asahd"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273b1038aaf26f4c6daad614707",
+                "https://i.scdn.co/image/ab67616d0000b273dcd4d70294f17175991ba1bb",
+                "https://i.scdn.co/image/ab67616d0000b273fa2741071b31bb94cb4232ae"
+            ],
+            "futureEvents": [],
+            "image_url": "https://i.scdn.co/image/ab6761610000f178084f36c2ae2da4a02494e1e5"
+        },
+        {
+            "name": "Rema",
+            "id": "46pWGuE3dSwY3bMMXGBvVS",
+            "popularity": 76,
+            "genreId": "KnvZfZ7vAev",
+            "albums": [
+                "Rave & Roses Ultra",
+                "Rave & Roses"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273963265801aa5c9740ad159b7",
+                "https://i.scdn.co/image/ab67616d0000b273ffa52727feedfd1935d160c4"
+            ],
+            "futureEvents": [
+                "G5djZ9mQXz9sF",
+                "G5djZ9mhDKbxx",
+                "G5djZ9mQb8svw",
+                "G5djZ9mQlCS-x",
+                "G5djZ9m9z5MMG"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17814fc1f477592ca9ab6ded961"
         },
         {
             "name": "Victoria Mon\u00e9t",
@@ -3444,12 +3462,12 @@
             "futureEvents": [
                 "G5vYZbGrpTAJh"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178dcb4e48102361baed4abd334"
+            "image_url": "https://i.scdn.co/image/ab6761610000f17824ff450c42d4e36fb34a7631"
         },
         {
             "name": "Lucky Daye",
             "id": "5Vuvs6Py2JRU7WiFDVsI7J",
-            "popularity": 64,
+            "popularity": 65,
             "genreId": "KnvZfZ7vAee",
             "albums": [
                 "Algorithm",
@@ -3473,7 +3491,7 @@
         {
             "name": "Jeremih",
             "id": "3KV3p5EY4AvKxOlhGHORLg",
-            "popularity": 72,
+            "popularity": 73,
             "genreId": "KnvZfZ7vAee",
             "albums": [
                 "Late Nights: The Album (Slowed Down)",
@@ -3534,8 +3552,8 @@
                 "https://i.scdn.co/image/ab67616d0000b273b9b1d038d8e44ccc5ccfd0e5"
             ],
             "futureEvents": [
-                "vvG1YZbu1le3F4",
-                "G5dVZbdBaNNr9"
+                "G5dVZbdBaNNr9",
+                "vvG1YZbu1le3F4"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f17851dfdac248da65a860963b68"
         },
@@ -3573,11 +3591,11 @@
                 "https://i.scdn.co/image/ab67616d0000b27337a2907211ccce36e5993a81"
             ],
             "futureEvents": [
-                "Z7r9jZ1A7aYON",
                 "Z7r9jZ1A7aYOt",
-                "LvZ18_PvYEKprcvGyZVw0",
-                "vvG1YZbaEhTdSA",
-                "vvG1zZbaz5Oanu"
+                "vvG17ZbCx-ysMn",
+                "1718vOG6Cf7psPs",
+                "rZ7HnEZ1AKqafN",
+                "LvZ18_PvYEKprcvGyZVw0"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178957320981e31e862bc2fb844"
         },
@@ -3654,294 +3672,314 @@
             ],
             "futureEvents": [
                 "Z7r9jZ1A7F7vP",
-                "vvG1zZbk6K0UEK",
-                "vvG1zZbkKtzPfl",
                 "1AxZkvUGkesIow1",
-                "Z7r9jZ1A7F7vO"
+                "Z7r9jZ1A7F7vO",
+                "vvG1zZbkhc14fK",
+                "16OZkv-xbZA8e165"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178a48397e590a1c70e2cda7728"
         },
         {
-            "name": "Fia",
-            "id": "3uwg3MMPpcXtJ7OknqdO9W",
+            "name": "Wizkid",
+            "id": "3tVQdUvClmAT7URs9V3rsp",
+            "popularity": 76,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "More Love, Less Ego",
+                "Made In Lagos: Deluxe Edition",
+                "Made In Lagos"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273e944c571fca9ea470ebb5821",
+                "https://i.scdn.co/image/ab67616d0000b27379ab73f6bfebec7c0e85f922",
+                "https://i.scdn.co/image/ab67616d0000b27390e89e3afc4441bf36720a73"
+            ],
+            "futureEvents": [
+                "G5v7Z9pluySqm"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f1789050b61368975fda051cdc06"
+        },
+        {
+            "name": "Damian Marley",
+            "id": "3QJzdZJYIAcoET1GcfpNGi",
+            "popularity": 67,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "Stony Hill",
+                "Distant Relatives",
+                "Welcome to Jamrock"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b2739c7e95338d25747070ac39c7",
+                "https://i.scdn.co/image/ab67616d0000b273fcc94ef1f8605f3fbd4a4144",
+                "https://i.scdn.co/image/ab67616d0000b273569c9bd53261cc7313fbc7bd"
+            ],
+            "futureEvents": [
+                "Z698xZC4Z174Aot",
+                "G5dfZ9gCr0ee_",
+                "17AYvOG65NA6V9z",
+                "1AdfZbaGkML2NSl",
+                "G5vYZbF0scPPa"
+            ],
+            "image_url": "https://i.scdn.co/image/242871e807e732e86bbc1ee298e9619b333e9bdb"
+        },
+        {
+            "name": "Skip Marley",
+            "id": "4ryoUS0W8qXokfMxrlJt6O",
+            "popularity": 57,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "Higher Place (Anniversary Edition)",
+                "Higher Place"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273a1fecaba3535600fbccecd0d",
+                "https://i.scdn.co/image/ab67616d0000b2731e310ac72c0b4221ac8cc6b5"
+            ],
+            "futureEvents": [
+                "vvG1FZb1X7qo0Y"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17884b0e917bda343819091079b"
+        },
+        {
+            "name": "H.E.R.",
+            "id": "3Y7RZ31TRPVadSFVy1o8os",
+            "popularity": 74,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "Back of My Mind",
+                "I Used To Know Her",
+                "H.E.R."
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273f214cabc279e33a7f0140391",
+                "https://i.scdn.co/image/ab67616d0000b2732066a381ebbbb1f8312764e7",
+                "https://i.scdn.co/image/ab67616d0000b273b5d9c8de465654c20d77305c"
+            ],
+            "futureEvents": [
+                "Z698xZbpZ17GkF9",
+                "k7vGFbG21RPls",
+                "vvG10ZbG2HJw9c",
+                "rZ7HnEZ1AKj40S",
+                "17kZvOG65K_cPBp"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f178417db49cde3ed1c5a65e3514"
+        },
+        {
+            "name": "Bob Marley & The Wailers",
+            "id": "2QsynagSdAqZj3U9HgDzjD",
+            "popularity": 81,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "One Love (Original Motion Picture Soundtrack)",
+                "Catch A Fire (50th Anniversary)",
+                "Africa Unite"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273ef4e05f6dff96e307b43ecd8",
+                "https://i.scdn.co/image/ab67616d0000b27300d14c7059d32a980d04afe7",
+                "https://i.scdn.co/image/ab67616d0000b273a3c9020a45b41e8d4684a113"
+            ],
+            "futureEvents": [
+                "G5dFZ9UNbA04h",
+                "G5dFZ9UNbA73S"
+            ],
+            "image_url": "https://i.scdn.co/image/357fe6ef3655b1b33855e33546e3c174a38a1a36"
+        },
+        {
+            "name": "Busy Signal",
+            "id": "4RfTXjK9aiiIKDaKUHpL57",
+            "popularity": 59,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "Parts Of The Puzzle",
+                "Fresh from Yaad",
+                "Reggae Dubb'n Again"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273409c7eeb21847ae26ff2d780",
+                "https://i.scdn.co/image/ab67616d0000b273e96de86490758570a50fe0f2",
+                "https://i.scdn.co/image/ab67616d0000b273562fa6a721c6f85152364621"
+            ],
+            "futureEvents": [],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17888101cb1bcf3b3c83ece309c"
+        },
+        {
+            "name": "Protoje",
+            "id": "7BGR8y1VZAWK2oR4zD9COr",
+            "popularity": 57,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "In Search Of Zion",
+                "Third Time's The Charm",
+                "In Search of Lost Time (Deluxe)"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b2731924764856d9a253d4c36311",
+                "https://i.scdn.co/image/ab67616d0000b273426c992269f293b89d47200a",
+                "https://i.scdn.co/image/ab67616d0000b2732b38936db6fdd43fb60b93c3"
+            ],
+            "futureEvents": [
+                "Z7r9jZ1A7aI0w",
+                "Z7r9jZ1A7aP_d",
+                "rZ7HnEZ1AKo9FV",
+                "vv1ke8vOJvGA1aJEo",
+                "rZ7HnEZ1AK33G7"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f1787bb76ad065f165262cf5dae2"
+        },
+        {
+            "name": "Jah Lil",
+            "id": "5XjXxI4GloTdy1DpZHMFww",
+            "popularity": 39,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "CAN A MAN CRY"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b2731198a69fc28cf95e7815f33e"
+            ],
+            "futureEvents": [],
+            "image_url": "https://i.scdn.co/image/ab6761610000f1783252fad6c44a6d88cbb561b1"
+        },
+        {
+            "name": "Sean Paul",
+            "id": "3Isy6kedDrgPYoTS1dazA9",
+            "popularity": 80,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "Dutty Rock (20th Anniversary)",
+                "Scorcha",
+                "Live N Livin"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b27370a92ddbe10010f1c2f95da1",
+                "https://i.scdn.co/image/ab67616d0000b273b9618e39e1e2f2eab2cf71cd",
+                "https://i.scdn.co/image/ab67616d0000b2733fb926ef2ee89d2c6d64a050"
+            ],
+            "futureEvents": [
+                "1AMZkvVGkeXkg4u",
+                "rZ7HnEZ1AKuf3f",
+                "1A8Zke7GkdB07Gv",
+                "1Ad7Zb6Gkn6ovQJ",
+                "1Ad7ZbdGkXE3xA9"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17860c3e9abe7327c0097738f22"
+        },
+        {
+            "name": "Christopher Martin",
+            "id": "3dXC1YPbnQPsfHPVkm1ipj",
+            "popularity": 53,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "And Then",
+                "Big Deal",
+                "Early Days at Big Yard"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273859b45bdf8bc251e32c83315",
+                "https://i.scdn.co/image/ab67616d0000b2730eec6129b926e3c4051f059c",
+                "https://i.scdn.co/image/ab67616d0000b27382e13bca1de44c3b0e4837be"
+            ],
+            "futureEvents": [
+                "G5vVZb5TQkf56"
+            ],
+            "image_url": "https://i.scdn.co/image/ab6761610000f1784e64b4aa7345468d146a072c"
+        },
+        {
+            "name": "Kabaka Pyramid",
+            "id": "10p1CDVyRIkR2ybAu7SbVH",
             "popularity": 51,
             "genreId": "KnvZfZ7vAed",
             "albums": [
-                "Hisessions Set 7"
+                "The Kalling (Deluxe)",
+                "The Kalling",
+                "Victory Rock Riddim"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273d303c251531bea1091b546aa"
+                "https://i.scdn.co/image/ab67616d0000b273f4ff87a0b9994e9e341369f4",
+                "https://i.scdn.co/image/ab67616d0000b2737f958d37a1492acb683dd6a0",
+                "https://i.scdn.co/image/ab67616d0000b27344597cfe5eed98e57a1cb7c0"
             ],
             "futureEvents": [
-                "17k8vOG61KWXVcM"
+                "Z698xZbpZ17G6F6",
+                "G5dzZbC5euOyg",
+                "G5dzZbuceYxxA",
+                "G5dfZ9gCr0ee_"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178d407ae3dbec04ff6ad374384"
+            "image_url": "https://i.scdn.co/image/ab6761610000f178f9138580a111bd5880eedcd4"
         },
         {
-            "name": "Common Kings",
-            "id": "4j0qbafzqnGf4ARF8tY4VL",
-            "popularity": 55,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "CELEBRATION",
-                "Live At Humphrey's",
-                "One Day"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273a2f1530c095bd4545c940d5a",
-                "https://i.scdn.co/image/ab67616d0000b2734cdab4eff0d7c9ba458541f7",
-                "https://i.scdn.co/image/ab67616d0000b273846fadcdb719a1004eb64cf8"
-            ],
-            "futureEvents": [
-                "vvG10Zb1oHXvsD",
-                "vvG10Zb1oHH-sw",
-                "Z7r9jZ1A71exK",
-                "Z7r9jZ1A7FV8w",
-                "rZ7HnEZ1AK3dQ7"
-            ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178414564b3f8ce2043c33f9fc4"
-        },
-        {
-            "name": "Monsta",
-            "id": "1UYLvmudFl1ERXDnAPj5WS",
-            "popularity": 36,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Os Dist\u00farbios Mentais De Um Monstro",
-                "Massacre D\u00b4Novembro",
-                "Molly Love, A Cura Depois da Dor"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273dcf3b003866d269bbe0d3e98",
-                "https://i.scdn.co/image/ab67616d0000b273ecf5468a3f9716d7bb08cc4a",
-                "https://i.scdn.co/image/ab67616d0000b273f3578741218a445a513a9400"
-            ],
-            "futureEvents": [
-                "G5dzZbaxaYYPr",
-                "vv1k0Zba14G7gxCp",
-                "k7vGFbaJjW7aU",
-                "vv1k0ZbaOKG7skGh",
-                "1A8Zke3GkdR8EsY"
-            ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178a35b3609bed24d992f018db5"
-        },
-        {
-            "name": "Spawnbreezie",
-            "id": "0BvwGBAFqNeDqjkeoxRlm6",
-            "popularity": 51,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Message",
-                "Sincerely Dizzo",
-                "Dear Billy"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2738aaaf7db15b45190837f12d7",
-                "https://i.scdn.co/image/ab67616d0000b273814b67c08420a0ac99ab8ada",
-                "https://i.scdn.co/image/ab67616d0000b2730771d0951789600e87b22019"
-            ],
-            "futureEvents": [
-                "G5vYZb5MNYA1A",
-                "vvG1HZb578fgl1",
-                "vvG1HZb578pAlC"
-            ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1782f71d984037b806a97904951"
-        },
-        {
-            "name": "Alo Key",
-            "id": "4y7zgghhGHNfgjoHsuqiAM",
-            "popularity": 31,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Moving On",
-                "Music's Key to Love"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273ae47e74d5a9031d89a20eeaa",
-                "https://i.scdn.co/image/ab67616d0000b273b5fcba7583802980791bf0db"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f178a264a8e995409dc14ce3f7e3"
-        },
-        {
-            "name": "Fiji",
-            "id": "0DAaoRtoM8z0DHIhIzP4mJ",
-            "popularity": 56,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Indigo",
-                "Love & Roots",
-                "Born and Raised II (The Rebirth)"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2738840193a7883851a52bd94b8",
-                "https://i.scdn.co/image/ab67616d0000b273864e1462ed7bf15fc9a32d9a",
-                "https://i.scdn.co/image/ab67616d0000b2730d2be8e5c8eff3011a2108d4"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f17892031a8dcc0a792af13a8a5a"
-        },
-        {
-            "name": "Luckie D",
-            "id": "5WNHPJs8rY6kHVpQsKnAvX",
-            "popularity": 26,
+            "name": "Royal Blu",
+            "id": "5GZOZpWXKPAMPZQrcrnyzx",
+            "popularity": 32,
             "genreId": "KnvZfZ7vAed",
             "albums": [],
             "album_covers": [],
             "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab67616d000048512c8279082415bd621031a1eb"
+            "image_url": "https://i.scdn.co/image/ab6761610000f1786d7aefe7942dec50304a29bc"
         },
         {
-            "name": "Kolohe Kai",
-            "id": "3Je8tRazTtqZxGkbeJDGL8",
-            "popularity": 60,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Hazel Eyes",
-                "Live Album 10th Anniversary",
-                "Best of Kolohe Kai (Acoustic)"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273a73e60104e0fb59ed9d6bcee",
-                "https://i.scdn.co/image/ab67616d0000b2734197e0ef67cf26d5137d318c",
-                "https://i.scdn.co/image/ab67616d0000b273cc6877d9517af78c5ebc9fd0"
-            ],
-            "futureEvents": [
-                "Z7r9jZ1A7k6J6",
-                "Z7r9jZ1A7koo0",
-                "vvG1IZb7DFmwdC",
-                "G5vYZb7BhQ352",
-                "Z7r9jZ1A7A0v0"
-            ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1788f281c1f6057af65f3884d53"
-        },
-        {
-            "name": "J Wawa",
-            "id": "1oMTlALW2sKMJfvcbahRUz",
-            "popularity": 42,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Enough",
-                "Heart Attack",
-                "Home Run"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2736855948fefdc27fde89e1fed",
-                "https://i.scdn.co/image/ab67616d0000b27316438d017e5cecb9f71f51e1",
-                "https://i.scdn.co/image/ab67616d0000b273da490c495bbf86618533ad5e"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1787337f2ccf692476f667e1d29"
-        },
-        {
-            "name": "Three Plus",
-            "id": "7z2qgJSiP0Wk0vzHzPO0SL",
-            "popularity": 46,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "For You",
-                "Honey Baby"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2736c8a6ae6d928a46c0d463e59",
-                "https://i.scdn.co/image/ab67616d0000b273d9c1823562900ae67b33aea5"
-            ],
-            "futureEvents": [
-                "G5djZ9sJJ9wGc",
-                "vvG1HZb578KAlA",
-                "vvG1HZb578pAlC"
-            ],
-            "image_url": "https://i.scdn.co/image/ab67616d00004851d9c1823562900ae67b33aea5"
-        },
-        {
-            "name": "Swiss",
-            "id": "3iRQU5nfA9uLRPgmXXhbCy",
+            "name": "Samory I",
+            "id": "2Tecz83XE3bNwAxGiGDFJR",
             "popularity": 39,
             "genreId": "KnvZfZ7vAed",
             "albums": [
-                "The Yesah Wednesday Project",
-                "YOU",
-                "Lucky Man"
+                "Strength",
+                "Black Gold"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2739cfae63102b96a85aeb73e76",
-                "https://i.scdn.co/image/ab67616d0000b2732942ee2e7accd791462dac8b",
-                "https://i.scdn.co/image/ab67616d0000b27372b21e608b15fce05e35152a"
+                "https://i.scdn.co/image/ab67616d0000b2731405e7daaea14d023cd0b425",
+                "https://i.scdn.co/image/ab67616d0000b2739dee81dcc5849119ca7e38a2"
+            ],
+            "futureEvents": [],
+            "image_url": "https://i.scdn.co/image/ab6761610000f17800b963b8b0aedd54386694b5"
+        },
+        {
+            "name": "Jesse Royal",
+            "id": "4aXUVIuNCDbLoRAYfuVDi1",
+            "popularity": 44,
+            "genreId": "KnvZfZ7vAed",
+            "albums": [
+                "Royal",
+                "Lily of da Valley"
+            ],
+            "album_covers": [
+                "https://i.scdn.co/image/ab67616d0000b273fc8326ef5d75d6d7f84db3ab",
+                "https://i.scdn.co/image/ab67616d0000b27392926ae624f1da979d394c41"
             ],
             "futureEvents": [
-                "17GOvOG6GwZUoKH",
-                "17GOvOG6GhEXewS",
-                "Z698xZC4Z174ou9",
-                "17uOvOG6GwKf-N5",
-                "G5vHZbGSzmdqv"
+                "Z7r9jZ1A7a0vs",
+                "rZ7HnEZ1AK86F7",
+                "Z7r9jZ1A7a0vV",
+                "rZ7HnEZ1AK8xZ0",
+                "G5eVZbF9-BbiD"
             ],
-            "image_url": "https://i.scdn.co/image/ab6761610000f1789a6017eb129a2fb618870df6"
+            "image_url": "https://i.scdn.co/image/ab6761610000f17829ae7344cae3f238d30ae128"
         },
         {
-            "name": "Sweet & Irie",
-            "id": "274b2D6BDxpXjXwmfSXYWv",
-            "popularity": 32,
+            "name": "Stephen Marley",
+            "id": "0CIwCGmQMqHqiblnZlFia1",
+            "popularity": 60,
             "genreId": "KnvZfZ7vAed",
             "albums": [
-                "Irie Inspiration",
-                "Localize It"
+                "Old Soul",
+                "Revelation Pt. II: The Fruit of Life",
+                "Revelation Part 1: The Root Of Life"
             ],
             "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b273bca1e291cfd55247636f28f9",
-                "https://i.scdn.co/image/ab67616d0000b2732582929cbc47e6df4aaad28f"
+                "https://i.scdn.co/image/ab67616d0000b273ed52578166a64f94b802aabc",
+                "https://i.scdn.co/image/ab67616d0000b273f41de3e09c066323b895e8d2",
+                "https://i.scdn.co/image/ab67616d0000b27308e162e382cb333944b9d32c"
             ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab67616d000048512582929cbc47e6df4aaad28f"
-        },
-        {
-            "name": "Adeaze",
-            "id": "24pxvLTDsfnox2HHlKf2mX",
-            "popularity": 38,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Rise & Shine",
-                "Always & for Real (Deluxe Edition)",
-                "Always & for Real"
+            "futureEvents": [
+                "17AYvOG65NA6V9z",
+                "G5vYZbF0scPPa",
+                "vvG1VZbFRcQdGv",
+                "1AvfZbFGkXax-fn",
+                "vv177ZbFGkRnfyIG"
             ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2736352d08a95357d031f77fe30",
-                "https://i.scdn.co/image/ab67616d0000b273551926e884b80fcfdf1ad974",
-                "https://i.scdn.co/image/ab67616d0000b273414b6e208e20bf6f69f4aae4"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f17806edeaa1eb5bd5d68b0752c7"
-        },
-        {
-            "name": "Richard Parker",
-            "id": "7tdSYclTErEC1bHfMt8h2h",
-            "popularity": 28,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "My Island Lady",
-                "Made in Samoa",
-                "Polynesian Girl"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2738aec2ed4fd8eee7c11b79bd8",
-                "https://i.scdn.co/image/ab67616d0000b273f3b3b7f9c976de5bd11d7876",
-                "https://i.scdn.co/image/ab67616d0000b27390e798c04fbbb4c5c8ea98e1"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab67616d0000485199e94574d555fc074919761d"
-        },
-        {
-            "name": "Jaro Local",
-            "id": "6UVVGhDsgd1Nh6vQcIERIb",
-            "popularity": 36,
-            "genreId": "KnvZfZ7vAed",
-            "albums": [
-                "Dakini Tangarareh"
-            ],
-            "album_covers": [
-                "https://i.scdn.co/image/ab67616d0000b2730008c1c08433aa880aad7f30"
-            ],
-            "futureEvents": [],
-            "image_url": "https://i.scdn.co/image/ab6761610000f17867ffaaf16749f271ffefd506"
+            "image_url": "https://i.scdn.co/image/ab6761610000f178200689e15f3b95aaf47a05c8"
         },
         {
             "name": "TobyMac",
@@ -3984,10 +4022,10 @@
             ],
             "futureEvents": [
                 "Z7r9jZ1A7kaZa",
+                "Z7r9jZ1A7GAka",
                 "rZ7HnEZ1AKooP7",
                 "1718vOG61Vnkd7i",
-                "G5dIZbeEI2KYU",
-                "vv1AAZkvwGkecmvy2"
+                "G5dIZbeEI2KYU"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178020e2a8a977c27666f800a54"
         },
@@ -4031,7 +4069,7 @@
                 "Z7r9jZ1A71Kj4",
                 "Z7r9jZ1A71K8a",
                 "Z7r9jZ1A71K83",
-                "G5vYZb5dv3fTu"
+                "G5vzZb56EggtZ"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f1789b14879192423876adbc6f06"
         },
@@ -4288,18 +4326,18 @@
                 "https://i.scdn.co/image/ab67616d0000b27305d351ae348cb119c5f61945"
             ],
             "futureEvents": [
-                "G5vHZ9zkSZ0UV",
                 "1AyZkZyGkdv79N8",
                 "1AyZkZyGkdvaMN3",
                 "1AyZkZyGkdvCENf",
-                "1AyZkZyGkdvf6Np"
+                "1AyZkZyGkdvf6Np",
+                "1AyZkZyGkdvQ6Nb"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f17801022f4092cb96e0a91811a5"
         },
         {
             "name": "Nickelback",
             "id": "6deZN1bslXzeGvOLaLMOIF",
-            "popularity": 77,
+            "popularity": 78,
             "genreId": "KnvZfZ7vAeA",
             "albums": [
                 "Get Rollin' (Deluxe)",
@@ -4336,11 +4374,11 @@
                 "https://i.scdn.co/image/ab67616d0000b27358406b3f1ac3ceaff7a64fef"
             ],
             "futureEvents": [
-                "G5vbZ9M6ehSWo",
                 "k7vGF9MwWnSim",
                 "vvG1fZ9MRjW0Zv",
                 "vvG1bZ9MmY2epc",
-                "vvG1fZ9MR_6NH2"
+                "vvG1fZ9MR_6NH2",
+                "17AOvOG61F8Zuf6"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178c33cc15260b767ddec982ce8"
         },
@@ -4433,10 +4471,10 @@
             ],
             "futureEvents": [
                 "rZ7HnEZ1AKQ8qd",
-                "vv1AFZkZIGkeSfsqC",
                 "rZ7HnEZ1AK_O_S",
                 "vv170Z4UGkmx04LR",
-                "vvG1fZ9UEp7KW_"
+                "vv1AAZkv6Gkd0U0pV",
+                "vv1A6ZkvkGkdqQei5"
             ],
             "image_url": "https://i.scdn.co/image/6dd0ffd270903d1884edf9058c49f58b03db893d"
         },
@@ -4460,7 +4498,7 @@
                 "1AdFZb7GkTgnN1D",
                 "1AdFZbaGklKq6yY",
                 "rZ7HnEZ1AKoZe7",
-                "rZ7HnEZ1AKjpud"
+                "rZ7HnEZ1AK88A0"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178c3b137793230f4043feb0089"
         },
@@ -4524,7 +4562,8 @@
                 "https://i.scdn.co/image/ab67616d0000b273740b176556d4a4bc088dc068"
             ],
             "futureEvents": [
-                "1718vOG656Ca-rv"
+                "1718vOG656Ca-rv",
+                "1718vOG6CNmkvzZ"
             ],
             "image_url": "https://i.scdn.co/image/95b4d133c1e6a19efb05e4becf0f9c46e0894845"
         },
@@ -4618,9 +4657,9 @@
             "futureEvents": [
                 "17kZvOG6utHS-hj",
                 "vvG17ZbGCKk-_Q",
-                "G5dFZ9yF0BAi7",
                 "16dFZbFugG7yxfh",
-                "1AwZkvfGkeUbZVx"
+                "1AwZkvfGkeUbZVx",
+                "G5dFZ9zSs7s6n"
             ],
             "image_url": "https://i.scdn.co/image/ab6761610000f178aff13c9484fdad590ccfb73c"
         }
