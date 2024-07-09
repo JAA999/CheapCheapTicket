@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from database import app, db, create_events, create_artists, create_genres
 from models import Genres, Artists, Events
-from data import get_gitlab_stats
+from gitlab_stats import get_gitlab_stats
 
 app = Flask(__name__)
 
