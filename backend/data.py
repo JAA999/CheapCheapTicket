@@ -48,9 +48,6 @@ spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
 google_access_token = 'AIzaSyBwv3sHVNL7xrJlSWvZyOF5NAV81y_XHrA'
 
-gitlab_project_id = '59330677'
-gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
-
 def main():
     get_spotify_access_token()
     populate_genres()
@@ -58,11 +55,10 @@ def main():
     
 # Populates all the models, using playlists as starting points
 def populate_models():
-    # CHANGE FROM TEST WHEN CREATING DATABASE
     for genre_instance in genre_instances:
         genre_name = genre_instance['name']
 
-        create_instances_from_playlist(genre_instance, genres_playlist[genre_name])
+        create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
 
     create_json_files()
 
@@ -118,7 +114,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_playlist):
+                if (genre['name'] in genres_playlist_test):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -174,13 +170,13 @@ def create_instances_from_playlist(genre_instance, playlist_name):
 
         if (artist_name not in artist_names):
             num_artists += 1
-            genre_instance['popularArtists'] += [artist_id]
+            genre_instance['popularArtists'].append(artist_id)
 
             artist_names.add(artist_name)
             event_results, artist_instance = get_artist_information(artist_id)
 
             artist_instance['genreId'] = genre_instance['genreId']
-            artist_instances += [artist_instance]
+            artist_instances.append(artist_instance)
 
             for event in event_results:
                 if (event['priceRange']):
@@ -192,8 +188,8 @@ def create_instances_from_playlist(genre_instance, playlist_name):
                 if (event['eventId'] not in event_ids):
                     event_instances.append(event)
                     event_ids.add(event['eventId'])
-                artist_instance['futureEvents'] += [event['eventId']]
-                genre_instance['upcomingEvents'] += [event['eventId']]
+                artist_instance['futureEvents'].append(event['eventId'])
+                genre_instance['upcomingEvents'].append(event['eventId'])
 
     genre_instance['eventsPriceRange'].append(min_price)
     genre_instance['eventsPriceRange'].append(max_price)
@@ -256,8 +252,8 @@ def populate_albums(artist_id, artist_instance):
     response = response.json()
 
     for album in response['items']:
-        artist_instance['albums'] += [album['name']]
-        artist_instance['album_covers'] += [album['images'][0]['url']]
+        artist_instance['albums'].append(album['name'])
+        artist_instance['album_covers'].append(album['images'][0]['url'])
 
 # Return a list of events for a particular artist
 def get_events_for_artist(artist_name):
@@ -323,7 +319,7 @@ def get_events_for_artist(artist_name):
             else:
                 event_instance['venue'] = 'Unavailable'
 
-            event_instances_local += [event_instance]
+            event_instances_local.append(event_instance)
 
     return event_instances_local
 
@@ -360,83 +356,6 @@ def get_venue_information(venue_id):
     }
 
     return venue_information
-
-# Prints out the number of commits performed by each project member
-def get_commits():
-    gitlab_commits_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
-
-    headers = {'PRIVATE-TOKEN': gitlab_access_token}
-
-    params = {'per_page': 100, 'page': 1}
-    
-    commits = []
-    response = requests.get(gitlab_commits_url, headers=headers, params=params)
-    if response.status_code == 200:
-        response = response.json()
-        commits.extend(response)
-    
-    commits_per_author = {}
-    for commit in commits:
-        new_name = commit['author_name'].split(' ')
-        if (len(new_name) > 1):
-            new_name = new_name[0] + new_name[-1]
-        else:
-            new_name = new_name[0]
-
-        if (new_name not in commits_per_author):
-            commits_per_author[new_name] = 1
-        else:
-            commits_per_author[new_name] += 1
-    
-    return commits_per_author
-
-# Prints out the number of issues closed by each project member
-def get_issues():
-    gitlab_issues_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/issues'
-
-    headers = {'PRIVATE-TOKEN': gitlab_access_token}
-    params = {
-        'state': 'closed',
-        'per_page': 100,
-        'page': 1
-    }
-
-    issues = []
-    response = requests.get(gitlab_issues_url, headers=headers, params=params)
-
-    if response.status_code == 200:
-        response = response.json()
-        issues.extend(response)
-    
-    issues_closed_by_member = {}
-    for issue in issues:
-        if 'closed_by' in issue and issue['closed_by']:
-            new_name = issue['closed_by']['name'].split(' ')
-            if (len(new_name) > 1):
-                new_name = new_name[0] + new_name[-1]
-            else:
-                new_name = new_name[0]
-            
-            if new_name not in issues_closed_by_member:
-                issues_closed_by_member[new_name] = 1
-            else:
-                issues_closed_by_member[new_name] += 1
-
-    return issues_closed_by_member
-
-# Creates dictionary of project members' stats
-def get_gitlab_stats():
-    stats = {}
-    commits_per_member = get_commits()
-    issues_per_member = get_issues()
-
-    for member in commits_per_member:
-        stats_for_member = []
-        stats_for_member.append(commits_per_member[member])
-        if member in issues_per_member:
-            stats_for_member.append(issues_per_member[member])
-        stats[member] = stats_for_member
-    return stats
 
 # Check if API call resulted in error
 def check_request_status(response):
