@@ -4,6 +4,8 @@ import json
 import requests
 import base64
 
+from venue_info import get_venue
+
 genres_playlist = {
     'Alternative': 'The New Alt',
     'Blues': 'Nu-Blue', # originally: 'Blues Classics'
@@ -22,21 +24,13 @@ genres_playlist = {
     'Rock': 'Legends Only' # originally: 'MARROW'
 }
 
-genres_playlist_limited = {
-    'Alternative': 'The New Alt',
-    'Country': 'Hot Country',
-    'Hip-Hop/Rap': 'RapCaviar',
-    'Latin': 'Viva Latino',
-    'Pop': 'Summer Pop',
-    'Rock': 'Legends Only'
-}
-
 genres_playlist_test = {
     'Country': 'Hot Country',
     'Hip-Hop/Rap': 'RapCaviar',
     'Pop': 'Summer Pop'
 }
 
+MAX_ARTISTS = 15
 artist_names = set()
 event_ids = set()
 
@@ -46,12 +40,12 @@ genre_instances = []
 
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
-google_access_token = 'AIzaSyBwv3sHVNL7xrJlSWvZyOF5NAV81y_XHrA'
 
 def main():
     get_spotify_access_token()
     populate_genres()
     populate_models()
+    print_all_instances()
     
 # Populates all the models, using playlists as starting points
 def populate_models():
@@ -60,7 +54,7 @@ def populate_models():
 
         create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
 
-    create_json_files()
+    # create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
@@ -152,15 +146,13 @@ def create_instances_from_playlist(genre_instance, playlist_name):
     check_request_status(response)
     response = response.json()
 
-    # MODIFY BASED ON SPOTIFY API REQUEST LIMIT
-    max_artists = 15
     num_artists = 0
 
     min_price = 100000
     max_price = -1
 
     for item in response['items']:
-        if (num_artists >= max_artists):
+        if (num_artists >= MAX_ARTISTS):
                 break
         track = item['track']
         genre_instance['topSongs'] += [track['album']['name']]
@@ -274,14 +266,7 @@ def get_events_for_artist(artist_name):
     event_instances_local = []
     if '_embedded' in response:
         for event in response['_embedded']['events']: 
-            address = ''
-            if 'address' in event['_embedded']['venues'][0]:
-                address += event['_embedded']['venues'][0]['address']['line1'] if 'line1' in event['_embedded']['venues'][0]['address'] else ''
-
-            address += f", {event['_embedded']['venues'][0]['city']['name']}" if 'city' in event['_embedded']['venues'][0] and 'name' in event['_embedded']['venues'][0]['city'] else ''
-
-            address += f", {event['_embedded']['venues'][0]['state']['name']}" if 'state' in event['_embedded']['venues'][0] and 'name' in event['_embedded']['venues'][0]['state'] else ''
-
+            
             salesDateRange = ''
             if 'startDateTime' in event['sales']['public']:
                 salesDateRange += f"{event['sales']['public']['startDateTime']} to "
@@ -308,54 +293,11 @@ def get_events_for_artist(artist_name):
                 'ticketmasterURL': event['url']
             }
 
-            if 'name' in event['_embedded']['venues'][0]:
-                venue_id = get_venue_id(event['_embedded']['venues'][0]['name'])
-                if (venue_id == ''):
-                    event_instance['venue'] = 'Unavailable'
-                else:
-                    event_instance['venue'] = get_venue_information(venue_id)
-                    event_instance['venue']['name'] = event['_embedded']['venues'][0]['name']
-                    event_instance['venue']['address'] = address
-            else:
-                event_instance['venue'] = 'Unavailable'
+            get_venue(event, event_instance)
 
             event_instances_local.append(event_instance)
 
     return event_instances_local
-
-
-# Return a given place's id given the address
-def get_venue_id(venue_name): 
-    # Text search request based on venue address
-    BASE_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
-    
-    # Fields to retrieve
-    fields = 'place_id,name'
-    
-    # Construct the request URL with parameters
-    url = f"{BASE_URL}?query={venue_name}&fields={fields}&key={google_access_token}"
-    response = requests.get(url)
-    check_request_status(response)
-    response = response.json()
-    return response['results'][0]['place_id'] if response['results'] else ''
-
-# Populate the venue with its website, phone number, and rating
-def get_venue_information(venue_id):
-    venue_details_url = f'https://places.googleapis.com/v1/places/{venue_id}?fields=nationalPhoneNumber,rating,websiteUri&key={google_access_token}'
-
-    response = requests.get(venue_details_url)
-    check_request_status(response)
-    response = response.json()
-
-    venue_information = {
-        'name': '',
-        'address': '',
-        'phoneNumber': "Unavailable" if 'nationalPhoneNumber' not in response else response['nationalPhoneNumber'],
-        'rating': "Unavailable" if 'rating' not in response else f"{response['rating']} / 5",
-        'website': "Unavailable" if 'websiteUri' not in response else response['websiteUri']
-    }
-
-    return venue_information
 
 # Check if API call resulted in error
 def check_request_status(response):
@@ -367,14 +309,14 @@ def check_request_status(response):
 
 # Prints all the data retrieved from APIs
 def print_all_instances():
-    print("---Artists---")
-    for artist_instance in artist_instances:
-        print(artist_instance)
-        print("\n")
-    print("---Genres---")
-    for genre_instance in genre_instances:
-        print(genre_instance)
-        print("\n")
+    # print("---Artists---")
+    # for artist_instance in artist_instances:
+    #     print(artist_instance)
+    #     print("\n")
+    # print("---Genres---")
+    # for genre_instance in genre_instances:
+    #     print(genre_instance)
+    #     print("\n")
     print("---Events---")
     for event_instance in event_instances:
         print(event_instance)
