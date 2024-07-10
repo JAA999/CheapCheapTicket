@@ -58,12 +58,14 @@ def create_events():
         db.session.add(i)
     db.session.commit()
 
-db.drop_all()
-db.create_all()
 
-create_genres()
-create_artists()
-create_events()
+def initialize_database():
+    db.drop_all()
+    db.create_all()
+
+    create_genres()
+    create_artists()
+    create_events()
 
 # This needs to be called every main.py is run
 
