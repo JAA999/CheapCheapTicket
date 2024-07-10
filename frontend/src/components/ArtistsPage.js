@@ -25,7 +25,7 @@ function ArtistsPage() {
     useEffect(() => {
         const GetArtistInfo = async () => {
             try {
-                const artistResponse = await axios.post(`/api/GetArtist/${artistId}`);
+                const artistResponse = await axios.post(`/GetArtist/${artistId}`);
                 setArtistData(artistResponse.data);
             } catch (error) {
                 console.error('Error ', error);
@@ -38,7 +38,7 @@ function ArtistsPage() {
         if (artistData.genre_id) {
             const GetGenreName = async () => {
                 try {
-                    const genreResponse = await axios.post(`/api/GetGenre/${artistData.genre_id}`);
+                    const genreResponse = await axios.post(`/GetGenre/${artistData.genre_id}`);
                     setGenreName(genreResponse.data.name);
                 } catch (error) {
                     console.error('Error ', error);
@@ -62,7 +62,7 @@ function ArtistsPage() {
         const getEventNames = async () => {
             try {
                 const eventPromises = artistData["future_events"].map(async (eventId) => {
-                    const response = await axios.post(`/api/GetEvent/${eventId}`);
+                    const response = await axios.post(`/GetEvent/${eventId}`);
                     return { eventId, eventName: response.data.eventName };
                 });
                 const eventNames = await Promise.all(eventPromises);

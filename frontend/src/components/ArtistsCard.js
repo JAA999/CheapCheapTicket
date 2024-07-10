@@ -10,7 +10,7 @@ function ArtistsCard(props) {
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.post(`/api/GetGenre/${props.genreId}`);
+                const response = await axios.post(`/GetGenre/${props.genreId}`);
                 setGenreName(response.data.name);
             } catch (error) {
                 console.error('Error:', error);
@@ -31,7 +31,7 @@ function ArtistsCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.post(`/api/GetEvent/${limitedFutureEvents[i]}`);
+                        const response = await axios.post(`/GetEvent/${limitedFutureEvents[i]}`);
                         eventNames[i] = response.data.eventName;
                     } catch (error) {
                         console.error('Error:', error);

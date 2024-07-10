@@ -41,7 +41,7 @@ function Artists() {
 
     const fetchData = async (page) => {
         try {
-            const response = await axios.get(`/api/GetArtists?page=${page}&limit=10`);
+            const response = await axios.get(`/GetArtists?page=${page}&limit=10`);
             setArtistsData(response.data);
         } catch (error) {
             console.error("Error:", error);

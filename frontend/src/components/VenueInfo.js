@@ -2,14 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-/*
 
-NAMING SCHEME WHERE IM ACCESSIGN THE STATE FROM ANOTHER FUNCTION
-
-
-???????
-MAKE SURE TO ACCCESS THE LOCAL STATE 
-*/
 
 function VenueInfo() {
 
@@ -33,7 +26,7 @@ function VenueInfo() {
         const getEventData = async () => {
 
             try {
-                const response = await axios.get(`/api/GetEvent/${eventId}`);
+                const response = await axios.get(`/GetEvent/${eventId}`);
                 setEventData(response.data)
             } catch (error) {
                 console.error("Error: ", error)
@@ -47,7 +40,7 @@ function VenueInfo() {
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.get(`/api/GetGenre/${eventData.genreId}`);
+                const response = await axios.get(`/GetGenre/${eventData.genreId}`);
                 setGenreName(response.data.name)
             } catch (error) {
                 console.error("Error:", error)

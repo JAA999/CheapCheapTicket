@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 
+//* Weird bug when using upcomingEvents */
+
 function GenreInstance() {
     const { genreId } = useParams()
 
@@ -21,7 +23,7 @@ function GenreInstance() {
     useEffect(() => {
         const getGenreData = async () => {
             try {
-                const response = axios.get(`/api/GetGenre/${genreId}`)
+                const response = axios.get(`/GetGenre/${genreId}`)
                 setGenreData(response.data)
             } catch (error) {
                 console.error('Error:', error);
@@ -37,7 +39,7 @@ function GenreInstance() {
             try {
                 const stuff = genreData["upcomingEvents"];
                 const eventPromises = stuff.map(async (eventId) => {
-                    const response = await axios.post(`/api/GetEvent/${eventId}`);
+                    const response = await axios.post(`/GetEvent/${eventId}`);
                     return { eventId, eventName: response.data.eventName };
                 });
                 const eventNames = await Promise.all(eventPromises);
@@ -61,7 +63,7 @@ function GenreInstance() {
             try {
                 const artistIds = genreData.popularArtistsId;
                 const namePromises = artistIds.map(async (artistId) => {
-                    const response = await axios.post(`/api/GetArtist/${artistId}`);
+                    const response = await axios.post(`/GetArtist/${artistId}`);
                     return { artistId, name: response.data.name };
                 });
                 const artistsNames = await Promise.all(namePromises);

@@ -30,7 +30,7 @@ function Genre() {
 
   const fetchData = async (page) => {
     try {
-      const response = await axios.get(`/api/GetAllEvents?page=${page}&limit=25`);
+      const response = await axios.get(`/GetAllEvents?page=${page}&limit=25`);
       setGenresData(response.data)
     } catch (error) {
       console.error("Error:", error)

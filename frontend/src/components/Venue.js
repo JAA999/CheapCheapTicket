@@ -24,7 +24,7 @@ function Venue() {
   
     const fetchData = async (page) => {
       try {
-        const response = await axios.get(`/api/GetEvents?page=${page}&limit=50`);
+        const response = await axios.get(`/GetEvents?page=${page}&limit=50`);
         setEventData(response.data)
       } catch (error) {
         console.error("Error:", error)
