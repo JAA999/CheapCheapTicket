@@ -24,23 +24,25 @@ def get_all_genres():
         genres = Genres.query.all()
         return jsonify([genre.to_dict() for genre in genres])
 
-@app.route('/api/GetGenre/<string:genre_id>', methods=['POST'])
+@app.route('/api/GetGenre/<string:genre_id>', methods=['GET'])
 def genres_page(genre_id):
     # When genres are listed as cards in grid view
-    if request.method == 'POST':
+    if request.method == 'GET':
         # When user clicks on genre card (or name)
         if genre_id != '':
             # Search database based on genre_id
             tgt = Genres.query.get(genre_id)
-            return tgt.to_dict()
+            #return tgt.to_dict()
+            return jsonify(tgt)
 
-@app.route('/api/GetGenres/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
+@app.route('/api/GetGenres/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>', methods=['GET'])
 def specific_genres(page, per_page, sort_by, sort_order):
-    if page != '':
-        page_num = int(page)
-        step = int(per_page) if not per_page else 5
-        genres = Genres.query.all()
-        return jsonify([(genres[page_num * step + i]).to_dict() for i in range(step + 1)])
+    if request.method == 'GET':
+        if page != '':
+            page_num = int(page)
+            step = int(per_page) if not per_page else 5
+            genres = Genres.query.all()
+            return jsonify([(genres[page_num * step + i]).to_dict() for i in range(step + 1)])
 
 # Artists Page
 @app.route('/api/GetAllArtists/', methods=['GET'])
@@ -93,5 +95,3 @@ def specific_events(page, per_page, sort_by, sort_order):
         step = int(per_page) if not per_page else 20
         events = Events.query.all()
         return jsonify([(events[page_num * step + i]).to_dict() for i in range(step + 1)])
-
-
