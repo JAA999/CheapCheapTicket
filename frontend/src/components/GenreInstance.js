@@ -18,44 +18,45 @@ function GenreInstance() {
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
         "topSongs": ["Song 1", "Song 2", "Song 3"],
         "eventsPriceRange": [0, 0]
-      })
-
+    });
+    
     useEffect(() => {
         const getGenreData = async () => {
             try {
-                const response = axios.get(`/GetGenre/${genreId}`)
-                setGenreData(response.data)
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-        getGenreData();
-    }, [genreId])
-
-
-    const [eventIdPairs, setEventIdPairs] = useState({});
-    useEffect(() => {
-        const getEventNames = async () => {
-            try {
-                const stuff = genreData["upcomingEvents"];
-                const eventPromises = stuff.map(async (eventId) => {
-                    const response = await axios.post(`/GetEvent/${eventId}`);
-                    return { eventId, eventName: response.data.eventName };
-                });
-                const eventNames = await Promise.all(eventPromises);
-
-                const eventIdPairs = Object.fromEntries(
-                    eventNames.map(event => [event.eventId, event.eventName])
-                );
-                setEventIdPairs(eventIdPairs);
+                const response = await axios.get(`/GetGenre/${genreId}`);
+                setGenreData(response.data);
             } catch (error) {
                 console.error('Error:', error);
             }
         };
-        if (genreData["upcomingEvents"].length > 0) {
+        getGenreData();
+    }, [genreId]);
+    
+
+    const [eventIdPairs, setEventIdPairs] = useState({});
+    useEffect(() => {
+        const getEventNames = async () => {
+            if (genreData && genreData.upcomingEvents) {
+                try {
+                    const eventPromises = genreData.upcomingEvents.map(async (eventId) => {
+                        const response = await axios.post(`/GetEvent/${eventId}`);
+                        return { eventId, eventName: response.data.eventName };
+                    });
+                    const eventNames = await Promise.all(eventPromises);
+    
+                    const eventIdPairs = Object.fromEntries(
+                        eventNames.map(event => [event.eventId, event.eventName])
+                    );
+                    setEventIdPairs(eventIdPairs);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        };
+        if (genreData && genreData.upcomingEvents.length > 0) {
             getEventNames();
         }
-    }, [genreData,genreData["upcomingEvents"]]);
+    }, [genreData]);
 
     const [artistsIdPairs, setArtistsIdPairs] = useState({});
     useEffect(() => {

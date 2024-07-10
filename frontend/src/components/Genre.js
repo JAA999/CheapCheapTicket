@@ -10,7 +10,7 @@ function Genre() {
   const [genresData, setGenresData] = useState({
     "Genres": [
       {
-        "genreId": "1",
+        "genreId": "KnvZfZ7vAvv",
         "name": "GenreName",
         "popularArtists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
@@ -18,7 +18,7 @@ function Genre() {
         "eventsPriceRange": [0, 0]
       },
       {
-        "genreId": "2",
+        "genreId": "KnvZfZ7vAvd",
         "name": "GenreName 2",
         "popularArtists": ["Artists 1 ID", "Artists 2 ID", "Artists 3 ID"],
         "upcomingEvents": ["Event 1 ID", "Event 2 ID", "Event 3", "Event 4 ID"],
