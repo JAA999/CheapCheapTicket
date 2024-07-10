@@ -1,14 +1,9 @@
-services:
-  - name: your-backend-service-image
-    alias: backend
-
-variables:
-  BACKEND_URL: http://backend:5000
-
-stages:
-  - test
-
-test:
+postman-tests:
   stage: test
-  script:
-    - newman run UpdatedCollection.postman_collection.json --env-var "baseUrl=$BACKEND_URL"
+  image: 
+    name: postman/newman:alpine
+    entrypoint: [""]
+  script: 
+    - cd backend
+    - newman --version
+    - newman run UpdatedCollection.postman_collection.json
