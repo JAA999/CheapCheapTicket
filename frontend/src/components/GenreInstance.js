@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 
-//* Weird bug when using upcomingEvents */
-
 function GenreInstance() {
     const { genreId } = useParams()
 
