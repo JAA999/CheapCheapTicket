@@ -3,10 +3,9 @@ from flask_cors import CORS
 from database import app, db, initialize_database
 from models import Genres, Artists, Events
 from gitlab_stats import get_gitlab_stats
+import os
 
-app = Flask(__name__)
 CORS(app)
-
 
 with app.app_context():
     initialize_database()
@@ -30,13 +29,12 @@ def get_all_genres():
 @app.route('/GetGenre/<string:genre_id>', methods=['GET'])
 def genres_page(genre_id):
     genre = Genres.query.get(genre_id)
-        #return tgt.to_dict() was there down below before
-    if genre: return jsonify(genre)
+    if genre: return jsonify(genre.to_dict())
     return "Genre not found", 404
 
 @app.route('/GetGenres/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>', methods=['GET'])
 def specific_genres(page, per_page, sort_by, sort_order):
-    genres = Genres.query.paginate(page, per_page, False).items
+    genres = Genres.query.paginate(page, per_page, False).items # bug is here
     return jsonify([genre.to_dict() for genre in genres])
     # if page != '':
     #     page_num = int(page)
@@ -60,7 +58,7 @@ def artists_page(artist_id):
 
 @app.route('/GetArtists/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
 def specific_artists(page, per_page, sort_by, sort_order):
-    artists = Artists.query.paginate(page, per_page, False).items
+    artists = Artists.query.paginate(request.args.get(page), request.args.get(per_page), False).items #bug is here
     return jsonify([artist.to_dict() for artist in artists])
 
 # Events Page
@@ -73,8 +71,7 @@ def get_all_events():
 
 @app.route('/GetEvent/<string:event_id>', methods=['GET'])
 def events_page(event_id):
-    #data = request.json
-    event = Events.query.get(event_id)
+    event = Events.query.get(event_id) # bug is here! object not returned (NONE)
     if event:
         return jsonify(event.to_dict())
     return "Event not found", 404
