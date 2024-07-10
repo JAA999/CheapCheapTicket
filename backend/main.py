@@ -16,7 +16,7 @@ def index():
    return "Welcome to the Home Page"
 
 # About Page
-@app.route('/about', methods=['GET']) #if the only method in the parameter is GET, we don't need to check I think -Hudson
+@app.route('/about', methods=['GET']) 
 def about_page():
     return get_gitlab_stats()
 
@@ -36,13 +36,8 @@ def genres_page(genre_id):
 def specific_genres():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 5, type=int)
-    genres = Genres.query.paginate(page=page, per_page=per_page) # bug is here
+    genres = Genres.query.paginate(page=page, per_page=per_page)
     return jsonify([genre.to_dict() for genre in genres])
-    # if page != '':
-    #     page_num = int(page)
-    #     step = int(per_page) if not per_page else 5
-    #     genres = Genres.query.all() # delete 2 lines above and put = Genres.query.paginate(page, per_page, False).items
-    # return jsonify([(genres[page_num * step + i]).to_dict() for i in range(step + 1)])
 
 # Artists Page
 @app.route('/GetAllArtists/', methods=['GET'])
@@ -75,7 +70,7 @@ def get_all_events():
 
 @app.route('/GetEvent/<string:event_id>', methods=['GET'])
 def events_page(event_id):
-    event = Events.query.get(event_id) # bug is here! object not returned (NONE)
+    event = Events.query.get(event_id) 
     if event:
         return jsonify(event.to_dict())
     return "Event not found", 404
