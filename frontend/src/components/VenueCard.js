@@ -7,7 +7,7 @@ import axios from 'axios'
 function VenueCard(props) {
     console.log(props)
 
-    const [genreName, setGenreName] = useState("")
+    const [genreName, setGenreName] = useState("defaultGenreName")
     useEffect(() => {
         const getGenreName = async () => {
             try {

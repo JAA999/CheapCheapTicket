@@ -7,8 +7,6 @@ import axios from 'axios'
 function GenreInstance() {
     const { genreId } = useParams()
 
-    console.log("helllo world")
-
     const [genreData, setGenreData] = useState({
         "genreId": "1",
         "name": "GenreName",
@@ -103,7 +101,6 @@ function GenreInstance() {
                             <h1 key={index} class="genre-page-text "><Link class=" genre-page-link" to={`/artists/artistspage/${key}`}>{value}</Link></h1>
                         ))
                     }
-                    {/* <h1 class="genre-page-text "><Link class=" genre-page-link" to="">FirstName</Link></h1>*/}
                 </div>
                 <div class="genre-page-con genre-page-venue d-flex flex-column mb-5 p-2 pb-3 rounded-4">
                     <h1 class="genre-page-subtitle mt-2">Venues </h1>

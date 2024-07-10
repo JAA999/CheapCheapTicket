@@ -8,30 +8,12 @@ function Artists() {
     const [artistsData, setArtistsData] = useState({
         "Artists": [
             {
-                "name": "MMMMMMMMMMMM",
+                "name": "Chidish Gambino",
                 "id": "73sIBHcqh3Z3NyqHKZ7FOL",
                 "popularity": 79,
-                "albums": [],
+                "albums": ["Atavista"],
                 "album_covers": ["https://i.scdn.co/image/ab67616d0000b273a9afb2484111b87abc2b4a80", "https://i.scdn.co/image/ab67616d0000b2737582716b3666a5235d5af4ea", "https://i.scdn.co/image/ab67616d0000b273d98a6832141788d8c355852b"],
                 "future_events": ["Z698xZu0ZaGQo", "Z698xZbpZ17GA_K", "G5vHZb1niHezV", "Event 4 id"],
-                "image_url": "https://i.scdn.co/image/ab6761610000f178c3dc5429b676b16d451e5f77",
-                "genre_id": "KnvZfZ7vAvv",
-            }, {
-                "name": "MMMMMMMM",
-                "id": "73sIBHcqh3Z3NyqHKZ7FOL",
-                "popularity": 79,
-                "albums": ["Atavista", "\"Awaken, My Love!\"", "Kauai"],
-                "album_covers": ["https://i.scdn.co/image/ab67616d0000b273a9afb2484111b87abc2b4a80", "https://i.scdn.co/image/ab67616d0000b2737582716b3666a5235d5af4ea", "https://i.scdn.co/image/ab67616d0000b273d98a6832141788d8c355852b"],
-                "future_events": ["Z698xZu0ZaGQo", "Z698xZbpZ17GA_K", "G5vHZb1niHezV", "Event 4 id"],
-                "image_url": "https://i.scdn.co/image/ab6761610000f178c3dc5429b676b16d451e5f77",
-                "genre_id": "KnvZfZ7vAvv",
-            }, {
-                "name": "MMMMM",
-                "id": "73sIBHcqh3Z3NyqHKZ7FOL",
-                "popularity": 79,
-                "albums": ["Atavista", "\"Awaken, My Love!\"", "Kauai"],
-                "album_covers": ["https://i.scdn.co/image/ab67616d0000b273a9afb2484111b87abc2b4a80", "https://i.scdn.co/image/ab67616d0000b2737582716b3666a5235d5af4ea", "https://i.scdn.co/image/ab67616d0000b273d98a6832141788d8c355852b"],
-                "future_events": ["Z698xZu0ZaGQo", "Z698xZbpZ17GA_K"],
                 "image_url": "https://i.scdn.co/image/ab6761610000f178c3dc5429b676b16d451e5f77",
                 "genre_id": "KnvZfZ7vAvv",
             }

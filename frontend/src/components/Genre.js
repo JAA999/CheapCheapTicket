@@ -6,7 +6,6 @@ import axios from 'axios'
 
 function Genre() {
 
-  // loop through the array
   const [genresData, setGenresData] = useState({
     "Genres": [
       {
@@ -36,9 +35,6 @@ function Genre() {
       console.error("Error:", error)
     }
   };
-
-
-  /**pagination  */
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(11);
