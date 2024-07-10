@@ -45,7 +45,7 @@ def main():
     get_spotify_access_token()
     populate_genres()
     populate_models()
-    print_all_instances()
+    # print_all_instances()
     
 # Populates all the models, using playlists as starting points
 def populate_models():
@@ -54,7 +54,7 @@ def populate_models():
 
         create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
 
-    # create_json_files()
+    create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
@@ -309,14 +309,14 @@ def check_request_status(response):
 
 # Prints all the data retrieved from APIs
 def print_all_instances():
-    # print("---Artists---")
-    # for artist_instance in artist_instances:
-    #     print(artist_instance)
-    #     print("\n")
-    # print("---Genres---")
-    # for genre_instance in genre_instances:
-    #     print(genre_instance)
-    #     print("\n")
+    print("---Artists---")
+    for artist_instance in artist_instances:
+        print(artist_instance)
+        print("\n")
+    print("---Genres---")
+    for genre_instance in genre_instances:
+        print(genre_instance)
+        print("\n")
     print("---Events---")
     for event_instance in event_instances:
         print(event_instance)
