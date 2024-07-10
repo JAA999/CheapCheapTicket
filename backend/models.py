@@ -10,6 +10,8 @@ app.app_context().push()
 USER ="postgres"
 PASSWORD ="asd123"
 PUBLIC_IP_ADDRESS ="localhost:5432"
+# Update the PUBLIC_IP_ADDRESS to your Cloud SQL instance's connection name
+# PUBLIC_IP_ADDRESS = "<project-id>:<region>:<instance-id>"
 DBNAME ="ticketsdb"
 
 # Configuration 
@@ -31,8 +33,6 @@ class Genres(db.Model):
     # Relationship
     artists = db.relationship('Artists', back_populates='genre')
     events = db.relationship('Events', back_populates='genre')
-   
-    # books = db.relationship('Artists', backref = 'genre')
 
     def to_dict(self):
         instance = {
@@ -96,7 +96,7 @@ class Events(db.Model):
         instance = {
             'artist_names': self.artist_names,
             'date_and_time': self.date_and_time,
-            'id': self.event_id, #added this - chris
+            'id': self.event_id, 
             'event_name': self.event_name,
             'dateAndTime': self.date_and_time,
             'sales_start_end': self.sales_start_end,
@@ -111,6 +111,3 @@ artists_events = db.Table('artist_events',
    db.Column('artist_id', db.String, db.ForeignKey('artists.artist_id')), 
    db.Column('event_id', db.String, db.ForeignKey('events.event_id'))
    )
-
-
-
