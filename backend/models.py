@@ -36,8 +36,8 @@ class Genres(db.Model):
 
     def to_dict(self):
         instance = {
-            'name': self.name,
-            'id': self.id,
+            'name': self.genre_name,
+            'id': self.genre_id,
             'popular_artists': self.popular_artists,
             'upcoming_events': self.upcoming_events,
             'top_songs': self.top_songs,
@@ -96,7 +96,9 @@ class Events(db.Model):
         instance = {
             'artist_names': self.artist_names,
             'date_and_time': self.date_and_time,
-            'id': self.id, #added this - chris
+            'id': self.event_id, #added this - chris
+            'event_name': self.event_name,
+            'dateAndTime': self.date_and_time,
             'sales_start_end': self.sales_start_end,
             'price_range': self.price_range,
             'venue': self.venue,

@@ -49,12 +49,13 @@ def create_events():
         i = Events(
             event_name=event['eventName'],
             event_id=event['eventId'],
+            date_and_time=event['dateAndTime'],
             artist_names=event['artistNames'],
             price_range=event['priceRange'],
             venue=event['venue'],
             ticketmaster_URL=event['ticketmasterURL'],
-            genre_id=event['genreId']
-            #date and time?
+            genre_id=event['genreId'],
+            sales_start_end=event['salesStart-End'],
             #salesStart-End?
         )
         db.session.add(i)

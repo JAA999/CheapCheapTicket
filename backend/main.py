@@ -32,9 +32,11 @@ def genres_page(genre_id):
     if genre: return jsonify(genre.to_dict())
     return "Genre not found", 404
 
-@app.route('/GetGenres/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>', methods=['GET'])
-def specific_genres(page, per_page, sort_by, sort_order):
-    genres = Genres.query.paginate(page, per_page, False).items # bug is here
+@app.route('/GetGenres/', methods=['GET'])
+def specific_genres():
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 5, type=int)
+    genres = Genres.query.paginate(page=page, per_page=per_page) # bug is here
     return jsonify([genre.to_dict() for genre in genres])
     # if page != '':
     #     page_num = int(page)
@@ -56,9 +58,11 @@ def artists_page(artist_id):
         return jsonify(artist.to_dict())
     return "Artist not found", 404
 
-@app.route('/GetArtists/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
-def specific_artists(page, per_page, sort_by, sort_order):
-    artists = Artists.query.paginate(request.args.get(page), request.args.get(per_page), False).items #bug is here
+@app.route('/GetArtists/')
+def specific_artists():
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 5, type=int)
+    artists = Artists.query.paginate(page=page, per_page=per_page) 
     return jsonify([artist.to_dict() for artist in artists])
 
 # Events Page
@@ -76,9 +80,11 @@ def events_page(event_id):
         return jsonify(event.to_dict())
     return "Event not found", 404
 
-@app.route('/GetEvents/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
-def specific_events(page, per_page, sort_by, sort_order):
-    events = Events.query.paginate(page, per_page, False).items
+@app.route('/GetEvents/')
+def specific_events():
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 5, type=int)
+    events = Events.query.paginate(page=page, per_page=per_page)
     return jsonify([event.to_dict() for event in events])
 
 if __name__ == '__main__':
