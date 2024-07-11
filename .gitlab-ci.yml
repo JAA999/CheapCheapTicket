@@ -18,7 +18,7 @@ deploy_job:
   script:
     - echo "Deploying to production..."
   when: manual  # Specify when to run this job (e.g., manual, on_success, on_failure)stages:
-  - build
-  - test
-  - deploy
+    - build
+    - test
+    - deploy
 
