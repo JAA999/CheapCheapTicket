@@ -2,37 +2,288 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --white: #fdfff7;
+  --gray: #f1f1f0;
+  --lightcolor: #40a8f2;
+  --color: #2b50aa;
+  --darkcolor: #29339b;
+
+  --xsfont: 11.12px;
+  --sfont: 18px;
+  --mfont: 29.12px;
+  --lfont: 47.12px;
+  --xlfont: 76.24px;
+  --xxlfont: 123.36px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Artists card stylization */
+
+.artist-card {
+  background-color: var(--gray);
+  min-height: 200px;
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.artist-card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artist-card-title {
+  font-size: var(--lfont);
+  font-weight: 700;
+  color: var(--color);
+}
+
+.artist-card-container{
+  height: 48px;
+}
+
+.artist-card-title2 {
+  font-size: var(--mfont);
+  font-weight: 700;
+  color: var(--color);
+}
+
+.artist-card-title3 {
+  font-size: var(--sfont);
+  font-weight: 700;
+  color: var(--color);
+}
+.artist-card-subtitle {
+  font-size: var(--mfont);
+  font-weight: 600;
+  color: var(--color);
+}
+.artist-card-text {
+  font-size: var(--sfont);
+  font-weight: 600;
+  color: black;
+}
+
+.artist-card-genre {
+  color: black;
+}
+
+.artist-card-link {
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(to right, var(--color), var(--lightcolor));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s ease, color 0.4s ease, padding-left 0.4s ease,
+    color 0.8s ease;
+  padding: 5px 15px 5px 0px;
+}
+
+.artist-card-link:hover {
+  background-size: 100% 100%;
+  color: var(--white);
+  padding-left: 20px;
+}
+
+/* Artists page stylization */
+
+.artist-page {
+  padding-bottom: 30vh;
+  padding-left: 40vh;
+}
+
+.artist-page-title {
+  font-size: var(--xlfont);
+  color: var(--color);
+}
+
+.artist-page-subtitle {
+  font-size: var(--lfont);
+  background: linear-gradient(to right, var(--darkcolor), var(--lightcolor));
+  background-clip: text;
+  color: transparent;
+}
+
+.artist-page-text {
+  font-size: var(--mfont);
+}
+
+.artist-page-smalltext {
+  font-size: var(--sfont);
+}
+
+.artist-page-albums {
+  width: 50vw;
+  margin-bottom: 40px;
+}
+
+.artist-page-album {
+  height: 200px;
+  width: auto;
+  aspect-ratio: 1;
+}
+
+.artist-page a {
+  color: black;
+  text-decoration: none;
+  background: linear-gradient(to right, var(--color), var(--lightcolor));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s ease, padding-left 0.4s ease, color 0.8s ease;
+  padding: 5px 15px 5px 0px;
+}
+
+.artist-page a:hover {
+  background-size: 100% 100%;
+  color: white;
+  padding-left: 20px;
+}
+
+/* Genre card Stylization */
+
+.genre-card-container {
+  margin-top: 100px;
+}
+.genre-card {
+  background-color: var(--gray);
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin-bottom: 50px;
+}
+.genre-card-title {
+  font-size: var(--xlfont);
+  text-decoration: none;
+  background: linear-gradient(to right, var(--color), var(--lightcolor));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s ease, padding-left 0.4s ease-in,
+    color 0.8s ease;
+  padding: 5px 50px 5px 0px;
+}
+.genre-card-title:hover {
+  background-size: 100% 100%;
+  color: white;
+  padding-left: 60px;
+}
+
+.genre-card-subtitle {
+  font-size: var(--lfont);
+  background: linear-gradient(to top, var(--color), var(--lightcolor));
+  background-clip: text;
+  color: transparent;
+}
+
+.genre-card-link {
+  color: black;
+  text-decoration: none;
+  background: linear-gradient(to right, var(--color), var(--lightcolor));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s ease, padding-left 0.4s ease, color 0.8s ease;
+  padding: 5px 15px 5px 0px;
+}
+.genre-card-link:hover {
+  background-size: 100% 100%;
+  color: white;
+  padding-left: 40px;
+}
+
+/* Genre page stylization */
+
+.genre-page {
+  margin-bottom: 20vh;
+}
+
+.genre-page-con {
+  width: 30vw;
+}
+.genre-page-title {
+  font-size: var(--xlfont);
+  color: var(--color);
+  font-weight: 600;
+}
+.genre-page-subtitle {
+  font-size: var(--lfont);
+  background: linear-gradient(to top, var(--darkcolor), var(--lightcolor));
+  background-clip: text;
+  color: transparent;
+}
+.genre-page-text {
+  font-size: var(--mfont);
+}
+.genre-page-price{
+  font-size: var(--sfont);
+  padding-left: 5px;
+}
+
+.genre-page-venue {
+  background-color: var(--gray);
+}
+
+.genre-page-link {
+  color: black;
+  text-decoration: none;
+  background: linear-gradient(to top, var(--color), var(--lightcolor));
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s ease, color 0.8s ease;
+  padding: 5px 10px 5px 10px;
+}
+.genre-page-link:hover {
+  background-size: 100% 100%;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* about page stylization */
+
+.about-fixed-height-img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.about-custom-col {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+.about-colors {
+  background-color: var(--gray);
+}
+
+.about-fixed-body {
+  height: auto;
+  flex-grow: 1;
+}
+
+.about-fixed-height {
+  min-height: 560px;
+}
+
+.about-custom-col {
+  max-width: 60%;
+}
+
+.about-fixed-height-group {
+  min-height: 800px;
+}
+
+.about-tool-photo {
+  max-height: 120px;
+  min-width: 120px;
+  aspect-ratio: 1;
+  width: auto;
+}
+
+.about-bio {
+  min-height: 230px;
+}
+
+/* event stylization */
+
+.event-box{
+  display: inline-block;
+  padding: 10px;
+  background-color: var(--gray);
+  border-radius: 20%;
 }
