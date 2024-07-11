@@ -23,12 +23,12 @@ function VenueCard(props) {
     return (
         <div className="card mb-3">
             <div className="row g-0">
-                {/* <div className="col-md-4">
-                    <img  className="img-fluid rounded-start" alt="..." style={{
+                <div className="col-md-4"> 
+                    <img src="https://workingonmyredneck.com/wp-content/uploads/2021/07/iowa-speedway.jpeg" className="img-fluid rounded-start" alt="..." style={{
                         width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center'
                     }} />
-                </div> */}
-                <div className="col-md-12">
+                </div>
+                <div className="col-md-8">
                     <div className="card-body">
                         <Link to={`/venue/${props.eventId}`}><h5 className="card-title">{props.eventName}</h5></Link> <p>Ticket Price: <strong>${props.priceRange[0]} to ${props.priceRange[1]}</strong></p>
                         <p className="card-text">{props.dateAndTime[0]}-{props.dateAndTime[1]}-{props.dateAndTime[2]}</p>

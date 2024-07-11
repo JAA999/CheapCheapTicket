@@ -20,25 +20,26 @@ function Artists() {
         ]
     });
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
-    const fetchData = async (page) => {
+    const fetchData = async (currentPage) => {
         try {
-            const response = await axios.get(`/GetArtists?page=${page}&limit=10`);
-            setArtistsData(response.data);
+            const response = await axios.get(`/GetArtist`, {
+                params: { page: currentPage, per_page: 20 }
+            });
+            const responseLength = await axios.get(`/GetAllArtists`);
+            setArtistsData(response.data)
+            setTotalPages(responseLength.data.length)
         } catch (error) {
             console.error("Error:", error);
         }
     };
     fetchData();
 
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(3);
-
-
     useEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, [ currentPage]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -74,7 +75,7 @@ function Artists() {
                         currentPage === index + 1 ?
                             <button class=" page-item text-bg-dark" >{currentPage}</button>
                             :
-                            <button class="page-item text-bg-light" >{index + 1}</button>
+                            <></>
                     ))}
                     <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
                 </div>

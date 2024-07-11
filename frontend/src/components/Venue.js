@@ -21,29 +21,30 @@ function Venue() {
     ]
   });
 
-  
-    const fetchData = async (page) => {
-      try {
-        const response = await axios.get(`/GetEvents?page=${page}&limit=50`);
-        setEventData(response.data)
-      } catch (error) {
-        console.error("Error:", error)
-      }
-    }
-    fetchData()
-  
-
   const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(23);
+  const [totalPages, setTotalPages] = useState(1);
 
+  const fetchData = async (currentPage) => {
+    try {
+      const response = await axios.get(`/GetEvents`, {
+        params: { page: currentPage, per_page: 30 }
+      });
+      const responseLength = await axios.get(`/GetAllEvents`);
+      setEventData(response.data)
+      setTotalPages(responseLength.data.length)
+    } catch (error) {
+      console.error("Error:", error)
+    }
+  }
+  fetchData()
 
-    useEffect(() => {
-        fetchData(currentPage);
-    }, [currentPage]);
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
 
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
 
   return (
@@ -81,7 +82,7 @@ function Venue() {
             currentPage === index + 1 ?
               <button class=" page-item text-bg-dark" >{currentPage}</button>
               :
-              <button class="page-item text-bg-light" >{index + 1}</button>
+              <></>
           ))}
           <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         </div>

@@ -26,19 +26,21 @@ function Genre() {
       }
     ]
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (page) => {
+  const fetchData = async (currentPage) => {
     try {
-      const response = await axios.get(`/GetAllEvents?page=${page}&limit=25`);
+      const response = await axios.get(`/GetGenres`, {
+        params: { page: currentPage, per_page: 5 }
+      });
+      const responseLength = await axios.get(`/GetAllGenres`);
       setGenresData(response.data)
+      setTotalPages(responseLength.data.length)
     } catch (error) {
       console.error("Error:", error)
     }
   };
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(11);
-
 
   useEffect(() => {
     fetchData(currentPage);
@@ -50,7 +52,7 @@ function Genre() {
 
   return (
     <>
-    
+
       <h1 class="m-5">Genres</h1>
       <div class="row d-flex justify-content-center genre-card-container ">
         {
@@ -74,7 +76,7 @@ function Genre() {
             currentPage === index + 1 ?
               <button class=" page-item text-bg-dark" >{currentPage}</button>
               :
-              <button class="page-item text-bg-light" >{index + 1}</button>
+              <></>
           ))}
           <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         </div>
