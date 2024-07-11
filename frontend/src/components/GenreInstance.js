@@ -20,7 +20,11 @@ function GenreInstance() {
         const getGenreData = async () => {
             try {
                 const response = await axios.get(`/GetGenre/${genreId}`);
-                setGenreData(response.data);
+                const newGenreData = {
+                    ...response.data,
+                    ...genreData
+                };
+                setGenreData(newGenreData);
             } catch (error) {
                 console.error('Error:', error);
             }

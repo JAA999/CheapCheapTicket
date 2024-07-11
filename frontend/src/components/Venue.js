@@ -30,10 +30,22 @@ function Venue() {
         params: { page: currentPage, per_page: 30 }
       });
       const responseLength = await axios.get(`/GetAllEvents`);
-      setEventData(response.data)
-      setTotalPages(responseLength.data.length)
+
+      const newEvents = response.data.events.map((newEvent, index) => {
+        const defaultEvent = eventData.events[index] || {};
+        return {
+          ...defaultEvent,
+          ...newEvent,
+          venue: {
+            ...defaultEvent.venue,
+            ...newEvent.venue
+          }
+        };
+      });
+      setTotalPages(responseLength)
+      setEventData({ events: newEvents });
     } catch (error) {
-      console.error("Error:", error)
+      console.error("Error:", error);
     }
   }
   fetchData()
@@ -54,7 +66,6 @@ function Venue() {
         <h2>Events</h2>
         <p>Events all across the US! </p>
       </div>
-
       <div class="row g-4 m-5">
         {
           eventData.events.map((event, index) => (

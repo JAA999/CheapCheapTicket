@@ -15,15 +15,16 @@ function Genre() {
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
         "topSongs": ["Song 1", "Song 2", "Song 3"],
         "eventsPriceRange": [0, 0]
-      },
-      {
-        "genreId": "KnvZfZ7vAvd",
-        "name": "GenreName 2",
-        "popularArtists": ["Artists 1 ID", "Artists 2 ID", "Artists 3 ID"],
-        "upcomingEvents": ["Event 1 ID", "Event 2 ID", "Event 3", "Event 4 ID"],
-        "topSongs": ["Song 1", "Song 2", "Song 3"],
-        "eventsPriceRange": [0, 0]
       }
+      ,
+      // {
+      //   "genreId": "KnvZfZ7vAvd",
+      //   "name": "GenreName 2",
+      //   "popularArtists": ["Artists 1 ID", "Artists 2 ID", "Artists 3 ID"],
+      //   "upcomingEvents": ["Event 1 ID", "Event 2 ID", "Event 3", "Event 4 ID"],
+      //   "topSongs": ["Song 1", "Song 2", "Song 3"],
+      //   "eventsPriceRange": [0, 0]
+      // }
     ]
   });
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,7 +36,16 @@ function Genre() {
         params: { page: currentPage, per_page: 5 }
       });
       const responseLength = await axios.get(`/GetAllGenres`);
-      setGenresData(response.data)
+
+      const newGenres = response.data.Genres.map((newGenre, index) => {
+        const defaultGenre = genresData.Genres[index] || {};
+        return {
+          ...defaultGenre,
+          ...newGenre
+        };
+      });
+
+      setGenresData({ Genres: newGenres });
       setTotalPages(responseLength.data.length)
     } catch (error) {
       console.error("Error:", error)

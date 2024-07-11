@@ -29,7 +29,16 @@ function Artists() {
                 params: { page: currentPage, per_page: 20 }
             });
             const responseLength = await axios.get(`/GetAllArtists`);
-            setArtistsData(response.data)
+
+            const newArtists = response.data.Artists.map((newArtist, index) => {
+                const defaultArtist = artistsData.Artists[index] || {};
+                return {
+                  ...defaultArtist,
+                  ...newArtist
+                };
+              });
+
+            setArtistsData({Artists : newArtists});
             setTotalPages(responseLength.data.length)
         } catch (error) {
             console.error("Error:", error);
@@ -64,6 +73,7 @@ function Artists() {
                                 image_url={artist.image_url}
                             > </ArtistsCard>
                         </div>
+                        
                     ))
                 }
             </div>

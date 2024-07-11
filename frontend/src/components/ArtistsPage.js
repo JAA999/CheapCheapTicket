@@ -25,8 +25,12 @@ function ArtistsPage() {
     useEffect(() => {
         const GetArtistInfo = async () => {
             try {
-                const artistResponse = await axios.post(`/GetArtist/${artistId}`);
-                setArtistData(artistResponse.data);
+                const response = await axios.post(`/GetArtist/${artistId}`);
+                const newArtistData = {
+                    ...response.data,
+                    ...artistData
+                };
+                setArtistData(newArtistData);
             } catch (error) {
                 console.error('Error ', error);
             }
