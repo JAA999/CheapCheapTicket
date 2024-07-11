@@ -50,7 +50,7 @@ function Genre() {
 
   return (
     <>
-
+    
       <h1 class="m-5">Genres</h1>
       <div class="row d-flex justify-content-center genre-card-container ">
         {
