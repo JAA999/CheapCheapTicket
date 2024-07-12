@@ -43,19 +43,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetArtist/:artist_id",
+					"raw": "{{local}}/GetArtist/:artist_id",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
 						"GetArtist",
 						":artist_id"
 					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "ar",
+							"value": null,
+							"disabled": true
+						}
+					],
 					"variable": [
 						{
 							"key": "artist_id",
-							"value": "2HPaUgqeutzr3jx5a9WyDV",
-							"description": "Unique id for artist"
+							"value": "2HPaUgqeutzr3jx5a9WyDV"
 						}
 					]
 				}
@@ -131,13 +142,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetArtists/?page=1&per_page=10&sort_by=string&sort_order=string",
+					"raw": "{{local}}/GetArtists?page=1&per_page=10&sort_by=string&sort_order=string",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"GetArtists",
-						""
+						"GetArtists"
 					],
 					"query": [
 						{
@@ -231,13 +241,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetAllArtists/",
+					"raw": "{{local}}/GetAllArtists",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"GetAllArtists",
-						""
+						"GetAllArtists"
 					],
 					"query": [
 						{
@@ -335,9 +344,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetEvent/:event_id",
+					"raw": "{{local}}/GetEvent/:event_id",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
 						"GetEvent",
@@ -414,13 +423,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetEvents/?page=1&per_page=5&sort_by=string&sort_order=string",
+					"raw": "{{local}}/GetEvents?page=1&per_page=5&sort_by=string&sort_order=string",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"GetEvents",
-						""
+						"GetEvents"
 					],
 					"query": [
 						{
@@ -520,13 +528,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetAllEvents/",
+					"raw": "{{local}}/GetAllEvents",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"GetAllEvents",
-						""
+						"GetAllEvents"
 					]
 				}
 			},
@@ -590,9 +597,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetGenre/:genre_id",
+					"raw": "{{local}}/GetGenre/:genre_id",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
 						"GetGenre",
@@ -678,13 +685,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{lmain_url}}/GetGenres/?page=1&per_page=10&sort_by=string&sort_order=string",
+					"raw": "{{local}}/GetGenres?page=1&per_page=10&sort_by=string&sort_order=string",
 					"host": [
-						"{{lmain_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"GetGenres",
-						""
+						"GetGenres"
 					],
 					"query": [
 						{
@@ -782,9 +788,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/GetAllGenres/",
+					"raw": "{{local}}/GetAllGenres/",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
 						"GetAllGenres",

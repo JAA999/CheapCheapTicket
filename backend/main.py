@@ -21,7 +21,7 @@ def about_page():
     return get_gitlab_stats()
 
 # Genres Page
-@app.route('/GetAllGenres/', methods=['GET'])
+@app.route('/GetAllGenres', methods=['GET'])
 def get_all_genres():
     genres = Genres.query.all()
     return jsonify([genre.to_dict() for genre in genres])
@@ -32,7 +32,7 @@ def genres_page(genre_id):
     if genre: return jsonify(genre.to_dict())
     return "Genre not found", 404
 
-@app.route('/GetGenres/', methods=['GET'])
+@app.route('/GetGenres', methods=['GET'])
 def specific_genres():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 5, type=int)
@@ -40,7 +40,7 @@ def specific_genres():
     return jsonify([genre.to_dict() for genre in genres])
 
 # Artists Page
-@app.route('/GetAllArtists/', methods=['GET'])
+@app.route('/GetAllArtists', methods=['GET'])
 def get_all_artists():
     if request.method == 'GET':
         artists = Artists.query.all()
@@ -53,7 +53,7 @@ def artists_page(artist_id):
         return jsonify(artist.to_dict())
     return "Artist not found", 404
 
-@app.route('/GetArtists/')
+@app.route('/GetArtists')
 def specific_artists():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 5, type=int)
@@ -61,7 +61,7 @@ def specific_artists():
     return jsonify([artist.to_dict() for artist in artists])
 
 # Events Page
-@app.route('/GetAllEvents/', methods=['GET'])
+@app.route('/GetAllEvents', methods=['GET'])
 def get_all_events():
     events = Events.query.all()
     if events:
@@ -75,7 +75,7 @@ def events_page(event_id):
         return jsonify(event.to_dict())
     return "Event not found", 404
 
-@app.route('/GetEvents/')
+@app.route('/GetEvents')
 def specific_events():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 5, type=int)

@@ -228,7 +228,7 @@ def get_artist_information(artist_id):
     
     populate_albums(artist_id, artist_instance)
 
-    venue_results = get_events_for_artist(response['name'])
+    venue_results = get_events_for_artist(response['name'], artist_id)
 
     return venue_results, artist_instance
 
@@ -248,7 +248,7 @@ def populate_albums(artist_id, artist_instance):
         artist_instance['album_covers'].append(album['images'][0]['url'])
 
 # Return a list of events for a particular artist
-def get_events_for_artist(artist_name):
+def get_events_for_artist(artist_name, artist_id):
     event_search_url = 'https://app.ticketmaster.com/discovery/v2/events.json'
 
     params = {
@@ -256,7 +256,8 @@ def get_events_for_artist(artist_name):
         'keyword': artist_name, 
         'size': 5, # Limit the number of events returned for artist
         'classificationName': 'music',
-        'locale': 'en-us', # Filter only in the USA
+        # 'locale': 'en-us', 
+        'countryCode': 'US' # Filter only in the USA
     }
 
     response = requests.get(event_search_url, params=params)
@@ -285,6 +286,7 @@ def get_events_for_artist(artist_name):
                 'eventId': event['id'],
                 'eventName': event['name'],
                 'artistNames': [artist_name,],
+                'artistIds': [artist_id,],
                 'dateAndTime': event_date, # [year, month, day]
                 'salesStart-End': salesDateRange,
                 'priceRange': price_range,

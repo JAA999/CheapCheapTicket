@@ -50,6 +50,7 @@ def create_events():
             event_id=event['eventId'],
             date_and_time=event['dateAndTime'],
             artist_names=event['artistNames'],
+            artist_ids = event['artistIds'],
             price_range=event['priceRange'],
             venue=event['venue'],
             ticketmaster_URL=event['ticketmasterURL'],

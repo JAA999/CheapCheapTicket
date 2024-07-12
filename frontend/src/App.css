@@ -40,6 +40,8 @@
 
 .artist-card-container{
   height: 48px;
+  display: flex;
+  justify-content: center;
 }
 
 .artist-card-title2 {
@@ -59,9 +61,16 @@
   color: var(--color);
 }
 .artist-card-text {
+  text-align: center;
   font-size: var(--sfont);
   font-weight: 600;
   color: black;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .artist-card-genre {

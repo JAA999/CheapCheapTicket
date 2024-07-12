@@ -21,17 +21,13 @@ function ArtistsPage() {
     })
     const [genreName, setGenreName] = useState("defaultGenreName")
     const [albumCoverPairs, setAlbumCoverPairs] = useState({});
+    const [eventIdPairs, setEventIdPairs] = useState({});
 
     useEffect(() => {
         const GetArtistInfo = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/GetArtist/${artistId}`);
-                const newArtistData = {
-                    ...artistData,
-                    ...response.data
-                    
-                };
-                setArtistData(newArtistData);
+                setArtistData(response.data);
             } catch (error) {
                 console.error('Error ', error);
             }
@@ -40,30 +36,23 @@ function ArtistsPage() {
     }, [artistId]);
 
     useEffect(() => {
-        if (artistData.genre_id) {
+        
             const GetGenreName = async () => {
                 try {
                     const genreResponse = await axios.get(`http://localhost:5000/GetGenre/${artistData.genre_id}`);
-                    setGenreName(genreResponse.data.name);
+                    setArtistData(genreResponse.data.name);
                 } catch (error) {
                     console.error('Error ', error);
                 }
             };
-            GetGenreName();
-        }
-    }, [artistData.genre_id]);
-
-    useEffect(() => {
+        
         if (artistData.albums && artistData.album_covers) {
             const albumCoverPairs = Object.fromEntries(
                 artistData.albums.map((key, index) => [key, artistData.album_covers[index]])
             );
             setAlbumCoverPairs(albumCoverPairs);
         }
-    }, [artistData.albums, artistData.album_covers]);
 
-    const [eventIdPairs, setEventIdPairs] = useState({});
-    useEffect(() => {
         const getEventNames = async () => {
             try {
                 const eventPromises = artistData["future_events"].map(async (eventId) => {
@@ -80,10 +69,15 @@ function ArtistsPage() {
                 console.error('Error:', error);
             }
         };
-        if (artistData["future_events"].length > 0) {
-            getEventNames();
-        }
-    }, [artistData, artistData.future_events]);
+
+        GetGenreName();
+        getEventNames();
+
+    }, [artistData]);
+
+
+    
+    
 
     return (
         <>

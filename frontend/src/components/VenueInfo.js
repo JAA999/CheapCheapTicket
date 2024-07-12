@@ -21,37 +21,33 @@ function VenueInfo() {
             "ticketmasterURL": "https://www.ticketmaster.cz/event/childish-gambino-tickets/50833?language=en-us"
         }
     )
+    const [genreName, setGenreName] = useState("defaultGenreName")
+
 
     useEffect(() => {
         const getEventData = async () => {
-
             try {
-                const response = await axios.get(`/GetEvent/${eventId}`);
-                const newEventData = {
-                    ...response.data,
-                    ...eventData
-                };
+                const response = await axios.get(`http://localhost:5000/GetEvent/${eventId}`);
+                setEventData(response.data)
                 setEventData(newEventData);
             } catch (error) {
                 console.error("Error: ", error)
             }
         }
         getEventData()
+    }, [ eventId]);
 
-    }, [eventData, eventId]);
-
-    const [genreName, setGenreName] = useState("defaultGenreName")
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.get(`/GetGenre/${eventData.genreId}`);
+                const response = await axios.get(`http://localhost:5000/GetGenre/${eventData.genreId}`);
                 setGenreName(response.data.name)
             } catch (error) {
                 console.error("Error:", error)
             }
         }
         getGenreName()
-    },[eventData.genreId]);
+    },[eventData]);
 
     return (
         <div>
