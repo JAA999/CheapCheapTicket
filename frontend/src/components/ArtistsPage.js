@@ -25,8 +25,13 @@ function ArtistsPage() {
     useEffect(() => {
         const GetArtistInfo = async () => {
             try {
-                const artistResponse = await axios.post(`/GetArtist/${artistId}`);
-                setArtistData(artistResponse.data);
+                const response = await axios.get(`http://localhost:5000/GetArtist/${artistId}`);
+                const newArtistData = {
+                    ...artistData,
+                    ...response.data
+                    
+                };
+                setArtistData(newArtistData);
             } catch (error) {
                 console.error('Error ', error);
             }
@@ -38,7 +43,7 @@ function ArtistsPage() {
         if (artistData.genre_id) {
             const GetGenreName = async () => {
                 try {
-                    const genreResponse = await axios.post(`/GetGenre/${artistData.genre_id}`);
+                    const genreResponse = await axios.get(`http://localhost:5000/GetGenre/${artistData.genre_id}`);
                     setGenreName(genreResponse.data.name);
                 } catch (error) {
                     console.error('Error ', error);
@@ -62,8 +67,8 @@ function ArtistsPage() {
         const getEventNames = async () => {
             try {
                 const eventPromises = artistData["future_events"].map(async (eventId) => {
-                    const response = await axios.post(`/GetEvent/${eventId}`);
-                    return { eventId, eventName: response.data.eventName };
+                    const response = await axios.get(`http://localhost:5000/GetEvent/${eventId}`);
+                    return { eventId, eventName: response.data.event_name };
                 });
                 const eventNames = await Promise.all(eventPromises);
 

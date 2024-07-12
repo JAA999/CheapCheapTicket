@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
@@ -27,14 +27,18 @@ function VenueInfo() {
 
             try {
                 const response = await axios.get(`/GetEvent/${eventId}`);
-                setEventData(response.data)
+                const newEventData = {
+                    ...response.data,
+                    ...eventData
+                };
+                setEventData(newEventData);
             } catch (error) {
                 console.error("Error: ", error)
             }
         }
         getEventData()
 
-    }, []);
+    }, [eventData, eventId]);
 
     const [genreName, setGenreName] = useState("defaultGenreName")
     useEffect(() => {
@@ -66,7 +70,7 @@ function VenueInfo() {
             <p className="card-text">{eventData.dateAndTime[0]}-{eventData.dateAndTime[1]}-{eventData.dateAndTime[2]}</p>
             <p className="card-text"><small className="text-body-secondary">{eventData.venue.address}</small></p>
             <p><strong>Genres: </strong> <p className="event-box"> {genreName}</p> </p>
-            <a href={eventData.ticketmasterURL} target="_blank" class = "btn btn-primary">Go to TicketMaster</a>
+            <a href={eventData.ticketmasterURL} rel="noreferrer" target="_blank" class = "btn btn-primary">Go to TicketMaster</a>
         </div>
     )
 }

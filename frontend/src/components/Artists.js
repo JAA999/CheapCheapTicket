@@ -1,6 +1,6 @@
 import React from 'react';
 import ArtistsCard from "./ArtistsCard";
-import { useState, useEffect } from 'react';
+import { useState, useEffect , useCallback} from 'react';
 import axios from 'axios'
 
 function Artists() {
@@ -20,25 +20,36 @@ function Artists() {
         ]
     });
 
-
-    const fetchData = async (page) => {
-        try {
-            const response = await axios.get(`/GetArtists?page=${page}&limit=10`);
-            setArtistsData(response.data);
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
-    fetchData();
-
-
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(3);
+    const [totalPages, setTotalPages] = useState(1);
 
+    const fetchData = useCallback(async (page) => {
+        try {
+          const response = await axios.get(`http://localhost:5000/GetArtists`, {
+            params: { page, per_page: 20 }
+          });
+    
+          const newArtists = response.data.map((newArtist, index) => {
+            const defaultArtist = artistsData.Artists[index] || {};
+            return {
+              ...defaultArtist,
+              ...newArtist,
+            };
+          });
+    
+          setArtistsData({ Artists: newArtists });
+    
+          const responseLength = await axios.get(`http://localhost:5000/GetAllArtists`);
+          setTotalPages(Math.ceil(responseLength.data.length / 20)); 
+    
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }, [artistsData.Artists]);
 
     useEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, []);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -47,34 +58,42 @@ function Artists() {
     return (
         <>
             <h1 class=" m-5">Artists</h1>
-
-            <div class="row g-5 m-5" >
-                {
-                    artistsData["Artists"].map((artist, index) => (
-                        <div class="col-xl-3 ">
-                            <ArtistsCard key={index}
-                                name={artist.name}
-                                id={artist.id}
-                                popularity={artist.popularity}
-                                genreId={artist.genre_id}
-                                albums={artist.albums}
-                                albumCovers={artist.album_covers}
-                                futureEvents={artist.future_events}
-                                image_url={artist.image_url}
-                            > </ArtistsCard>
-                        </div>
-                    ))
-                }
+        {
+          artistsData && artistsData.Artists && artistsData.Artists.length > 0 ? 
+          (
+            <div class="row g-5 m-5">
+              {artistsData.Artists.map((artist) => (
+                <div className="col-xl-3">
+                  <ArtistsCard
+                    name={artist.name}
+                    id={artist.id}
+                    popularity={artist.popularity}
+                    genreId={artist.genre_id}
+                    albums={artist.albums}
+                    albumCovers={artist.album_covers}
+                    futureEvents={artist.future_events}
+                    image_url={artist.image_url}
+                  />
+                </div>
+              ))}
             </div>
+          ) 
+          : 
+          (
+            <></>
+          )
+        }
+
+          
 
             <div class="d-flex justify-content-center align-items-center">
                 <div className="pagination  p-5">
                     <button class="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
                     {Array.from({ length: totalPages }, (_, index) => (
                         currentPage === index + 1 ?
-                            <button class=" page-item text-bg-dark" >{currentPage}</button>
+                            <button key={index} class=" page-item text-bg-dark" >{currentPage}</button>
                             :
-                            <button class="page-item text-bg-light" >{index + 1}</button>
+                            <></>
                     ))}
                     <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
                 </div>

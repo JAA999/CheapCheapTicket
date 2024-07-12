@@ -4,23 +4,29 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 
+//**Use effects and doing stuff too early - austin  */
+
 function GenreInstance() {
     const { genreId } = useParams()
 
     const [genreData, setGenreData] = useState({
-        "genreId": "1",
         "name": "GenreName",
-        "popularArtists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
-        "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
-        "topSongs": ["Song 1", "Song 2", "Song 3"],
-        "eventsPriceRange": [0, 0]
+        "popular_artists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
+        "upcoming_events": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
+        "top_songs": ["Song 1", "Song 2", "Song 3"],
+        "events_price_range": [0, 0]
     });
     
     useEffect(() => {
         const getGenreData = async () => {
             try {
-                const response = await axios.get(`/GetGenre/${genreId}`);
-                setGenreData(response.data);
+                const response = await axios.get(`http://localhost:5000/GetGenre/${genreId}`);
+                const newGenreData = {
+                    ...response.data,
+                    ...genreData
+                };
+                setGenreData(response.data)
+                fetchArtistsNames()
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -30,13 +36,13 @@ function GenreInstance() {
     
 
     const [eventIdPairs, setEventIdPairs] = useState({});
-    useEffect(() => {
+    // useEffect(() => {
         const getEventNames = async () => {
-            if (genreData && genreData.upcomingEvents) {
+            if (genreData && genreData.upcoming_events) {
                 try {
-                    const eventPromises = genreData.upcomingEvents.map(async (eventId) => {
-                        const response = await axios.post(`/GetEvent/${eventId}`);
-                        return { eventId, eventName: response.data.eventName };
+                    const eventPromises = genreData.upcoming_events.map(async (eventId) => {
+                        const response = await axios.get(`http://localhost:5000/GetEvent/${eventId}`);
+                        return { eventId, eventName: response.data.event_name };
                     });
                     const eventNames = await Promise.all(eventPromises);
     
@@ -49,18 +55,20 @@ function GenreInstance() {
                 }
             }
         };
-        if (genreData && genreData.upcomingEvents.length > 0) {
+        if (genreData && genreData.upcoming_events.length > 0) {
             getEventNames();
         }
-    }, [genreData]);
+    // }, [genreData.upcoming_events]);
 
     const [artistsIdPairs, setArtistsIdPairs] = useState({});
-    useEffect(() => {
+    // useEffect(() => {
         const fetchArtistsNames = async () => {
             try {
-                const artistIds = genreData.popularArtistsId;
+                const artistIds = genreData.popular_artists;
+                console.log(artistIds + "CHECKING IDS")
                 const namePromises = artistIds.map(async (artistId) => {
-                    const response = await axios.post(`/GetArtist/${artistId}`);
+            
+                    const response = await axios.get(`http://localhost:5000/GetArtist/${artistId}`);
                     return { artistId, name: response.data.name };
                 });
                 const artistsNames = await Promise.all(namePromises);
@@ -72,8 +80,8 @@ function GenreInstance() {
                 console.error('Error ', error);
             }
         }
-        fetchArtistsNames();
-    }, [genreData.popularArtistsId]);
+        // fetchArtistsNames();
+    // }, [genreData, genreData.popular_artists]);
 
     return (
         <>
@@ -85,7 +93,7 @@ function GenreInstance() {
                 <div class="genre-page-con d-flex flex-column mb-5">
                     <h1 class="genre-page-subtitle">Top songs </h1>
                     {
-                        genreData.topSongs.map((song, index) => (
+                        genreData.top_songs.map((song, index) => (
                             index < 3 ?
                                 <h1 key={index} class="genre-page-text">{song}</h1>
                                 :
@@ -104,7 +112,7 @@ function GenreInstance() {
                 </div>
                 <div class="genre-page-con genre-page-venue d-flex flex-column mb-5 p-2 pb-3 rounded-4">
                     <h1 class="genre-page-subtitle mt-2">Venues </h1>
-                    <h1 class="genre-page-price mb-4 ">${genreData.eventsPriceRange[0]} - ${genreData.eventsPriceRange[1]}</h1>
+                    <h1 class="genre-page-price mb-4 ">${genreData.events_price_range[0]} - ${genreData.events_price_range[1]}</h1>
                     {
                         Object.entries(eventIdPairs).map(([key, value], index) => (
                             <h1 key={index} class="genre-page-text mb-2"><Link class=" genre-page-link" to={`/venue/${key}`}>{value}</Link></h1>

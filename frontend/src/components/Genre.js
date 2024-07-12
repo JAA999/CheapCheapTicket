@@ -6,46 +6,54 @@ import axios from 'axios'
 
 function Genre() {
 
-  const [genresData, setGenresData] = useState({
-    "Genres": [
+  const [genresData, setGenresData] = useState(
+    [
       {
         "genreId": "KnvZfZ7vAvv",
         "name": "GenreName",
-        "popularArtists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
-        "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
-        "topSongs": ["Song 1", "Song 2", "Song 3"],
-        "eventsPriceRange": [0, 0]
-      },
-      {
-        "genreId": "KnvZfZ7vAvd",
-        "name": "GenreName 2",
-        "popularArtists": ["Artists 1 ID", "Artists 2 ID", "Artists 3 ID"],
-        "upcomingEvents": ["Event 1 ID", "Event 2 ID", "Event 3", "Event 4 ID"],
-        "topSongs": ["Song 1", "Song 2", "Song 3"],
-        "eventsPriceRange": [0, 0]
+        "popular_artists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
+        "upcoming_events": ["Event ID"],
+        "top_songs": ["Song 1", "Song 2", "Song 3"],
+        "events_price_range": [0, 0]
       }
     ]
-  });
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (page) => {
+  const fetchData = async (currentPage) => {
     try {
-      const response = await axios.get(`/GetAllEvents?page=${page}&limit=25`);
-      setGenresData(response.data)
+      const response = await axios.get(`http://localhost:5000/GetGenres`, {
+        params: { page: currentPage, per_page: 5 }
+      });
+      console.log(response.data)
+      
+      const responseLength = await axios.get(`http://localhost:5000/GetAllGenres`);
+
+      const newGenres = response.data.map((newGenre, index) => {
+        // console.log(genresData[index] + "THIS IS THE GENRES DATA");
+        const defaultGenre = genresData[index] || {};
+        return {
+          ...defaultGenre,
+          ...newGenre
+        };
+      });
+      console.log(newGenres +" Data to be passed to state")
+
+      setGenresData( newGenres );
+      setTotalPages(responseLength.data.length /3 )
     } catch (error) {
       console.error("Error:", error)
     }
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(11);
-
-
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage]);
+  }, []);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+    fetchData(currentPage)
   };
 
   return (
@@ -54,14 +62,14 @@ function Genre() {
       <h1 class="m-5">Genres</h1>
       <div class="row d-flex justify-content-center genre-card-container ">
         {
-          genresData["Genres"].map((genre, index) => (
+          genresData.map((genre, index) => (
             <GenreCard key={index}
-              genreId={genre.genreId}
+              genreId={genre.id}
               name={genre.name}
-              popularArtists={genre.popularArtists}
-              upcomingEvents={genre.upcomingEvents}
-              topSongs={genre.topSongs}
-              eventsPriceRange={genre.eventsPriceRange}
+              popularArtists={genre.popular_artists}
+              upcomingEvents={genre.upcoming_events}
+              topSongs={genre.top_songs}
+              eventsPriceRange={genre.events_price_range}
             />
           ))
         }
@@ -74,7 +82,7 @@ function Genre() {
             currentPage === index + 1 ?
               <button class=" page-item text-bg-dark" >{currentPage}</button>
               :
-              <button class="page-item text-bg-light" >{index + 1}</button>
+              <></>
           ))}
           <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         </div>

@@ -7,10 +7,11 @@ import axios from 'axios'
 function ArtistsCard(props) {
 
     const [genreName, setGenreName] = useState("defaultGenreName");
+
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.post(`/GetGenre/${props.genreId}`);
+                const response = await axios.get(`http://localhost:5000/GetGenre/${props.genreId}`);
                 setGenreName(response.data.name);
             } catch (error) {
                 console.error('Error:', error);
@@ -20,6 +21,7 @@ function ArtistsCard(props) {
     }, [props.genreId])
 
     const [eventIdPairs, setEventIdPairs] = useState({});
+
     useEffect(() => {
         const fetchEventNames = async () => {
             const eventNames = ["defaultEventName 1", "defaultEventName 2", "defaultEventName 3"];
@@ -31,8 +33,8 @@ function ArtistsCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetEvent/${limitedFutureEvents[i]}`);
-                        eventNames[i] = response.data.eventName;
+                        const response = await axios.get(`http://localhost:5000/GetEvent/${limitedFutureEvents[i]}`);
+                        eventNames[i] = response.data.event_name;
                     } catch (error) {
                         console.error('Error:', error);
                     }
@@ -77,18 +79,17 @@ function ArtistsCard(props) {
             </div>
 
             <div class="card-body text-start d-flex flex-column">
-                <h1 class="artist-card-subtitle">Venues</h1>
+                <h1 class="artist-card-subtitle">Events</h1>
                 {
                     Object.entries(eventIdPairs).map(([key, value], index) => (
                         key !== "" ?
                             props.futureEvents[0]?.length < 21 ?
-                                <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${value}`}>{key}</Link></span>
+                                <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${key}`}>{value}</Link></span>
                                 :
-                                <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${value}`}>{key.substring(0, 21) + "..."}</Link></span>
+                                <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${key}`}>{value.substring(0, 21) + "..."}</Link></span>
                             :
                             <span key={index}><Link className="artist-card-link artist-card-text">&nbsp;</Link></span>
                     ))
-                    
                 }
             </div>
 

@@ -11,7 +11,7 @@ function GenreCard(props) {
     useEffect(() => {
         const fetchEventNames = async () => {
             const eventNames = ["defaultEventName 1", "defaultEventName 2", "defaultEventName 3"];
-            const limitedFutureEvents = props.upcomingEvents.slice(0, 3);
+            const limitedFutureEvents = [...props.upcomingEvents.slice(0, 3)];
 
             while (limitedFutureEvents.length < 3) {
                 limitedFutureEvents.push("");
@@ -20,8 +20,8 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetEvent/${limitedFutureEvents[i]}`);
-                        eventNames[i] = response.data.eventName;
+                        const response = await axios.get(`http://localhost:5000/GetEvent/${limitedFutureEvents[i]}`);
+                        eventNames[i] = response.data.event_name;
                     } catch (error) {
                         console.error('Error:', error);
                     }
@@ -39,7 +39,7 @@ function GenreCard(props) {
     useEffect(() => {
         const fetchArtistNames = async () => {
             const artistsNames = ["art 1", "art 2", "art 3"];
-            const topArtistsIds = props.popularArtists.slice(0, 3);
+            const topArtistsIds = [...props.popularArtists.slice(0, 3)];
 
             while (topArtistsIds.length < 3) {
                 topArtistsIds.push("");
@@ -48,7 +48,7 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (topArtistsIds[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetArtist/${topArtistsIds[i]}`);
+                        const response = await axios.get(`http://localhost:5000/GetArtist/${topArtistsIds[i]}`);
                         artistsNames[i] = response.data.name;
                     } catch (error) {
                         console.error('Error:', error);
@@ -89,7 +89,7 @@ function GenreCard(props) {
                 </div>
 
                 <div class="col-lg-4 d-flex flex-column">
-                    <h1 class="genre-card-subtitle">Venues</h1>
+                    <h1 class="genre-card-subtitle">Events</h1>
                     {
                         Object.entries(eventIdPairs).map(([key, value], index) => (
                             index < 3 ?
