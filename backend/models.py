@@ -9,9 +9,9 @@ app.app_context().push()
 
 USER ="postgres"
 PASSWORD ="asd123"
-PUBLIC_IP_ADDRESS ="localhost:5432"
+# PUBLIC_IP_ADDRESS = "localhost:5432"
 # Update the PUBLIC_IP_ADDRESS to your Cloud SQL instance's connection name
-# PUBLIC_IP_ADDRESS = "<project-id>:<region>:<instance-id>"
+PUBLIC_IP_ADDRESS = "cs373-idb-428121:us-central1:ticketsdb"
 DBNAME ="ticketsdb"
 
 # Configuration 
@@ -81,6 +81,7 @@ class Events(db.Model):
     # description = db.Column(db.String(250))
 
     artist_names = db.Column(ARRAY(db.String)) 
+    artist_ids = db.Column(ARRAY(db.String))
     date_and_time = db.Column(ARRAY(db.Integer))
     sales_start_end = db.Column(db.String) 
     price_range = db.Column(ARRAY(db.Integer))
@@ -96,6 +97,7 @@ class Events(db.Model):
         instance = {
             'artist_names': self.artist_names,
             'date_and_time': self.date_and_time,
+            'artistIds': self.artist_ids,
             'id': self.event_id, 
             'event_name': self.event_name,
             'dateAndTime': self.date_and_time,
