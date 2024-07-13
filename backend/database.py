@@ -41,7 +41,6 @@ def create_artists():
         db.session.add(i)
     db.session.commit()
 
-
 def create_events():
     events = load_json_file('events.json')
 
