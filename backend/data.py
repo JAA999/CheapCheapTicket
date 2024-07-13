@@ -52,7 +52,7 @@ def populate_models():
     for genre_instance in genre_instances:
         genre_name = genre_instance['name']
 
-        create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
+        create_instances_from_playlist(genre_instance, genres_playlist[genre_name])
 
     create_json_files()
 
@@ -108,7 +108,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_playlist_test):
+                if (genre['name'] in genres_playlist):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -117,7 +117,7 @@ def populate_genres():
                         'topSongs': [],
                         'eventsPriceRange': []
                     }
-                    genre_instances += [genre_instance]
+                    genre_instances.append(genre_instance)
 
 # Given a playlist name, it populates a genre with artists and songs from the playlist
 def create_instances_from_playlist(genre_instance, playlist_name):
@@ -155,33 +155,34 @@ def create_instances_from_playlist(genre_instance, playlist_name):
         if (num_artists >= MAX_ARTISTS):
                 break
         track = item['track']
-        genre_instance['topSongs'] += [track['album']['name']]
+        if track and 'album' in track and 'name' in track['album']:
+            genre_instance['topSongs'].append(track['album']['name'])
 
-        artist_name = track['artists'][0]['name']
-        artist_id = track['artists'][0]['id']
+            artist_name = track['artists'][0]['name']
+            artist_id = track['artists'][0]['id']
 
-        if (artist_name not in artist_names):
-            num_artists += 1
-            genre_instance['popularArtists'].append(artist_id)
+            if (artist_name not in artist_names):
+                num_artists += 1
+                genre_instance['popularArtists'].append(artist_id)
 
-            artist_names.add(artist_name)
-            event_results, artist_instance = get_artist_information(artist_id)
+                artist_names.add(artist_name)
+                event_results, artist_instance = get_artist_information(artist_id)
 
-            artist_instance['genreId'] = genre_instance['genreId']
-            artist_instances.append(artist_instance)
+                artist_instance['genreId'] = genre_instance['genreId']
+                artist_instances.append(artist_instance)
 
-            for event in event_results:
-                if (event['priceRange']):
-                    if (event['priceRange'][0] < min_price):
-                        min_price = event['priceRange'][0]
-                    if (event['priceRange'][1] > max_price):
-                        max_price = event['priceRange'][1]
-                event['genreId'] = genre_instance['genreId']
-                if (event['eventId'] not in event_ids):
-                    event_instances.append(event)
-                    event_ids.add(event['eventId'])
-                artist_instance['futureEvents'].append(event['eventId'])
-                genre_instance['upcomingEvents'].append(event['eventId'])
+                for event in event_results:
+                    if (event['priceRange']):
+                        if (event['priceRange'][0] < min_price):
+                            min_price = event['priceRange'][0]
+                        if (event['priceRange'][1] > max_price):
+                            max_price = event['priceRange'][1]
+                    event['genreId'] = genre_instance['genreId']
+                    if (event['eventId'] not in event_ids):
+                        event_instances.append(event)
+                        event_ids.add(event['eventId'])
+                    artist_instance['futureEvents'].append(event['eventId'])
+                    genre_instance['upcomingEvents'].append(event['eventId'])
 
     genre_instance['eventsPriceRange'].append(min_price)
     genre_instance['eventsPriceRange'].append(max_price)

@@ -25,7 +25,7 @@ function Artists() {
 
     const fetchData = useCallback(async (page) => {
         try {
-          const response = await axios.get(`http://localhost:5000/GetArtists`, {
+          const response = await axios.get(`https://www.cheapcheapticket.xyz/GetArtists`, {
             params: { page, per_page: 20 }
           });
     
@@ -36,11 +36,13 @@ function Artists() {
               ...newArtist,
             };
           });
-    
           setArtistsData({ Artists: newArtists });
     
-          const responseLength = await axios.get(`http://localhost:5000/GetAllArtists`);
-          setTotalPages(Math.ceil(responseLength.data.length / 20)); 
+          const responseLength = await axios.get(`https://www.cheapcheapticket.xyz/GetAllArtists`);
+          const totalArtists = responseLength.data.length;
+          console.log(responseLength.data.length + " Total artists listed " + totalArtists)
+          console.log(responseLength.data.length + " Total artists listed " + totalArtists)
+          setTotalPages(Math.ceil(totalArtists / 20));
     
         } catch (error) {
           console.error("Error:", error);
@@ -53,11 +55,12 @@ function Artists() {
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
+        fetchData(newPage)
     };
 
     return (
         <>
-            <h1 class=" m-5">Artists</h1>
+            <h1 class=" m-5 page-title">Artists</h1>
         {
           artistsData && artistsData.Artists && artistsData.Artists.length > 0 ? 
           (

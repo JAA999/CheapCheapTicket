@@ -20,7 +20,7 @@ function About() {
       try {
         const response = await axios.get('about');
         setGithubStats(response.data);
-        calculateSums();
+        console.log(response.data + " GIT lab data")
       } catch (error) {
         console.error("Error:", error);
       }
@@ -28,34 +28,40 @@ function About() {
     fetchData();
   }, []); 
 
-  const calculateSums = async () => {
-    const values = Object.values(githubStats);
-    const sumFirstIndex = values.reduce((sum, current) => sum + current[0], 0);
-    const sumSecondIndex = values.reduce((sum, current) => sum + current[1], 0);
-    setTotalStats([sumFirstIndex, sumSecondIndex]);
+  useEffect(() => {
+    calculateSums();
+  }, [githubStats]);
+
+  const calculateSums = () => {
+    const totals = Object.values(githubStats).reduce((acc, curr) => {
+      acc[0] += curr[0];
+      acc[1] += curr[1];
+      return acc;
+    }, [0, 0]);
+
+    setTotalStats(totals);
   };
 
   return (
     <>
-      <h1 class="text-align mt-5">About Us</h1>
-      {/* <button onClick = {numCommits} >CLICK ME</button> */}
+      <h1 class="text-align mt-5 page-title">About Us</h1>
       <div class="row g-5 m-2">
         {
           Object.entries(githubStats).map(([name, stats], index) => {
-            if (name.substring(0, 2) === "au") {
-              return (<AboutCard name="Austin Nguyen" role="Frontend" image="aboutPageAustin.jpg" bio="Junior Computer Science student at Univeristy of Texas at Austin. In my free time, I like to workout and swim." commits={stats[0]} issues={stats[1]} tests="1" />)
+            if (name.substring(0, 2) === "Au") {
+              return (<AboutCard name="Austin Nguyen" role="Frontend" image="aboutPageAustin.jpg" bio="Junior Computer Science student at Univeristy of Texas at Austin. In my free time, I like to workout and swim." commits={stats[0]} issues={stats[1]} tests="3" />)
 
             } else if (name.substring(0, 2) === "hu") {
-              return (<AboutCard name="Hudson Whipple" role="Frontend and Database" image="aboutPageHudson.jpg" bio="I’m a junior in CS at UT Austin that is fascinated by the innovation of Machine Learning, Data Science, and Software Engineering." commits={stats[0]} issues={stats[1]} tests="1" />)
+              return (<AboutCard name="Hudson Whipple" role="Frontend and Database" image="aboutPageHudson.jpg" bio="I’m a junior in CS at UT Austin that is fascinated by the innovation of Machine Learning, Data Science, and Software Engineering." commits={stats[0]} issues={stats[1]} tests="3" />)
 
-            } else if (name.substring(0, 2) === "ch") {
-              return (<AboutCard name="Christopher Huelitl" role="Backend" image="aboutPageChris.jpg" bio="I am a sophomore CS major at UT Austin. I like to workout, play chess, and volunteer in my free time." commits={stats[0]} issues={stats[1]} tests="1" />)
+            } else if (name.substring(0, 2) === "Ch") {
+              return (<AboutCard name="Christopher Huelitl" role="Fullstack" image="aboutPageChris.jpg" bio="I am a sophomore CS major at UT Austin. I like to workout, play chess, and volunteer in my free time." commits={stats[0]} issues={stats[1]} tests="3" />)
 
-            } else if (name.substring(name.length - 1) === "a") {
-              return (<AboutCard name="Joseph Arteaga" role="APIs and Flask" image="aboutPageJosephArteaga.jpg" bio="Third year CS major at UT Austin with interest in cybersecurity and artificial intelligence." commits={stats[0]} issues={stats[1]} tests="1" />)
+            } else if (name.substring(0, 8) === "JosephAr") {
+              return (<AboutCard name="Joseph Arteaga" role="APIs and Flask" image="aboutPageJosephArteaga.jpg" bio="Third year CS major at UT Austin with interest in cybersecurity and artificial intelligence." commits={stats[0]} issues={stats[1]} tests="3" />)
 
-            } else if (name.substring(name.length - 1) === "e") {
-              return (<AboutCard name="Joseph Lee" image="aboutPageJosephLee.jpg" role="Backend" bio=" I am junior CS major at UT Austin. In my free time I enjoy swimming laps and watching movies." commits={stats[0]} issues={stats[1]} tests="1" />)
+            } else if (name.substring(0, 8) === "JosephLe") {
+              return (<AboutCard name="Joseph Lee" image="aboutPageJosephLee.jpg" role="Backend" bio=" I am junior CS major at UT Austin. In my free time I enjoy swimming laps and watching movies." commits={stats[0]} issues={stats[1]} tests="3" />)
             }
             return(<></>)
 
@@ -71,7 +77,7 @@ function About() {
               <p><b>Stats: </b></p>
               <span>Total commits: {totalStats[0]}</span>
               <span>Total issues closed: {totalStats[1]}</span>
-              <span>Total unit tests: 5</span>
+              <span>Total unit tests: 15</span>
               <span>Postman API: <a href="https://swe2024.postman.co/workspace/SWE2024~3231d72a-7b9f-433a-8568-37710e0405b5/collection/36526083-b00b3adc-0cb6-44cb-ad61-01962ea8ec6b?action=share&creator=36526083" target="_blank" rel="noreferrer">https://swe2024.postman.co/workspace/SWE2024~3231d72a-7b9f-433a-8568-37710e0405b5/collection/36526083-b00b3adc-0cb6-44cb-ad61-01962ea8ec6b?action=share&creator=36526083</a></span>
               <span>Issue Tracker: <a href="https://gitlab.com/chrisproj1/cs373-idb/-/issues" target="_blank" rel="noreferrer">https://gitlab.com/chrisproj1/cs373-idb/-/issues</a> </span>
               <span>Git Repo: <a href="https://gitlab.com/chrisproj1/cs373-idb" target="_blank" rel="noreferrer">https://gitlab.com/chrisproj1/cs373-idb</a></span>

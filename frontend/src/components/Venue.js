@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import VenueCard from './VenueCard';
-import { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 function Venue() {
 
@@ -24,13 +23,13 @@ function Venue() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (currentPage) => {
+  const fetchData = async (page) => {
     try {
-      const response = await axios.get(`http://localhost:5000/GetEvents`, {
-        params: { page: currentPage, per_page: 30 }
+      const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvents`, {
+        params: { page, per_page: 30 }
       });
       
-      const responseLength = await axios.get(`http://localhost:5000/GetAllEvents`);
+      const responseLength = await axios.get(`https://www.cheapcheapticket.xyz/GetAllEvents`);
 
       const newEvents = response.data.map((newEvent, index) => {
         const defaultEvent = eventData.events[index] || {
@@ -59,31 +58,32 @@ function Venue() {
           }
         };
       });
-      setTotalPages(responseLength)
       setEventData({ events: newEvents });
+      const totalEvents = responseLength.data.length;
+      setTotalPages(Math.ceil(totalEvents / 30));
+      
     } catch (error) {
       console.error("Error:", error);
     }
   }
-  fetchData()
 
   useEffect(() => {
     fetchData(currentPage);
-  }, []);
+  }, [currentPage]); 
 
   const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
   };
-
 
   return (
     <div>
-
       <div>
-        <h2>Events</h2>
-        <p>Events all across the US! </p>
+        <h2 class="page-title">Events</h2>
+        <p class="page-title">Events all across the US! </p>
       </div>
-      <div class="row g-4 m-5">
+      <div className="row g-4 m-5">
         {
           eventData.events.map((event, index) => (
             <div className="col-lg-4" key={index}>
@@ -92,7 +92,7 @@ function Venue() {
                 eventName={event.event_name}
                 artistNames={event.artist_names}
                 dateAndTime={event.dateAndTime}
-                salesStartEnd={event['salesStart-End']}
+                salesStartEnd={event.sales_start_end}
                 priceRange={event.price_range}
                 genreId={event.genre_id}
                 venue={event.venue}
@@ -103,60 +103,20 @@ function Venue() {
         }
       </div>
 
-      <div class="d-flex justify-content-center align-items-center">
-        <div className="pagination  p-5">
-          <button class="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="pagination p-5">
+          <button className="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
           {Array.from({ length: totalPages }, (_, index) => (
             currentPage === index + 1 ?
               <button class=" page-item text-bg-dark" >{currentPage}</button>
               :
               <></>
           ))}
-          <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+          <button className="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         </div>
       </div>
-
     </div>
-
   );
 }
 
 export default Venue;
-
-
-// <div className="card mb-3" style={{ maxWidth: '540px' }}>
-// <div className="row g-0">
-//   <div className="col-md-4">
-//     <img src="https://www.lakemurraycountry.com/wp-content/uploads/2021/03/download23.jpg" className="img-fluid rounded-start" alt="..." style={{ 
-//         width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' 
-//       }}/>
-//   </div>
-//   <div className="col-md-8">
-//     <div className="card-body">
-//       <a href="/venueinfotwo"><h5 className="card-title">The 2nd Annual Capital City Blues Festival</h5></a> <p>Ticket Price: <strong>$55.0 to $175.0</strong></p>
-//       <p className="card-text">2024-10-19</p>
-//       <Link to={`/artists/artistspage/staticinstance6`} className="btn btn-primary" >Capital Ciites</Link>
-//       <p className="card-text"><small className="text-body-secondary">Township Auditorium 1703 Taylor Street, Columbia, South Carolina</small></p>
-//       <p><strong>Genres: </strong>  <Link to={'/genre/genrestaticinstance3'}>Pop</Link>  </p>
-//     </div>
-//   </div>
-// </div>
-// </div>
-// <div className="card mb-3" style={{ maxWidth: '540px' }}>
-// <div className="row g-0">
-//   <div className="col-md-4">
-//     <img src="https://footballgroundguide.com/wp-content/uploads/2021/03/DC-Uniteds-Audi-Field.jpg" className="img-fluid rounded-start" alt="..." style={{ 
-//         width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' 
-//       }}/>
-//   </div>
-//   <div className="col-md-8">
-//     <div className="card-body">
-//       <a href="/venueinfothree">Broccoli City Festival 2-day Ticket (7/27-7/28)<h5 className="card-title"></h5></a> <p>Ticket Price: <strong>$169.5 to $1069.5</strong></p>
-//       <p className="card-text">2024-07-27</p>
-//       <Link to={`/artists/artistspage/staticinstance5`} className="btn btn-primary" >Gunna</Link>
-//       <p className="card-text"><small className="text-body-secondary">Audi Field 100 Potomac Ave. SW, Washington, District of Columbia</small></p>
-//       <p><strong>Genres: </strong>  <Link to={'/genre/genrestaticinstance2'}>Hip-Hop/Rap</Link> </p>
-//     </div>
-//   </div>
-// </div>
-// </div> 

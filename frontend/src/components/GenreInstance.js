@@ -21,7 +21,7 @@ function GenreInstance() {
     useEffect(() => {
         const getGenreData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/GetGenre/${genreId}`);
+                const response = await axios.get(`https://www.cheapcheapticket.xyz/GetGenre/${genreId}`);
                 setGenreData(response.data);
             } catch (error) {
                 console.error('Error:', error);
@@ -35,7 +35,7 @@ function GenreInstance() {
             if (genreData.upcoming_events) {
                 try {
                     const eventPromises = genreData.upcoming_events.map(async (eventId) => {
-                        const response = await axios.get(`http://localhost:5000/GetEvent/${eventId}`);
+                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvent/${eventId}`);
                         return { eventId, eventName: response.data.event_name };
                     });
                     const eventNames = await Promise.all(eventPromises);
@@ -53,7 +53,7 @@ function GenreInstance() {
             if (genreData.popular_artists) {
                 try {
                     const namePromises = genreData.popular_artists.map(async (artistId) => {
-                        const response = await axios.get(`http://localhost:5000/GetArtist/${artistId}`);
+                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetArtist/${artistId}`);
                         return { artistId, name: response.data.name };
                     });
                     const artistsNames = await Promise.all(namePromises);

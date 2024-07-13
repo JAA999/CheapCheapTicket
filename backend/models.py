@@ -9,9 +9,9 @@ app.app_context().push()
 
 USER ="postgres"
 PASSWORD ="asd123"
-PUBLIC_IP_ADDRESS = "localhost:5432"
+# PUBLIC_IP_ADDRESS = "localhost:5432"
 # Update the PUBLIC_IP_ADDRESS to your Cloud SQL instance's connection name
-# PUBLIC_IP_ADDRESS = "cs373-idb-428121:us-central1:ticketsdb"
+PUBLIC_IP_ADDRESS = "cs373-idb-428121:us-central1:ticketsdb"
 DBNAME ="ticketsdb"
 
 # Configuration 

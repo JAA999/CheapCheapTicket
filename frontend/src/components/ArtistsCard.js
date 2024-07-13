@@ -11,7 +11,7 @@ function ArtistsCard(props) {
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/GetGenre/${props.genreId}`);
+                const response = await axios.get(`https://www.cheapcheapticket.xyz/GetGenre/${props.genreId}`);
                 setGenreName(response.data.name);
             } catch (error) {
                 console.error('Error:', error);
@@ -33,7 +33,7 @@ function ArtistsCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.get(`http://localhost:5000/GetEvent/${limitedFutureEvents[i]}`);
+                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvent/${limitedFutureEvents[i]}`);
                         eventNames[i] = response.data.event_name;
                     } catch (error) {
                         console.error('Error:', error);
@@ -60,12 +60,12 @@ function ArtistsCard(props) {
                 <div class="artist-card-container mb-4">
                     {
                         props.name.length < 8 ?
-                            <Link class=" artist-card-link artist-card-title" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
+                            <Link class="artist-card-title" className="artist-card-headers artist-card-link" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
                             :
                             props.name.length < 12 ?
-                                <Link class=" artist-card-link artist-card-title2" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
+                                <Link class="artist-card-title2" className="artist-card-headers artist-card-link" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
                                 :
-                                <Link class=" artist-card-link artist-card-title3" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
+                                <Link class="artist-card-title3" className="artist-card-headers artist-card-link" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
                     }
                 </div>
                 <span><h1 class="artist-card-text"><Link class="artist-card-link artist-card-genre" to={`/genre/${props.genreId}`}>Genre: {genreName}</Link></h1></span>
@@ -82,7 +82,7 @@ function ArtistsCard(props) {
             </div>
 
             <div class="card-body text-start d-flex flex-column">
-                <h1 class="artist-card-subtitle">Events</h1>
+                <h1 class="artist-card-subtitle" className="artist-card-headers">Events</h1>
                 {
                     Object.entries(eventIdPairs).map(([key, value], index) => (
                         key !== "" ?
