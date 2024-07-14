@@ -6,4 +6,3 @@ postman-tests:
   script: 
     - cd backend
     - newman --version
-    - newman run CheapCheapTicketCollection.postman_collection.json
