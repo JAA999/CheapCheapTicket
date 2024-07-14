@@ -23,7 +23,7 @@ MAX_ARTISTS = 15
 artist_names = set()
 event_ids = set()
 
-artist_instances = []
+artist_instances = {}
 additional_artists = []
 
 event_instances = []
@@ -37,12 +37,12 @@ def main():
     populate_genres()
     populate_from_playlists()
 
-    for artist in artist_instances:
-        populate_from_artist(artist)
+    for artist_id in artist_instances:
+        populate_from_artist(artist_instances[artist_id])
 
     for artist in additional_artists:
         populate_from_artist(artist)
-        artist_instances.append(artist)
+        artist_instances[artist['id']] = artist
     
     create_json_files()
 
@@ -74,13 +74,13 @@ def populate_genres():
 # Creates JSON files for each model
 def create_json_files():
     with open ('artists.json', 'w') as fp:
-        json.dump({'Artists': artist_instances}, fp, indent=4)
+        json.dump({'Artists': [artist_instances[artist_id] for artist_id in artist_instances]}, fp, indent=4)
 
     with open ('events.json', 'w') as fp:
         json.dump({'Events': event_instances}, fp, indent=4)
     
     with open ('genres.json', 'w') as fp:
-        json.dump({'Genres': genre_instances}, fp, indent=4)
+        json.dump({'Genres': [genre_instances[genre_id] for genre_id in genre_instances]}, fp, indent=4)
 
 # Create access point to the Spotify API and return given access token
 def get_spotify_access_token():
@@ -139,7 +139,7 @@ def populate_from_playlists():
 
                         artist_instance = get_artist_information(artist_id)
                         if artist_instance != None:
-                            artist_instances.append(artist_instance)
+                            artist_instances[artist_instance['id']] = artist_instance
 
 # Given a playlist name, find its id and return its information
 def get_playlist_information(playlist_name):
@@ -293,20 +293,36 @@ def get_events_for_artist(artist_id, artist_name):
                     for artist in event['_embedded']['attractions']:
                         if 'name' in artist:
                             artist_name = artist['name']
-                            if artist_name not in artist_names:
-                                artist_names.add(artist_name)
-                                artist_id = get_artist_id(artist_name)
+                            artist_id = get_artist_id(artist_name)
 
-                                artists.append(artist_name)
+                            # Artist already exists, add event to their future events
+                            if artist_id in artist_instances:
+                                artist_instances[artist_id]['futureEvents'].append(event['id'])
+
+                                artists.append(artist_instances[artist_id]['name'])
                                 artists_ids.append(artist_id)
+                            # Artist does not exist and has not been checked for valid genre
+                            elif artist_name not in artist_names:
+                                # Add artist name to list of checked artist names
+                                artist_names.add(artist_name)
 
-                                # For each artist in this event that does not exist, create an instance for it and add the event to their futureEvents
-                                create_supplemental_artist(artist_id, event['id'])
+                                new_artist_instance = get_artist_information(artist_id)
+
+                                # Want to validate artist has valid genre before adding them to list of artist names and ids for event
+                                if new_artist_instance != None:
+                                    artists.append(artist_name)
+                                    artists_ids.append(artist_id)
+
+                                    # For each artist in this event that does not exist, create an instance for it and add the event to their futureEvents
+                                    add_supplemental_artist(new_artist_instance, event['id'])
             
                 salesDateRange = ''
                 if 'startDateTime' in event['sales']['public']:
                     salesDateRange += f"{event['sales']['public']['startDateTime']} to "
                     salesDateRange += event['sales']['public']['endDateTime']
+
+                if 'images' in event and len(event['images']) > 0:
+                    event_image_url = event['images'][0]['url']
             
                 event_date = []
                 if (not event['dates']['start']['dateTBD']):
@@ -327,7 +343,8 @@ def get_events_for_artist(artist_id, artist_name):
                     'priceRange': price_range,
                     'genreId': '',
                     'venue': {},
-                    'ticketmasterURL': event['url']
+                    'ticketmasterURL': event['url'],
+                    'eventImageURL': event_image_url
                 }
 
                 get_venue(event, event_instance)
@@ -337,11 +354,9 @@ def get_events_for_artist(artist_id, artist_name):
     return event_instances_local
 
 # Create another artist instance (done for events with multiple artists, those of which do not have an artist_instance)
-def create_supplemental_artist(artist_id, event_id):
-    new_artist_instance = get_artist_information(artist_id)
-    if new_artist_instance != None:
-        new_artist_instance['futureEvents'].append(event_id)
-        additional_artists.append(new_artist_instance)
+def add_supplemental_artist(new_artist_instance, event_id):
+    new_artist_instance['futureEvents'].append(event_id)
+    additional_artists.append(new_artist_instance)
 
 def get_genre_id_from_name(genre_name):
     for genre_id in genre_instances:
