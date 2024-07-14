@@ -67,7 +67,8 @@ def populate_genres():
                         'popularArtists': [],
                         'upcomingEvents': [],
                         'topSongs': [],
-                        'eventsPriceRange': []
+                        'eventsPriceMin': -1,
+                        'eventsPriceMax': -1
                     }
                     genre_instances[genre['id']] = genre_instance
 
@@ -87,12 +88,12 @@ def get_spotify_access_token():
     global spotify_access_token
 
     # Spotify API Credentials
-    spotify_client_id = '50effcfa2b804d1bafe4b0e9371b079a'
-    spotify_client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
+    # spotify_client_id = '50effcfa2b804d1bafe4b0e9371b079a'
+    # spotify_client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
 
     # Spotify API Test Credentials
-    # spotify_client_id = '9159ae5d05f84da8a969181af1b786cf'
-    # spotify_client_secret = '96161c4bf45f410980432c795170494b'
+    spotify_client_id = '9159ae5d05f84da8a969181af1b786cf'
+    spotify_client_secret = '96161c4bf45f410980432c795170494b'
 
     auth_str = f"{spotify_client_id}:{spotify_client_secret}"
     b64_auth_str = base64.b64encode(auth_str.encode()).decode()
@@ -200,17 +201,19 @@ def get_artist_information(artist_id):
 
     # Only create an artist instance if the artist belongs to a genre
     if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres_test:
-        genre_id = get_genre_id_from_name(subgenres_to_genres[response['genres'][0]])
+        genre_name = subgenres_to_genres[response['genres'][0]]
+        genre_id = get_genre_id_from_name(genre_name)
 
         artist_instance = {
-            'name': response['name'],
             'id': artist_id,
+            'name': response['name'],
             'popularity': response['popularity'],
             'genreId': genre_id,
+            'genreName': genre_name,
             'albums': [],
-            'album_covers': [],
+            'albumCovers': [],
             'futureEvents': [],
-            'image_url': 'None' if response['images'] == [] else response['images'][-1]['url']
+            'imageURL': 'None' if response['images'] == [] else response['images'][-1]['url']
         }
 
         populate_albums(artist_id, artist_instance)
@@ -232,7 +235,7 @@ def populate_albums(artist_id, artist_instance):
 
     for album in response['items']:
         artist_instance['albums'].append(album['name'])
-        artist_instance['album_covers'].append(album['images'][0]['url'])
+        artist_instance['albumCovers'].append(album['images'][0]['url'])
 
 # For each artist get their events and link to genre_instance
 def populate_from_artist(artist_instance):
@@ -248,19 +251,21 @@ def populate_from_artist(artist_instance):
         artist_instance['futureEvents'].append(event['eventId'])
         event_instances.append(event)
 
+        event['genreName'] = artist_genre['name']
         event['genreId'] = artist_genre['genreId']
 
         # Update artist_genre event price range if necessary
-        if len(event['priceRange']) > 0:
-            if len(artist_genre['eventsPriceRange']) == 0:
-                artist_genre['eventsPriceRange'].append(event['priceRange'][0])
-                artist_genre['eventsPriceRange'].append(event['priceRange'][1])
-            else:
-                if event['priceRange'][0] < artist_genre['eventsPriceRange'][0]:
-                    artist_genre['eventsPriceRange'][0] = event['priceRange'][0]
-                    
-                if event['priceRange'][1] > artist_genre['eventsPriceRange'][1]:
-                    artist_genre['eventsPriceRange'][1] = event['priceRange'][1]
+        if event['priceRangeMin'] != -1:
+            if event['priceRangeMin'] < artist_genre['eventsPriceMin']:
+                artist_genre['eventsPriceMin'] = event['priceRangeMin']
+            elif artist_genre['eventsPriceMin'] == -1:
+                artist_genre['eventsPriceMin'] = event['priceRangeMin']
+
+        if event['priceRangeMax'] != -1:
+            if event['priceRangeMax'] > artist_genre['eventsPriceMax']:
+                artist_genre['eventsPriceMax'] = event['priceRangeMax']
+            elif artist_genre['eventsPriceMax'] == -1:
+                artist_genre['eventsPriceMax'] = event['priceRangeMax']
 
 
 # Return a list of events for a particular artist
@@ -315,33 +320,35 @@ def get_events_for_artist(artist_id, artist_name):
 
                                     # For each artist in this event that does not exist, create an instance for it and add the event to their futureEvents
                                     add_supplemental_artist(new_artist_instance, event['id'])
-            
-                salesDateRange = ''
+
+                sales_start = 0
                 if 'startDateTime' in event['sales']['public']:
-                    salesDateRange += f"{event['sales']['public']['startDateTime']} to "
-                    salesDateRange += event['sales']['public']['endDateTime']
+                    sales_start = int((event['sales']['public']['startDateTime'].split("T")[0]).replace("-", ""))
 
                 if 'images' in event and len(event['images']) > 0:
                     event_image_url = event['images'][0]['url']
             
-                event_date = []
+                event_date = 0
                 if (not event['dates']['start']['dateTBD']):
-                    tokens = (event['dates']['start']['localDate']).split('-')
-                    event_date = [int(token) for token in tokens]
+                    event_date = int((event['dates']['start']['localDate']).replace("-", ""))
 
-                price_range = []
+                price_range_min = -1
+                price_range_max = -1
                 if ('priceRanges' in event and 'min' in event['priceRanges'][0] and 'max' in event['priceRanges'][0]):
-                    price_range = [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']]
+                    price_range_min = event['priceRanges'][0]['min']
+                    price_ragne_max =  event['priceRanges'][0]['max']
 
                 event_instance = {
                     'eventId': event['id'],
                     'eventName': event['name'],
                     'artistNames': artists,
                     'artistIds': artists_ids,
-                    'dateAndTime': event_date, # [year, month, day]
-                    'salesStart-End': salesDateRange,
-                    'priceRange': price_range,
                     'genreId': '',
+                    'genreName': '',
+                    'eventDate': event_date,
+                    'salesStart': sales_start,
+                    'priceRangeMin': price_range_min,
+                    'priceRangeMax': price_range_max,
                     'venue': {},
                     'ticketmasterURL': event['url'],
                     'eventImageURL': event_image_url

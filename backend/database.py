@@ -19,7 +19,8 @@ def create_genres():
             popular_artists=genre['popularArtists'],
             upcoming_events=genre['upcomingEvents'],
             top_songs=genre['topSongs'],
-            events_price_range=genre['eventsPriceRange']
+            events_price_min=genre['eventsPriceMin'],
+            events_price_max=genre['eventsPriceMax']
         )
         db.session.add(i)
     db.session.commit()
@@ -33,10 +34,11 @@ def create_artists():
             artist_id=artist['id'],
             popularity=artist['popularity'],
             albums=artist['albums'],
-            album_covers=artist['album_covers'],
+            album_covers=artist['albumCovers'],
             future_events=artist['futureEvents'],
-            image_url=artist['image_url'],
-            genre_id=artist['genreId']
+            image_url=artist['imageURL'],
+            genre_id=artist['genreId'],
+            genre_name=artist['genreName']
         )
         db.session.add(i)
     db.session.commit()
@@ -48,15 +50,17 @@ def create_events():
         i = Events(
             event_name=event['eventName'],
             event_id=event['eventId'],
-            date_and_time=event['dateAndTime'],
+            event_date=event['eventDate'],
             artist_names=event['artistNames'],
             artist_ids = event['artistIds'],
-            price_range=event['priceRange'],
+            price_range_min = event['priceRangeMin'],
+            price_range_max = event['priceRangeMax'],
             venue=event['venue'],
             ticketmaster_URL=event['ticketmasterURL'],
             genre_id=event['genreId'],
-            sales_start_end=event['salesStart-End'],
-            #salesStart-End?
+            genre_name=event['genreName'],
+            sales_start_end=event['salesStart'],
+            eventImageURL=event['eventImageURL'] # ADDED 7/14
         )
         db.session.add(i)
     db.session.commit()

@@ -4,18 +4,11 @@ from flask_restful import Resource, reqparse
 from models import Artists, Genres, Events
 from queryBuilder import DefaultRequestParser, QueryBuilder
 
-sortable_fields = [
-    Artists.popularity, # sort all artists based on popularity
-]
+sortable_fields = [Artists.artist_name, Artists.popularity]
+exact_filterable_fields = [Artists.genre_id] # Issue: only have genre_id for genre, not the name; may need to store id to name mapping
+range_filterable_fields = [Artists.popularity]
+searchable_fields = [Artists.artist_name]
 
-# I want all events for exact artist or all events for exactly this genre
-exact_filterable_fields = [Artists.genre] 
-
-range_filterable_fields = [
-    Artists.popularity, #can filter based on popularity of artists
-]
-
-searchable_fields = [Artists.artist_name, Artists.events]
 # class ArtistPopulateResources(Resource):
 #     def post(self):
 #         populate.Artists.popupalte_artists()
@@ -52,17 +45,11 @@ class ArtistListResources(Resource):
         }
         return {"metadata": metadata, "results": Artists.to_dict(artists)} # not sure if we need to make a schema function
 
-sortable_fields = [
-    Genres.events_price_range, 
-]
+sortable_fields = [Genres.genre_name, Genres.events_price_range]
+exact_filterable_fields = [] 
+range_filterable_fields = [Genres.events_price_range]
+searchable_fields = [Genres.genre_name] 
 
-exact_filterable_fields = [Genres.events_price_range] 
-
-range_filterable_fields = [
-    Genres.genre_name
-]
-
-searchable_fields = [] #maybe add new fields to all three models like location, distance etc 
 # class GenrePopulateResources(Resource):
 #     def post(self):
 #         populate.Genres.populate_genres()
@@ -99,17 +86,11 @@ class GenresListResources(Resource):
         }
         return {"metadata": metadata, "results": Genres.to_dict(genres)} # not sure if we need to make a schema function
 
-sortable_fields = [
-    Events.price_range, 
-]
- 
+sortable_fields = [Events.event_name, Events.date_and_time, Events.sales_start_end, Events.price_range]
 exact_filterable_fields = [Events.venue] 
+range_filterable_fields = [Events.date_and_time, Events.sales_start_end, Events.price_range]
+searchable_fields = [Events.event_name] 
 
-range_filterable_fields = [
-    Events.sales_start_end
-]
-
-searchable_fields = [] #maybe add new fields to all three models like location, distance etc 
 # class EventsPopulateResources(Resource):
 #     def post(self):
 #         populate.Events.populate_genres()
