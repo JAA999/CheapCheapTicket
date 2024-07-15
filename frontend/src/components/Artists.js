@@ -25,7 +25,7 @@ function Artists() {
 
     const fetchData = useCallback(async (page) => {
         try {
-          const response = await axios.get(`https://www.cheapcheapticket.xyz/GetArtists`, {
+          const response = await axios.get(`/GetArtists`, {
             params: { page, per_page: 20 }
           });
     
@@ -38,7 +38,7 @@ function Artists() {
           });
           setArtistsData({ Artists: newArtists });
     
-          const responseLength = await axios.get(`https://www.cheapcheapticket.xyz/GetAllArtists`);
+          const responseLength = await axios.get(`/GetAllArtists`);
           const totalArtists = responseLength.data.length;
           console.log(responseLength.data.length + " Total artists listed " + totalArtists)
           console.log(responseLength.data.length + " Total artists listed " + totalArtists)

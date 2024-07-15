@@ -20,7 +20,7 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvent/${limitedFutureEvents[i]}`);
+                        const response = await axios.get(`/GetEvent/${limitedFutureEvents[i]}`);
                         eventNames[i] = response.data.event_name;
                     } catch (error) {
                         console.error('Error:', error);
@@ -48,7 +48,7 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (topArtistsIds[i] !== "") {
                     try {
-                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetArtist/${topArtistsIds[i]}`);
+                        const response = await axios.get(`/GetArtist/${topArtistsIds[i]}`);
                         artistsNames[i] = response.data.name;
                     } catch (error) {
                         console.error('Error:', error);

@@ -29,7 +29,7 @@ function VenueInfo() {
     useEffect(() => {
         const getEventData = async () => {
             try {
-                const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvent/${eventId}`);
+                const response = await axios.get(`/GetEvent/${eventId}`);
                 setEventData(response.data);
                 setArtistIdPair({[response.data.artistIds[0]] : response.data.artist_names[0]})
             } catch (error) {
@@ -42,7 +42,7 @@ function VenueInfo() {
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.get(`https://www.cheapcheapticket.xyz/GetGenre/${eventData.genre_id}`);
+                const response = await axios.get(`/GetGenre/${eventData.genre_id}`);
                 setGenreName(response.data.name)
                 
             } catch (error) {

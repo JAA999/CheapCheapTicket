@@ -23,11 +23,11 @@ function Genre() {
 
   const fetchData = async (currentPage) => {
     try {
-      const response = await axios.get(`https://www.cheapcheapticket.xyz/GetGenres`, {
+      const response = await axios.get(`/GetGenres`, {
         params: { page: currentPage, per_page: 5 }
       });
       
-      const responseLength = await axios.get(`https://www.cheapcheapticket.xyz/GetAllGenres`);
+      const responseLength = await axios.get(`/GetAllGenres`);
 
       const newGenres = response.data.map((newGenre, index) => {
         const defaultGenre = genresData[index] || {};

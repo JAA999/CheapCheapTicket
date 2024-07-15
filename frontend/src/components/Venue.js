@@ -25,11 +25,12 @@ function Venue() {
 
   const fetchData = async (page) => {
     try {
-      const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvents`, {
+      // const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvents`, {
+        const response = await axios.get(`/GetEvents`, {
         params: { page, per_page: 30 }
       });
       
-      const responseLength = await axios.get(`https://www.cheapcheapticket.xyz/GetAllEvents`);
+      const responseLength = await axios.get(`/GetAllEvents`);
 
       const newEvents = response.data.map((newEvent, index) => {
         const defaultEvent = eventData.events[index] || {

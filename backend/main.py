@@ -5,6 +5,7 @@ from models import Genres, Artists, Events
 from gitlab_stats import get_gitlab_stats
 import os
 
+# app = Flask(__name__)
 CORS(app)
 
 with app.app_context():

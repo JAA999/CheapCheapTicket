@@ -10,11 +10,6 @@ import ArtistsPage from './components/ArtistsPage';
 import GenreInstance from './components/GenreInstance';
 import './App.css';
 
-
-
-
-
-
 function App() {
   return (
     <Router>

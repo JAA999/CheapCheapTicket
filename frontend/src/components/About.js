@@ -18,7 +18,7 @@ function About() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('about');
+        const response = await axios.get('/about');
         setGithubStats(response.data);
         console.log(response.data + " GIT lab data")
       } catch (error) {
@@ -61,7 +61,7 @@ function About() {
               return (<AboutCard name="Joseph Arteaga" role="APIs and Flask" image="aboutPageJosephArteaga.jpg" bio="Third year CS major at UT Austin with interest in cybersecurity and artificial intelligence." commits={stats[0]} issues={stats[1]} tests="3" />)
 
             } else if (name.substring(0, 8) === "JosephLe") {
-              return (<AboutCard name="Joseph Lee" image="aboutPageJosephLee.jpg" role="Backend" bio=" I am junior CS major at UT Austin. In my free time I enjoy swimming laps and watching movies." commits={stats[0]} issues={stats[1]} tests="3" />)
+              return (<AboutCard name="Joseph Lee" image="aboutPageJosephLee.jpg" role="Backend" bio=" I am a junior CS major at UT Austin. In my free time I enjoy swimming laps and watching movies." commits={stats[0]} issues={stats[1]} tests="3" />)
             }
             return(<></>)
 
