@@ -21,13 +21,14 @@ class ArtistListResources(Resource):
             exact_filterable_fields,
             range_filterable_fields,
         )
+        self.args # ADDED ON 7/14
     
     def get(self):
         args = self.parser.parse_args()
         
         query = QueryBuilder(
             Artists,
-            args,
+            self.args, # CHANGED FROM args
             sortable_fields,
             exact_filterable_fields,
             range_filterable_fields,

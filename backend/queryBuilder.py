@@ -89,7 +89,6 @@ class DefaultRequestParser:
         for field in field_names:
             self.parser.add_argument(f"{field}.min", type=str, location="args")
             self.parser.add_argument(f"{field}.max", type=str, location="args")
-
         
     def add_search_args(self):
         # Add search argument to self.parser:

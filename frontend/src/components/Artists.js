@@ -26,7 +26,11 @@ function Artists() {
     const fetchData = useCallback(async (page) => {
         try {
           const response = await axios.get(`https://www.cheapcheapticket.xyz/GetArtists`, {
-            params: { page, per_page: 20 }
+            params: { 
+              page, 
+              per_page: 20,
+              filter_by: 'Alternative,Blues,'
+            }
           });
     
           const newArtists = response.data.map((newArtist, index) => {

@@ -53,12 +53,17 @@ def artists_page(artist_id):
         return jsonify(artist.to_dict())
     return "Artist not found", 404
 
-@app.route('/GetArtists')
+# MODIFIED ON 7/14
+@app.route('/GetArtists', methods=['GET'])
 def specific_artists():
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 5, type=int)
-    artists = Artists.query.paginate(page=page, per_page=per_page) 
-    return jsonify([artist.to_dict() for artist in artists])
+    args = request.args.to_dict()
+    artist_list_instance = ArtistListResources(args)
+    response = artist_list_instance.get()
+    return jsonify(response)
+    # page = request.args.get('page', 1, type=int)
+    # per_page = request.args.get('per_page', 5, type=int)
+    # artists = Artists.query.paginate(page=page, per_page=per_page) 
+    # return jsonify([artist.to_dict() for artist in artists])
 
 # Events Page
 @app.route('/GetAllEvents', methods=['GET'])
