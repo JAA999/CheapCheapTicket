@@ -59,7 +59,7 @@ def create_events():
             ticketmaster_URL=event['ticketmasterURL'],
             genre_id=event['genreId'],
             genre_name=event['genreName'],
-            sales_start_end=event['salesStart'],
+            sales_start=event['salesStart'],
             eventImageURL=event['eventImageURL'] # ADDED 7/14
         )
         db.session.add(i)

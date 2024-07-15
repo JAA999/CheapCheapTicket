@@ -4,10 +4,10 @@ from flask_restful import Resource, reqparse
 from models import Artists, Genres, Events
 from queryBuilder import DefaultRequestParser, QueryBuilder
 
-sortable_fields = [Artists.artist_name, Artists.popularity]
-exact_filterable_fields = [Artists.genre_id] # Issue: only have genre_id for genre, not the name; may need to store id to name mapping
-range_filterable_fields = [Artists.popularity]
 searchable_fields = [Artists.artist_name]
+exact_filterable_fields = [Artists.genre_name] 
+range_filterable_fields = [Artists.popularity]
+sortable_fields = [Artists.artist_name, Artists.popularity]
 
 # class ArtistPopulateResources(Resource):
 #     def post(self):
@@ -45,10 +45,10 @@ class ArtistListResources(Resource):
         }
         return {"metadata": metadata, "results": Artists.to_dict(artists)} # not sure if we need to make a schema function
 
-sortable_fields = [Genres.genre_name, Genres.events_price_range]
-exact_filterable_fields = [] 
-range_filterable_fields = [Genres.events_price_range]
 searchable_fields = [Genres.genre_name] 
+exact_filterable_fields = [] 
+range_filterable_fields = [Genres.events_price_min, Genres.events_price_max]
+sortable_fields = [Genres.genre_name, Genres.events_price_min, Genres.events_price_max]
 
 # class GenrePopulateResources(Resource):
 #     def post(self):
@@ -86,10 +86,10 @@ class GenresListResources(Resource):
         }
         return {"metadata": metadata, "results": Genres.to_dict(genres)} # not sure if we need to make a schema function
 
-sortable_fields = [Events.event_name, Events.date_and_time, Events.sales_start_end, Events.price_range]
-exact_filterable_fields = [Events.venue] 
-range_filterable_fields = [Events.date_and_time, Events.sales_start_end, Events.price_range]
 searchable_fields = [Events.event_name] 
+exact_filterable_fields = []
+range_filterable_fields = [Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
+sortable_fields = [Events.event_name, Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
 
 # class EventsPopulateResources(Resource):
 #     def post(self):
