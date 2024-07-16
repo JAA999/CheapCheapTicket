@@ -90,4 +90,4 @@ def get_gitlab_stats():
         stats[member] = stats_for_member
     return stats
 
-print(get_gitlab_stats())
+# print(get_gitlab_stats())

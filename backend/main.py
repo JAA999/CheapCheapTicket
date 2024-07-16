@@ -3,6 +3,7 @@ from flask_cors import CORS
 from database import app, db, initialize_database
 from models import Genres, Artists, Events
 from gitlab_stats import get_gitlab_stats
+from queryBuilder import QueryBuilder
 import os
 
 CORS(app)
@@ -20,7 +21,42 @@ def index():
 def about_page():
     return get_gitlab_stats()
 
-# Genres Page
+genre_searchable_fields = [Genres.name]
+genre_exact_filterable_fields = []
+genre_range_filterable_fields = [Genres.events_price_min, Genres.events_price_max]
+genre_sortable_fields = [Genres.name, Genres.events_price_min, Genres.events_price_max]
+
+@app.route('/GetGenres', methods=['GET'])
+def specific_genres():
+    query_response = QueryBuilder(Genres, request.args, genre_sortable_fields, genre_exact_filterable_fields, genre_searchable_fields, genre_range_filterable_fields) 
+
+    result = query_response.paginate()
+    return [instance.to_dict() for instance in result]
+
+event_searchable_fields = [Events.name]
+event_exact_filterable_fields = [Events.genre_name]
+event_range_filterable_fields = [Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
+event_sortable_fields =[Events.name, Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
+
+@app.route('/GetEvents')
+def specific_events():
+    query_response = QueryBuilder(Events, request.args, event_sortable_fields, event_exact_filterable_fields, event_searchable_fields, event_range_filterable_fields)
+    
+    result = query_response.paginate()
+    return [instance.to_dict() for instance in result]
+
+artist_searchable_fields = [Artists.name]
+artist_exact_filterable_fields = [Artists.name]
+artist_range_filterable_fields = [Artists.popularity]
+artist_sortable_fields = [Artists.name, Artists.popularity]
+
+@app.route('/GetArtists', methods=['GET'])
+def specific_artists():
+    query_response = QueryBuilder(Artists, request.args, artist_sortable_fields, artist_exact_filterable_fields, artist_searchable_fields, artist_range_filterable_fields)
+    
+    result = query_response.paginate()
+    return [instance.to_dict() for instance in result]
+
 @app.route('/GetAllGenres', methods=['GET'])
 def get_all_genres():
     genres = Genres.query.all()
@@ -32,14 +68,6 @@ def genres_page(genre_id):
     if genre: return jsonify(genre.to_dict())
     return "Genre not found", 404
 
-@app.route('/GetGenres', methods=['GET'])
-def specific_genres():
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 5, type=int)
-    genres = Genres.query.paginate(page=page, per_page=per_page)
-    return jsonify([genre.to_dict() for genre in genres])
-
-# Artists Page
 @app.route('/GetAllArtists', methods=['GET'])
 def get_all_artists():
     if request.method == 'GET':
@@ -53,19 +81,6 @@ def artists_page(artist_id):
         return jsonify(artist.to_dict())
     return "Artist not found", 404
 
-# MODIFIED ON 7/14
-@app.route('/GetArtists', methods=['GET'])
-def specific_artists():
-    args = request.args.to_dict()
-    artist_list_instance = ArtistListResources(args)
-    response = artist_list_instance.get()
-    return jsonify(response)
-    # page = request.args.get('page', 1, type=int)
-    # per_page = request.args.get('per_page', 5, type=int)
-    # artists = Artists.query.paginate(page=page, per_page=per_page) 
-    # return jsonify([artist.to_dict() for artist in artists])
-
-# Events Page
 @app.route('/GetAllEvents', methods=['GET'])
 def get_all_events():
     events = Events.query.all()
@@ -79,13 +94,6 @@ def events_page(event_id):
     if event:
         return jsonify(event.to_dict())
     return "Event not found", 404
-
-@app.route('/GetEvents')
-def specific_events():
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 5, type=int)
-    events = Events.query.paginate(page=page, per_page=per_page)
-    return jsonify([event.to_dict() for event in events])
 
 if __name__ == '__main__':
     app.run(debug=True)

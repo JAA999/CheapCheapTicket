@@ -14,8 +14,8 @@ def create_genres():
 
     for genre in genres['Genres']:
         i = Genres(
-            genre_name=genre['name'],
-            genre_id=genre['genreId'],
+            name=genre['name'],
+            id=genre['genreId'],
             popular_artists=genre['popularArtists'],
             upcoming_events=genre['upcomingEvents'],
             top_songs=genre['topSongs'],
@@ -30,8 +30,8 @@ def create_artists():
 
     for artist in artists['Artists']:
         i = Artists(
-            artist_name=artist['name'],
-            artist_id=artist['id'],
+            name=artist['name'],
+            id=artist['id'],
             popularity=artist['popularity'],
             albums=artist['albums'],
             album_covers=artist['albumCovers'],
@@ -48,8 +48,8 @@ def create_events():
 
     for event in events['Events']:
         i = Events(
-            event_name=event['eventName'],
-            event_id=event['eventId'],
+            name=event['eventName'],
+            id=event['eventId'],
             event_date=event['eventDate'],
             artist_names=event['artistNames'],
             artist_ids = event['artistIds'],
@@ -60,7 +60,7 @@ def create_events():
             genre_id=event['genreId'],
             genre_name=event['genreName'],
             sales_start=event['salesStart'],
-            eventImageURL=event['eventImageURL'] # ADDED 7/14
+            eventImage_URL=event['eventImageURL'] # ADDED 7/14
         )
         db.session.add(i)
     db.session.commit()

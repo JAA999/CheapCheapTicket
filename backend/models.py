@@ -9,9 +9,9 @@ app.app_context().push()
 
 USER ="postgres"
 PASSWORD ="asd123"
-# PUBLIC_IP_ADDRESS = "localhost:5432"
+PUBLIC_IP_ADDRESS = "localhost:5432"
 # Update the PUBLIC_IP_ADDRESS to your Cloud SQL instance's connection name
-PUBLIC_IP_ADDRESS = "cs373-idb-428121:us-central1:ticketsdb"
+# PUBLIC_IP_ADDRESS = "cs373-idb-428121:us-central1:ticketsdb"
 DBNAME ="ticketsdb"
 
 # Configuration 
@@ -22,8 +22,8 @@ db = SQLAlchemy(app)
 class Genres(db.Model):
     __tablename__ = 'genres'
     
-    genre_id = db.Column(db.String, primary_key = True)
-    genre_name = db.Column(db.String(80), nullable = False)
+    id = db.Column(db.String, primary_key = True)
+    name = db.Column(db.String(80), nullable = False)
 
     popular_artists = db.Column(ARRAY(db.String))
     upcoming_events = db.Column(ARRAY(db.String)) 
@@ -37,8 +37,8 @@ class Genres(db.Model):
 
     def to_dict(self):
         instance = {
-            'id': self.genre_id,
-            'name': self.genre_name,
+            'id': self.id,
+            'name': self.name,
             'popular_artists': self.popular_artists,
             'upcoming_events': self.upcoming_events,
             'top_songs': self.top_songs,
@@ -50,8 +50,8 @@ class Genres(db.Model):
 class Artists(db.Model):
     __tablename__ = 'artists'
 	
-    artist_id = db.Column(db.String, primary_key = True)
-    artist_name = db.Column(db.String(80), nullable = False)
+    id = db.Column(db.String, primary_key = True)
+    name = db.Column(db.String(80), nullable = False)
 
     popularity = db.Column(db.Integer)  
     genre_name = db.Column(db.String)
@@ -60,14 +60,14 @@ class Artists(db.Model):
     future_events = db.Column(ARRAY(db.String))
     image_url = db.Column(db.String(80)) 
     # Relationship
-    genre_id = db.Column(db.String, db.ForeignKey('genres.genre_id'), nullable=False)
+    genre_id = db.Column(db.String, db.ForeignKey('genres.id'), nullable=False)
     genre = db.relationship('Genres', back_populates='artists')
     events = db.relationship('Events', secondary ='artist_events', back_populates='artists')
 
     def to_dict(self):
         instance = {
-            'id': self.artist_id,
-            'name': self.artist_name,
+            'id': self.id,
+            'name': self.name,
             'popularity': self.popularity,
             'albums': self.albums,
             'album_covers': self.album_covers,
@@ -81,16 +81,16 @@ class Artists(db.Model):
 class Events(db.Model):
     __tablename__ = 'events'
 	
-    event_id = db.Column(db.String, primary_key = True)
-    event_name = db.Column(db.String, nullable = False)
+    id = db.Column(db.String, primary_key = True)
+    name = db.Column(db.String, nullable = False)
     # description = db.Column(db.String(250))
 
     artist_names = db.Column(ARRAY(db.String)) 
     artist_ids = db.Column(ARRAY(db.String))
-    genre_name = db.Column(ARRAY(db.String))
+    genre_name = db.Column(db.String)
 
-    event_date = db.Column(ARRAY(db.Integer))
-    sales_start = db.Column(db.String) 
+    event_date = db.Column(db.Integer)
+    sales_start = db.Column(db.Integer) 
     price_range_min = db.Column(db.Integer)
     price_range_max = db.Column(db.Integer)
     venue = db.Column(JSON) 
@@ -98,14 +98,14 @@ class Events(db.Model):
     eventImage_URL = db.Column(db.String) # ADDED 7/14
 
     # Relationship
-    genre_id = db.Column(db.String, db.ForeignKey('genres.genre_id'), nullable=False)
+    genre_id = db.Column(db.String, db.ForeignKey('genres.id'), nullable=False)
     genre = db.relationship('Genres', back_populates='events')
     artists = db.relationship('Artists', secondary='artist_events', back_populates='events')
 
     def to_dict(self):
         instance = {
-            'id': self.event_id, 
-            'event_name': self.event_name,
+            'id': self.id, 
+            'event_name': self.name,
             'artist_names': self.artist_names,
             'artistIds': self.artist_ids,
             'event_date': self.event_date,
@@ -121,6 +121,6 @@ class Events(db.Model):
         return instance
 
 artists_events = db.Table('artist_events',
-   db.Column('artist_id', db.String, db.ForeignKey('artists.artist_id')), 
-   db.Column('event_id', db.String, db.ForeignKey('events.event_id'))
+   db.Column('artist_id', db.String, db.ForeignKey('artists.id')), 
+   db.Column('event_id', db.String, db.ForeignKey('events.id'))
    )

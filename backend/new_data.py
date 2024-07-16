@@ -20,6 +20,9 @@ subgenres_to_genres = genre_mappings['subgenres_to_genres']
 subgenres_to_genres_test = genre_mappings['subgenres_to_genres_test']
 
 MAX_ARTISTS = 15
+MAX_EVENTS = 75
+genre_limits = {}
+
 artist_names = set()
 event_ids = set()
 
@@ -38,12 +41,14 @@ def main():
     populate_from_playlists()
 
     for artist_id in artist_instances:
-        populate_from_artist(artist_instances[artist_id])
+        populate_from_artist(artist_instances[artist_id], False)
 
     for artist in additional_artists:
-        populate_from_artist(artist)
+        populate_from_artist(artist, True)
         artist_instances[artist['id']] = artist
     
+    print(genre_limits)
+
     create_json_files()
 
 # Retrieve a list of all genres used by spotify to populate Genre Model
@@ -60,7 +65,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_to_playlists_test):
+                if (genre['name'] in genres_to_playlists):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -70,6 +75,7 @@ def populate_genres():
                         'eventsPriceMin': -1,
                         'eventsPriceMax': -1
                     }
+                    genre_limits[genre['name']] = [0, 0]
                     genre_instances[genre['id']] = genre_instance
 
 # Creates JSON files for each model
@@ -114,15 +120,11 @@ def populate_from_playlists():
     global artist_instances
 
     for genre_id in genre_instances:
-        genre_playlist_name = genres_to_playlists_test[genre_instances[genre_id]['name']]
+        genre_playlist_name = genres_to_playlists[genre_instances[genre_id]['name']]
         playlist = get_playlist_information(genre_playlist_name)
 
-        num_artists = 0
-
         for item in playlist['items']:
-            if (num_artists >= MAX_ARTISTS):
-                break
-            
+
             track = item['track']
             if track and 'album' in track and 'name' in track['album']:
                 # Add track to top songs for genre
@@ -135,8 +137,6 @@ def populate_from_playlists():
 
                     if artist_name not in artist_names:
                         artist_names.add(artist_name)
-
-                        num_artists += 1
 
                         artist_instance = get_artist_information(artist_id)
                         if artist_instance != None:
@@ -200,8 +200,12 @@ def get_artist_information(artist_id):
     response = response.json()
 
     # Only create an artist instance if the artist belongs to a genre
-    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres_test:
+    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres:
         genre_name = subgenres_to_genres[response['genres'][0]]
+        if (genre_limits[genre_name][0] >= MAX_ARTISTS):
+            return None
+        # Note increment to number of artists for genre
+        genre_limits[genre_name][0] += 1
         genre_id = get_genre_id_from_name(genre_name)
 
         artist_instance = {
@@ -238,38 +242,42 @@ def populate_albums(artist_id, artist_instance):
         artist_instance['albumCovers'].append(album['images'][0]['url'])
 
 # For each artist get their events and link to genre_instance
-def populate_from_artist(artist_instance):
+def populate_from_artist(artist_instance, skipEventsWithMultipleArtists):
     artist_genre = genre_instances[artist_instance['genreId']]
 
     # Add artist to genre's artists
     artist_genre['popularArtists'].append(artist_instance['id'])
 
-    artist_events = get_events_for_artist(artist_instance['id'], artist_instance['name'])
+    if genre_limits[artist_genre['name']][1] >= MAX_EVENTS:
+        return
+    else:
+        artist_events = get_events_for_artist(artist_instance['id'], artist_instance['name'], skipEventsWithMultipleArtists)
+        genre_limits[artist_genre['name']][1] += len(artist_events)
 
-    for event in artist_events:
-        artist_genre['upcomingEvents'].append(event['eventId'])
-        artist_instance['futureEvents'].append(event['eventId'])
-        event_instances.append(event)
+        for event in artist_events:
+            artist_genre['upcomingEvents'].append(event['eventId'])
+            artist_instance['futureEvents'].append(event['eventId'])
+            event_instances.append(event)
 
-        event['genreName'] = artist_genre['name']
-        event['genreId'] = artist_genre['genreId']
+            event['genreName'] = artist_genre['name']
+            event['genreId'] = artist_genre['genreId']
 
-        # Update artist_genre event price range if necessary
-        if event['priceRangeMin'] != -1:
-            if event['priceRangeMin'] < artist_genre['eventsPriceMin']:
-                artist_genre['eventsPriceMin'] = event['priceRangeMin']
-            elif artist_genre['eventsPriceMin'] == -1:
-                artist_genre['eventsPriceMin'] = event['priceRangeMin']
+            # Update artist_genre event price range if necessary
+            if event['priceRangeMin'] != -1:
+                if event['priceRangeMin'] < artist_genre['eventsPriceMin']:
+                    artist_genre['eventsPriceMin'] = event['priceRangeMin']
+                elif artist_genre['eventsPriceMin'] == -1:
+                    artist_genre['eventsPriceMin'] = event['priceRangeMin']
 
-        if event['priceRangeMax'] != -1:
-            if event['priceRangeMax'] > artist_genre['eventsPriceMax']:
-                artist_genre['eventsPriceMax'] = event['priceRangeMax']
-            elif artist_genre['eventsPriceMax'] == -1:
-                artist_genre['eventsPriceMax'] = event['priceRangeMax']
+            if event['priceRangeMax'] != -1:
+                if event['priceRangeMax'] > artist_genre['eventsPriceMax']:
+                    artist_genre['eventsPriceMax'] = event['priceRangeMax']
+                elif artist_genre['eventsPriceMax'] == -1:
+                    artist_genre['eventsPriceMax'] = event['priceRangeMax']
 
 
 # Return a list of events for a particular artist
-def get_events_for_artist(artist_id, artist_name):
+def get_events_for_artist(artist_id, artist_name, skipEventsWithMultipleArtists):
     event_search_url = 'https://app.ticketmaster.com/discovery/v2/events.json'
 
     params = {
@@ -295,6 +303,8 @@ def get_events_for_artist(artist_id, artist_name):
                 artists = []
                 artists_ids = []
                 if '_embedded' in event and 'attractions' in event['_embedded']:
+                    if (skipEventsWithMultipleArtists and len(event['_embedded']['attractions']) > 1):
+                        continue
                     for artist in event['_embedded']['attractions']:
                         if 'name' in artist:
                             artist_name = artist['name']
