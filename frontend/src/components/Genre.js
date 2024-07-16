@@ -23,15 +23,43 @@ function Genre() {
   const [totalPages, setTotalPages] = useState(1);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [valuesRange, setValuesRange] = useState([0, 10000])
+  const [valuesRange, setValuesRange] = useState([1, 10000])
+  const [currentRange, setCurrentRange] = useState([1, 10000])
   const [sortBy, setSortBy] = useState('');
   const [orderby, setOrderby] = useState('');
+
+  useEffect(() => {
+    const fetchMinMaxPrice = async () => {
+      try {
+        const response = await axios.get('/GetAllEvents');
+        let min = Number.MAX_SAFE_INTEGER
+        let max = 0
+        response.data.forEach((event) => {
+          min = event.eventsPriceRange[0] < min ? event.eventsPriceRange[0] : min
+          max = event.eventsPriceRange[1] > max ? event.eventsPriceRange[1] : max
+        })
+        setValuesRange([min, max]);
+        setCurrentRange([min, max]);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+    fetchMinMaxPrice();
+  }, []);
 
 
   const fetchData = async (currentPage) => {
     try {
       const response = await axios.get(`http://localhost:5000/GetGenres`, {
-        params: { page: currentPage, per_page: 5 }
+        params: {
+          page: currentPage,
+          per_page: 5,
+          query: searchQuery,
+          min: currentRange[0],
+          max: currentRange[1],
+          sort_by: sortBy,
+          order_by: orderby
+        }
       });
       const responseLength = await axios.get(`http://loclahost:5000/GetAllGenres`);
 
@@ -52,11 +80,12 @@ function Genre() {
 
   useEffect(() => {
     console.log(searchQuery + " debug search value(string) ")
-    console.log( + " debug genres wip")
+    console.log(valuesRange + " debug price range wip")
+    console.log(currentRange + " debug current price range wip")
     console.log(sortBy + " debug sort value(string) ")
     console.log(orderby + " debug order value(string)")
     fetchData(currentPage);
-  }, [currentPage, orderby, valuesRange, sortBy, searchQuery]);
+  }, [currentPage, orderby, currentRange, sortBy, searchQuery]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -66,7 +95,7 @@ function Genre() {
     setSearchQuery(value)
   }
   const handleValuesRange = (newValues) => {
-    setValuesRange(newValues);
+    setCurrentRange(newValues);
   };
   const handleSortBy = (value) => {
     setSortBy(value)
@@ -81,12 +110,12 @@ function Genre() {
       <h1 class="m-5">Genres</h1>
 
       <SearchGenres
-      onSearchChange= {handleSearchQuery}
-      onValuesChange = {handleValuesRange}
-      minValue = {0}
-      maxValue = {100}
-      onSortChange = {handleSortBy}
-      onOrderChange = {handleOrderBy}
+        onSearchChange={handleSearchQuery}
+        onValuesChange={handleValuesRange}
+        minValue={valuesRange[0]}
+        maxValue={valuesRange[1]}
+        onSortChange={handleSortBy}
+        onOrderChange={handleOrderBy}
       />
 
       <div class="row d-flex justify-content-center genre-card-container ">

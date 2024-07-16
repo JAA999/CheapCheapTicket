@@ -8,25 +8,34 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchChange, minValue, maxValue }) {
 
-    const [value, setValue] = useState(124);
-    // search name - string
-    const handleSearchQuery = (value) => {
-        onSearchChange(value);
+    // search name - string 
+    const [stringInput, setStringInput] = useState('');
+    const handleChange = (event) => {
+        setStringInput(event.target.value);
+    }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            onSearchChange(stringInput);
+            setStringInput('')
+        }
     }
 
     const [rangeDisplay, setRangeDisplay] = useState([minValue, maxValue])
     const handleValuesChange = (value) => {
-        console.log("SLIDER DEBUG" + value)
+        // console.log("SLIDER DEBUG" + value)
+        setRangeDisplay(value)
         onValuesChange(value)
     }
 
-    // name , eventPricemin, eventPriceMax
+    // name, eventPricemin, eventPriceMax
+    const [activeButtonSort, setActiveButtonSort] = useState(null);
     const handleSortBy = (value) => {
+        setActiveButtonSort(value)
         onSortChange(value);
     }
 
+    // ascending, descending
     const [activeButton, setActiveButton] = useState(null);
-    // true ascending false descending
     const handleOrderBy = (value) => {
         setActiveButton(value);
         onOrderChange(value);
@@ -38,7 +47,7 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
             <div class="d-flex flex-row justify-content-center align-items-center p-4">
 
                 <div class="me-2">
-                    <input type="text" placeholder="Search..." onChange={(event) => handleSearchQuery(event.target.value)} />
+                    <input onKeyDown={handleKeyDown} type="text" value={stringInput} placeholder="Search..." onChange={handleChange} />
                 </div>
 
                 <div class="d-flex flex-row align-items-center">
@@ -46,8 +55,10 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                     <ReactSlider
                         className="horizontal-slider d-flex align-items-center"
                         thumbClassName="thumb"
+                        max={maxValue}
+                        min={minValue}
                         onChange={handleValuesChange}
-                        defaultValue={[rangeDisplay[0],rangeDisplay[1]]}
+                        defaultValue={[minValue, maxValue]}
                         pearling
                         minDistance={1}
                     />
@@ -60,9 +71,10 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                     </button>
 
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" onClick={() => handleSortBy('name')}>Name</a></li>
-                        <li><a className="dropdown-item" onClick={() => handleSortBy('eventsPriceMin')}>Events price minimum</a></li>
-                        <li><a className="dropdown-item" onClick={() => handleSortBy('eventsPriceMax')}>Events price maximum</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === '' ? 'active' : ''}`} onClick={() => handleSortBy('')}>None</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'name' ? 'active' : ''}`} onClick={() => handleSortBy('name')}>Name</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMin' ? 'active' : ''}`} onClick={() => handleSortBy('eventsPriceMin')}>Events price minimum</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMax' ? 'active' : ''}`} onClick={() => handleSortBy('eventsPriceMax')}>Events price maximum</a></li>
                     </ul>
                 </div>
 
@@ -72,8 +84,9 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                     </button>
 
                     <ul className="dropdown-menu">
-                        <li><a className={`dropdown-item ${activeButton ? 'active' : ''}`} onClick={() => handleOrderBy('ascending')}>Ascending</a></li>
-                        <li><a className={`dropdown-item ${!activeButton && activeButton !== null ? 'active' : ''}`} onClick={() => handleOrderBy('descending')}>Descending</a></li>
+                        <li><a className={`dropdown-item ${activeButton === '' ? 'active' : ''}`} onClick={() => handleOrderBy('')}>None</a></li>
+                        <li><a className={`dropdown-item ${activeButton === 'ascending' ? 'active' : ''}`} onClick={() => handleOrderBy('ascending')}>Ascending</a></li>
+                        <li><a className={`dropdown-item ${activeButton === 'descending' ? 'active' : ''}`} onClick={() => handleOrderBy('descending')}>Descending</a></li>
                     </ul>
                 </div>
 
