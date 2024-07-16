@@ -1,5 +1,6 @@
 import React from 'react';
 import ArtistsCard from "./ArtistsCard";
+import SearchContainer from './SearchArtists';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
@@ -23,10 +24,36 @@ function Artists() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
+    // searchQuery ; genreNames ; name, pop ; acsending, decsending ; 
+    const [searchQuery, setSearchQuery] = useState(''); 
+    const [filterValues, setfilterValues] = useState([{genre_id:"test", name: "default"},{genre_id:"test", name: "not"},{genre_id:"test", name: "overrided"}]);
+    const [filterValue, setFilterValue] = useState('');
+    const [sortBy, setSortBy] = useState('');
+    const [orderby, setOrderby] = useState(''); 
+
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const response = await axios.get('/GetAllEvents');
+                const optionList = response.data.map(event => ({ genre_id: event.genre_id, name: event.name }));
+                setfilterValues(optionList); 
+            } catch (error) {
+                console.error('Error fetching options:', error);
+            }
+        };
+        fetchOptions();
+    }, []); 
+    
     const fetchData = async (currentPage) => {
         try {
-            const response = await axios.get(`/GetArtist`, {
-                params: { page: currentPage, per_page: 20 }
+            const response = await axios.get(`localhost:5000/GetArtist/ `, {
+                params: { 
+                    page: currentPage, 
+                    per_page: 20,
+                    // filter_by: 
+                    // sort by
+                    // order by
+                }
             });
             const responseLength = await axios.get(`/GetAllArtists`);
 
@@ -47,16 +74,44 @@ function Artists() {
     fetchData();
 
     useEffect(() => {
+        console.log(searchQuery + " debug search value(string) ")
+        console.log(filterValue + " debug genres wip")
+        console.log(sortBy + " debug sort value(string) ")
+        console.log(orderby + " debug order value(string)")
         fetchData(currentPage);
-    }, [ currentPage]);
+    }, [ currentPage ,orderby, filterValue, sortBy, searchQuery]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     };
 
+    const handleSearchQuery =(value)=>{
+        setSearchQuery(value)
+    }
+    const handleFilterBy =(value)=>{
+        setFilterValue(value)
+    }
+    const handleSortBy =(value)=>{
+        setSortBy(value)
+    }
+    const handleOrderBy =(value)=>{
+        setOrderby(value)
+    }
+
     return (
         <>
             <h1 class=" m-5">Artists</h1>
+               
+            <SearchContainer 
+             onSearchChange= {handleSearchQuery}
+             onFilterChange = {handleFilterBy}
+             filterOptions = {filterValues}
+             onSortChange = {handleSortBy}
+             onOrderChange = {handleOrderBy}
+             
+            />
+        
+
 
             <div class="row g-5 m-5" >
                 {

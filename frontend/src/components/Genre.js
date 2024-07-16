@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import GenreCard from './GenreCard';
 import axios from 'axios'
+import SearchGenres from './SearchGenres';
 
 
 function Genre() {
@@ -16,26 +17,23 @@ function Genre() {
         "topSongs": ["Song 1", "Song 2", "Song 3"],
         "eventsPriceRange": [0, 0]
       }
-      ,
-      // {
-      //   "genreId": "KnvZfZ7vAvd",
-      //   "name": "GenreName 2",
-      //   "popularArtists": ["Artists 1 ID", "Artists 2 ID", "Artists 3 ID"],
-      //   "upcomingEvents": ["Event 1 ID", "Event 2 ID", "Event 3", "Event 4 ID"],
-      //   "topSongs": ["Song 1", "Song 2", "Song 3"],
-      //   "eventsPriceRange": [0, 0]
-      // }
     ]
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [valuesRange, setValuesRange] = useState([0, 10000])
+  const [sortBy, setSortBy] = useState('');
+  const [orderby, setOrderby] = useState('');
+
+
   const fetchData = async (currentPage) => {
     try {
-      const response = await axios.get(`/GetGenres`, {
+      const response = await axios.get(`http://localhost:5000/GetGenres`, {
         params: { page: currentPage, per_page: 5 }
       });
-      const responseLength = await axios.get(`/GetAllGenres`);
+      const responseLength = await axios.get(`http://loclahost:5000/GetAllGenres`);
 
       const newGenres = response.data.Genres.map((newGenre, index) => {
         const defaultGenre = genresData.Genres[index] || {};
@@ -53,17 +51,44 @@ function Genre() {
   };
 
   useEffect(() => {
+    console.log(searchQuery + " debug search value(string) ")
+    console.log( + " debug genres wip")
+    console.log(sortBy + " debug sort value(string) ")
+    console.log(orderby + " debug order value(string)")
     fetchData(currentPage);
-  }, [currentPage]);
+  }, [currentPage, orderby, valuesRange, sortBy, searchQuery]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
 
+  const handleSearchQuery = (value) => {
+    setSearchQuery(value)
+  }
+  const handleValuesRange = (newValues) => {
+    setValuesRange(newValues);
+  };
+  const handleSortBy = (value) => {
+    setSortBy(value)
+  }
+  const handleOrderBy = (value) => {
+    setOrderby(value)
+  }
+
   return (
     <>
 
       <h1 class="m-5">Genres</h1>
+
+      <SearchGenres
+      onSearchChange= {handleSearchQuery}
+      onValuesChange = {handleValuesRange}
+      minValue = {0}
+      maxValue = {100}
+      onSortChange = {handleSortBy}
+      onOrderChange = {handleOrderBy}
+      />
+
       <div class="row d-flex justify-content-center genre-card-container ">
         {
           genresData["Genres"].map((genre, index) => (

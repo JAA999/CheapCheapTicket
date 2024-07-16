@@ -2,6 +2,7 @@ import React from 'react';
 import VenueCard from './VenueCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
+import RangeSlider from './RangeSlider';
 
 function Venue() {
 
@@ -23,11 +24,12 @@ function Venue() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [priceRange, setPriceRange] = useState({ min:0, max: 10000});
 
-  const fetchData = async (currentPage) => {
+  const fetchData = async (currentPage, priceRange) => {
     try {
       const response = await axios.get(`/GetEvents`, {
-        params: { page: currentPage, per_page: 30 }
+        params: { page: currentPage, per_page: 30, min_price: priceRange.min, max_price: priceRange.max }
       });
       const responseLength = await axios.get(`/GetAllEvents`);
 
@@ -42,7 +44,7 @@ function Venue() {
           }
         };
       });
-      setTotalPages(responseLength)
+      setTotalPages(responseLength) //responseLength.data.total?
       setEventData({ events: newEvents });
     } catch (error) {
       console.error("Error:", error);
@@ -50,9 +52,13 @@ function Venue() {
   }
   fetchData()
 
+  const handlePriceChange = (range) => {
+    setPriceRange(range);
+  };
+
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    fetchData(currentPage, priceRange);
+  }, [currentPage, priceRange]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -66,6 +72,16 @@ function Venue() {
         <h2>Events</h2>
         <p>Events all across the US! </p>
       </div>
+
+      <RangeSlider
+        min={0}
+        max={10000}
+        step={1}
+        minDefault={priceRange.min}
+        maxDefault={priceRange.max}
+        onChange={handlePriceChange}
+      />
+
       <div class="row g-4 m-5">
         {
           eventData.events.map((event, index) => (
