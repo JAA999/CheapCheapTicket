@@ -257,10 +257,15 @@ def populate_from_artist(artist_instance, skipEventsWithMultipleArtists):
         for event in artist_events:
             artist_genre['upcomingEvents'].append(event['eventId'])
             artist_instance['futureEvents'].append(event['eventId'])
-            event_instances.append(event)
 
             event['genreName'] = artist_genre['name']
             event['genreId'] = artist_genre['genreId']
+
+            if artist_instance['id'] not in event['artistIds']:
+                event['artistIds'].append(artist_instance['id'])
+                event['artistNames'].append(artist_instance['name'])
+            
+            event_instances.append(event)
 
             # Update artist_genre event price range if necessary
             if event['priceRangeMin'] != -1:
@@ -349,7 +354,7 @@ def get_events_for_artist(artist_id, artist_name, skipEventsWithMultipleArtists)
                 price_range_max = -1
                 if ('priceRanges' in event and 'min' in event['priceRanges'][0] and 'max' in event['priceRanges'][0]):
                     price_range_min = event['priceRanges'][0]['min']
-                    price_ragne_max =  event['priceRanges'][0]['max']
+                    price_range_max =  event['priceRanges'][0]['max']
 
                 event_instance = {
                     'eventId': event['id'],
