@@ -3,10 +3,7 @@ from flask_cors import CORS
 from database import app, db, initialize_database
 from models import Genres, Artists, Events
 from gitlab_stats import get_gitlab_stats
-<<<<<<< HEAD
-=======
 from queryBuilder import QueryBuilder
->>>>>>> joseph-backend-dev
 import os
 
 CORS(app)

@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 /backend/venv
 .vscode
 /backend/__pycache__
 frontend/node_modules
 node_modules
 
-=======
-env
-.vscode
-/backend/__pycache__
-/frontend/node_modules
-.DS_Store
->>>>>>> joseph-backend-dev
