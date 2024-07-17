@@ -25,35 +25,43 @@ function Artists() {
     const [totalPages, setTotalPages] = useState(1);
 
     // searchQuery ; genreNames ; name, pop ; acsending, decsending ; 
-    const [searchQuery, setSearchQuery] = useState(''); 
-    const [filterValues, setfilterValues] = useState([{genre_id:"id1", name: "default"},{genre_id:"id2", name: "not"},{genre_id:"id3", name: "overrided"}]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterValues, setfilterValues] = useState([{ genre_id: "id1", name: "default" }, { genre_id: "id2", name: "not" }, { genre_id: "id3", name: "overrided" }]);
     const [filterValue, setFilterValue] = useState('');
+    // const [valuesRange, setValuesRange] = useState([1, 100]) // delete
+    const [currentRange, setCurrentRange] = useState([1, 100])
     const [sortBy, setSortBy] = useState('');
-    const [orderby, setOrderby] = useState(''); 
+    const [orderby, setOrderby] = useState('');
 
     useEffect(() => {
         const fetchOptions = async () => {
             try {
                 const response = await axios.get('/GetAllEvents');
                 const optionList = response.data.map(event => ({ genre_id: event.genre_id, name: event.name }));
-                setfilterValues(optionList); 
+                setfilterValues(optionList);
             } catch (error) {
                 console.error('Error fetching options:', error);
             }
         };
         fetchOptions();
-    }, []); 
-    
+    }, []);
+
     const fetchData = async (currentPage) => {
         try {
+            let min = 0;
+            let max = 0;
             const response = await axios.get(`localhost:5000/GetArtist/ `, {
-                params: { 
-                    page: currentPage, 
+                params: {
+                    page: currentPage,
                     per_page: 20,
-                    query : searchQuery,
-                    filter_by: filterValue,
                     sort_by: sortBy,
-                    order_by: orderby,
+                    sort_order: orderby,
+                    q: searchQuery,
+                    genre_name: filterValue,
+                    'popularity.min': currentRange[0],
+                    'popularity.max': currentRange[1],
+
+
                 }
             });
             const responseLength = await axios.get(`/GetAllArtists`);
@@ -61,12 +69,12 @@ function Artists() {
             const newArtists = response.data.Artists.map((newArtist, index) => {
                 const defaultArtist = artistsData.Artists[index] || {};
                 return {
-                  ...defaultArtist,
-                  ...newArtist
+                    ...defaultArtist,
+                    ...newArtist
                 };
-              });
+            });
 
-            setArtistsData({Artists : newArtists});
+            setArtistsData({ Artists: newArtists });
             setTotalPages(responseLength.data.length)
         } catch (error) {
             console.error("Error:", error);
@@ -80,38 +88,42 @@ function Artists() {
         console.log(sortBy + " debug sort value(string) ")
         console.log(orderby + " debug order value(string)")
         fetchData(currentPage);
-    }, [ currentPage ,orderby, filterValue, sortBy, searchQuery]);
+    }, [currentPage, orderby, filterValue, sortBy, searchQuery]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     };
 
-    const handleSearchQuery =(value)=>{
+    const handleSearchQuery = (value) => {
         setSearchQuery(value)
     }
-    const handleFilterBy =(value)=>{
+    const handleValuesRange = (newValues) => {
+        setCurrentRange(newValues);
+    }
+    const handleFilterBy = (value) => {
         setFilterValue(value)
     }
-    const handleSortBy =(value)=>{
+    const handleSortBy = (value) => {
         setSortBy(value)
     }
-    const handleOrderBy =(value)=>{
+    const handleOrderBy = (value) => {
         setOrderby(value)
     }
 
     return (
         <>
             <h1 class=" m-5">Artists</h1>
-               
-            <SearchContainer 
-             onSearchChange= {handleSearchQuery}
-             onFilterChange = {handleFilterBy}
-             filterOptions = {filterValues}
-             onSortChange = {handleSortBy}
-             onOrderChange = {handleOrderBy}
-             
+
+            <SearchContainer
+                onSearchChange={handleSearchQuery}
+                onValuesChange={handleValuesRange}
+                onFilterChange={handleFilterBy}
+                filterOptions={filterValues}
+                onSortChange={handleSortBy}
+                onOrderChange={handleOrderBy}
+
             />
-        
+
 
 
             <div class="row g-5 m-5" >
@@ -129,7 +141,7 @@ function Artists() {
                                 image_url={artist.image_url}
                             > </ArtistsCard>
                         </div>
-                        
+
                     ))
                 }
             </div>
