@@ -14,8 +14,8 @@ def create_genres():
 
     for genre in genres['Genres']:
         i = Genres(
-            genre_name=genre['name'],
-            genre_id=genre['genreId'],
+            name=genre['name'],
+            id=genre['genreId'],
             popular_artists=genre['popularArtists'],
             upcoming_events=genre['upcomingEvents'],
             top_songs=genre['topSongs'],
@@ -48,15 +48,9 @@ def create_events():
 
     for event in events['Events']:
         i = Events(
-<<<<<<< HEAD
-            event_name=event['eventName'],
-            event_id=event['eventId'],
-            date_and_time=event['dateAndTime'],
-=======
             name=event['eventName'],
             id=event['eventId'],
             event_date=event['eventDate'],
->>>>>>> joseph-backend-dev
             artist_names=event['artistNames'],
             artist_ids = event['artistIds'],
             price_range_min = event['priceRangeMin'],
@@ -64,14 +58,9 @@ def create_events():
             venue=event['venue'],
             ticketmaster_URL=event['ticketmasterURL'],
             genre_id=event['genreId'],
-<<<<<<< HEAD
-            sales_start_end=event['salesStart-End'],
-            #salesStart-End?
-=======
             genre_name=event['genreName'],
             sales_start=event['salesStart'],
             eventImage_URL=event['eventImageURL'] # ADDED 7/14
->>>>>>> joseph-backend-dev
         )
         db.session.add(i)
     db.session.commit()

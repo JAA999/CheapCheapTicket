@@ -33,9 +33,9 @@ def specific_genres():
     result = query_response.paginate()
     return [instance.to_dict() for instance in result]
 
-event_searchable_fields = [Events.name, Events.artist_names]
+event_searchable_fields = [Events.name]
 event_exact_filterable_fields = [Events.genre_name]
-event_range_filterable_fields = [Events.price_range_min, Events.price_range_max]
+event_range_filterable_fields = [Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
 event_sortable_fields =[Events.name, Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
 
 @app.route('/GetEvents')
@@ -46,7 +46,7 @@ def specific_events():
     return [instance.to_dict() for instance in result]
 
 artist_searchable_fields = [Artists.name]
-artist_exact_filterable_fields = [Artists.genre_name]
+artist_exact_filterable_fields = [Artists.name]
 artist_range_filterable_fields = [Artists.popularity]
 artist_sortable_fields = [Artists.name, Artists.popularity]
 
@@ -68,19 +68,7 @@ def genres_page(genre_id):
     if genre: return jsonify(genre.to_dict())
     return "Genre not found", 404
 
-<<<<<<< HEAD
-@app.route('/GetGenres/', methods=['GET'])
-def specific_genres():
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 5, type=int)
-    genres = Genres.query.paginate(page=page, per_page=per_page)
-    return jsonify([genre.to_dict() for genre in genres])
-
-# Artists Page
-@app.route('/GetAllArtists/', methods=['GET'])
-=======
 @app.route('/GetAllArtists', methods=['GET'])
->>>>>>> joseph-backend-dev
 def get_all_artists():
     if request.method == 'GET':
         artists = Artists.query.all()
@@ -93,19 +81,7 @@ def artists_page(artist_id):
         return jsonify(artist.to_dict())
     return "Artist not found", 404
 
-<<<<<<< HEAD
-@app.route('/GetArtists/')
-def specific_artists():
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 5, type=int)
-    artists = Artists.query.paginate(page=page, per_page=per_page) 
-    return jsonify([artist.to_dict() for artist in artists])
-
-# Events Page
-@app.route('/GetAllEvents/', methods=['GET'])
-=======
 @app.route('/GetAllEvents', methods=['GET'])
->>>>>>> joseph-backend-dev
 def get_all_events():
     events = Events.query.all()
     if events:
@@ -119,7 +95,21 @@ def events_page(event_id):
         return jsonify(event.to_dict())
     return "Event not found", 404
 
-<<<<<<< HEAD
+# Events Page
+@app.route('/GetAllEvents/', methods=['GET'])
+def get_all_events():
+    events = Events.query.all()
+    if events:
+        return jsonify([event.to_dict() for event in events])
+    return "No events found", 404
+
+@app.route('/GetEvent/<string:event_id>', methods=['GET'])
+def events_page(event_id):
+    event = Events.query.get(event_id) 
+    if event:
+        return jsonify(event.to_dict())
+    return "Event not found", 404
+
 @app.route('/GetEvents/')
 def specific_events():
     page = request.args.get('page', 1, type=int)
@@ -127,8 +117,6 @@ def specific_events():
     events = Events.query.paginate(page=page, per_page=per_page)
     return jsonify([event.to_dict() for event in events])
 
-=======
->>>>>>> joseph-backend-dev
 if __name__ == '__main__':
     app.run(debug=True)
     
