@@ -65,7 +65,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_to_playlists_test):
+                if (genre['name'] in genres_to_playlists):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -120,7 +120,7 @@ def populate_from_playlists():
     global artist_instances
 
     for genre_id in genre_instances:
-        genre_playlist_name = genres_to_playlists_test[genre_instances[genre_id]['name']]
+        genre_playlist_name = genres_to_playlists[genre_instances[genre_id]['name']]
         playlist = get_playlist_information(genre_playlist_name)
 
         for item in playlist['items']:
@@ -200,8 +200,8 @@ def get_artist_information(artist_id):
     response = response.json()
 
     # Only create an artist instance if the artist belongs to a genre
-    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres_test:
-        genre_name = subgenres_to_genres_test[response['genres'][0]]
+    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres:
+        genre_name = subgenres_to_genres[response['genres'][0]]
         if (genre_limits[genre_name][0] >= MAX_ARTISTS):
             return None
         # Note increment to number of artists for genre

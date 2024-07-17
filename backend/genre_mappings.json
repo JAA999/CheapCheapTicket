@@ -87,7 +87,6 @@
         "singer-songwriter pop": "Pop",
         "acoustic pop": "Pop",
         "chill pop": "Pop",
-        "melodic house": "Pop",
         "israeli pop": "Pop",
         "canadian pop": "Pop",
         "metropopolis": "Pop",
@@ -108,7 +107,6 @@
         "anthem worship": "Religious",
         "bath indie": "Rock",
         "hard rock": "Rock",
-        "black americana": "Rock",
         "adult standards": "Rock",
         "british invasion": "Rock",
         "glam rock": "Rock",
@@ -171,6 +169,8 @@
         "Rock": "Legends Only"
     },
     "genres_to_playlists_test": {
-        "Hip-Hop/Rap": "RapCaviar"
+        "Country": "Hot Coutry",
+        "Hip-Hop/Rap": "RapCaviar",
+        "Pop": "Summer Pop"
     }
 }
