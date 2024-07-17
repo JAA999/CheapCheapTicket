@@ -54,11 +54,12 @@ function Genre() {
         params: {
           page: currentPage,
           per_page: 5,
-          query: searchQuery,
-          min: currentRange[0],
-          max: currentRange[1],
           sort_by: sortBy,
-          order_by: orderby
+          sort_order: orderby,
+          q: searchQuery,
+          'events_price_min.min': currentRange[0],
+          'events_price_max.max': currentRange[1],
+
         }
       });
       const responseLength = await axios.get(`http://loclahost:5000/GetAllGenres`);
