@@ -2,7 +2,6 @@ import React from 'react';
 import VenueCard from './VenueCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-import RangeSlider from './RangeSlider';
 import SearchVenues from './SearchVenues';
 
 function Venue() {
@@ -27,9 +26,9 @@ function Venue() {
   const [totalPages, setTotalPages] = useState(1);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000});
 
-  const [venueRatingRange, setVenueRatingRange] = useState([0, 5]);
+  // const [venueRatingRange, setVenueRatingRange] = useState([0, 5]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [valuesRange, setValuesRange] = useState([0, 10000]);
+  // const [valuesRange, setValuesRange] = useState([0, 10000]);
   const [sortBy, setSortBy] = useState('');
   const [orderBy, setOrderBy] = useState('');
 
@@ -38,13 +37,13 @@ function Venue() {
       const response = await axios.get(`/GetEvents`, {
         params: { page: currentPage, 
           per_page: 30, 
-          min_price: priceRange.min, 
-          max_price: priceRange.max, 
-          min_rating: venueRatingRange[0],
-          max_rating: venueRatingRange[1],
-          search_query: searchQuery,
+          price_range_min : priceRange.min, 
+          price_range_max: priceRange.max, 
+          // min_rating: venueRatingRange[0],
+          // max_rating: venueRatingRange[1],
+          q: searchQuery,
           sort_by: sortBy,
-          order_by: orderBy,
+          sort_order: orderBy,
         }
       });
       const responseLength = await axios.get(`/GetAllEvents`);
@@ -60,29 +59,28 @@ function Venue() {
           },
         };
       });
-      setTotalPages(responseLength.data.total) //responseLength.data.total? //responseLength
+      setTotalPages(responseLength.data.total)
       setEventData({ events: newEvents });
     } catch (error) {
       console.error("Error:", error);
     }
   }
-  // fetchData()
 
   
   useEffect(() => {
 
 
-    fetchData(currentPage, priceRange, venueRatingRange, searchQuery, sortBy, orderBy);
+    fetchData(currentPage, priceRange, searchQuery, sortBy, orderBy); //venueRatingRange
 
-  }, [currentPage, priceRange, venueRatingRange, searchQuery, sortBy, orderBy]);
+  }, [currentPage, priceRange, searchQuery, sortBy, orderBy]); //venueRatingRange
   
   const handlePriceChange = (range) => {
     setPriceRange({ min: range[0], max: range[1] });
   };
 
-  const handleRatingChange = (range) => {
-    setVenueRatingRange(range);
-  };
+  // const handleRatingChange = (range) => {
+  //   setVenueRatingRange(range);
+  // };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -113,7 +111,7 @@ function Venue() {
       <SearchVenues
         onSearchChange={handleSearchQuery}
         onValuesChange={handlePriceChange}
-        onRatingChange={handleRatingChange}
+        // onRatingChange={handleRatingChange}
         minValue={0}
         maxValue={10000}
         minRating={0}
@@ -133,15 +131,6 @@ function Venue() {
 
         // onOrderChange={() => {}}
       />
-
-      {/* <RangeSlider
-        min={0}
-        max={10000}
-        step={1}
-        minDefault={priceRange.min}
-        maxDefault={priceRange.max}
-        onChange={handlePriceChange}
-      /> */}
 
       <div class="row g-4 m-5">
         {

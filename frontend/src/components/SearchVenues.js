@@ -3,9 +3,9 @@ import ReactSlider from 'react-slider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onRatingChange, onSearchChange, minValue, maxValue, minRating, maxRating }) {
+function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchChange, minValue, maxValue, minRating, maxRating }) { //onRatingChange
     const [priceRange, setPriceRange] = useState([minValue, maxValue]);
-    const [ratingRange, setRatingRange] = useState([minRating, maxRating]);
+    // const [ratingRange, setRatingRange] = useState([minRating, maxRating]);
     const [activeButton, setActiveButton] = useState(null);
 
     useEffect(() => {
@@ -21,10 +21,10 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onRatingCha
         onValuesChange(value);
     };
 
-    const handleRatingChange = (value) => {
-        setRatingRange(value);
-        onRatingChange(value);
-    };
+    // const handleRatingChange = (value) => {
+    //     setRatingRange(value);
+    //     onRatingChange(value);
+    // };
 
     const handleSortBy = (value) => {
         onSortChange(value);
@@ -76,7 +76,7 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onRatingCha
                         </div>
                     </li>
 
-                    <li>            
+                    {/* <li>            
                         <div className="d-flex flex-row align-items-center">
                             <span>Min Rating: {ratingRange[0]}</span>
                             <ReactSlider
@@ -91,7 +91,7 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onRatingCha
                             />
                             <span>Max Rating: {ratingRange[1]}</span>
                         </div>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
 
