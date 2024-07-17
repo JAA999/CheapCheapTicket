@@ -3,21 +3,27 @@ import ReactSlider from 'react-slider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchChange, minValue, maxValue }) {
-    const [rangeDisplay, setRangeDisplay] = useState([minValue, maxValue]);
+function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onRatingChange, onSearchChange, minValue, maxValue, minRating, maxRating }) {
+    const [priceRange, setPriceRange] = useState([minValue, maxValue]);
+    const [ratingRange, setRatingRange] = useState([minRating, maxRating]);
     const [activeButton, setActiveButton] = useState(null);
 
     useEffect(() => {
-        setRangeDisplay([minValue, maxValue]);
+        setPriceRange([minValue, maxValue]);
     }, [minValue, maxValue]);
 
-    const handleSearchQuery = (value) => {
-        onSearchChange(value);
+    const handleSearchQuery = (event) => {
+        onSearchChange(event.target.value);
     };
 
-    const handleValuesChange = (value) => {
-        setRangeDisplay(value);
+    const handlePriceChange = (value) => {
+        setPriceRange(value);
         onValuesChange(value);
+    };
+
+    const handleRatingChange = (value) => {
+        setRatingRange(value);
+        onRatingChange(value);
     };
 
     const handleSortBy = (value) => {
@@ -32,7 +38,7 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchCha
     return (
         <div className="d-flex flex-row justify-content-center align-items-center p-4">
             <div className="me-2">
-                <input type="text" placeholder="Search..." onChange={(event) => handleSearchQuery(event.target.value)} />
+                <input type="text" placeholder="Search..." onChange={handleSearchQuery} />
             </div>
 
             {/* <div className="d-flex flex-row align-items-center">
@@ -53,19 +59,37 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                     Ranges
                 </button>
                 <ul className="dropdown-menu">
-                    <li><button className="dropdown-item" onClick={() => handleSortBy('name')}>Name</button></li>
                     <li>            
                         <div className="d-flex flex-row align-items-center">
-                            <span>Min Price: {rangeDisplay[0]}</span>
+                            <span>Min Price: {priceRange[0]}</span>
                             <ReactSlider
                                 className="horizontal-slider d-flex align-items-center"
                                 thumbClassName="thumb"
-                                onChange={handleValuesChange}
-                                value={rangeDisplay}
+                                onChange={handlePriceChange}
+                                value={priceRange}
                                 pearling
-                                minDistance={1}
+                                minDistance={10}
+                                min={minValue}
+                                max={maxValue}
                             />
-                            <span>Max Price: {rangeDisplay[1]}</span>
+                            <span>Max Price: {priceRange[1]}</span>
+                        </div>
+                    </li>
+
+                    <li>            
+                        <div className="d-flex flex-row align-items-center">
+                            <span>Min Rating: {ratingRange[0]}</span>
+                            <ReactSlider
+                                className="horizontal-slider d-flex align-items-center"
+                                thumbClassName="thumb"
+                                onChange={handleRatingChange}
+                                value={ratingRange}
+                                pearling
+                                minDistance={0.5}
+                                min={minRating}
+                                max={maxRating}
+                            />
+                            <span>Max Rating: {ratingRange[1]}</span>
                         </div>
                     </li>
                 </ul>
@@ -77,9 +101,11 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                 </button>
                 <ul className="dropdown-menu">
                     <li><button className="dropdown-item" onClick={() => handleSortBy('name')}>Name</button></li>
-                    <li><button className="dropdown-item" onClick={() => handleSortBy('eventsPriceMin')}>Lowest Ticket Price</button></li>
-                    <li><button className="dropdown-item" onClick={() => handleSortBy('eventsPriceMax')}>Highest Ticket Price</button></li>
-                    <li><button className="dropdown-item" onClick={() => handleSortBy('date')}>Date</button></li>
+                    <li><button className="dropdown-item" onClick={() => handleSortBy('priceRange')}>Price</button></li>
+                    {/* <li><button className="dropdown-item" onClick={() => handleSortBy('eventsPriceMin')}>Lowest Ticket Price</button></li> */}
+                    {/* <li><button className="dropdown-item" onClick={() => handleSortBy('eventsPriceMax')}>Highest Ticket Price</button></li> */}
+                    <li><button className="dropdown-item" onClick={() => handleSortBy('venueRating')}>Rating</button></li>
+                    <li><button className="dropdown-item" onClick={() => handleSortBy('dateAndTime')}>Date</button></li>
                 </ul>
             </div>
 
@@ -88,8 +114,8 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                     Order By
                 </button>
                 <ul className="dropdown-menu">
-                    <li><button className={`dropdown-item ${activeButton === 'ascending' ? 'active' : ''}`} onClick={() => handleOrderBy('ascending')}>Ascending</button></li>
-                    <li><button className={`dropdown-item ${activeButton === 'descending' ? 'active' : ''}`} onClick={() => handleOrderBy('descending')}>Descending</button></li>
+                    <li><button className={`dropdown-item ${activeButton === 'asc' ? 'active' : ''}`} onClick={() => handleOrderBy('asc')}>Ascending</button></li>
+                    <li><button className={`dropdown-item ${activeButton === 'desc' ? 'active' : ''}`} onClick={() => handleOrderBy('desc')}>Descending</button></li>
                 </ul>
             </div>
         </div>
