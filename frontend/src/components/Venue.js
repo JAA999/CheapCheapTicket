@@ -3,6 +3,7 @@ import VenueCard from './VenueCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import RangeSlider from './RangeSlider';
+import SearchVenues from './SearchVenues';
 
 function Venue() {
 
@@ -24,7 +25,12 @@ function Venue() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [priceRange, setPriceRange] = useState({ min:0, max: 10000});
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000});
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [valuesRange, setValuesRange] = useState([0, 10000]);
+  const [sortBy, setSortBy] = useState('');
+  const [orderby, setOrderBy] = useState('');
 
   const fetchData = async (currentPage, priceRange) => {
     try {
@@ -50,18 +56,33 @@ function Venue() {
       console.error("Error:", error);
     }
   }
-  fetchData()
+  // fetchData()
 
-  const handlePriceChange = (range) => {
-    setPriceRange(range);
-  };
-
+  
   useEffect(() => {
+
     fetchData(currentPage, priceRange);
   }, [currentPage, priceRange]);
+  
+  const handlePriceChange = (range) => {
+    setPriceRange({ min: range[0], max: range[1] });
+  };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+  };
+
+  const handleSearchQuery = (value) => {
+    setSearchQuery(value)
+  };
+  const handleValuesRange = (newValues) => {
+    setValuesRange(newValues);
+  };
+  const handleSortBy = (value) => {
+    setSortBy(value)
+  };
+  const handleOrderBy = (value) => {
+    setOrderBy(value)
   };
 
 
@@ -73,14 +94,35 @@ function Venue() {
         <p>Events all across the US! </p>
       </div>
 
-      <RangeSlider
+      <SearchVenues
+        onSearchChange={handleSearchQuery}
+        onValuesChange={handleValuesRange}
+        minValue={0}
+        maxValue={100}
+        onSortChange={handleSortBy}
+        onOrderChange={handleOrderBy}
+
+        // onSearchChange={() => {}}
+
+        // onValuesChange={() => {}}
+
+        // minValue={0}
+
+        // maxValue={100}
+
+        // onSortChange={() => {}}
+
+        // onOrderChange={() => {}}
+      />
+
+      {/* <RangeSlider
         min={0}
         max={10000}
         step={1}
         minDefault={priceRange.min}
         maxDefault={priceRange.max}
         onChange={handlePriceChange}
-      />
+      /> */}
 
       <div class="row g-4 m-5">
         {
@@ -107,7 +149,7 @@ function Venue() {
           <button class="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
           {Array.from({ length: totalPages }, (_, index) => (
             currentPage === index + 1 ?
-              <button class=" page-item text-bg-dark" >{currentPage}</button>
+              <button class=" page-item text-bg-dark" key={index}>{currentPage}</button>
               :
               <></>
           ))}
