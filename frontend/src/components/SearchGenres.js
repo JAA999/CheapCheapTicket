@@ -50,19 +50,32 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                     <input onKeyDown={handleKeyDown} type="text" value={stringInput} placeholder="Search..." onChange={handleChange} />
                 </div>
 
-                <div class="d-flex flex-row align-items-center">
-                    <span>Min : {rangeDisplay[0]}</span>
-                    <ReactSlider
-                        className="horizontal-slider d-flex align-items-center"
-                        thumbClassName="thumb"
-                        max={maxValue}
-                        min={minValue}
-                        onChange={handleValuesChange}
-                        defaultValue={[minValue, maxValue]}
-                        pearling
-                        minDistance={1}
-                    />
-                    <span>Max : {rangeDisplay[1]}</span>
+
+
+                <div className="dropdown me-2">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ranges
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li>
+                            <div class="d-flex flex-column align-items-start p-2">
+                                
+                                <span>Lowest ticket cost : {rangeDisplay[0]}</span>
+                                <span>Highest ticket cost : {rangeDisplay[1]}</span>
+                                <ReactSlider
+                                    className="horizontal-slider d-flex align-items-center"
+                                    thumbClassName="thumb"
+                                    max={maxValue}
+                                    min={minValue}
+                                    onChange={handleValuesChange}
+                                    defaultValue={[minValue, maxValue]}
+                                    pearling
+                                    minDistance={1}
+                                />
+                                
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="dropdown me-2">

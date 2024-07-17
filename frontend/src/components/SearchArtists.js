@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
-function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValuesChange,onSearchChange, filterOptions }) {
+function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValuesChange, onSearchChange, filterOptions }) {
 
     // search name - string
     const [stringInput, setStringInput] = useState('');
@@ -46,7 +46,12 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
     const handleOrderBy = (value) => {
         setActiveButton(value);
         onOrderChange(value);
+
     }
+
+    const handleMouseDown = (event) => {
+        event.stopPropagation();
+    };
 
     return (
         <>
@@ -57,20 +62,31 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
                     <input onKeyDown={handleKeyDown} type="text" value={stringInput} placeholder="Search..." maxlength={100} onChange={handleChange} />
                 </div>
 
-                <div class="d-flex flex-row align-items-center">
-                    <span>Min : {rangeDisplay[0]}</span>
-                    <ReactSlider
-                        className="horizontal-slider d-flex align-items-center"
-                        thumbClassName="thumb"
-                        
-                        min={1}
-                        max={100}
-                        onChange={handleValuesChange}
-                        defaultValue={[1, 100]}
-                        pearling
-                        minDistance={1}
-                    />
-                    <span>Max : {rangeDisplay[1]}</span>
+                <div className="dropdown me-2">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ranges
+                    </button>
+                    <ul className="dropdown-menu" data-bs-auto-close="false" onMouseDown={handleMouseDown}>
+                        <li>
+                            <div className="d-flex flex-column align-items-start p-2">
+                                <span>Popularity out of 100 </span>
+                                <span>Highest : {rangeDisplay[0]}</span>
+                                <span>Lowest : {rangeDisplay[1]}</span>
+                                <ReactSlider
+                                    className="horizontal-slider d-flex align-items-center"
+                                    thumbClassName="thumb"
+
+                                    min={1}
+                                    max={100}
+                                    onChange={handleValuesChange}
+                                    defaultValue={[1, 100]}
+                                    pearling
+                                    minDistance={1}
+                                />
+
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="dropdown me-2">
