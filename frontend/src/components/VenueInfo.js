@@ -1,12 +1,13 @@
 import React from 'react';
-import {  useParams } from 'react-router-dom';
+import {  useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 
 function VenueInfo() {
 
-    const eventId = useParams()
+    const {eventId} = useParams();
+    const navigate = useNavigate();
 
     const [eventData, setEventData] = useState(
         {
@@ -23,57 +24,90 @@ function VenueInfo() {
     )
 
     useEffect(() => {
-        const getEventData = async () => {
+        const fetchEventData = async () => {
 
             try {
                 const response = await axios.get(`/GetEvent/${eventId}`);
-                const newEventData = {
-                    ...response.data,
-                    ...eventData
-                };
-                setEventData(newEventData);
+                // const newEventData = {
+                //     ...response.data,
+                //     ...eventData
+                // };
+                setEventData(response.data);
             } catch (error) {
-                console.error("Error: ", error)
+                console.error("Error fetching event data: ", error)
             }
         }
-        getEventData()
+        fetchEventData()
+    }, [eventId]);
 
-    }, [eventData, eventId]);
+    if (!eventData) {
+        return <div>Loading...</div>;
+    }
 
-    const [genreName, setGenreName] = useState("defaultGenreName")
-    useEffect(() => {
-        const getGenreName = async () => {
-            try {
-                const response = await axios.get(`/GetGenre/${eventData.genreId}`);
-                setGenreName(response.data.name)
-            } catch (error) {
-                console.error("Error:", error)
-            }
-        }
-        getGenreName()
-    },[eventData.genreId]);
+
+    const { eventName, artistNames, dateAndTime, salesStartEnd, priceRange, genreId, venue, ticketmasterURL } = eventData;
+
+
+    const handleBackClick = () => {
+        navigate('/venue');
+    };
+
+    // const [genreName, setGenreName] = useState("defaultGenreName")
+    // useEffect(() => {
+    //     const getGenreName = async () => {
+    //         try {
+    //             const response = await axios.get(`/GetGenre/${eventData.genreId}`);
+    //             setGenreName(response.data.name)
+    //         } catch (error) {
+    //             console.error("Error:", error)
+    //         }
+    //     }
+    //     getGenreName()
+    // },[eventData.genreId]);
+
 
     return (
-        <div>
-            <h2>{eventData.eventName}</h2>
-            {/* <img src="https://workingonmyredneck.com/wp-content/uploads/2021/07/iowa-speedway.jpeg" className="img-fluid rounded" alt="..." style={{
-                width: '25%', height: '25%', objectFit: 'cover', objectPosition: 'center'
-            }} /> */}
-            <br></br>
-            <span class="badge rounded-pill text-bg-secondary">Ticket Price <strong>${eventData.priceRange[0]} to ${eventData.priceRange[1]}</strong></span>
-            <br></br>
-            <br></br>
-            <h6 className="inline">Artist: </h6> <p  className="event-box" >{eventData.artistNames[0]}</p>
-            <br></br>
-            <br></br>
-
-            <p className="card-text">{eventData.dateAndTime[0]}-{eventData.dateAndTime[1]}-{eventData.dateAndTime[2]}</p>
-            <p className="card-text"><small className="text-body-secondary">{eventData.venue.address}</small></p>
-            <p><strong>Genres: </strong> <p className="event-box"> {genreName}</p> </p>
-            <a href={eventData.ticketmasterURL} rel="noreferrer" target="_blank" class = "btn btn-primary">Go to TicketMaster</a>
+        <div className="container my-5">
+        <button className="btn btn-secondary mb-3" onClick={handleBackClick}>Back to Events</button>
+            <h2>{eventName}</h2>
+            <p><strong>Artists:</strong> {artistNames.join(', ')}</p>
+            <p><strong>Date and Time:</strong> {new Date(dateAndTime).toLocaleString()}</p>
+            <p><strong>Sales Start and End:</strong> {salesStartEnd}</p>
+            <p><strong>Price Range:</strong> ${priceRange[0]} - ${priceRange[1]}</p>
+            <p><strong>Genre:</strong> {genreId}</p>
+            <h3>Venue Information</h3>
+            <p><strong>Name:</strong> {venue.name}</p>
+            <p><strong>Address:</strong> {venue.address}</p>
+            <p><strong>Phone Number:</strong> {venue.phoneNumber}</p>
+            <p><strong>Rating:</strong> {venue.rating}</p>
+            <p><strong>Website:</strong> <a href={venue.website} target="_blank" rel="noopener noreferrer">{venue.website}</a></p>
+            <a href={ticketmasterURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Buy Tickets</a>
         </div>
-    )
+    );
 }
+
+
+    // return (
+    //     <div>
+    //         <h2>{eventData.eventName}</h2>
+    //         {/* <img src="https://workingonmyredneck.com/wp-content/uploads/2021/07/iowa-speedway.jpeg" className="img-fluid rounded" alt="..." style={{
+    //             width: '25%', height: '25%', objectFit: 'cover', objectPosition: 'center'
+    //         }} /> */}
+    //         <br></br>
+    //         <span class="badge rounded-pill text-bg-secondary">Ticket Price <strong>${eventData.priceRange[0]} to ${eventData.priceRange[1]}</strong></span>
+    //         <br></br>
+    //         <br></br>
+    //         <h6 className="inline">Artist: </h6> <p  className="event-box" >{eventData.artistNames[0]}</p>
+    //         <br></br>
+    //         <br></br>
+
+    //         <p className="card-text">{eventData.dateAndTime[0]}-{eventData.dateAndTime[1]}-{eventData.dateAndTime[2]}</p>
+    //         <p className="card-text"><small className="text-body-secondary">{eventData.venue.address}</small></p>
+    //         <p><strong>Genres: </strong> <p className="event-box"> {genreName}</p> </p>
+    //         <a href={eventData.ticketmasterURL} rel="noreferrer" target="_blank" class = "btn btn-primary">Go to TicketMaster</a>
+    //     </div>
+    // )
+// }
 
 
 export default VenueInfo
