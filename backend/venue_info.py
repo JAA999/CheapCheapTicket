@@ -30,7 +30,7 @@ def get_venue_information(venue_id):
         'name': '',
         'address': '',
         'phoneNumber': "Unavailable" if 'nationalPhoneNumber' not in response else response['nationalPhoneNumber'],
-        'rating': "Unavailable" if 'rating' not in response else f"{response['rating']} / 5",
+        'rating': "Unavailable" if 'rating' not in response else response['rating'],
         'website': "Unavailable" if 'websiteUri' not in response else response['websiteUri']
     }
 

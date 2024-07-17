@@ -89,3 +89,5 @@ def get_gitlab_stats():
             stats_for_member.append(issues_per_member[member])
         stats[member] = stats_for_member
     return stats
+
+# print(get_gitlab_stats())

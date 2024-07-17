@@ -15,22 +15,21 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetArtist/2HPaUgqeutzr3jx5a9WyDV/\", function (err, response) {",
 							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
 							"    });",
 							"",
 							"    pm.test(\"Check Genre Id For Artist\", function () {",
+							"        console.log(pm.response)",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.genreId).to.eql(\"KnvZfZ7vAee\");",
+							"        pm.expect(jsonData.genre_id).to.eql(\"KnvZfZ7vAee\");",
 							"    });",
 							"",
 							"    pm.test(\"Check Artist Name\", function () {",
 							"        var jsonData = pm.response.json();",
 							"        pm.expect(jsonData.name).to.eql(\"PARTYNEXTDOOR\");",
-							"    });",
-							"});"
+							"    });"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -44,20 +43,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetArtist/:artist_id",
+					"raw": "{{local}}/GetArtist/:artist_id",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
 						"GetArtist",
 						":artist_id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "ar",
+							"value": null,
+							"disabled": true
+						}
 					],
 					"variable": [
 						{
 							"key": "artist_id",
-							"value": "String",
-							"description": "Unique id for artist"
+							"value": "2HPaUgqeutzr3jx5a9WyDV"
 						}
 					]
 				}
@@ -69,12 +78,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetArtist/:artist_id",
+							"raw": "{{main_url}}/GetArtist/:artist_id",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetArtist",
 								":artist_id"
 							],
@@ -100,7 +108,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetArtists/?page=1&per_page=2&sort_by=genre&sort_order=ascending\", function (err, response) {",
 							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
@@ -113,7 +120,7 @@
 							"",
 							"    pm.test(\"Check First Artist Genre Id\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData[0].genreId).to.eql(\"KnvZfZ7vAvv\");",
+							"        pm.expect(jsonData[0].genre_id).to.eql(\"KnvZfZ7vAvv\");",
 							"        });",
 							"",
 							"    pm.test(\"Check Second Artist Id\", function () {",
@@ -123,9 +130,8 @@
 							"",
 							"    pm.test(\"Check Second Artist Genre Id\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData[1].genreId).to.eql(\"KnvZfZ7vAvv\");",
-							"    });",
-							"});"
+							"        pm.expect(jsonData[1].genre_id).to.eql(\"KnvZfZ7vAvv\");",
+							"    });"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -136,35 +142,29 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetArtists/?page=int&per_page=int&sort_by=string&sort_order=string",
+					"raw": "{{local}}/GetArtists?page=1&per_page=10&sort_by=string&sort_order=string",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
-						"GetArtists",
-						""
+						"GetArtists"
 					],
 					"query": [
 						{
 							"key": "page",
-							"value": "int",
-							"description": "Page to get"
+							"value": "1"
 						},
 						{
 							"key": "per_page",
-							"value": "int",
-							"description": "Return number of pages"
+							"value": "10"
 						},
 						{
 							"key": "sort_by",
-							"value": "string",
-							"description": "Criteria to sort by"
+							"value": "string"
 						},
 						{
 							"key": "sort_order",
-							"value": "string",
-							"description": "Ascending or descending"
+							"value": "string"
 						}
 					]
 				}
@@ -176,12 +176,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetArtists/?page=int&per_page=int&sort_by=string&sort_order=string",
+							"raw": "{{main_url}}/GetArtists/?page=int&per_page=int&sort_by=string&sort_order=string",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetArtists",
 								""
 							],
@@ -223,17 +222,15 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetAllArtists/\", function (err, response) {",
 							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
 							"    });",
 							"",
 							"    pm.test(\"Validate Number of Artist Instances\", function () {",
-							"        var jsonData = pm.response.json();",
-							"        pm.expect(len(jsonData)).to.eql(225);",
-							"    });",
-							"});"
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(225);",
+							"    });"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -244,14 +241,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetAllArtists/",
+					"raw": "{{local}}/GetAllArtists",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
-						"GetAllArtists",
-						""
+						"GetAllArtists"
 					],
 					"query": [
 						{
@@ -270,12 +265,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetAllArtists/",
+							"raw": "{{main_url}}/GetAllArtists/",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetAllArtists",
 								""
 							],
@@ -303,14 +297,13 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetEvent/Z698xZu0ZaGQo/\", function (err, response) {",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
 							"    });",
 							"",
 							"    pm.test(\"eventName Check\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.eventName).to.eql(\"Childish Gambino\");",
+							"        pm.expect(jsonData.event_name).to.eql(\"Childish Gambino\");",
 							"    });",
 							"",
 							"    pm.test(\"Date and Time Check\", function () {",
@@ -320,12 +313,12 @@
 							"",
 							"    pm.test(\"genreId Check\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.genreId).to.eql(\"KnvZfZ7vAvv\");",
+							"        pm.expect(jsonData.genre_id).to.eql(\"KnvZfZ7vAvv\");",
 							"    });",
 							"",
 							"    pm.test(\"priceRange Check\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.priceRange).to.eql([1490.0,",
+							"        pm.expect(jsonData.price_range).to.eql([1490.0,",
 							"                    4242.0]);",
 							"    });",
 							"",
@@ -333,6 +326,11 @@
 							"        var jsonData = pm.response.json();",
 							"        pm.expect(jsonData.venue['name']).to.eql(\"O2 Arena\");",
 							"    });",
+							"",
+							"",
+							"pm.test(\"Sales Start and End check\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.sales_start_end).to.eql(\"2024-05-17T08:00:00Z to 2024-11-12T22:59:00Z\");",
 							"});",
 							"",
 							""
@@ -346,19 +344,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetEvent/:event_id",
+					"raw": "{{local}}/GetEvent/:event_id",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
 						"GetEvent",
 						":event_id"
 					],
 					"variable": [
 						{
 							"key": "event_id",
-							"value": "String",
+							"value": "Z698xZu0ZaGQo",
 							"description": "Return     id of event"
 						}
 					]
@@ -371,12 +368,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetEvent/:event_id",
+							"raw": "{{main_url}}/GetEvent/:event_id",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetEvent",
 								":event_id"
 							],
@@ -402,24 +398,20 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetEvents/?page=1&per_page=2&sort_by=genre&soty_order=ascending\", function (err, response) {",
+							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
 							"    });",
 							"",
 							"    pm.test(\"genre Check 1\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData[0].eventId).to.eql(\"Z698xZu0ZaGQo\");",
+							"        pm.expect(jsonData[0].genre_id).to.eql(\"KnvZfZ7vAvv\");",
 							"    });",
 							"",
 							"    pm.test(\"genre Check 2\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData[1].eventId).to.eql(\"KnvZfZ7vAvv\");",
+							"        pm.expect(jsonData[1].genre_id).to.eql(\"KnvZfZ7vAvv\");",
 							"    });",
-							"});",
-							"",
-							"",
-							"",
 							""
 						],
 						"type": "text/javascript",
@@ -431,24 +423,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetEvents/?page=int&per_page=int&sort_by=string&sort_order=string",
+					"raw": "{{local}}/GetEvents?page=1&per_page=5&sort_by=string&sort_order=string",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
-						"GetEvents",
-						""
+						"GetEvents"
 					],
 					"query": [
 						{
 							"key": "page",
-							"value": "int",
+							"value": "1",
 							"description": "Page to get"
 						},
 						{
 							"key": "per_page",
-							"value": "int",
+							"value": "5",
 							"description": "Number of pages  to get"
 						},
 						{
@@ -471,12 +461,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetEvents/?page=int&per_page=int&sort_by=string&sort_order=string",
+							"raw": "{{main_url}}/GetEvents/?page=int&per_page=int&sort_by=string&sort_order=string",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetEvents",
 								""
 							],
@@ -518,17 +507,15 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetAllEvents/\", function (err, response) {",
 							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
 							"    });",
 							"",
-							"    pm.test(\"Your test name\", function () {",
-							"        var jsonData = pm.response.json();",
-							"        pm.expect(len(jsonData)).to.be.greaterThan(600);",
+							"    pm.test(\"Validate Number of Artist Instances\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.greaterThan(600);",
 							"    });",
-							"});",
 							"",
 							""
 						],
@@ -541,14 +528,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetAllEvents/",
+					"raw": "{{local}}/GetAllEvents",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
-						"GetAllEvents",
-						""
+						"GetAllEvents"
 					]
 				}
 			},
@@ -559,12 +544,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetAllEvents/",
+							"raw": "{{main_url}}/GetAllEvents/",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetAllEvents",
 								""
 							]
@@ -584,30 +568,24 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest( \"https://www.cheapcheapticket.xyz/api/GetGenre/KnvZfZ7vAva\", function (err, response) {",
-							"",
-							"    pm.test(\"Status code is 200\", function () {",
-							"        pm.response.to.have.status(200);",
-							"    });",
-							"",
-							"    pm.test(\"Checking genre name :\", function () {",
-							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.name).to.eql(\"Folk\");",
-							"    });",
-							"",
-							"    pm.test(\"Checking popularArtists :\", function () {",
-							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.popularArtists[0]).to.eql(\"4j96cMcT8GRi11qbvo1cLQ\");",
-							"    });",
-							"",
-							"",
-							"    pm.test(\"Your test name\", function () {",
-							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData.upcomingEvents[3]).to.eql(\"1A0ZkeFGkdtlw5i\");",
-							"    });",
-							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
 							"});",
 							"",
+							"pm.test(\"Checking genre name :\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Folk\");",
+							"});",
+							"",
+							"pm.test(\"Checking popularArtists :\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.popular_artists[0]).to.eql(\"4j96cMcT8GRi11qbvo1cLQ\");",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.upcoming_events[0]).to.eql(\"G5dIZb53mz3S1\");",
+							"});",
 							""
 						],
 						"type": "text/javascript",
@@ -619,19 +597,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetGenre/:genre_id",
+					"raw": "{{local}}/GetGenre/:genre_id",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
 						"GetGenre",
 						":genre_id"
 					],
 					"variable": [
 						{
 							"key": "genre_id",
-							"value": "string",
+							"value": "KnvZfZ7vAva",
 							"description": "Unique id for genre"
 						}
 					]
@@ -644,12 +621,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetGenre/:genre_id",
+							"raw": "{{main_url}}/GetGenre/:genre_id",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetGenre",
 								":genre_id"
 							],
@@ -675,7 +651,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetGenres/?page=1&per_page=2&sort_by=genre&sort_order=acsending\", function (err, response) {",
 							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
@@ -688,7 +663,7 @@
 							"",
 							"    pm.test(\"Checking price range 1 :\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData[0].eventsPriceRange).to.eql([0.0,4242.0]);",
+							"        pm.expect(jsonData[0].events_price_range).to.eql([0.0,4242.0]);",
 							"    });",
 							"",
 							"    pm.test(\"Checking genre name 2 :\", function () {",
@@ -698,10 +673,8 @@
 							"",
 							"    pm.test(\"Checking price range 2 :\", function () {",
 							"        var jsonData = pm.response.json();",
-							"        pm.expect(jsonData[1].eventsPriceRange).to.eql([12.0,279.0]);",
-							"    });",
-							"",
-							"});"
+							"        pm.expect(jsonData[1].events_price_range).to.eql([12.0,279.0]);",
+							"    });"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -712,24 +685,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetGenres/?page=int&per_page=int&sort_by=string&sort_order=string",
+					"raw": "{{local}}/GetGenres?page=1&per_page=10&sort_by=string&sort_order=string",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
-						"GetGenres",
-						""
+						"GetGenres"
 					],
 					"query": [
 						{
 							"key": "page",
-							"value": "int",
+							"value": "1",
 							"description": "Page to get"
 						},
 						{
 							"key": "per_page",
-							"value": "int",
+							"value": "10",
 							"description": "Number of pages to return"
 						},
 						{
@@ -752,12 +723,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetGenres/?page=int&per_page=int&sort_by=string&sort_order=string",
+							"raw": "{{main_url}}/GetGenres/?page=int&per_page=int&sort_by=string&sort_order=string",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetGenres",
 								""
 							],
@@ -799,17 +769,15 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.sendRequest(\"https://www.cheapcheapticket.xyz/api/GetAllGenres/\", function (err, response) {",
 							"",
 							"    pm.test(\"Status code is 200\", function () {",
 							"        pm.response.to.have.status(200);",
 							"    });",
 							"",
-							"    pm.test(\"Checking for creation of all genre instances :\", function () {",
-							"        var jsonData = pm.response.json();",
-							"        pm.expect(len(jsonData)).to.eql(15);",
-							"    });",
-							"});"
+							"    pm.test(\"Validate Number of Artist Instances\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(15);",
+							"    });"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -820,12 +788,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{main_url}}/api/GetAllGenres/",
+					"raw": "{{local}}/GetAllGenres/",
 					"host": [
-						"{{main_url}}"
+						"{{local}}"
 					],
 					"path": [
-						"api",
 						"GetAllGenres",
 						""
 					]
@@ -838,12 +805,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{main_url}}/api/GetAllGenres/",
+							"raw": "{{main_url}}/GetAllGenres/",
 							"host": [
 								"{{main_url}}"
 							],
 							"path": [
-								"api",
 								"GetAllGenres",
 								""
 							]
@@ -861,6 +827,10 @@
 		{
 			"key": "main_url",
 			"value": "www.cheapcheapticket.xyz"
+		},
+		{
+			"key": "local",
+			"value": "http://localhost:5000"
 		}
 	]
 }
