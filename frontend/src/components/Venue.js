@@ -115,7 +115,7 @@ function Venue() {
         onValuesChange={handlePriceChange}
         onRatingChange={handleRatingChange}
         minValue={0}
-        maxValue={100000}
+        maxValue={10000}
         minRating={0}
         maxRating={5}
         onSortChange={handleSortBy}
