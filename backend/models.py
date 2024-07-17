@@ -1,118 +1,115 @@
-from flask import Flask, render_template 
-from flask_sqlalchemy import SQLAlchemy 
-from sqlalchemy.dialects.postgresql import ARRAY, JSON 
-import os 
-
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+import os
+from sqlalchemy.dialects.postgresql import ARRAY, JSON
+# initializing Flask app 
 app = Flask(__name__) 
 
-app.app_context().push() 
+app.app_context().push()
 
-USER ="postgres" 
-PASSWORD ="asd123" 
-PUBLIC_IP_ADDRESS ="localhost:5432" 
-DBNAME ="ticketsdb" 
+USER ="postgres"
+PASSWORD ="asd123"
+# PUBLIC_IP_ADDRESS = "localhost:5432"
+# Update the PUBLIC_IP_ADDRESS to your Cloud SQL instance's connection name
+PUBLIC_IP_ADDRESS = "cs373-idb-428121:us-central1:ticketsdb"
+DBNAME ="ticketsdb"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = \ 
-os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}') 
+# Configuration 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True 
-db = SQLAlchemy(app) 
+db = SQLAlchemy(app)
 
-link = db.Table('link',
-    db.Column('artist_id', db.Integer, db.ForeignKey('artist.id')), 
-    db.Column('venue_id', db.Integer, db.ForeignKey('venue.id')), 
-    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id')), 
-    ) 
-
-# Relationship to Genre: one artist can have one genre
-# Relationship to Venues: one artist can have multiple venues(events)
-class Artist(db.Model): 
-    __tablename__ = 'artists'
+class Genres(db.Model):
+    __tablename__ = 'genres'
     
-    name = db.Column(db.String(80), nullable = False) 
-    id = db.Column(db.Integer, primary_key = True) 
-    popularity = db.Column(db.Integer) 
-    genreId = db.Column(db.Integer, primary_key = True) 
+    genre_name = db.Column(db.String(80), nullable = False)
+    genre_id = db.Column(db.String, primary_key = True)
+
+    popular_artists = db.Column(ARRAY(db.String))
+    upcoming_events = db.Column(ARRAY(db.String)) 
+    top_songs = db.Column(ARRAY(db.String)) 
+    events_price_range = db.Column(ARRAY(db.Integer))
+
+    # Relationship
+    artists = db.relationship('Artists', back_populates='genre')
+    events = db.relationship('Events', back_populates='genre')
+
+    def to_dict(self):
+        instance = {
+            'name': self.genre_name,
+            'id': self.genre_id,
+            'popular_artists': self.popular_artists,
+            'upcoming_events': self.upcoming_events,
+            'top_songs': self.top_songs,
+            'events_price_range': self.events_price_range
+        }
+        return instance
+  
+class Artists(db.Model):
+    __tablename__ = 'artists'
+	
+    artist_name = db.Column(db.String(80), nullable = False)
+    artist_id = db.Column(db.String, primary_key = True)
+    popularity = db.Column(db.Integer)  
     albums = db.Column(ARRAY(db.String)) 
     album_covers = db.Column(ARRAY(db.String))
     future_events = db.Column(ARRAY(db.String))
     image_url = db.Column(db.String(80)) 
-
-    venue_id = db.Column(db.Integer, primary_key = True)
-    venues = db.relationship('venue', backref = 'artist') # one to many 
-    
-    genre = db.relationship(db.Integer, db.ForeignKey('genre')) # one to one
+    # Relationship
+    genre_id = db.Column(db.String, db.ForeignKey('genres.genre_id'), nullable=False)
+    genre = db.relationship('Genres', back_populates='artists')
+    events = db.relationship('Events', secondary ='artist_events', back_populates='artists')
 
     def to_dict(self):
         instance = {
-            'name': self.name,
-            'id': self.id,
+            'name': self.artist_name,
+            'id': self.artist_id,
             'popularity': self.popularity,
-            'genreName': self.name,
             'albums': self.albums,
             'album_covers': self.album_covers,
-            'future_events': [(Event.query.get(event_id)).eventName for event_id in self.future_events],
-            'image_url': self.image_url
-        }
-        return instance
-
-# Relationship to Artist: one venue can have multiple artists
-# Relationship to Genre: one venue(event) can have one genre
-class Event(db.Model): 
-    __tablename__ = 'venues' 
-
-    eventId = db.Column(db.String(80), primary_key = True) 
-    eventName = db.Column(ARRAY(db.String)) 
-    artistNames = db.Column(ARRAY(db.String)) 
-    dateAndTime = db.Column(db.String)
-    salesStartEnd = db.Column(db.String) 
-    priceRange = db.Column(db.Integer)
-    genreId =  db.Column(db.String) 
-    venue = db.Column(JSON) 
-    ticketmasterURL = db.Column(db.String) 
-
-    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
-    genre = db.relationship('genre', secondary = 'link', backref='wrote') 
-
-    def to_dict():
-        instance = {
-            'eventId': self.eventId,
-            'eventName': self.eventName,
-            'artistNames': self.artistNames,
-            'dateAndTime': self.dateAndTime,
-            'salesStartEnd': self.salesStartEnd,
-            'priceRange': self.priceRange,
-            'genreId': self.genreId,
-            'venue': self.venue,
-            'ticketmasterURL': self.ticketmasterURL
+            'future_events': self.future_events,
+            'image_url': self.image_url,
+            'genre_id': self.genre_id
         }
         return instance
     
-# Relationship to Artist: one genre can have multiple artists
-# Relationship to Venues: one genre ca multiple venues(events)
-class Genres(db.Model): 
-    __tablename__ = 'genres' 
+class Events(db.Model):
+    __tablename__ = 'events'
+	
+    event_name = db.Column(db.String, nullable = False)
+    event_id = db.Column(db.String, primary_key = True)
+    # description = db.Column(db.String(250))
 
-    genreId = db.Column(db.String(80), primary_key = True)
-    name = db.Column(db.String(80)) 
-    popularArtists = db.Column(ARRAY(db.String))
-    upcomingEvents = db.Column(ARRAY(db.String)) 
-    topsongs = db.Column(ARRAY(db.String)) 
-    eventsPriceRange = db.Column(db.Integer)
+    artist_names = db.Column(ARRAY(db.String)) 
+    artist_ids = db.Column(ARRAY(db.String))
+    date_and_time = db.Column(ARRAY(db.Integer))
+    sales_start_end = db.Column(db.String) 
+    price_range = db.Column(ARRAY(db.Integer))
+    venue = db.Column(JSON) 
+    ticketmaster_URL = db.Column(db.String) 
 
-    venue_id = db.Column(db.Integer, db.ForeignKey('venue.eventId'))
-    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
+    # Relationship
+    genre_id = db.Column(db.String, db.ForeignKey('genres.genre_id'), nullable=False)
+    genre = db.relationship('Genres', back_populates='events')
+    artists = db.relationship('Artists', secondary='artist_events', back_populates='events')
 
     def to_dict(self):
         instance = {
-            'name': self.name,
-            'genreId': self.genreId
-            'popularArtists': [(User.query.get(artist_id)).name for artist_id in self.popularArtists],
-            'upcomingEvents': [(Event.query.get(event_id)).eventName for event_id in self.upcomingEvents],
-            'topSongs': self.topSongs,
-            'eventsPriceRange': ''
+            'artist_names': self.artist_names,
+            'date_and_time': self.date_and_time,
+            'artistIds': self.artist_ids,
+            'id': self.event_id, 
+            'event_name': self.event_name,
+            'dateAndTime': self.date_and_time,
+            'sales_start_end': self.sales_start_end,
+            'price_range': self.price_range,
+            'venue': self.venue,
+            'ticketmaster_URL': self.ticketmaster_URL,
+            'genre_id': self.genre_id
         }
         return instance
 
-db.create_all()
-
-
+artists_events = db.Table('artist_events',
+   db.Column('artist_id', db.String, db.ForeignKey('artists.artist_id')), 
+   db.Column('event_id', db.String, db.ForeignKey('events.event_id'))
+   )

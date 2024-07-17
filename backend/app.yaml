@@ -2,11 +2,7 @@ runtime: python
 env: flex
 entrypoint: gunicorn -b :$PORT main:app
 
-<<<<<<< HEAD
 runtime_config: 
-=======
-runtime_config:
->>>>>>> a9a45c53055b88d7243b58cc7c148ceb8e9ece27
     python_version: 3
 
 env_variables:

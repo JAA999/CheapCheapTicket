@@ -11,7 +11,7 @@ function GenreCard(props) {
     useEffect(() => {
         const fetchEventNames = async () => {
             const eventNames = ["defaultEventName 1", "defaultEventName 2", "defaultEventName 3"];
-            const limitedFutureEvents = props.upcomingEvents.slice(0, 3);
+            const limitedFutureEvents = [...props.upcomingEvents.slice(0, 3)];
 
             while (limitedFutureEvents.length < 3) {
                 limitedFutureEvents.push("");
@@ -20,8 +20,8 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetEvent/${limitedFutureEvents[i]}`);
-                        eventNames[i] = response.data.eventName;
+                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetEvent/${limitedFutureEvents[i]}`);
+                        eventNames[i] = response.data.event_name;
                     } catch (error) {
                         console.error('Error:', error);
                     }
@@ -39,7 +39,7 @@ function GenreCard(props) {
     useEffect(() => {
         const fetchArtistNames = async () => {
             const artistsNames = ["art 1", "art 2", "art 3"];
-            const topArtistsIds = props.popularArtists.slice(0, 3);
+            const topArtistsIds = [...props.popularArtists.slice(0, 3)];
 
             while (topArtistsIds.length < 3) {
                 topArtistsIds.push("");
@@ -48,7 +48,7 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (topArtistsIds[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetArtist/${topArtistsIds[i]}`);
+                        const response = await axios.get(`https://www.cheapcheapticket.xyz/GetArtist/${topArtistsIds[i]}`);
                         artistsNames[i] = response.data.name;
                     } catch (error) {
                         console.error('Error:', error);
@@ -66,14 +66,13 @@ function GenreCard(props) {
     return (
         <>
             <div class="genre-card row text-start p-5 rounded-5">
-
                 <h1 class="col-lg-12  "><Link class="genre-card-title" to={`/genre/${props.genreId}`}>{props.name}</Link></h1>
                 <div class="col-lg-4 d-flex flex-column">
                     <h1 class="genre-card-subtitle">Top Songs</h1>
                     {
                         props.topSongs.map((song, index) => (
                             index < 3 ?
-                                <span key={index}>{song}</span>
+                                <span class="genre-card-songs" key={index}>{song}</span>
                                 :
                                 null
                         ))
@@ -87,20 +86,18 @@ function GenreCard(props) {
                             <span key={index}><Link to={`/artists/artistspage/${key}`} class="genre-card-link">{value}</Link></span>
                         ))
                     }
-                    {/* <span><Link to={"/genre/genrestaticinstance1"} class="genre-card-link">First Last Name</Link></span> */}
                 </div>
 
                 <div class="col-lg-4 d-flex flex-column">
-                    <h1 class="genre-card-subtitle">Venues</h1>
+                    <h1 class="genre-card-subtitle">Events</h1>
                     {
                         Object.entries(eventIdPairs).map(([key, value], index) => (
                             index < 3 ?
-                                <span key={index}><Link to={`/genre/${key}`} class="genre-card-link">{value}</Link></span>
+                                <span key={index}><Link to={`/venue/${key}`} class="genre-card-link">{value}</Link></span>
                                 :
                                 null
                         ))
                     }
-                    {/* <span><Link to={"/genre/genrestaticinstance1"} class="genre-card-link">example event</Link></span> */}
                 </div >
 
 

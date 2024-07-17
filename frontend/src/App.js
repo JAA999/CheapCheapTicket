@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
           <div class="container-fluid">
             <a class="navbar-brand" href="/">
               {/* <img src="chick.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"></img> */}
@@ -53,12 +53,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/venue" element={<Venue />} />
+          <Route path="/venue/:eventId" element={<VenueInfo />} />
           <Route path="/artists" element={<Artists />} />
-          <Route path="/artists/artistspage/:artistsId" element={<ArtistsPage />} />
-
-          <Route path="/venue" element={<Venue />} />
-          <Route path="/venue/:venueId" element={<VenueInfo />} />
-          
+          <Route path="/artists/artistspage/:artistId" element={<ArtistsPage />} />
           <Route path="/genre" element={<Genre />} />
           <Route path="/genre/:genreId" element={<GenreInstance />} />
 

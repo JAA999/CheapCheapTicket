@@ -1,96 +1,87 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from database import app, db, create_events, create_artists, create_genres
+from database import app, db, initialize_database
 from models import Genres, Artists, Events
-from data import get_gitlab_stats
+from gitlab_stats import get_gitlab_stats
+import os
 
-app = Flask(__name__)
+CORS(app)
+
+with app.app_context():
+    initialize_database()
 
 # Home Page
 @app.route('/')
 def index():
-   pass
+   return "Welcome to the Home Page"
 
 # About Page
-@app.route('/about', methods=['GET'])
+@app.route('/about', methods=['GET']) 
 def about_page():
-    if request.methods == 'GET':
-        return get_gitlab_stats()
+    return get_gitlab_stats()
 
 # Genres Page
-@app.route('/api/GetAllGenres/', methods=['GET'])
-@app.route('/api/GetGenre/<string:genre_id>', methods=['POST'])
+@app.route('/GetAllGenres', methods=['GET'])
+def get_all_genres():
+    genres = Genres.query.all()
+    return jsonify([genre.to_dict() for genre in genres])
+
+@app.route('/GetGenre/<string:genre_id>', methods=['GET'])
 def genres_page(genre_id):
-    # When genres are listed as cards in grid view
-    if request.methods == 'GET': # is it request.method instead of methods
-        # genres = db.session.query('Genre').all()
-        genres = Genres.query.all()
-        return jsonify([genre.to_dict() for genre in genres])
-    elif request.methods == 'POST':
-        # When user clicks on genre card (or name)
-        data = request.json
-        if genre_id != '':
-            # Search database based on genre_id
-            genre_id = data['genre_id']
-            tgt = Genres.query.get(genre_id)
-            return tgt.to_dict()
+    genre = Genres.query.get(genre_id)
+    if genre: return jsonify(genre.to_dict())
+    return "Genre not found", 404
 
-
-@app.route('/api/GetGenres/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
-def specific_genres(page, per_page, sort_by, sort_order):
-    if page != '':
-        page_num = int(page)
-        step = int(per_page) if not per_page else 5
-        genres = db.session.query('Genres').all()
-        return jsonify([(genres[page_num * step + i]).to_dict() for i in range(step + 1)])
+@app.route('/GetGenres', methods=['GET'])
+def specific_genres():
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 5, type=int)
+    genres = Genres.query.paginate(page=page, per_page=per_page)
+    return jsonify([genre.to_dict() for genre in genres])
 
 # Artists Page
-@app.route('/api/GetAllArtists/', methods=['GET'])
-@app.route('/api/GetArtist/<string:artist_id>', methods=['POST'])
-def artists_page(artist_id):
-    if request.methods == 'GET':
-        artists = db.session.query('Artists').all()
+@app.route('/GetAllArtists', methods=['GET'])
+def get_all_artists():
+    if request.method == 'GET':
+        artists = Artists.query.all()
         return jsonify([artist.to_dict() for artist in artists])
-    elif request.methods == 'POST':
-        data = request.json
-        if artist_id != '':
-            tgt = Artists.query.get(artist_id)
-            return tgt.to_dict()
 
-@app.route('/api/GetArtists/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
-def specific_artists(page, per_page, sort_by, sort_order):
-    if page != '':
-        page_num = int(page)
-        step = int(per_page) if not per_page else 20
-        artists = db.session.query('Artists').all()
-        return jsonify([(artists[page_num * step + i]).to_dict() for i in range(step + 1)])
-            
-# Get list of genre instances
-    # Iterate through list of instances
-        # for each instance iterate thorugh popularArtistNames
-            # for each name do a post request to /artists passing in the name
-                # In backend we route to artist page
-                # <a href="url_for("/artists", method='POST', name=ArtistName)">Artist Name
+@app.route('/GetArtist/<string:artist_id>', methods=['GET'])
+def artists_page(artist_id):
+    artist = Artists.query.get(artist_id)
+    if artist:
+        return jsonify(artist.to_dict())
+    return "Artist not found", 404
+
+@app.route('/GetArtists')
+def specific_artists():
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 5, type=int)
+    artists = Artists.query.paginate(page=page, per_page=per_page) 
+    return jsonify([artist.to_dict() for artist in artists])
 
 # Events Page
-@app.route('/api/GetAllEvents/', methods=['GET'])
-@app.route('/api/GetEvent/<string:event_id>', methods=['POST'])
-def events_page(event_id):
-    if request.methods == 'GET':
-        events = db.session.query('Events').all()
+@app.route('/GetAllEvents', methods=['GET'])
+def get_all_events():
+    events = Events.query.all()
+    if events:
         return jsonify([event.to_dict() for event in events])
-    elif request.methods == 'POST':
-        data = request.json
-        if event_id != '':
-            tgt = Events.query.get(event_id)
-            return tgt.to_dict()
+    return "No events found", 404
 
-@app.route('/api/GetEvents/<string:page>&<string:per_page>&<string:sort_by>&<string:sort_order>')
-def specific_events(page, per_page, sort_by, sort_order):
-    if page != '':
-        page_num = int(page)
-        step = int(per_page) if not per_page else 20
-        events = db.session.query('Events').all()
-        return jsonify([(events[page_num * step + i]).to_dict() for i in range(step + 1)])
+@app.route('/GetEvent/<string:event_id>', methods=['GET'])
+def events_page(event_id):
+    event = Events.query.get(event_id) 
+    if event:
+        return jsonify(event.to_dict())
+    return "Event not found", 404
 
+@app.route('/GetEvents')
+def specific_events():
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 5, type=int)
+    events = Events.query.paginate(page=page, per_page=per_page)
+    return jsonify([event.to_dict() for event in events])
 
+if __name__ == '__main__':
+    app.run(debug=True)
+    
