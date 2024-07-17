@@ -65,7 +65,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_to_playlists):
+                if (genre['name'] in genres_to_playlists_test):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -120,7 +120,7 @@ def populate_from_playlists():
     global artist_instances
 
     for genre_id in genre_instances:
-        genre_playlist_name = genres_to_playlists[genre_instances[genre_id]['name']]
+        genre_playlist_name = genres_to_playlists_test[genre_instances[genre_id]['name']]
         playlist = get_playlist_information(genre_playlist_name)
 
         for item in playlist['items']:
@@ -200,8 +200,8 @@ def get_artist_information(artist_id):
     response = response.json()
 
     # Only create an artist instance if the artist belongs to a genre
-    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres:
-        genre_name = subgenres_to_genres[response['genres'][0]]
+    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres_test:
+        genre_name = subgenres_to_genres_test[response['genres'][0]]
         if (genre_limits[genre_name][0] >= MAX_ARTISTS):
             return None
         # Note increment to number of artists for genre
@@ -304,6 +304,9 @@ def get_events_for_artist(artist_id, artist_name, skipEventsWithMultipleArtists)
                 artists_ids = []
                 if '_embedded' in event and 'attractions' in event['_embedded']:
                     if (skipEventsWithMultipleArtists and len(event['_embedded']['attractions']) > 1):
+                        print("Skipped: " + event['id'])
+                        print("It had " + len(event['_embedded']['attractions']) + " artists")
+                        print(event['_embedded']['attractions'])
                         continue
                     for artist in event['_embedded']['attractions']:
                         if 'name' in artist:

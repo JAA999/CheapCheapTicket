@@ -59,11 +59,21 @@ class QueryBuilder:
             sort_order = self.args["sort_order"]
         
         sort_attr = getattr(self.model, sort_by)
-        case_stmt = case((sort_attr == -1, 1), else_=0)
-        if sort_order == "asc":
-            self.query = self.query.order_by(case_stmt, sort_attr.asc())
+
+        genre_model = self.model is Genres and (sort_by == "events_price_min" or sort_by == "events_price_max")
+        event_model self.model is Events and (sort_by == "price_range_min" or sort_by == "price_range_max")
+
+        if (genre_model or event_model):
+            case_stmt = case((sort_attr == -1, 1), else_=0)
+            if sort_order == "asc":
+                self.query = self.query.order_by(case_stmt, sort_attr.asc())
+            else:
+                self.query = self.query.order_by(case_stmt, sort_attr.desc())
         else:
-            self.query = self.query.order_by(case_stmt, sort_attr.desc())
+            if sort_order == "asc":
+                self.query = self.query.order_by(sort_attr.asc())
+            else:
+                self.query = self.query.order_by(sort_attr.desc())
         
         
     def apply_exact_filters(self): 
@@ -101,6 +111,7 @@ class QueryBuilder:
         self.query = self.query.filter(*filters)
     
     def apply_search(self):
+        # Default case if no search term provided
         if ('q' not in self.args):
             return
         search_query = self.args["q"]
