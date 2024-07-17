@@ -28,7 +28,6 @@ function Artists() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filterValues, setfilterValues] = useState([{ genre_id: "id1", name: "default" }, { genre_id: "id2", name: "not" }, { genre_id: "id3", name: "overrided" }]);
     const [filterValue, setFilterValue] = useState('');
-    // const [valuesRange, setValuesRange] = useState([1, 100]) // delete
     const [currentRange, setCurrentRange] = useState([1, 100])
     const [sortBy, setSortBy] = useState('');
     const [orderby, setOrderby] = useState('');
@@ -48,8 +47,6 @@ function Artists() {
 
     const fetchData = async (currentPage) => {
         try {
-            let min = 0;
-            let max = 0;
             const response = await axios.get(`localhost:5000/GetArtist/ `, {
                 params: {
                     page: currentPage,

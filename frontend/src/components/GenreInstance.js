@@ -13,7 +13,9 @@ function GenreInstance() {
         "popularArtists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
         "topSongs": ["Song 1", "Song 2", "Song 3"],
-        "eventsPriceRange": [0, 0]
+        // "eventsPriceRange": [0, 0],
+        "events_price_min": 0,
+        "events_price_max": 0
     });
     
     useEffect(() => {
@@ -108,7 +110,7 @@ function GenreInstance() {
                 </div>
                 <div class="genre-page-con genre-page-venue d-flex flex-column mb-5 p-2 pb-3 rounded-4">
                     <h1 class="genre-page-subtitle mt-2">Venues </h1>
-                    <h1 class="genre-page-price mb-4 ">${genreData.eventsPriceRange[0]} - ${genreData.eventsPriceRange[1]}</h1>
+                    <h1 class="genre-page-price mb-4 ">${genreData.events_price_min} - ${genreData.events_price_max}</h1>
                     {
                         Object.entries(eventIdPairs).map(([key, value], index) => (
                             <h1 key={index} class="genre-page-text mb-2"><Link class=" genre-page-link" to={`/venue/${key}`}>{value}</Link></h1>

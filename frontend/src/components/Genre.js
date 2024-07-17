@@ -15,7 +15,10 @@ function Genre() {
         "popularArtists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
         "topSongs": ["Song 1", "Song 2", "Song 3"],
-        "eventsPriceRange": [0, 0]
+        // "eventsPriceRange": [0, 0], 
+        "events_price_min": 0,
+        "events_price_max": 0
+
       }
     ]
   });
@@ -35,8 +38,8 @@ function Genre() {
         let min = Number.MAX_SAFE_INTEGER
         let max = 0
         response.data.forEach((event) => {
-          min = event.eventsPriceRange[0] < min ? event.eventsPriceRange[0] : min
-          max = event.eventsPriceRange[1] > max ? event.eventsPriceRange[1] : max
+          min = event.events_price_min[0] < min ? event.events_price_min[0] : min
+          max = event.events_price_max[1] > max ? event.events_price_max[1] : max
         })
         setValuesRange([min, max]);
         setCurrentRange([min, max]);
@@ -128,7 +131,9 @@ function Genre() {
               popularArtists={genre.popularArtists}
               upcomingEvents={genre.upcomingEvents}
               topSongs={genre.topSongs}
-              eventsPriceRange={genre.eventsPriceRange}
+             
+              // eventsMin = {genre.genre_price_min}
+              // eventsMax = {genre.genre_price_max}
             />
           ))
         }
