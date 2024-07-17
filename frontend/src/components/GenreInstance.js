@@ -4,12 +4,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 
-//* Weird bug when using upcomingEvents */
-
 function GenreInstance() {
     const { genreId } = useParams()
-
-    console.log("helllo world")
 
     const [genreData, setGenreData] = useState({
         "genreId": "1",
@@ -18,44 +14,49 @@ function GenreInstance() {
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
         "topSongs": ["Song 1", "Song 2", "Song 3"],
         "eventsPriceRange": [0, 0]
-      })
-
+    });
+    
     useEffect(() => {
         const getGenreData = async () => {
             try {
-                const response = axios.get(`/GetGenre/${genreId}`)
-                setGenreData(response.data)
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-        getGenreData();
-    }, [genreId])
-
-
-    const [eventIdPairs, setEventIdPairs] = useState({});
-    useEffect(() => {
-        const getEventNames = async () => {
-            try {
-                const stuff = genreData["upcomingEvents"];
-                const eventPromises = stuff.map(async (eventId) => {
-                    const response = await axios.post(`/GetEvent/${eventId}`);
-                    return { eventId, eventName: response.data.eventName };
-                });
-                const eventNames = await Promise.all(eventPromises);
-
-                const eventIdPairs = Object.fromEntries(
-                    eventNames.map(event => [event.eventId, event.eventName])
-                );
-                setEventIdPairs(eventIdPairs);
+                const response = await axios.get(`/GetGenre/${genreId}`);
+                const newGenreData = {
+                    ...response.data,
+                    ...genreData
+                };
+                setGenreData(newGenreData);
             } catch (error) {
                 console.error('Error:', error);
             }
         };
-        if (genreData["upcomingEvents"].length > 0) {
+        getGenreData();
+    }, [genreId]);
+    
+
+    const [eventIdPairs, setEventIdPairs] = useState({});
+    useEffect(() => {
+        const getEventNames = async () => {
+            if (genreData && genreData.upcomingEvents) {
+                try {
+                    const eventPromises = genreData.upcomingEvents.map(async (eventId) => {
+                        const response = await axios.post(`/GetEvent/${eventId}`);
+                        return { eventId, eventName: response.data.eventName };
+                    });
+                    const eventNames = await Promise.all(eventPromises);
+    
+                    const eventIdPairs = Object.fromEntries(
+                        eventNames.map(event => [event.eventId, event.eventName])
+                    );
+                    setEventIdPairs(eventIdPairs);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        };
+        if (genreData && genreData.upcomingEvents.length > 0) {
             getEventNames();
         }
-    }, [genreData,genreData["upcomingEvents"]]);
+    }, [genreData]);
 
     const [artistsIdPairs, setArtistsIdPairs] = useState({});
     useEffect(() => {
@@ -104,7 +105,6 @@ function GenreInstance() {
                             <h1 key={index} class="genre-page-text "><Link class=" genre-page-link" to={`/artists/artistspage/${key}`}>{value}</Link></h1>
                         ))
                     }
-                    {/* <h1 class="genre-page-text "><Link class=" genre-page-link" to="">FirstName</Link></h1>*/}
                 </div>
                 <div class="genre-page-con genre-page-venue d-flex flex-column mb-5 p-2 pb-3 rounded-4">
                     <h1 class="genre-page-subtitle mt-2">Venues </h1>

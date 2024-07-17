@@ -19,14 +19,18 @@ function ArtistsPage() {
         "image_url": "https://i.scdn.co/image/ab6761610000f178c3dc5429b676b16d451e5f77",
         "genre_id": "KnvZfZ7vAvv",
     })
-    const [genreName, setGenreName] = useState("")
+    const [genreName, setGenreName] = useState("defaultGenreName")
     const [albumCoverPairs, setAlbumCoverPairs] = useState({});
 
     useEffect(() => {
         const GetArtistInfo = async () => {
             try {
-                const artistResponse = await axios.post(`/GetArtist/${artistId}`);
-                setArtistData(artistResponse.data);
+                const response = await axios.post(`/GetArtist/${artistId}`);
+                const newArtistData = {
+                    ...response.data,
+                    ...artistData
+                };
+                setArtistData(newArtistData);
             } catch (error) {
                 console.error('Error ', error);
             }

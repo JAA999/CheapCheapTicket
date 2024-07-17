@@ -4,31 +4,24 @@ import json
 import requests
 import base64
 
+from venue_info import get_venue
+
 genres_playlist = {
     'Alternative': 'The New Alt',
-    'Blues': 'Blues Classics',
-    'Classical': 'Classical Essentials',
+    'Blues': 'Nu-Blue', # originally: 'Blues Classics'
+    'Classical': 'Classical New Releases', # originally: Classical Essentials
     'Country': 'Hot Country',
     'Dance/Electronic': 'mint',
     'Folk': 'Roots Rising',
     'Hip-Hop/Rap': 'RapCaviar',
-    'Jazz': 'Jazz Classics',
+    'Jazz': 'State of Jazz', # originally: 'Jazz Classics'
     'Latin': 'Viva Latino',
     'Metal': 'Kickass Metal',
     'Pop': 'Summer Pop',
     'R&B': 'RNB X',
-    'Reggae': 'Reggae Classics',
+    'Reggae': 'Irie', # originally: 'Reggae Classics'
     'Religious': 'Top Christian & Gospel',
-    'Rock': 'Legends Only'
-}
-
-genres_playlist_limited = {
-    'Alternative': 'The New Alt',
-    'Country': 'Hot Country',
-    'Hip-Hop/Rap': 'RapCaviar',
-    'Latin': 'Viva Latino',
-    'Pop': 'Summer Pop',
-    'Rock': 'Legends Only'
+    'Rock': 'Legends Only' # originally: 'MARROW'
 }
 
 genres_playlist_test = {
@@ -37,32 +30,31 @@ genres_playlist_test = {
     'Pop': 'Summer Pop'
 }
 
+MAX_ARTISTS = 15
 artist_names = set()
+event_ids = set()
+
 artist_instances = []
 event_instances = []
 genre_instances = []
 
 spotify_access_token = ''
 ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
-google_access_token = 'AIzaSyBwv3sHVNL7xrJlSWvZyOF5NAV81y_XHrA'
-
-gitlab_project_id = '59330677'
-gitlab_access_token = 'glpat-1xy11CZ5q9ps6cjSeruK'
 
 def main():
     get_spotify_access_token()
     populate_genres()
     populate_models()
+    # print_all_instances()
     
 # Populates all the models, using playlists as starting points
 def populate_models():
-    # CHANGE FROM TEST WHEN CREATING DATABASE
     for genre_instance in genre_instances:
         genre_name = genre_instance['name']
 
         create_instances_from_playlist(genre_instance, genres_playlist_test[genre_name])
 
-    # create_json_files()
+    create_json_files()
 
 # Creates JSON files for each model
 def create_json_files():
@@ -154,15 +146,13 @@ def create_instances_from_playlist(genre_instance, playlist_name):
     check_request_status(response)
     response = response.json()
 
-    # MODIFY BASED ON SPOTIFY API REQUEST LIMIT
-    max_artists = 3
     num_artists = 0
 
     min_price = 100000
     max_price = -1
 
     for item in response['items']:
-        if (num_artists >= max_artists):
+        if (num_artists >= MAX_ARTISTS):
                 break
         track = item['track']
         genre_instance['topSongs'] += [track['album']['name']]
@@ -172,13 +162,13 @@ def create_instances_from_playlist(genre_instance, playlist_name):
 
         if (artist_name not in artist_names):
             num_artists += 1
-            genre_instance['popularArtists'] += [artist_id]
+            genre_instance['popularArtists'].append(artist_id)
 
             artist_names.add(artist_name)
             event_results, artist_instance = get_artist_information(artist_id)
 
             artist_instance['genreId'] = genre_instance['genreId']
-            artist_instances += [artist_instance]
+            artist_instances.append(artist_instance)
 
             for event in event_results:
                 if (event['priceRange']):
@@ -187,9 +177,11 @@ def create_instances_from_playlist(genre_instance, playlist_name):
                     if (event['priceRange'][1] > max_price):
                         max_price = event['priceRange'][1]
                 event['genreId'] = genre_instance['genreId']
-                event_instances += [event]
-                artist_instance['futureEvents'] += [event['eventId']]
-                genre_instance['upcomingEvents'] += [event['eventId']]
+                if (event['eventId'] not in event_ids):
+                    event_instances.append(event)
+                    event_ids.add(event['eventId'])
+                artist_instance['futureEvents'].append(event['eventId'])
+                genre_instance['upcomingEvents'].append(event['eventId'])
 
     genre_instance['eventsPriceRange'].append(min_price)
     genre_instance['eventsPriceRange'].append(max_price)
@@ -252,8 +244,8 @@ def populate_albums(artist_id, artist_instance):
     response = response.json()
 
     for album in response['items']:
-        artist_instance['albums'] += [album['name']]
-        artist_instance['album_covers'] += [album['images'][0]['url']]
+        artist_instance['albums'].append(album['name'])
+        artist_instance['album_covers'].append(album['images'][0]['url'])
 
 # Return a list of events for a particular artist
 def get_events_for_artist(artist_name):
@@ -262,7 +254,7 @@ def get_events_for_artist(artist_name):
     params = {
         'apikey': ticketmaster_access_token,
         'keyword': artist_name, 
-        'size': 1, # Limit the number of events returned for artist
+        'size': 5, # Limit the number of events returned for artist
         'classificationName': 'music',
         'locale': 'en-us', # Filter only in the USA
     }
@@ -274,14 +266,7 @@ def get_events_for_artist(artist_name):
     event_instances_local = []
     if '_embedded' in response:
         for event in response['_embedded']['events']: 
-            address = ''
-            if 'address' in event['_embedded']['venues'][0]:
-                address += event['_embedded']['venues'][0]['address']['line1'] if 'line1' in event['_embedded']['venues'][0]['address'] else ''
-
-            address += f", {event['_embedded']['venues'][0]['city']['name']}" if 'city' in event['_embedded']['venues'][0] else ''
-
-            address += f", {event['_embedded']['venues'][0]['state']['name']}" if 'state' in event['_embedded']['venues'][0] else ''
-
+            
             salesDateRange = ''
             if 'startDateTime' in event['sales']['public']:
                 salesDateRange += f"{event['sales']['public']['startDateTime']} to "
@@ -292,143 +277,27 @@ def get_events_for_artist(artist_name):
                 tokens = (event['dates']['start']['localDate']).split('-')
                 event_date = [int(token) for token in tokens]
 
+            price_range = []
+            if ('priceRanges' in event and 'min' in event['priceRanges'][0] and 'max' in event['priceRanges'][0]):
+                price_range = [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']]
+
             event_instance = {
                 'eventId': event['id'],
                 'eventName': event['name'],
                 'artistNames': [artist_name,],
                 'dateAndTime': event_date, # [year, month, day]
                 'salesStart-End': salesDateRange,
-                'priceRange': [] if 'priceRanges' not in event else [event['priceRanges'][0]['min'], event['priceRanges'][0]['max']],
+                'priceRange': price_range,
                 'genreId': '',
                 'venue': {},
                 'ticketmasterURL': event['url']
             }
 
-            if 'name' in event['_embedded']['venues'][0]:
-                venue_id = get_venue_id(event['_embedded']['venues'][0]['name'])
-                if (venue_id == ''):
-                    event_instance['venue'] = 'Unavailable'
-                else:
-                    event_instance['venue'] = get_venue_information(venue_id)
-                    event_instance['venue']['name'] = event['_embedded']['venues'][0]['name']
-                    event_instance['venue']['address'] = address
-            else:
-                event_instance['venue'] = 'Unavailable'
+            get_venue(event, event_instance)
 
-            event_instances_local += [event_instance]
+            event_instances_local.append(event_instance)
 
     return event_instances_local
-
-
-# Return a given place's id given the address
-def get_venue_id(venue_name): 
-    # Text search request based on venue address
-    BASE_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
-    
-    # Fields to retrieve
-    fields = 'place_id,name'
-    
-    # Construct the request URL with parameters
-    url = f"{BASE_URL}?query={venue_name}&fields={fields}&key={google_access_token}"
-    response = requests.get(url)
-    check_request_status(response)
-    response = response.json()
-    return response['results'][0]['place_id'] if response['results'] else ''
-
-# Populate the venue with its website, phone number, and rating
-def get_venue_information(venue_id):
-    venue_details_url = f'https://places.googleapis.com/v1/places/{venue_id}?fields=nationalPhoneNumber,rating,websiteUri&key={google_access_token}'
-
-    response = requests.get(venue_details_url)
-    check_request_status(response)
-    response = response.json()
-
-    venue_information = {
-        'name': '',
-        'address': '',
-        'phoneNumber': "Unavailable" if 'nationalPhoneNumber' not in response else response['nationalPhoneNumber'],
-        'rating': "Unavailable" if 'rating' not in response else f"{response['rating']} / 5",
-        'website': "Unavailable" if 'websiteUri' not in response else response['websiteUri']
-    }
-
-    return venue_information
-
-# Prints out the number of commits performed by each project member
-def get_commits():
-    gitlab_commits_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/repository/commits'
-
-    headers = {'PRIVATE-TOKEN': gitlab_access_token}
-
-    params = {'per_page': 100, 'page': 1}
-    
-    commits = []
-    response = requests.get(gitlab_commits_url, headers=headers, params=params)
-    if response.status_code == 200:
-        response = response.json()
-        commits.extend(response)
-    
-    commits_per_author = {}
-    for commit in commits:
-        new_name = commit['author_name'].split(' ')
-        if (len(new_name) > 1):
-            new_name = new_name[0] + new_name[-1]
-        else:
-            new_name = new_name[0]
-
-        if (new_name not in commits_per_author):
-            commits_per_author[new_name] = 1
-        else:
-            commits_per_author[new_name] += 1
-    
-    return commits_per_author
-
-# Prints out the number of issues closed by each project member
-def get_issues():
-    gitlab_issues_url = f'https://gitlab.com/api/v4/projects/{gitlab_project_id}/issues'
-
-    headers = {'PRIVATE-TOKEN': gitlab_access_token}
-    params = {
-        'state': 'closed',
-        'per_page': 100,
-        'page': 1
-    }
-
-    issues = []
-    response = requests.get(gitlab_issues_url, headers=headers, params=params)
-
-    if response.status_code == 200:
-        response = response.json()
-        issues.extend(response)
-    
-    issues_closed_by_member = {}
-    for issue in issues:
-        if 'closed_by' in issue and issue['closed_by']:
-            new_name = issue['closed_by']['name'].split(' ')
-            if (len(new_name) > 1):
-                new_name = new_name[0] + new_name[-1]
-            else:
-                new_name = new_name[0]
-            
-            if new_name not in issues_closed_by_member:
-                issues_closed_by_member[new_name] = 1
-            else:
-                issues_closed_by_member[new_name] += 1
-
-    return issues_closed_by_member
-
-# Creates dictionary of project members' stats
-def get_gitlab_stats():
-    stats = {}
-    commits_per_member = get_commits()
-    issues_per_member = get_issues()
-
-    for member in commits_per_member:
-        stats_for_member = []
-        stats_for_member.append(commits_per_member[member])
-        if member in issues_per_member:
-            stats_for_member.append(issues_per_member[member])
-        stats[member] = stats_for_member
-    return stats
 
 # Check if API call resulted in error
 def check_request_status(response):

@@ -66,7 +66,6 @@ function GenreCard(props) {
     return (
         <>
             <div class="genre-card row text-start p-5 rounded-5">
-
                 <h1 class="col-lg-12  "><Link class="genre-card-title" to={`/genre/${props.genreId}`}>{props.name}</Link></h1>
                 <div class="col-lg-4 d-flex flex-column">
                     <h1 class="genre-card-subtitle">Top Songs</h1>
@@ -87,7 +86,6 @@ function GenreCard(props) {
                             <span key={index}><Link to={`/artists/artistspage/${key}`} class="genre-card-link">{value}</Link></span>
                         ))
                     }
-                    {/* <span><Link to={"/genre/genrestaticinstance1"} class="genre-card-link">First Last Name</Link></span> */}
                 </div>
 
                 <div class="col-lg-4 d-flex flex-column">
@@ -95,12 +93,11 @@ function GenreCard(props) {
                     {
                         Object.entries(eventIdPairs).map(([key, value], index) => (
                             index < 3 ?
-                                <span key={index}><Link to={`/genre/${key}`} class="genre-card-link">{value}</Link></span>
+                                <span key={index}><Link to={`/venue/${key}`} class="genre-card-link">{value}</Link></span>
                                 :
                                 null
                         ))
                     }
-                    {/* <span><Link to={"/genre/genrestaticinstance1"} class="genre-card-link">example event</Link></span> */}
                 </div >
 
 

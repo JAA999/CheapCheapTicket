@@ -287,3 +287,21 @@
   background-color: var(--gray);
   border-radius: 20%;
 }
+
+/* Other */
+
+.horizontal-slider {
+  width: 200px;
+  max-width: 400px;
+  height: 15px;
+  border: 2px solid black;
+  background: lightblue;
+  border-radius: 10px;
+}
+
+.thumb {
+  cursor: pointer;
+  border: 6px solid gray;
+  border-radius: 100%;
+  
+}

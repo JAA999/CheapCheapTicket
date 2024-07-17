@@ -2,6 +2,7 @@ import React from 'react';
 import VenueCard from './VenueCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
+import SearchVenues from './SearchVenues';
 
 function Venue() {
 
@@ -21,29 +22,82 @@ function Venue() {
     ]
   });
 
-  
-    const fetchData = async (page) => {
-      try {
-        const response = await axios.get(`/GetEvents?page=${page}&limit=50`);
-        setEventData(response.data)
-      } catch (error) {
-        console.error("Error:", error)
-      }
-    }
-    fetchData()
-  
-
   const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(23);
+  const [totalPages, setTotalPages] = useState(1);
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000});
+
+  // const [venueRatingRange, setVenueRatingRange] = useState([0, 5]);
+  const [searchQuery, setSearchQuery] = useState('');
+  // const [valuesRange, setValuesRange] = useState([0, 10000]);
+  const [sortBy, setSortBy] = useState('');
+  const [orderBy, setOrderBy] = useState('');
+
+  const fetchData = async (currentPage, priceRange, venueRatingRange, searchQuery, sortBy, orderBy) => {
+    try {
+      const response = await axios.get(`/GetEvents`, {
+        params: { page: currentPage, 
+          per_page: 30, 
+          price_range_min : priceRange.min, 
+          price_range_max: priceRange.max, 
+          // min_rating: venueRatingRange[0],
+          // max_rating: venueRatingRange[1],
+          q: searchQuery,
+          sort_by: sortBy,
+          sort_order: orderBy,
+        }
+      });
+      const responseLength = await axios.get(`/GetAllEvents`);
+
+      const newEvents = response.data.events.map((newEvent, index) => {
+        const defaultEvent = eventData.events[index] || {};
+        return {
+          ...defaultEvent,
+          ...newEvent,
+          venue: {
+            ...defaultEvent.venue,
+            ...newEvent.venue,
+          },
+        };
+      });
+      setTotalPages(responseLength.data.total)
+      setEventData({ events: newEvents });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  
+  useEffect(() => {
 
 
-    useEffect(() => {
-        fetchData(currentPage);
-    }, [currentPage]);
+    fetchData(currentPage, priceRange, searchQuery, sortBy, orderBy); //venueRatingRange
 
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
+  }, [currentPage, priceRange, searchQuery, sortBy, orderBy]); //venueRatingRange
+  
+  const handlePriceChange = (range) => {
+    setPriceRange({ min: range[0], max: range[1] });
+  };
+
+  // const handleRatingChange = (range) => {
+  //   setVenueRatingRange(range);
+  // };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const handleSearchQuery = (value) => {
+    setSearchQuery(value);
+  };
+  // const handleValuesRange = (newValues) => {
+  //   setValuesRange(newValues);
+  // };
+  const handleSortBy = (value) => {
+    setSortBy(value);
+  };
+  const handleOrderBy = (value) => {
+    setOrderBy(value);
+  };
 
 
   return (
@@ -54,6 +108,30 @@ function Venue() {
         <p>Events all across the US! </p>
       </div>
 
+      <SearchVenues
+        onSearchChange={handleSearchQuery}
+        onValuesChange={handlePriceChange}
+        // onRatingChange={handleRatingChange}
+        minValue={0}
+        maxValue={10000}
+        minRating={0}
+        maxRating={5}
+        onSortChange={handleSortBy}
+        onOrderChange={handleOrderBy}
+
+        // onSearchChange={() => {}}
+
+        // onValuesChange={() => {}}
+
+        // minValue={0}
+
+        // maxValue={100}
+
+        // onSortChange={() => {}}
+
+        // onOrderChange={() => {}}
+      />
+
       <div class="row g-4 m-5">
         {
           eventData.events.map((event, index) => (
@@ -63,7 +141,8 @@ function Venue() {
                 eventName={event.eventName}
                 artistNames={event.artistNames}
                 dateAndTime={event.dateAndTime}
-                salesStartEnd={event['salesStart-End']}
+                //salesStartEnd={event['salesStart-End']} 
+                salesStartEnd={event.salesStartEnd}
                 priceRange={event.priceRange}
                 genreId={event.genreId}
                 venue={event.venue}
@@ -78,10 +157,11 @@ function Venue() {
         <div className="pagination  p-5">
           <button class="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
           {Array.from({ length: totalPages }, (_, index) => (
-            currentPage === index + 1 ?
-              <button class=" page-item text-bg-dark" >{currentPage}</button>
-              :
-              <button class="page-item text-bg-light" >{index + 1}</button>
+            currentPage === index + 1 ? (
+              <button class=" page-item text-bg-dark" key={index}>
+                {currentPage}
+                </button>
+            ) : null
           ))}
           <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         </div>

@@ -88,7 +88,6 @@ function ArtistsCard(props) {
                             :
                             <span key={index}><Link className="artist-card-link artist-card-text">&nbsp;</Link></span>
                     ))
-                    
                 }
             </div>
 

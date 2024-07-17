@@ -53,12 +53,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/venue" element={<Venue />} />
+          <Route path="/venue/:venueId" element={<VenueInfo />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/artists/artistspage/:artistsId" element={<ArtistsPage />} />
-
-          <Route path="/venue" element={<Venue />} />
-          <Route path="/venue/:venueId" element={<VenueInfo />} />
-          
           <Route path="/genre" element={<Genre />} />
           <Route path="/genre/:genreId" element={<GenreInstance />} />
 
