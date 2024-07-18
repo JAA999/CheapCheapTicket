@@ -91,6 +91,12 @@ function GenreCard(props) {
                 <div class="col-lg-4 d-flex flex-column">
                     <h1 class="genre-card-subtitle">Events</h1>
                     {
+                        props.events_price_min == -1 || props.events_price_max == -1 ?
+                        (<p className='event-instance-text'>(Price Range Not Available)</p>) 
+                        : 
+                        (<p className='event-instance-text'>(${props.events_price_min} to ${props.events_price_max})</p>)
+                    }
+                    {
                         Object.entries(eventIdPairs).map(([key, value], index) => (
                             index < 3 ?
                                 <span key={index}><Link to={`/venue/${key}`} class="genre-card-link">{value}</Link></span>

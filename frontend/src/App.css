@@ -1,3 +1,11 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--midnight);
+}
+
+
 .App {
   text-align: center;
   background-color: var(--midnight);
@@ -42,7 +50,7 @@
 /* Artists card stylization */
 
 .artist-card-headers{
-  color: var(--pink);
+  color: var(--white);
 }
 
 .artist-card {
@@ -62,7 +70,7 @@
 .artist-card-title {
   font-size: var(--sfont);
   font-weight: 700;
-  color: var(--pink);
+  color: var(--white);
 }
 
 .artist-card-container{
@@ -74,18 +82,18 @@
 .artist-card-title2 {
   font-size: var(--sfont);
   font-weight: 700;
-  color: var(--pink);
+  color: var(--white);
 }
 
 .artist-card-title3 {
   font-size: var(--sfont);
   font-weight: 700;
-  color: var(--pink);
+  color: var(--white);
 }
 .artist-card-subtitle {
   font-size: var(--mfont);
   font-weight: 600;
-  color: var(--color);
+  color: var(--pink);
 }
 .artist-card-text {
   text-align: center;
@@ -241,24 +249,40 @@
 
 .genre-page-con {
   width: 30vw;
+  height: 90vh;
+  border: 5px solid;
+  border-color: var(--pink);
+  margin-right: 10px;
 }
+
 .genre-page-title {
+  margin-top: 2vh;
   font-size: var(--xlfont);
   color: white;
   font-weight: 600;
 }
+
 .genre-page-subtitle {
   font-size: var(--lfont);
   color: var(--pink);
 }
+
+.genre-info-con {
+  margin-top: 3vh;
+  height: 90vh;
+  overflow-y: auto;
+}
+
 .genre-page-text {
   font-size: var(--mfont);
   color: white;
 }
+
 .genre-page-price{
   font-size: var(--sfont);
   padding-left: 5px;
-  color: white;
+  color: var(--pink);
+  padding-bottom: 0;
 }
 
 .genre-page-venue {
@@ -274,6 +298,7 @@
   transition: background-size 0.4s ease, color 0.8s ease;
   padding: 5px 10px 5px 10px;
 }
+
 .genre-page-link:hover {
   background-size: 100% 100%;
   color: white;
@@ -368,4 +393,30 @@
 
 .link-container a{
   margin-right: 10px;
+}
+
+.drop-down-button {
+  background-color: var(--pink);
+}
+
+.drop-down-button:hover {
+  background-color: var(--lavander);
+}
+
+.horizontal-slider {
+  width: 100%;
+  height: 30px;
+}
+
+.thumb {
+  width: 10px;
+  height: 10px;
+  background-color: #007bff;
+  border-radius: 50%;
+}
+
+.track {
+  border-radius: 2px;
+  height: 4px;
+  background-color : var(--lightcolor)
 }

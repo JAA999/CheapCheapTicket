@@ -2,6 +2,7 @@ import React from 'react';
 import ArtistsCard from "./ArtistsCard";
 import { useState, useEffect , useCallback} from 'react';
 import axios from 'axios'
+import SearchContainer from './SearchArtists';
 
 function Artists() {
 
@@ -23,45 +24,86 @@ function Artists() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterValue, setFilterValue] = useState('');
+    const [currentRange, setCurrentRange] = useState([1, 100])
+    const [sortBy, setSortBy] = useState('');
+    const [orderby, setOrderby] = useState('');
     const fetchData = useCallback(async (page) => {
         try {
-          const response = await axios.get(`/GetArtists`, {
-            params: { page, per_page: 20 }
-          });
+            console.log("New inputs --------------------------");
+            console.log(searchQuery + " debug search value(string) ");
+            console.log(currentRange[0] + " "+ currentRange[1]+ "debug ranges");
+            console.log(filterValue + " debug genres wip");
+            console.log(sortBy + " debug sort value(string) ");
+            console.log(orderby + " debug order value(string)");
+            
+            const response = await axios.get(`/GetArtists`, {
+                params: {
+                    page,
+                    per_page: 20,
+                    sort_by: sortBy,
+                    sort_order: orderby,
+                    q: searchQuery,
+                    genre_name: filterValue,
+                    'popularity.min': currentRange[0],
+                    'popularity.max': currentRange[1],
+                }
+            });
+            // setSearchQuery('')
     
-          const newArtists = response.data.map((newArtist, index) => {
-            const defaultArtist = artistsData.Artists[index] || {};
-            return {
-              ...defaultArtist,
-              ...newArtist,
-            };
-          });
-          setArtistsData({ Artists: newArtists });
+            // Reset artistsData to only include response.data
+            setArtistsData({ Artists: response.data });
     
-          const responseLength = await axios.get(`/GetAllArtists`);
-          const totalArtists = responseLength.data.length;
-          console.log(responseLength.data.length + " Total artists listed " + totalArtists)
-          console.log(responseLength.data.length + " Total artists listed " + totalArtists)
-          setTotalPages(Math.ceil(totalArtists / 20));
+            // Fetch total number of artists for pagination
+            const responseLength = await axios.get(`/GetAllArtists`);
+            const totalArtists = responseLength.data.length;
+            setTotalPages(Math.ceil(totalArtists / 20));
     
         } catch (error) {
-          console.error("Error:", error);
+            console.error("Error:", error);
         }
-      }, [artistsData.Artists]);
-
+    }, [sortBy, orderby, searchQuery, filterValue, currentRange]);
+    
+               
     useEffect(() => {
         fetchData(currentPage);
-    }, []);
+    }, [currentPage, orderby, searchQuery,filterValue, currentRange, fetchData]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
         fetchData(newPage)
     };
 
+    const handleSearchQuery = (value) => {
+        setSearchQuery(value)
+    }
+    const handleValuesRange = (newValues) => {
+        setCurrentRange(newValues);
+    }
+    const handleFilterBy = (value) => {
+        setFilterValue(value)
+    }
+    const handleSortBy = (value) => {
+        setSortBy(value)
+    }
+    const handleOrderBy = (value) => {
+        setOrderby(value)
+    }
+
     return (
         <>
-            <h1 class=" m-5 page-title">Artists</h1>
+            <h1 class=" m-5 page-title">Artists Good don't touch</h1>
+
+            <SearchContainer
+             onSearchChange={handleSearchQuery}
+             onValuesChange={handleValuesRange}
+             onFilterChange={handleFilterBy}
+             onSortChange={handleSortBy}
+             onOrderChange={handleOrderBy}
+            />
         {
+
           artistsData && artistsData.Artists && artistsData.Artists.length > 0 ? 
           (
             <div class="row g-5 m-5">
@@ -83,12 +125,11 @@ function Artists() {
           ) 
           : 
           (
-            <></>
+            <div class="d-flex justify-content-center text-white">
+            <p>Found no items</p>
+          </div>
           )
         }
-
-          
-
             <div class="d-flex justify-content-center align-items-center">
                 <div className="pagination  p-5">
                     <button class="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
@@ -106,4 +147,3 @@ function Artists() {
 }
 
 export default Artists;
-

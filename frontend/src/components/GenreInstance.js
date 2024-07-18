@@ -12,7 +12,8 @@ function GenreInstance() {
         "popular_artists": ["Artists 1 id"],
         "upcoming_events": ["Event 1 id"],
         "top_songs": ["Song 1", "Song 2", "Song 3"],
-        "events_price_range": [0, 0]
+        "events_price_min": -1,
+        "events_price_max": -1
     });
 
     const [eventIdPairs, setEventIdPairs] = useState({});
@@ -78,32 +79,47 @@ function GenreInstance() {
             </div>
             <div className="d-flex flex-row align-items-start justify-content-center genre-page text-start mt-5">
 
-                <div className="genre-page-con d-flex flex-column mb-5">
+                <div className="genre-page-con d-flex flex-column mb-5 rounded-4 p-4 pb-3">
                     <h1 className="genre-page-subtitle">Top songs </h1>
-                    {genreData.top_songs.map((song, index) => (
-                        index < 3 ? <h1 key={index} className="genre-page-text">{song}</h1> : null
-                    ))}
+                    <div className="genre-info-con">
+                        {genreData.top_songs.map((song, index) => (
+                            index < 3 ? <h1 key={index} className="genre-page-text">{song}</h1> : null
+                        ))}
+                    </div>
                 </div>
 
-                <div className="genre-page-con d-flex flex-column mb-5">
+                <div className="genre-page-con d-flex flex-column mb-5 rounded-4 p-4 pb-3">
                     <h1 className="genre-page-subtitle">Top Artists </h1>
-                    {Object.entries(artistsIdPairs).map(([key, value], index) => (
-                        <h1 key={index} className="genre-page-text">
-                            <Link className="genre-page-link" to={`/artists/artistspage/${key}`}>{value}</Link>
-                        </h1>
-                    ))}
+                    <div className='genre-info-con'>
+                        {Object.entries(artistsIdPairs).map(([key, value], index) => (
+                            <h1 key={index} className="genre-page-text">
+                                <Link className="genre-page-link" to={`/artists/artistspage/${key}`}>{value}</Link>
+                            </h1>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="genre-page-con genre-page-venue d-flex flex-column mb-5 p-2 pb-3 rounded-4">
-                    <h1 className="genre-page-subtitle mt-2">Venues </h1>
-                    <h1 className="genre-page-price mb-4 ">${genreData.events_price_range[0]} - ${genreData.events_price_range[1]}</h1>
-                    {Object.entries(eventIdPairs).map(([key, value], index) => (
-                        <h1 key={index} className="genre-page-text mb-2">
-                            <Link className="genre-page-link" to={`/venue/${key}`}>
-                                {value.length < 17 ? value : `${value.substring(0, 14)}...`}
-                            </Link>
-                        </h1>
-                    ))}
+                <div className="genre-page-con genre-page-venue d-flex flex-column mb-5 p-4 pb-3 rounded-4">
+                    <div className='d-flex align-items-center ms-3 justify-content-center'>
+                        <h1 className="genre-page-subtitle">Events</h1>
+                        <p className="genre-page-price">
+                            {
+                                genreData.events_price_min == -1 || genreData.events_price_max == -1 ?
+                                `(Unavailable)` 
+                                :
+                                `($${genreData.events_price_min} to $${genreData.events_price_max})`
+                            }
+                        </p>
+                    </div>
+                    <div className='genre-info-con'>
+                        {Object.entries(eventIdPairs).map(([key, value], index) => (
+                            <h1 key={index} className="genre-page-text mb-2">
+                                <Link className="genre-page-link" to={`/venue/${key}`}>
+                                    {value.length < 17 ? value : `${value.substring(0, 14)}...`}
+                                </Link>
+                            </h1>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
