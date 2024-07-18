@@ -20,7 +20,7 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetEvent/${limitedFutureEvents[i]}`);
+                        const response = await axios.get(`/GetEvent/${limitedFutureEvents[i]}`);
                         eventNames[i] = response.data.eventName;
                     } catch (error) {
                         console.error('Error:', error);
@@ -48,7 +48,7 @@ function GenreCard(props) {
             for (let i = 0; i < 3; i++) {
                 if (topArtistsIds[i] !== "") {
                     try {
-                        const response = await axios.post(`/GetArtist/${topArtistsIds[i]}`);
+                        const response = await axios.get(`http://127.0.0.1:5000/GetArtist/${topArtistsIds[i]}`);
                         artistsNames[i] = response.data.name;
                     } catch (error) {
                         console.error('Error:', error);

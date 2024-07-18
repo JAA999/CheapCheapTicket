@@ -31,7 +31,7 @@ function VenueInfo() {
         const fetchEventData = async () => {
 
             try {
-                const response = await axios.get(`/GetEvent/${eventId}`);
+                const response = await axios.get(`http://127.0.0.1:5000/GetEvent/${eventId}`);
                 // const newEventData = {
                 //     ...response.data,
                 //     ...eventData
@@ -58,7 +58,7 @@ function VenueInfo() {
 
 
     return (
-        <div className="container my-5">
+        <div className="container my-5 text-white ">
             <button className="btn btn-secondary mb-3" onClick={handleBackClick}>Back to Events</button>
             <h2>{eventData.event_name}</h2>
             <p><strong>Artists:</strong> {eventData.artist_names.join(', ')}</p>

@@ -11,7 +11,7 @@ function VenueCard(props) {
     useEffect(() => {
         const getGenreName = async () => {
             try {
-                const response = await axios.get(`/GetGenre/${props.genreId}`);
+                const response = await axios.get(`http://127.0.0.1:5000/GetGenre/${props.genreId}`);
                 setGenreName(response.data.name)
             } catch (error) {
                 console.error("Error:", error)

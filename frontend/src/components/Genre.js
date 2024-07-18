@@ -33,7 +33,7 @@ function Genre() {
   useEffect(() => {
     const fetchMinMaxPrice = async () => {
       try {
-        const response = await axios.get('/GetAllEvents');
+        const response = await axios.get('http://127.0.0.1:5000/GetAllEvents');
         let min = Number.MAX_SAFE_INTEGER
         let max = 0
         response.data.forEach((event) => {
@@ -52,7 +52,7 @@ function Genre() {
 
   const fetchData = async (currentPage) => {
     try {
-      const response = await axios.get(`http://localhost:5000/GetGenres`, {
+      const response = await axios.get(`http://127.0.0.1:5000/GetGenres`, {
         params: {
           page: currentPage,
           per_page: 5,
@@ -64,7 +64,7 @@ function Genre() {
 
         }
       });
-      const responseLength = await axios.get(`http://loclahost:5000/GetAllGenres`);
+      const responseLength = await axios.get(`http://127.0.0.1:5000/GetAllGenres`);
 
       const newGenres = response.data.Genres.map((newGenre, index) => {
         const defaultGenre = genresData.Genres[index] || {};

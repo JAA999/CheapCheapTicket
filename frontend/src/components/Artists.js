@@ -35,7 +35,7 @@ function Artists() {
     useEffect(() => {
         const fetchOptions = async () => {
             try {
-                const response = await axios.get('/GetAllEvents');
+                const response = await axios.get('http://127.0.0.1:5000/GetAllEvents');
                 const optionList = response.data.map(event => ({ genre_id: event.genre_id, name: event.name }));
                 setfilterValues(optionList);
             } catch (error) {
@@ -47,7 +47,7 @@ function Artists() {
 
     const fetchData = async (currentPage) => {
         try {
-            const response = await axios.get(`localhost:5000/GetArtist/ `, {
+            const response = await axios.get(`http://127.0.0.1:5000/GetArtists`, {
                 params: {
                     page: currentPage,
                     per_page: 20,
@@ -61,7 +61,7 @@ function Artists() {
 
                 }
             });
-            const responseLength = await axios.get(`/GetAllArtists`);
+            const responseLength = await axios.get(`http://127.0.0.1:5000/GetAllArtists`);
 
             const newArtists = response.data.Artists.map((newArtist, index) => {
                 const defaultArtist = artistsData.Artists[index] || {};

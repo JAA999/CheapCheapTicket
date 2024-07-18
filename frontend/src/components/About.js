@@ -18,7 +18,7 @@ function About() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('about');
+        const response = await axios.get('http://127.0.0.1:5000/about');
         setGithubStats(response.data);
         calculateSums();
       } catch (error) {

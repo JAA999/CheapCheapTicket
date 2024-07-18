@@ -20,7 +20,7 @@ function GenreInstance() {
     useEffect(() => {
         const getGenreData = async () => {
             try {
-                const response = await axios.get(`/GetGenre/${genreId}`);
+                const response = await axios.get(`http://127.0.0.1:5000/GetGenre/${genreId}`);
                 const newGenreData = {
                     ...response.data,
                     ...genreData
@@ -40,7 +40,7 @@ function GenreInstance() {
             if (genreData && genreData.upcomingEvents) {
                 try {
                     const eventPromises = genreData.upcomingEvents.map(async (eventId) => {
-                        const response = await axios.post(`/GetEvent/${eventId}`);
+                        const response = await axios.get(`http://127.0.0.1:5000/GetEvent/${eventId}`);
                         return { eventId, eventName: response.data.eventName };
                     });
                     const eventNames = await Promise.all(eventPromises);
@@ -65,7 +65,7 @@ function GenreInstance() {
             try {
                 const artistIds = genreData.popularArtistsId;
                 const namePromises = artistIds.map(async (artistId) => {
-                    const response = await axios.post(`/GetArtist/${artistId}`);
+                    const response = await axios.get(`http://127.0.0.1:5000/GetArtist/${artistId}`);
                     return { artistId, name: response.data.name };
                 });
                 const artistsNames = await Promise.all(namePromises);

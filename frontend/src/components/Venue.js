@@ -51,7 +51,7 @@ function Venue() {
           sort_order: orderBy,
         }
       });
-      const responseLength = await axios.get(`/GetAllEvents`);
+      const responseLength = await axios.get(`http://127.0.0.1:5000/GetAllEvents`);
 
       const newEvents = response.data.events.map((newEvent, index) => {
         const defaultEvent = eventData.events[index] || {};
