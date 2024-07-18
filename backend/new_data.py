@@ -119,16 +119,20 @@ def get_spotify_access_token():
 def populate_from_playlists():
     global artist_instances
 
+    max_songs = 3
     for genre_id in genre_instances:
         genre_playlist_name = genres_to_playlists[genre_instances[genre_id]['name']]
         playlist = get_playlist_information(genre_playlist_name)
 
+        num_songs = 0
         for item in playlist['items']:
 
             track = item['track']
             if track and 'album' in track and 'name' in track['album']:
                 # Add track to top songs for genre
-                genre_instances[genre_id]['topSongs'].append(track['album']['name'])
+                if (num_songs < max_songs):
+                    genre_instances[genre_id]['topSongs'].append(track['album']['name'])
+                    num_songs += 1
 
                 # Get each artist on track and add to artist_instances if not already there
                 for artist in track['artists']:

@@ -1,28 +1,7 @@
-# queryBuilder.py is a file that contains a query builder class for all models to use 
-# in an effort to not reimplement the same logic to add and remove filters as well as 
-# the search and filter arguments
-from flask_restful import reqparse #module that provides a convenient way to parse and validate request args for flask based webapps
-# run cmd 'pip install Flask-RESTful' to import package and use it 
+from flask_restful import reqparse
 from sqlalchemy import or_, case
-# Importing `or_` from SQLAlchemy allows creating OR clauses in queries.
-# Usage example: `or_(condition1, condition2)` creates a condition where at least one must be true
-# Example: select(users).where(or_(users.c.name == 'Alice', users.c.age == 30))
 from sqlalchemy.dialects.postgresql import ARRAY
 from models import Artists, Genres, Events
-'''
-Genres
-    Searchable Fields: name
-    Filterable Fields: eventsPriceRange (min, max)
-    Sortable Fieds: name, eventsPriceRange (min, max)
-Artists
-    Searchable Fields: name
-    Filterable Fields: genre
-    Sortable Fields: name, popularity
-Events
-    Searchable Fields: eventName
-    Filterable Fields: dateAndTime, salesStart-End, priceRange, genre_name
-    Sortable Fields: event_name, event_date, sales_start, price_range_min, price_range_max 
-'''
 
 class QueryBuilder:
     def __init__(
@@ -44,15 +23,24 @@ class QueryBuilder:
         
         self.result = None
     def paginate(self):
-        per_page = int(self.args['per_page'])
-        page = int(self.args['page'])
+        if ('per_page' not in self.args or 'page' not in self.args) or (self.args['per_page'] == '' or self.args['page'] == ''):
+            if self.model is Genres:
+                per_page = 5
+            elif self.model is Artists:
+                per_page = 20
+            else:
+                per_page = 30
+            page = 1
+        else:
+            per_page = int(self.args['per_page'])
+            page = int(self.args['page'])
         return self.query.paginate(
             page=page,
             per_page=per_page
         )
 
     def apply_sorting(self):
-        if ('sort_by' not in self.args or 'sort_order' not in self.args):
+        if (('sort_by' not in self.args or 'sort_order' not in self.args) or (self.args['sort_by'] == '' or self.args['sort_order'] == '')):
             sort_by = "name"
             sort_order = "asc"
         else:
@@ -113,7 +101,7 @@ class QueryBuilder:
     
     def apply_search(self):
         # Default case if no search term provided
-        if ('q' not in self.args):
+        if ('q' not in self.args or self.args['q'] == ''):
             return
         search_query = self.args["q"]
         search_query = search_query.title()
@@ -121,15 +109,10 @@ class QueryBuilder:
             return
 
         filters = []
-        # For each field in searchable_fields, add a filter that for that field checks if the "search_query" (case-insensitive) is found anywhere inside the field (that is what %% does)
         for field in self.searchable_fields:
             if isinstance(field.type, ARRAY):
                 filters.append(field.any(search_query))
             else:
                 filters.append(field.ilike(f"%{search_query}%"))
-        
-        # The or_ condition makes it so if any of the filters are true the row will be included in the results
-        self.query = self.query.filter(or_(*filters))
-                        
 
-        
+        self.query = self.query.filter(or_(*filters))

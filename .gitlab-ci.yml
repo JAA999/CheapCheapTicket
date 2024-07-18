@@ -1,8 +1,0 @@
-postman-tests:
-  stage: test
-  image: 
-    name: postman/newman:alpine
-    entrypoint: [""]
-  script: 
-    - cd backend
-    - newman --version
