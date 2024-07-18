@@ -33,9 +33,9 @@ def specific_genres():
     result = query_response.paginate()
     return [instance.to_dict() for instance in result]
 
-event_searchable_fields = [Events.name]
+event_searchable_fields = [Events.name, Events.artist_names]
 event_exact_filterable_fields = [Events.genre_name]
-event_range_filterable_fields = [Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
+event_range_filterable_fields = [Events.price_range_min, Events.price_range_max]
 event_sortable_fields =[Events.name, Events.event_date, Events.sales_start, Events.price_range_min, Events.price_range_max]
 
 @app.route('/GetEvents')
@@ -46,7 +46,7 @@ def specific_events():
     return [instance.to_dict() for instance in result]
 
 artist_searchable_fields = [Artists.name]
-artist_exact_filterable_fields = [Artists.name]
+artist_exact_filterable_fields = [Artists.genre_name]
 artist_range_filterable_fields = [Artists.popularity]
 artist_sortable_fields = [Artists.name, Artists.popularity]
 

@@ -7,6 +7,7 @@ from sqlalchemy import or_, case
 # Importing `or_` from SQLAlchemy allows creating OR clauses in queries.
 # Usage example: `or_(condition1, condition2)` creates a condition where at least one must be true
 # Example: select(users).where(or_(users.c.name == 'Alice', users.c.age == 30))
+from sqlalchemy.dialects.postgresql import ARRAY
 from models import Artists, Genres, Events
 '''
 Genres
@@ -61,7 +62,7 @@ class QueryBuilder:
         sort_attr = getattr(self.model, sort_by)
 
         genre_model = self.model is Genres and (sort_by == "events_price_min" or sort_by == "events_price_max")
-        event_model self.model is Events and (sort_by == "price_range_min" or sort_by == "price_range_max")
+        event_model = self.model is Events and (sort_by == "price_range_min" or sort_by == "price_range_max")
 
         if (genre_model or event_model):
             case_stmt = case((sort_attr == -1, 1), else_=0)
@@ -115,13 +116,17 @@ class QueryBuilder:
         if ('q' not in self.args):
             return
         search_query = self.args["q"]
+        search_query = search_query.title()
         if not search_query:
             return
 
         filters = []
         # For each field in searchable_fields, add a filter that for that field checks if the "search_query" (case-insensitive) is found anywhere inside the field (that is what %% does)
         for field in self.searchable_fields:
-            filters.append(field.ilike(f"%{search_query}%"))
+            if isinstance(field.type, ARRAY):
+                filters.append(field.any(search_query))
+            else:
+                filters.append(field.ilike(f"%{search_query}%"))
         
         # The or_ condition makes it so if any of the filters are true the row will be included in the results
         self.query = self.query.filter(or_(*filters))
