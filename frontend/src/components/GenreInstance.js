@@ -8,12 +8,11 @@ function GenreInstance() {
     const { genreId } = useParams()
 
     const [genreData, setGenreData] = useState({
-        "genreId": "1",
+        "id": "1",
         "name": "GenreName",
         "popularArtists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
         "upcomingEvents": ["Z698xZu0ZaGQo", "Event 2 id", "Event 3 id", "Event 4 id"],
         "topSongs": ["Song 1", "Song 2", "Song 3"],
-        // "eventsPriceRange": [0, 0],
         "events_price_min": 0,
         "events_price_max": 0
     });

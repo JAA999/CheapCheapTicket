@@ -60,8 +60,9 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                 </button>
                 <ul className="dropdown-menu">
                     <li>            
-                        <div className="d-flex flex-row align-items-center">
-                            <span>Min Price: {priceRange[0]}</span>
+                        <div className="d-flex flex-column align-items-start p-2">
+                            <span>Min Price: ${priceRange[0]}</span>
+                            <span>Max Price: ${priceRange[1]}</span>
                             <ReactSlider
                                 className="horizontal-slider d-flex align-items-center"
                                 thumbClassName="thumb"
@@ -72,7 +73,7 @@ function SearchVenues({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                                 min={minValue}
                                 max={maxValue}
                             />
-                            <span>Max Price: {priceRange[1]}</span>
+                            
                         </div>
                     </li>
 

@@ -30,11 +30,11 @@ function VenueCard(props) {
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">
-                        <Link to={`/venue/${props.eventId}`}><h5 className="card-title">{props.eventName}</h5></Link> <p>Ticket Price: <strong>${props.priceRange[0]} to ${props.priceRange[1]}</strong></p>
-                        <p className="card-text">{props.dateAndTime[0]}-{props.dateAndTime[1]}-{props.dateAndTime[2]}</p>
-                        <Link  className="btn btn-primary" >{props.artistNames[0]}</Link>
+                        <Link to={`/venue/${props.id}`}><h5 className="card-title">{props.event_name}</h5></Link> <p>Ticket Price: <strong>${props.price_range_min} to ${props.price_range_max}</strong></p>
+                        <p className="card-text">{`${Math.floor(props.event_date / 10000)}-${String(Math.floor((props.event_date % 10000) / 100)).padStart(2, '0')}-${String(props.event_date % 100).padStart(2, '0')}`}</p>
+                        <Link  className="btn btn-primary" >{props.artist_names[0]}</Link>
                         <p className="card-text"><small className="text-body-secondary">{props.venue.address}</small></p>
-                        <p><strong>Genres: </strong> <Link to={`/genre/${props.genreId}`}>{genreName}</Link> </p> 
+                        <p><strong>Genres: </strong> <Link to={`/genre/${props.genre_id}`}>{props.genre_name}</Link> </p> 
                     </div>
                 </div>
             </div>

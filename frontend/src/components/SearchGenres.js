@@ -2,8 +2,6 @@ import React from 'react';
 import ReactSlider from 'react-slider';
 
 import { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchChange, minValue, maxValue }) {
@@ -60,8 +58,8 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                         <li>
                             <div class="d-flex flex-column align-items-start p-2">
                                 
-                                <span>Lowest ticket cost : {rangeDisplay[0]}</span>
-                                <span>Highest ticket cost : {rangeDisplay[1]}</span>
+                                <span>Lowest ticket cost : ${rangeDisplay[0]}</span>
+                                <span>Highest ticket cost : ${rangeDisplay[1]}</span>
                                 <ReactSlider
                                     className="horizontal-slider d-flex align-items-center"
                                     thumbClassName="thumb"

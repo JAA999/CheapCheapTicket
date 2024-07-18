@@ -9,15 +9,20 @@ function Venue() {
   const [eventData, setEventData] = useState({
     "events": [
       {
-        "eventId": "Z698xZu0ZaGQo",
-        "eventName": "Childish Gambino",
-        "artistNames": ["Childish Gambino"],
-        "dateAndTime": [2024, 11, 12],
-        "salesStart-End": "2024-05-17T08:00:00Z to 2024-11-12T22:59:00Z",
-        "priceRange": [1490.0, 4242.0],
-        "genreId": "KnvZfZ7vAvv",
+        "id": "Z698xZu0ZaGQo",
+        "event_name": "Childish Gambino",
+        "artist_names": ["Childish Gambino"],
+        "artistIds": ['id'],
+        "event_date": 20240122,
+        "sales_start": "2024-05-17T08:00:00Z to 2024-11-12T22:59:00Z",
+        "price_range_min": 1,
+        "price_range_max": 1,
         "venue": { "name": "O2 Arena", "address": "\u010ceskomoravsk\u00e1 2345/17a, Praha 9", "phoneNumber": "020 8463 2000", "rating": "4.5 / 5", "website": "https://www.theo2.co.uk/" },
-        "ticketmasterURL": "https://www.ticketmaster.cz/event/childish-gambino-tickets/50833?language=en-us"
+        "ticketmaster_URL": "https://www.ticketmaster.cz/event/childish-gambino-tickets/50833?language=en-us",
+        "eventImageURL": "www.",
+        "genre_id": "KnvZfZ7vAvv",
+        "genre_name": "alter",
+        
       }
     ]
   });
@@ -68,7 +73,6 @@ function Venue() {
 
   
   useEffect(() => {
-
 
     fetchData(currentPage, priceRange, searchQuery, sortBy, orderBy); //venueRatingRange
 
@@ -137,16 +141,18 @@ function Venue() {
           eventData.events.map((event, index) => (
             <div className="col-lg-4" key={index}>
               <VenueCard
-                eventId={event.eventId}
-                eventName={event.eventName}
-                artistNames={event.artistNames}
-                dateAndTime={event.dateAndTime}
-                //salesStartEnd={event['salesStart-End']} 
-                salesStartEnd={event.salesStartEnd}
-                priceRange={event.priceRange}
-                genreId={event.genreId}
+                id={event.id}
+                event_name={event.event_name}
+                artist_names={event.artist_names}
+                event_date={event.event_date}
+                sales_start={event.sales_start}
+                price_range_min={event.price_range_min}
+                price_range_max={event.price_range_max}
+                
                 venue={event.venue}
-                ticketmasterURL={event.ticketmasterURL}
+                ticketmaster_URL={event.ticketmaster_URL}
+                genre_id={event.genre_id}
+                genre_name={event.genre_name}
               />
             </div>
           ))
