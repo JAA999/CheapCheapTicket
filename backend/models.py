@@ -83,7 +83,6 @@ class Events(db.Model):
 	
     id = db.Column(db.String, primary_key = True)
     name = db.Column(db.String, nullable = False)
-    # description = db.Column(db.String(250))
 
     artist_names = db.Column(ARRAY(db.String)) 
     artist_ids = db.Column(ARRAY(db.String))
@@ -93,13 +92,17 @@ class Events(db.Model):
     sales_start = db.Column(db.Integer) 
     price_range_min = db.Column(db.Integer)
     price_range_max = db.Column(db.Integer)
-    venue = db.Column(JSON) 
     ticketmaster_URL = db.Column(db.String) 
-    eventImage_URL = db.Column(db.String) # ADDED 7/14
+    eventImage_URL = db.Column(db.String)
 
     # Relationship
+    venue_id = db.Column(db.String, db.ForeignKey('venue.id'))
+    venue = relationship('Venues', back_populates='events')
+
     genre_id = db.Column(db.String, db.ForeignKey('genres.id'), nullable=False)
+
     genre = db.relationship('Genres', back_populates='events')
+
     artists = db.relationship('Artists', secondary='artist_events', back_populates='events')
 
     def to_dict(self):
@@ -112,13 +115,31 @@ class Events(db.Model):
             'sales_start': self.sales_start,
             'price_range_min': self.price_range_min,
             'price_range_max': self.price_range_max,
-            'venue': self.venue,
+            'venue': {
+                'name': self.venue.name,
+                'address': self.venue.address,
+                'phoneNumber': self.venue.phoneNumber,
+                'rating': self.venue.rating,
+                'venueWebsite': self.venue.website
+            } if self.venue else None,
             'ticketmaster_URL': self.ticketmaster_URL,
             'eventImageURL': self.eventImage_URL, # ADDED 7/14
             'genre_id': self.genre_id,
             'genre_name': self.genre_name
         }
         return instance
+    
+    class Venues(db.Model):
+        __tablename__ = "venues"
+
+        id = db.Column(db.String, primary_key=True)
+        name = db.Column(db.String)
+        address = db.Column(db.String)
+        phoneNumber = db.Column(db.String)
+        rating = db.Column(db.Float)
+        website = db.Column(db.String)
+
+        venueWebsite = db.relationship('Events', back_populates="venue")
 
 artists_events = db.Table('artist_events',
    db.Column('artist_id', db.String, db.ForeignKey('artists.id')), 

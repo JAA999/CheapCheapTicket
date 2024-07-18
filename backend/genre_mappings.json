@@ -169,11 +169,7 @@
         "Rock": "Legends Only"
     },
     "genres_to_playlists_test": {
-<<<<<<< HEAD
         "Country": "Hot Country",
-=======
-        "Country": "Hot Coutry",
->>>>>>> b1e0d0117066d2169021c0eaa745d738dc9aeb0e
         "Hip-Hop/Rap": "RapCaviar",
         "Pop": "Summer Pop"
     }

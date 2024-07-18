@@ -47,6 +47,38 @@ def create_events():
     events = load_json_file('events.json')
 
     for event in events['Events']:
+        if event['venue'] == "Unavailable":
+            venue_exists = Venues.query.filter_by(name="Unavailable").first()
+        else:
+            venue_exists = Venues.query.filter_by(name=event['venue']['name']).first()
+        
+        if venue_exists:
+            venueId = venue_exists.id
+        else:
+            venueId = generate_unique_id()
+            if event['venue'] == "Unavailable":
+                new_venue = Venues(
+                    id=venueId,
+                    name="Unavailable",
+                    address="Unavailable",
+                    phoneNumber="Unavailable",
+                    rating=-1,
+                    venueWebsite="Unavailable"
+                )
+            else:
+                new_venue = Venues(
+                    id=venueId,
+                    name=event['venue']['eventName'],
+                    address=event['venue']['address'],
+                    phoneNumber=event['venue']['phoneNumber'],
+                    rating=event['venue']['rating'],
+                    venueWebsite=event['venue']['website']
+                )
+            
+                db.session.add(new_venue)
+                db.session.commit()
+
+
         i = Events(
             name=event['eventName'],
             id=event['eventId'],
@@ -55,12 +87,13 @@ def create_events():
             artist_ids = event['artistIds'],
             price_range_min = event['priceRangeMin'],
             price_range_max = event['priceRangeMax'],
-            venue=event['venue'],
+            venue_id = venueId
+            venue = venue_exists if venue_exists else new_venue,
             ticketmaster_URL=event['ticketmasterURL'],
             genre_id=event['genreId'],
             genre_name=event['genreName'],
             sales_start=event['salesStart'],
-            eventImage_URL=event['eventImageURL'] # ADDED 7/14
+            eventImage_URL=event['eventImageURL']
         )
         db.session.add(i)
     db.session.commit()

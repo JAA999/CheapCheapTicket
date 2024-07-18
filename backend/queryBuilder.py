@@ -58,19 +58,32 @@ class QueryBuilder:
         else:
             sort_by = self.args["sort_by"]
             sort_order = self.args["sort_order"]
-        
-        sort_attr = getattr(self.model, sort_by)
 
-        genre_model = self.model is Genres and (sort_by == "events_price_min" or sort_by == "events_price_max")
-        event_model = self.model is Events and (sort_by == "price_range_min" or sort_by == "price_range_max")
-
-        if (genre_model or event_model):
-            case_stmt = case((sort_attr == -1, 1), else_=0)
-            if sort_order == "asc":
-                self.query = self.query.order_by(case_stmt, sort_attr.asc())
-            else:
-                self.query = self.query.order_by(case_stmt, sort_attr.desc())
+        if self.model is Genres:
+            if sort_by == "events_price_min" or sort_by == "events_price_max":
+                sort_attr = getattr(self.model, sort_by)
+                case_stmt = case((sort_attr == -1, 1), else_=0)
+                if sort_order == "asc":
+                    self.query = self.query.order_by(case_stmt, sort_attr.asc())
+                else:
+                    self.query = self.query.order_by(case_stmt, sort_attr.desc())
+        elif self.model is Events:
+            if sort_by == "price_range_min" or sort_by == "price_range_max":
+                sort_attr = getattr(self.model, sort_by)
+                case_stmt = case((sort_attr == -1, 1), else_=0)
+                if sort_order == "asc":
+                    self.query = self.query.order_by(case_stmt, sort_attr.asc())
+                else:
+                    self.query = self.query.order_by(case_stmt, sort_attr.desc())
+            elif sort_by == 'rating'
+                sort_attr = Venues.rating
+                case_stmt = case((sort_attr == -1, 1), else_=0)
+                if sort_order == "asc":
+                    self.query = self.query.join(Venues).order_by(case_stmt, sort_attr.asc())
+                else:
+                    self.query = self.query.join(Venues).order_by(case_stmt, sort_attr.desc())
         else:
+            sort_attr = getattr(self.model, sort_by)
             if sort_order == "asc":
                 self.query = self.query.order_by(sort_attr.asc())
             else:
