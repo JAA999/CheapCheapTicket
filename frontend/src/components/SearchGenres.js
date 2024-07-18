@@ -51,15 +51,15 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
 
 
                 <div className="dropdown me-2">
-                    <button className="btn btn-secondary dropdown-toggle drop-down-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Ranges
                     </button>
                     <ul className="dropdown-menu">
                         <li>
                             <div class="d-flex flex-column align-items-start p-2">
-                                
-                                <span>Lowest Ticket Cost : ${rangeDisplay[0]}</span>
-                                
+
+                                <span>Lowest ticket cost : ${rangeDisplay[0]}</span>
+                                <span>Highest ticket cost : ${rangeDisplay[1]}</span>
                                 <ReactSlider
                                     className="horizontal-slider d-flex align-items-center"
                                     thumbClassName="thumb"
@@ -70,28 +70,27 @@ function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchCha
                                     pearling
                                     minDistance={1}
                                 />
-                                <span>Highest Ticket Cost : ${rangeDisplay[1]}</span>
-                                
+
                             </div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="dropdown me-2">
-                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort By
                     </button>
 
                     <ul className="dropdown-menu">
                         <li><a className={`dropdown-item ${activeButtonSort === '' ? 'active' : ''}`} onClick={() => handleSortBy('')}>None</a></li>
                         <li><a className={`dropdown-item ${activeButtonSort === 'name' ? 'active' : ''}`} onClick={() => handleSortBy('name')}>Name</a></li>
-                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMin' ? 'active' : ''}`} onClick={() => handleSortBy('events_price_min')}>Events Price Minimum</a></li>
-                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMax' ? 'active' : ''}`} onClick={() => handleSortBy('events_price_max')}>Events Price Maximum</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMin' ? 'active' : ''}`} onClick={() => handleSortBy('events_price_min')}>Events price minimum</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMax' ? 'active' : ''}`} onClick={() => handleSortBy('events_price_max')}>Events price maximum</a></li>
                     </ul>
                 </div>
 
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Order By
                     </button>
 

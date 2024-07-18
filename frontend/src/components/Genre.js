@@ -4,7 +4,6 @@ import GenreCard from './GenreCard';
 import axios from 'axios'
 import SearchGenres from './SearchGenres';
 
-
 function Genre() {
 
   const [genresData, setGenresData] = useState(
@@ -31,15 +30,17 @@ function Genre() {
   const fetchData = async (currentPage) => {
     try {
       const response = await axios.get(`/GetGenres`, {
-        params: { page: currentPage,
-           per_page: 5,
-           sort_by: sortBy,
-           sort_order: orderby,
-           q: searchQuery,
-           'events_price_min.min': currentRange[0],
-           'events_price_max.max': currentRange[1], }
+        params: {
+          page: currentPage,
+          per_page: 5,
+          sort_by: sortBy,
+          sort_order: orderby,
+          q: searchQuery,
+          'events_price_min.min': currentRange[0],
+          'events_price_max.max': currentRange[1],
+
+        }
       });
-      
       const responseLength = await axios.get(`/GetAllGenres`);
 
       const newGenres = response.data.map((newGenre, index) => {
@@ -50,7 +51,7 @@ function Genre() {
         };
       });
 
-      setGenresData( newGenres );
+      setGenresData(newGenres);
       const totalGenres = responseLength.data.length;
       setTotalPages(Math.ceil(totalGenres / 5));
     } catch (error) {
@@ -89,7 +90,6 @@ function Genre() {
     <>
 
       <h1 class="m-5 page-title">Genres</h1>
-
       <SearchGenres
         onSearchChange={handleSearchQuery}
         onValuesChange={handleValuesRange}
@@ -107,26 +107,25 @@ function Genre() {
               popularArtists={genre.popular_artists}
               upcomingEvents={genre.upcoming_events}
               topSongs={genre.top_songs}
-              events_price_min={genre.events_price_min}
-              events_price_max={genre.events_price_max}
+              eventsPriceRange={genre.events_price_range}
             />
           ))
         }
       </div>
 
       <div class="d-flex justify-content-center align-items-center">
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="pagination p-5">
-          <button className="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-          {Array.from({ length: totalPages }, (_, index) => (
-            currentPage === index + 1 ?
-              <button class=" page-item text-bg-dark" >{currentPage}</button>
-              :
-              <></>
-          ))}
-          <button className="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+        <div className="d-flex justify-content-center align-items-center">
+          <div className="pagination p-5">
+            <button className="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
+            {Array.from({ length: totalPages }, (_, index) => (
+              currentPage === index + 1 ?
+                <button class=" page-item text-bg-dark" >{currentPage}</button>
+                :
+                <></>
+            ))}
+            <button className="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+          </div>
         </div>
-      </div>
       </div>
     </>
 
