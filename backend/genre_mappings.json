@@ -171,6 +171,8 @@
         "Rock": "Legends Only"
     },
     "genres_to_playlists_test": {
-        "Hip-Hop/Rap": "RapCaviar"
+        "Country": "Hot Country",
+        "Hip-Hop/Rap": "RapCaviar",
+        "Pop": "Summer Pop"
     }
 }

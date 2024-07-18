@@ -33,7 +33,8 @@ event_instances = []
 genre_instances = {}
 
 spotify_access_token = ''
-ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
+# ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
+ticketmaster_access_token = "NRIBwkAE7TQeXGmkRA39mtt3oN4fR54k"
 
 def main():
     get_spotify_access_token()
@@ -47,7 +48,7 @@ def main():
         populate_from_artist(artist, True)
         artist_instances[artist['id']] = artist
     
-    print(genre_limits)
+    # print(genre_limits)
 
     create_json_files()
 
@@ -65,7 +66,7 @@ def populate_genres():
     for classification in response['_embedded']['classifications']:
         if 'segment' in classification and classification['segment']['name'] == 'Music':
             for genre in classification['segment']['_embedded']['genres']:
-                if (genre['name'] in genres_to_playlists_test):
+                if (genre['name'] in genres_to_playlists):
                     genre_instance = {
                         'genreId': genre['id'],
                         'name': genre['name'],
@@ -94,12 +95,12 @@ def get_spotify_access_token():
     global spotify_access_token
 
     # Spotify API Credentials
-    # spotify_client_id = '50effcfa2b804d1bafe4b0e9371b079a'
-    # spotify_client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
+    spotify_client_id = '50effcfa2b804d1bafe4b0e9371b079a'
+    spotify_client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
 
     # Spotify API Test Credentials
-    spotify_client_id = '9159ae5d05f84da8a969181af1b786cf'
-    spotify_client_secret = '96161c4bf45f410980432c795170494b'
+    # spotify_client_id = '9159ae5d05f84da8a969181af1b786cf'
+    # spotify_client_secret = '96161c4bf45f410980432c795170494b'
 
     auth_str = f"{spotify_client_id}:{spotify_client_secret}"
     b64_auth_str = base64.b64encode(auth_str.encode()).decode()
@@ -119,16 +120,20 @@ def get_spotify_access_token():
 def populate_from_playlists():
     global artist_instances
 
+    max_songs = 3
     for genre_id in genre_instances:
-        genre_playlist_name = genres_to_playlists_test[genre_instances[genre_id]['name']]
+        genre_playlist_name = genres_to_playlists[genre_instances[genre_id]['name']]
         playlist = get_playlist_information(genre_playlist_name)
 
+        num_songs = 0
         for item in playlist['items']:
 
             track = item['track']
             if track and 'album' in track and 'name' in track['album']:
                 # Add track to top songs for genre
-                genre_instances[genre_id]['topSongs'].append(track['album']['name'])
+                if (num_songs < max_songs):
+                    genre_instances[genre_id]['topSongs'].append(track['album']['name'])
+                    num_songs += 1
 
                 # Get each artist on track and add to artist_instances if not already there
                 for artist in track['artists']:
@@ -200,8 +205,8 @@ def get_artist_information(artist_id):
     response = response.json()
 
     # Only create an artist instance if the artist belongs to a genre
-    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres_test:
-        genre_name = subgenres_to_genres_test[response['genres'][0]]
+    if 'genres' in response and len(response['genres']) > 0 and response['genres'][0] in subgenres_to_genres:
+        genre_name = subgenres_to_genres[response['genres'][0]]
         if (genre_limits[genre_name][0] >= MAX_ARTISTS):
             return None
         # Note increment to number of artists for genre
@@ -257,10 +262,15 @@ def populate_from_artist(artist_instance, skipEventsWithMultipleArtists):
         for event in artist_events:
             artist_genre['upcomingEvents'].append(event['eventId'])
             artist_instance['futureEvents'].append(event['eventId'])
-            event_instances.append(event)
 
             event['genreName'] = artist_genre['name']
             event['genreId'] = artist_genre['genreId']
+
+            if artist_instance['id'] not in event['artistIds']:
+                event['artistIds'].append(artist_instance['id'])
+                event['artistNames'].append(artist_instance['name'])
+            
+            event_instances.append(event)
 
             # Update artist_genre event price range if necessary
             if event['priceRangeMin'] != -1:
@@ -304,9 +314,6 @@ def get_events_for_artist(artist_id, artist_name, skipEventsWithMultipleArtists)
                 artists_ids = []
                 if '_embedded' in event and 'attractions' in event['_embedded']:
                     if (skipEventsWithMultipleArtists and len(event['_embedded']['attractions']) > 1):
-                        print("Skipped: " + event['id'])
-                        print("It had " + len(event['_embedded']['attractions']) + " artists")
-                        print(event['_embedded']['attractions'])
                         continue
                     for artist in event['_embedded']['attractions']:
                         if 'name' in artist:
@@ -349,7 +356,7 @@ def get_events_for_artist(artist_id, artist_name, skipEventsWithMultipleArtists)
                 price_range_max = -1
                 if ('priceRanges' in event and 'min' in event['priceRanges'][0] and 'max' in event['priceRanges'][0]):
                     price_range_min = event['priceRanges'][0]['min']
-                    price_ragne_max =  event['priceRanges'][0]['max']
+                    price_range_max =  event['priceRanges'][0]['max']
 
                 event_instance = {
                     'eventId': event['id'],
