@@ -1,132 +1,116 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactSlider from 'react-slider';
-import axios from 'axios';
 
-function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValuesChange, onSearchChange }) {
+import { useState, useEffect } from 'react';
 
-    const [filterValues, setfilterValues] = useState([]);
-    useEffect(() => {
-        const fetchOptions = async () => {
-            try {
-                const response = await axios.get('/GetAllGenres');
-                console.log(response.data);
-                const optionList = response.data.map(event => ({ id: event.id, name: event.name }));
-                console.log(optionList);
-                setfilterValues(optionList);
-            } catch (error) {
-                console.error('Error fetching options:', error);
-            }
-        };
-        fetchOptions();
-    }, []);
 
-    // search name - string
+function SearchGenres({ onOrderChange, onSortChange, onValuesChange, onSearchChange, minValue, maxValue }) {
+
+    // search name - string 
     const [stringInput, setStringInput] = useState('');
     const handleChange = (event) => {
         setStringInput(event.target.value);
-        onSearchChange(event.target.value); // Call onSearchChange on every input change
+    }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            onSearchChange(stringInput);
+            setStringInput('')
+        }
+    }
+    const handleSearchQuery = (event) => {
+        onSearchChange(event.target.value);
     };
 
-    const [rangeDisplay, setRangeDisplay] = useState([100, 1]);
+    const [rangeDisplay, setRangeDisplay] = useState([minValue, maxValue])
     const handleValuesChange = (value) => {
-        setRangeDisplay(value);
-        onValuesChange(value);
-    };
+        // console.log("SLIDER DEBUG" + value)
+        setRangeDisplay(value)
+        onValuesChange(value)
+    }
 
-    // genres 
-    const [activeButtonFilter, setActiveButtonFilter] = useState('');
-    const handleFilterBy = (value) => {
-        setActiveButtonFilter(value);
-        onFilterChange(value);
-    };
-
-    // name and popularity
-    const [activeButtonSort, setActiveButtonSort] = useState('');
+    // name, eventPricemin, eventPriceMax
+    const [activeButtonSort, setActiveButtonSort] = useState(null);
     const handleSortBy = (value) => {
-        setActiveButtonSort(value);
+        setActiveButtonSort(value)
         onSortChange(value);
-    };
+    }
 
-    const [activeButton, setActiveButton] = useState('');
+    // ascending, descending
+    const [activeButton, setActiveButton] = useState(null);
     const handleOrderBy = (value) => {
         setActiveButton(value);
         onOrderChange(value);
-    };
-
-    const handleMouseDown = (event) => {
-        event.stopPropagation();
-    };
+    }
 
     return (
         <>
-            <div className="d-flex flex-row justify-content-center align-items-center p-4">
-                <div className="me-2">
-                    <input type="text" value={stringInput} placeholder="Search..." maxLength={100} onChange={handleChange} />
+
+            <div class="d-flex flex-row justify-content-center align-items-center p-4">
+
+                <div class="me-2">
+                    <input onKeyDown={handleKeyDown} type="text" placeholder="Search..." onChange={handleSearchQuery} />
                 </div>
+
+
 
                 <div className="dropdown me-2">
                     <button className="btn btn-secondary dropdown-toggle drop-down-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Ranges
                     </button>
-                    <ul className="dropdown-menu" data-bs-auto-close="false" onMouseDown={handleMouseDown}>
+                    <ul className="dropdown-menu">
                         <li>
-                            <div className="d-flex flex-column align-items-start p-2">
-                                <span>Popularity out of 100 </span>
-                                <span>Highest : {rangeDisplay[0]}</span>
-                                <span>Lowest : {rangeDisplay[1]}</span>
+                            <div class="d-flex flex-column align-items-start p-2">
+                                
+                                <span>Lowest Ticket Cost : ${rangeDisplay[0]}</span>
+                                
                                 <ReactSlider
                                     className="horizontal-slider d-flex align-items-center"
                                     thumbClassName="thumb"
-                                    min={1}
-                                    max={100}
+                                    max={maxValue}
+                                    min={minValue}
                                     onChange={handleValuesChange}
-                                    defaultValue={[1, 100]}
+                                    defaultValue={[minValue, maxValue]}
                                     pearling
                                     minDistance={1}
                                 />
+                                <span>Highest Ticket Cost : ${rangeDisplay[1]}</span>
+                                
                             </div>
                         </li>
                     </ul>
                 </div>
 
-                <div className="dropdown me-2">
-                    <button className="btn btn-secondary dropdown-toggle drop-down-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Genres
-                    </button>
-                    <ul className="dropdown-menu">
-                        <li><button className={`dropdown-item ${activeButtonFilter === '' ? 'active' : ''}`} onClick={() => handleFilterBy('')}>None</button></li>
-                        {
-                            filterValues.map((option, index) =>
-                                <li key={index}><button className={`dropdown-item ${activeButtonFilter === option.name ? 'active' : ''}`} onClick={() => handleFilterBy(option.name)}>{option.name}</button></li>
-                            )
-                        }
-                    </ul>
-                </div>
-
-                <div className="dropdown me-2">
-                    <button className="btn btn-secondary dropdown-toggle drop-down-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown me-2">
+                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort By
                     </button>
+
                     <ul className="dropdown-menu">
-                        <li><button className={`dropdown-item ${activeButtonSort === '' ? 'active' : ''}`} onClick={() => handleSortBy('')}>None</button></li>
-                        <li><button className={`dropdown-item ${activeButtonSort === 'name' ? 'active' : ''}`} onClick={() => handleSortBy('name')}>Name</button></li>
-                        <li><button className={`dropdown-item ${activeButtonSort === 'popularity' ? 'active' : ''}`} onClick={() => handleSortBy('popularity')}>Popularity</button></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === '' ? 'active' : ''}`} onClick={() => handleSortBy('')}>None</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'name' ? 'active' : ''}`} onClick={() => handleSortBy('name')}>Name</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMin' ? 'active' : ''}`} onClick={() => handleSortBy('events_price_min')}>Events Price Minimum</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'eventsPriceMax' ? 'active' : ''}`} onClick={() => handleSortBy('events_price_max')}>Events Price Maximum</a></li>
                     </ul>
                 </div>
 
-                <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle drop-down-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Order By
                     </button>
+
                     <ul className="dropdown-menu">
-                        <li><button className={`dropdown-item ${activeButton === '' ? 'active' : ''}`} onClick={() => handleOrderBy('')}>None</button></li>
-                        <li><button className={`dropdown-item ${activeButton === 'ascending' ? 'active' : ''}`} onClick={() => handleOrderBy('asc')}>Ascending</button></li>
-                        <li><button className={`dropdown-item ${activeButton === 'descending' ? 'active' : ''}`} onClick={() => handleOrderBy('desc')}>Descending</button></li>
+                        <li><a className={`dropdown-item ${activeButton === '' ? 'active' : ''}`} onClick={() => handleOrderBy('')}>None</a></li>
+                        <li><a className={`dropdown-item ${activeButton === 'ascending' ? 'active' : ''}`} onClick={() => handleOrderBy('asc')}>Ascending</a></li>
+                        <li><a className={`dropdown-item ${activeButton === 'descending' ? 'active' : ''}`} onClick={() => handleOrderBy('desc')}>Descending</a></li>
                     </ul>
                 </div>
+
+
+
             </div>
+
         </>
     );
 }
 
-export default SearchContainer;
+export default SearchGenres;
