@@ -10,13 +10,13 @@ function VenueCard(props) {
         const getGenreName = async () => {
             try {
                 //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetGenre/${props.genreId}`)
-                const response = await axios.get(`/GetGenre/${props.genreId}`)
-                setGenreName(response.data.name)
+                const response = await axios.get(`/GetGenre/${props.genreId}`);
+                setGenreName(response.data.name);
             } catch (error) {
-                console.error("Error:", error)
+                console.error("Error:", error);
             }
         }
-        getGenreName()
+        getGenreName();
     },[props.genreId]);
 
     const formattedDate = formatDate(props.event_date);

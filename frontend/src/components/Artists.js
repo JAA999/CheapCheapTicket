@@ -26,7 +26,7 @@ function Artists() {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [filterValue, setFilterValue] = useState('');
-    const [currentRange, setCurrentRange] = useState([1, 100])
+    const [currentRange, setCurrentRange] = useState([1, 100]);
     const [sortBy, setSortBy] = useState('');
     const [orderby, setOrderby] = useState('');
     const fetchData = useCallback(async (page) => {
@@ -75,23 +75,23 @@ function Artists() {
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
-        fetchData(newPage)
+        fetchData(newPage);
     };
 
     const handleSearchQuery = (value) => {
-        setSearchQuery(value)
+        setSearchQuery(value);
     }
     const handleValuesRange = (newValues) => {
         setCurrentRange(newValues);
     }
     const handleFilterBy = (value) => {
-        setFilterValue(value)
+        setFilterValue(value);
     }
     const handleSortBy = (value) => {
-        setSortBy(value)
+        setSortBy(value);
     }
     const handleOrderBy = (value) => {
-        setOrderby(value)
+        setOrderby(value);
     }
 
     return (

@@ -14,10 +14,10 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
             try {
                 //const response = await axios.get('https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllGenres');
                 const response = await axios.get('/GetAllGenres');
-                console.log(response.data)
+                console.log(response.data);
                 const optionList = response.data.map(event => ({ id: event.id, name: event.name }));
-                console.log(optionList)
-                console.log("hello problem22 ")
+                console.log(optionList);
+                console.log("hello problem22 ");
 
                 setfilterValues(optionList);
             } catch (error) {
@@ -31,6 +31,9 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
     const [stringInput, setStringInput] = useState('');
     const handleChange = (event) => {
         setStringInput(event.target.value);
+    };
+    const handleSearchQuery = (event) => {
+        onSearchChange(event.target.value);
     };
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -80,7 +83,7 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
             <div class="d-flex flex-row justify-content-center align-items-center p-4">
 
                 <div class="me-2">
-                    <input onKeyDown={handleKeyDown} type="text" value={stringInput} placeholder="Search..." maxlength={100} onChange={handleChange} />
+                    <input type="text" placeholder="Search..." maxlength={100} onChange={handleSearchQuery} />
                 </div>
 
                 <div className="dropdown me-2">
