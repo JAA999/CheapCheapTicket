@@ -50,15 +50,18 @@ function Artists() {
                     'popularity.max': currentRange[1],
                 }
             });
-            // setSearchQuery('')
     
-            // Reset artistsData to only include response.data
             setArtistsData({ Artists: response.data });
     
-            // Fetch total number of artists for pagination
             const responseLength = await axios.get(`/GetAllArtists`);
+            //const responseLength = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllArtists`);
             const totalArtists = responseLength.data.length;
+
+
             setTotalPages(Math.ceil(totalArtists / 20));
+            console.log("Current number")
+            console.log(response.data.length)
+
     
         } catch (error) {
             console.error("Error:", error);
@@ -93,7 +96,7 @@ function Artists() {
 
     return (
         <>
-            <h1 class=" m-5 page-title">Artists Good don't touch</h1>
+            <h1 class=" m-5 page-title">Artists</h1>
 
             <SearchContainer
              onSearchChange={handleSearchQuery}

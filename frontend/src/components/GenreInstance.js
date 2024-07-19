@@ -22,6 +22,7 @@ function GenreInstance() {
     useEffect(() => {
         const getGenreData = async () => {
             try {
+                //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetGenre/${genreId}`);
                 const response = await axios.get(`/GetGenre/${genreId}`);
                 setGenreData(response.data);
             } catch (error) {
@@ -36,6 +37,7 @@ function GenreInstance() {
             if (genreData.upcoming_events) {
                 try {
                     const eventPromises = genreData.upcoming_events.map(async (eventId) => {
+                        //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetEvent/${eventId}`);
                         const response = await axios.get(`/GetEvent/${eventId}`);
                         return { eventId, eventName: response.data.event_name };
                     });
@@ -55,6 +57,7 @@ function GenreInstance() {
                 try {
                     const namePromises = genreData.popular_artists.map(async (artistId) => {
                         const response = await axios.get(`/GetArtist/${artistId}`);
+                        //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetArtist/${artistId}`);
                         return { artistId, name: response.data.name };
                     });
                     const artistsNames = await Promise.all(namePromises);
@@ -100,11 +103,11 @@ function GenreInstance() {
                 </div>
 
                 <div className="genre-page-con genre-page-venue d-flex flex-column mb-5 p-4 pb-3 rounded-4">
-                    <div className='d-flex align-items-center ms-3 justify-content-center'>
+                    <div className='d-flex align-items-center ms-3 justify-content-between'>
                         <h1 className="genre-page-subtitle">Events</h1>
                         <p className="genre-page-price">
                             {
-                                genreData.events_price_min == -1 || genreData.events_price_max == -1 ?
+                                genreData.events_price_min === -1 || genreData.events_price_max === -1 ?
                                 `(Unavailable)` 
                                 :
                                 `($${genreData.events_price_min} to $${genreData.events_price_max})`

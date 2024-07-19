@@ -4,19 +4,11 @@ import GenreCard from './GenreCard';
 import axios from 'axios'
 import SearchGenres from './SearchGenres';
 
-
 function Genre() {
 
   const [genresData, setGenresData] = useState(
     [
-      // {
-      //   "genreId": "KnvZfZ7vAvv",
-      //   "name": "GenreName",
-      //   "popular_artists": ["73sIBHcqh3Z3NyqHKZ7FOL", "Artists 2 id", "Artists 3 id"],
-      //   "upcoming_events": ["Event ID"],
-      //   "top_songs": ["Song 1", "Song 2", "Song 3"],
-      //   "events_price_range": [0, 0]
-      // }
+      
     ]
   );
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,23 +16,25 @@ function Genre() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [valuesRange, setValuesRange] = useState([1, 10000])
-  const [currentRange, setCurrentRange] = useState([1, 10000])
+  const [currentRange, setCurrentRange] = useState([-1, 1000000])
   const [sortBy, setSortBy] = useState('');
   const [orderby, setOrderby] = useState('');
 
   const fetchData = async (currentPage) => {
     try {
       const response = await axios.get(`/GetGenres`, {
-        params: { page: currentPage,
-           per_page: 5,
-           sort_by: sortBy,
-           sort_order: orderby,
-           q: searchQuery,
-           'events_price_min.min': currentRange[0],
-           'events_price_max.max': currentRange[1], }
+      //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetGenres`, {
+        params: {
+          page: currentPage,
+          per_page: 5,
+          sort_by: sortBy,
+          sort_order: orderby,
+          q: '',
+          'events_price_min.min': currentRange[0],
+          'events_price_max.max': currentRange[1],
+
+        }
       });
-      
-      const responseLength = await axios.get(`/GetAllGenres`);
 
       const newGenres = response.data.map((newGenre, index) => {
         const defaultGenre = genresData[index] || {};
@@ -50,7 +44,9 @@ function Genre() {
         };
       });
 
-      setGenresData( newGenres );
+      setGenresData(newGenres);
+      const responseLength = await axios.get(`/GetAllGenres`);
+      // const responseLength = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllGenres`);
       const totalGenres = responseLength.data.length;
       setTotalPages(Math.ceil(totalGenres / 5));
     } catch (error) {
@@ -59,6 +55,7 @@ function Genre() {
   };
 
   useEffect(() => {
+    console.log("New values =--------------")
     console.log(searchQuery + " debug search value(string) ")
     console.log(valuesRange + " debug price range wip")
     console.log(currentRange + " debug current price range wip")
@@ -89,7 +86,6 @@ function Genre() {
     <>
 
       <h1 class="m-5 page-title">Genres</h1>
-
       <SearchGenres
         onSearchChange={handleSearchQuery}
         onValuesChange={handleValuesRange}
@@ -100,6 +96,7 @@ function Genre() {
       />
       <div class="row d-flex justify-content-center genre-card-container ">
         {
+          genresData.map.length > 0 ?
           genresData.map((genre, index) => (
             <GenreCard key={index}
               genreId={genre.id}
@@ -111,22 +108,24 @@ function Genre() {
               events_price_max={genre.events_price_max}
             />
           ))
+          :
+          <></>
         }
       </div>
 
       <div class="d-flex justify-content-center align-items-center">
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="pagination p-5">
-          <button className="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-          {Array.from({ length: totalPages }, (_, index) => (
-            currentPage === index + 1 ?
-              <button class=" page-item text-bg-dark" >{currentPage}</button>
-              :
-              <></>
-          ))}
-          <button className="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+        <div className="d-flex justify-content-center align-items-center">
+          <div className="pagination p-5">
+            <button className="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
+            {Array.from({ length: totalPages }, (_, index) => (
+              currentPage === index + 1 ?
+                <button class=" page-item text-bg-dark" >{currentPage}</button>
+                :
+                <></>
+            ))}
+            <button className="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+          </div>
         </div>
-      </div>
       </div>
     </>
 

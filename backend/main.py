@@ -49,9 +49,7 @@ def specific_events():
         event_range_filterable_fields)
     
     result = query_response.paginate()
-    return jsonify([instance.to_dict() for instance in result])
-
-    # return [instance.to_dict() for instance in result]
+    return [instance.to_dict() for instance in result]
 
 artist_searchable_fields = [Artists.name]
 artist_exact_filterable_fields = [Artists.genre_name]

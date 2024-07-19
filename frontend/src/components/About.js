@@ -19,6 +19,7 @@ function About() {
     const fetchData = async () => {
       try {
         const response = await axios.get('/about');
+        //const response = await axios.get('https://backend-dot-cs373-idb-428121.uc.r.appspot.com/about');
         setGithubStats(response.data);
         console.log(response.data + " GIT lab data")
       } catch (error) {
@@ -82,6 +83,7 @@ function About() {
               <span>Issue Tracker: <a href="https://gitlab.com/chrisproj1/cs373-idb/-/issues" target="_blank" rel="noreferrer">https://gitlab.com/chrisproj1/cs373-idb/-/issues</a> </span>
               <span>Git Repo: <a href="https://gitlab.com/chrisproj1/cs373-idb" target="_blank" rel="noreferrer">https://gitlab.com/chrisproj1/cs373-idb</a></span>
               <span>Git wiki: <a href="https://gitlab.com/chrisproj1/cs373-idb/-/wikis/CheapCheapTicket?redirected_from=home" target="_blank"rel="noreferrer">https://gitlab.com/chrisproj1/cs373-idb/-/wikis/CheapCheapTicket?redirected_from=home</a></span>
+              <span>Powerpoint: <a href="https://docs.google.com/presentation/d/1H1Ysu2IuRxMYXSaRuhCrvwu8WsUndB84O37wlJ4c9S4/edit?usp=sharing">Link to our Presentation</a></span>
               <br></br>
               <p><b>Tools:  </b></p>
               <div class="d-flex flex-wrap flex-row">

@@ -24,9 +24,9 @@ class QueryBuilder:
         self.result = None
     def paginate(self):
         if ('per_page' not in self.args or 'page' not in self.args) or (self.args['per_page'] == '' or self.args['page'] == ''):
-            if self.model == Artists:
+            if self.model is Artists:
                 per_page = 15
-            elif self.model == Genres:
+            elif self.model is Genres:
                 per_page = 5
             else:
                 per_page == 30
@@ -54,12 +54,14 @@ class QueryBuilder:
         event_model = self.model is Events and (sort_by == "price_range_min" or sort_by == "price_range_max")
 
         if (genre_model or event_model):
+            # Make sure the price is listed
             case_stmt = case((sort_attr == -1, 1), else_=0)
             if sort_order == "asc":
                 self.query = self.query.order_by(case_stmt, sort_attr.asc())
             else:
                 self.query = self.query.order_by(case_stmt, sort_attr.desc())
-        elif self.model is Events and self.args["sales_start"]:
+        elif self.model is Events and sort_by == "sales_start":
+            # Make sure the date is valid and sort by it
             case_stmt = case((sort_attr < 20230601, 1), else_=0)
             if sort_order == "asc":
                 self.query = self.query.order_by(case_stmt, sort_attr.asc())
@@ -117,6 +119,7 @@ class QueryBuilder:
 
         filters = []
         for field in self.searchable_fields:
+            # Done for artist_names
             if isinstance(field.type, ARRAY):
                 filters.append(field.any(search_query))
             else:

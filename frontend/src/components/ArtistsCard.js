@@ -10,6 +10,7 @@ function ArtistsCard(props) {
         const getGenreName = async () => {
             try {
                 const response = await axios.get(`/GetGenre/${props.genreId}`);
+                //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetGenre/${props.genreId}`);
                 setGenreName(response.data.name);
             } catch (error) {
                 console.error('Error fetching genre name:', error);
@@ -31,6 +32,7 @@ function ArtistsCard(props) {
                 if (limitedFutureEvents[i] !== "") {
                     try {
                         const response = await axios.get(`/GetEvent/${limitedFutureEvents[i]}`);
+                        //const response = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetEvent/${limitedFutureEvents[i]}`);
                         eventNames[i] = response.data.event_name;
                     } catch (error) {
                         console.error('Error fetching event name:', error);

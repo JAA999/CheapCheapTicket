@@ -12,6 +12,7 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
     useEffect(() => {
         const fetchOptions = async () => {
             try {
+                //const response = await axios.get('https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllGenres');
                 const response = await axios.get('/GetAllGenres');
                 console.log(response.data)
                 const optionList = response.data.map(event => ({ id: event.id, name: event.name }));
@@ -83,7 +84,7 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
                 </div>
 
                 <div className="dropdown me-2">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn btn-secondary dropdown-toggle drop-down-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Ranges
                     </button>
                     <ul className="dropdown-menu" data-bs-auto-close="false" onMouseDown={handleMouseDown}>
@@ -110,11 +111,11 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
                 </div>
 
                 <div class="dropdown me-2">
-                    <button class="btn btn-secondary dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter By (genres)
+                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Genres
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a className={`dropdown-item ${activeButtonFilter === '' ? 'active' : ''}`} onClick={() => handleFilterBy('')}>none</a></li>
+                        <li><a className={`dropdown-item ${activeButtonFilter === '' ? 'active' : ''}`} onClick={() => handleFilterBy('')}>None</a></li>
                         {
                             filterValues.map((option, index) =>
                                 <li key={index}><a class={`dropdown-item ${activeButtonFilter === option.name ? 'active' : ''}`} onClick={() => handleFilterBy(option.name)} >{option.name}</a></li>
@@ -124,24 +125,24 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
                 </div>
 
                 <div class="dropdown me-2">
-                    <button class="btn btn-secondary dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort By
                     </button>
 
                     <ul className="dropdown-menu">
-                        <li><a className={`dropdown-item ${activeButtonSort === '' ? 'active' : ''}`} onClick={() => handleSortBy('')}>none</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === '' ? 'active' : ''}`} onClick={() => handleSortBy('')}>None</a></li>
                         <li><a className={`dropdown-item ${activeButtonSort === 'name' ? 'active' : ''}`} onClick={() => handleSortBy('name')}>Name</a></li>
-                        <li><a className={`dropdown-item ${activeButtonSort === 'popularity' ? 'active' : ''}`} onClick={() => handleSortBy('popularity')}>popularity</a></li>
+                        <li><a className={`dropdown-item ${activeButtonSort === 'popularity' ? 'active' : ''}`} onClick={() => handleSortBy('popularity')}>Popularity</a></li>
                     </ul>
                 </div>
 
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle drop-down-button" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Order By
                     </button>
 
                     <ul className="dropdown-menu">
-                        <li><a className={`dropdown-item ${activeButton === '' ? 'active' : ''}`} onClick={() => handleOrderBy('')}>none</a></li>
+                        <li><a className={`dropdown-item ${activeButton === '' ? 'active' : ''}`} onClick={() => handleOrderBy('')}>None</a></li>
                         <li><a className={`dropdown-item ${activeButton === 'ascending' ? 'active' : ''}`} onClick={() => handleOrderBy('asc')}>Ascending</a></li>
                         <li><a className={`dropdown-item ${activeButton === 'descending' ? 'active' : ''}`} onClick={() => handleOrderBy('desc')}>Descending</a></li>
                     </ul>
