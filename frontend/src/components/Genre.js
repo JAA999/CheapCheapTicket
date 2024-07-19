@@ -100,6 +100,7 @@ function Genre() {
       />
       <div class="row d-flex justify-content-center genre-card-container ">
         {
+          genresData.map.length > 0 ?
           genresData.map((genre, index) => (
             <GenreCard key={index}
               genreId={genre.id}
@@ -110,6 +111,8 @@ function Genre() {
               eventsPriceRange={genre.events_price_range}
             />
           ))
+          :
+          <></>
         }
       </div>
 

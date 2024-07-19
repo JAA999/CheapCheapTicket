@@ -5,23 +5,20 @@ import axios from 'axios'
 
 
 function VenueCard(props) {
-    console.log(props)
 
     const [genreName, setGenreName] = useState("defaultGenreName")
     useEffect(() => {
         const getGenreName = async () => {
             try {
                 const response = await axios.get(`/GetGenre/${props.genreId}`);
-                
+
                 setGenreName(response.data.name)
             } catch (error) {
                 console.error("Error:", error)
             }
         }
         getGenreName()
-    },[props.genreId]);
-
-    const formattedDate = formatDate(props.event_date);
+    }, [props.genreId]);
 
     return (
         <div className="card mb-3">
@@ -33,35 +30,25 @@ function VenueCard(props) {
                 </div> */}
                 <div className="col-md-12">
                     <div className="card-body event-card">
-                        <Link to={`/venue/${props.eventId}`}><h5  class="event-name event-card-link">{props.eventName}</h5></Link> 
+                        <Link to={`/venue/${props.eventId}`}><h5 class="event-name event-card-link">{props.eventName}</h5></Link>
                         {
-                                props.price_range_min == -1 ? 
-                            ( <p>Ticket Price: <strong>No listed price</strong></p>)
-                            :
-                             props.price_range_min === props.price_range_max ?
-                            (<p>Ticket Price: <strong>${props.price_range_min}</strong></p>)
-                            :
-                            ( <p>Ticket Price: <strong>${props.price_range_min} to ${props.price_range_max}</strong></p>)
+                            props.priceRange.length === 0 ?
+                                (<p>Ticket Price: <strong>No listed price</strong></p>)
+                                :
+                                props.priceRange.length == 1 || props.priceRange[0] === props.priceRange[1] ?
+                                    (<p>Ticket Price: <strong>${props.priceRange[0]}</strong></p>)
+                                    :
+                                    (<p>Ticket Price: <strong>${props.priceRange[0]} to ${props.priceRange[1]}</strong></p>)
                         }
-                        <p className="card-text">{formattedDate}</p> 
-
-                        <Link  className="btn btn-primary">{props.artist_names[0]}</Link>
-
+                        <p className="card-text">{props.dateAndTime[0]}-{props.dateAndTime[1]}-{props.dateAndTime[2]}</p>
+                        <Link className="btn btn-primary" >{props.artistNames[0]}</Link>
                         <p className="card-text"><small className="text-body-secondary" class="event-address">{props.venue.address}</small></p>
-                        <p><strong>Genres: </strong> <Link class="event-card-link" to={`/genre/${props.genreId}`}>{genreName}</Link> </p> 
+                        <p><strong>Genres: </strong> <Link class="event-card-link" to={`/genre/${props.genreId}`}>{genreName}</Link> </p>
                     </div>
                 </div>
             </div>
         </div>
     )
-}
-
-function formatDate(date) {
-    const date_str = date.toString();
-    const year = date_str.slice(0,4);
-    const month = date_str.slice(4,6);
-    const day = date_str.slice(6,8);
-    return `${year}-${month}-${day}`
 }
 
 export default VenueCard;
