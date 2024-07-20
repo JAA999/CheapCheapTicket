@@ -14,10 +14,7 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
             try {
                 //const response = await axios.get('https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllGenres');
                 const response = await axios.get('/GetAllGenres');
-                console.log(response.data);
                 const optionList = response.data.map(event => ({ id: event.id, name: event.name }));
-                console.log(optionList);
-                console.log("hello problem22 ");
 
                 setfilterValues(optionList);
             } catch (error) {
@@ -83,7 +80,7 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
             <div class="d-flex flex-row justify-content-center align-items-center p-4">
 
                 <div class="me-2">
-                    <input type="text" placeholder="Search..." maxlength={100} onChange={handleSearchQuery} />
+                    <input type="text" placeholder="Name search..." maxlength={100} onChange={handleSearchQuery} />
                 </div>
 
                 <div className="dropdown me-2">
@@ -150,8 +147,6 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
                         <li><a className={`dropdown-item ${activeButton === 'descending' ? 'active' : ''}`} onClick={() => handleOrderBy('desc')}>Descending</a></li>
                     </ul>
                 </div>
-
-
 
             </div>
 

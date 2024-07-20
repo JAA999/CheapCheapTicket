@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import HighlightArtistName from "./HightlightArtistName";
 
 function ArtistsCard(props) {
     const [genreName, setGenreName] = useState("defaultGenreName");
     const [eventIdPairs, setEventIdPairs] = useState({});
+    const availableEvents = props.futureEvents.length == 0 ? true : false
 
     useEffect(() => {
         const getGenreName = async () => {
@@ -40,32 +42,28 @@ function ArtistsCard(props) {
                 }
             }
 
+
             const eventIdPairs = Object.fromEntries(
                 limitedFutureEvents.map((key, index) => [key, eventNames[index]])
             );
+            console.log(eventIdPairs + "asdf")
             setEventIdPairs(eventIdPairs);
         };
         fetchEventNames();
     }, [props.futureEvents]);
 
+
     return (
         <div className="card artist-card p-2 border-0">
-            <div className="d-flex justify-content-center mt-3">
+            <div className="d-flex justify-content-center mt-4">
                 <img className="card-img-top circle-image" src={props.image_url} alt="artistsPic" />
             </div>
 
-            <div className="card-body text-start d-flex flex-column">
+            <div className="card-body artist-card-body text-start d-flex flex-column mb-1">
                 <div className="artist-card-container mb-4">
-                    {
-                        props.name.length < 8 ?
-                            <Link className="artist-card-title artist-card-headers artist-card-link" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
-                            :
-                            props.name.length < 12 ?
-                                <Link className="artist-card-title2 artist-card-headers artist-card-link" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
-                                :
-                                <Link className="artist-card-title3 artist-card-headers artist-card-link" to={`/artists/artistspage/${props.id}`}>{props.name}</Link>
-                    }
+                    <HighlightArtistName name={props.name} id={props.id} searchQuery={props.searchQuery}></HighlightArtistName>
                 </div>
+                
                 <span><h1 className="artist-card-text"><Link className="artist-card-link artist-card-genre" to={`/genre/${props.genreId}`}>Genre: {genreName}</Link></h1></span>
                 {
                     props.albums.length === 0 ?
@@ -79,20 +77,29 @@ function ArtistsCard(props) {
                 <span><h1 className="artist-card-text">Popularity: {props.popularity}</h1></span>
             </div>
 
-            <div className="card-body text-start d-flex flex-column">
+            <div className="card-body artist-card-body text-start d-flex flex-column mb-4">
                 <h1 className="artist-card-subtitle artist-card-headers">Events</h1>
                 {
-                    Object.entries(eventIdPairs).map(([key, value], index) => (
-                        key !== "" ?
-                            (props.futureEvents[0]?.length < 15 ?
-                                <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${key}`}>{value}</Link></span>
+                    availableEvents ?
+                        <>
+                            <span key={0} class ="artist-card-text text-start">No available events</span>
+                            <span key={1}><Link className="artist-card-link artist-card-text">&nbsp;</Link></span>
+                            <span key={2}><Link className="artist-card-link artist-card-text">&nbsp;</Link></span>
+                        </>
+                        :
+                        Object.entries(eventIdPairs).map(([key, value], index) => (
+                            key !== "" ?
+                                (value.length < 30 ?
+                                    <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${key}`}>{value}</Link></span>
+                                    :
+                                    <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${key}`}>{value.substring(0, 30) + "..."}</Link></span>
+                                )
                                 :
-                                <span key={index}><Link className="artist-card-link artist-card-text" to={`/venue/${key}`}>{value.substring(0, 15) + "..."}</Link></span>)
-                            :
-                            <span key={index}><Link className="artist-card-link artist-card-text">&nbsp;</Link></span>
-                    ))
+                                <span key={index}><Link className="artist-card-link artist-card-text">&nbsp;</Link></span>
+                        ))
                 }
             </div>
+
         </div>
     );
 }
