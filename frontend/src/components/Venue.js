@@ -3,6 +3,8 @@ import VenueCard from './VenueCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import SearchVenues from './SearchVenues';
+import Pagination from './Pagination';
+
 
 function Venue() {
 
@@ -54,7 +56,6 @@ function Venue() {
       });
       
       //const responseLength = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllEvents`);
-      const responseLength = await axios.get(`/GetAllEvents`);
 
       const newEvents = response.data.map((newEvent, index) => {
         const defaultEvent = eventData.events[index] || {
@@ -84,6 +85,17 @@ function Venue() {
         };
       });
       setEventData({ events: newEvents });
+
+      const responseLength = await axios.get(`/GetEvents`, {
+        params: { page,
+           per_page: 3000,
+          'price_range_min.min' : priceRange[0], 
+          'price_range_max.max': priceRange[1], 
+          q: searchQuery,
+          sort_by: sortBy,
+          sort_order: orderBy,
+         }
+      });
       const totalEvents = responseLength.data.length;
       setTotalPages(Math.ceil(totalEvents / 30));
       
@@ -120,7 +132,7 @@ function Venue() {
   }
 
   return (
-    <div>
+    <div class ="pb-5">
       <div>
         <h2 class="page-title">Events</h2>
         <p class="page-title">Events all across the US! </p>
@@ -160,18 +172,13 @@ function Venue() {
         }
       </div>
 
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="pagination p-5">
-          <button className="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-          {Array.from({ length: totalPages }, (_, index) => (
-            currentPage === index + 1 ?
-              <button class=" page-item text-bg-dark" >{currentPage}</button>
-              :
-              <></>
-          ))}
-          <button className="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-        </div>
-      </div>
+
+      <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            />
+
     </div>
   );
 }

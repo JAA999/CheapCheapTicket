@@ -68,10 +68,7 @@ function Artists() {
             });
             //const responseLength = await axios.get(`https://backend-dot-cs373-idb-428121.uc.r.appspot.com/GetAllArtists`);
 
-
             const totalResults = totalArtists.data.length;
-            // const totalArtists = responseLength.data.length;
-
             setTotalPages(Math.ceil(totalResults / 20));
 
         } catch (error) {
@@ -86,7 +83,7 @@ function Artists() {
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
-        // fetchData(newPage);
+        fetchData(newPage);
         window.scrollTo(0, 0);
     };
 
@@ -107,7 +104,7 @@ function Artists() {
     }
 
     return (
-        <>
+        <div class="pb-5">
             <h1 class=" m-5 page-title">Artists</h1>
 
             <SearchContainer
@@ -148,24 +145,12 @@ function Artists() {
             }
 
             <Pagination
-            handlePageChange={handlePageChange}
-            currentPage={currentPage}
-            totalPages={totalPages}
+                handlePageChange={handlePageChange}
+                currentPage={currentPage}
+                totalPages={totalPages}
             />
 
-            <div class="d-flex justify-content-center align-items-center">
-                <div className="pagination  p-5">
-                    <button class="page-item" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-                    {Array.from({ length: totalPages }, (_, index) => (
-                        currentPage === index + 1 ?
-                            <button key={index} class=" page-item text-bg-dark" >{currentPage}</button>
-                            :
-                            <></>
-                    ))}
-                    <button class="page-item" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-                </div>
-            </div>
-        </>
+        </div>
     );
 }
 
