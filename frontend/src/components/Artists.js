@@ -3,6 +3,7 @@ import ArtistsCard from "./ArtistsCard";
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios'
 import SearchContainer from './SearchArtists';
+import Pagination from './Pagination';
 
 function Artists() {
 
@@ -145,6 +146,12 @@ function Artists() {
                         </div>
                     )
             }
+
+            <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            />
 
             <div class="d-flex justify-content-center align-items-center">
                 <div className="pagination  p-5">
