@@ -8,6 +8,7 @@ import VenueInfo from './components/VenueInfo';
 import Artists from './components/Artists';
 import ArtistsPage from './components/ArtistsPage';
 import GenreInstance from './components/GenreInstance';
+import Provider from './components/Provider';
 import './App.css';
 
 function App() {
@@ -39,7 +40,9 @@ function App() {
                 <li class="nav-item">
                   <a class="nav-link" href="/Genre">Genre</a>
                 </li>
-
+                <li class="nav-item">
+                  <a class="nav-link" href="/Provider">Visualization</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -53,6 +56,8 @@ function App() {
           <Route path="/artists/artistspage/:artistId" element={<ArtistsPage />} />
           <Route path="/genre" element={<Genre />} />
           <Route path="/genre/:genreId" element={<GenreInstance />} />
+
+          <Route path="/provider" element={<Provider />} />
 
         </Routes>
       </div>
