@@ -1,10 +1,10 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--midnight);
 }
-
 
 .App {
   text-align: center;
@@ -13,16 +13,16 @@ html, body {
 
 :root {
   --white: #fdfff7;
-  --gray: #FFC107;
-  --lightcolor: #9C27B0;
-  --color: #6A1B9A;
+  --gray: #ffc107;
+  --lightcolor: #9c27b0;
+  --color: #6a1b9a;
   --darkcolor: #29339b;
 
-  --lavander: #4F527D;
-  --midnight: #1A223F;
-  --pink: #B87D97;
-  --yellow: #EADF95;
-  --dark: #0B0814;
+  --lavander: #4f527d;
+  --midnight: #1a223f;
+  --pink: #b87d97;
+  --yellow: #eadf95;
+  --dark: #0b0814;
 
   --xsfont: 11.12px;
   --sfont: 18px;
@@ -32,19 +32,21 @@ html, body {
   --xxlfont: 123.36px;
 }
 
-.page-title{
+.page-title {
   color: white;
   margin-top: 3vh;
 }
 
 .navbar {
   background-color: var(--pink) !important;
+  font-size: var(--mfont);
 }
 
-.nav-link, .navbar-brand {
+.nav-link,
+.navbar-brand {
   color: var(--midnight);
+  font-size: var(--mfont);
 }
-
 
 /* Home Page*/
 .home-container {
@@ -59,48 +61,45 @@ html, body {
 
 /* Artists card stylization */
 
-.artist-card-headers{
+.artist-card-headers {
   color: var(--white);
 }
 
 .artist-card {
   background-color: var(--lavander);
-  height: 70vh;
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
   overflow-y: scroll;
+  flex: 1 1 600px;
+  min-height: 600px;
+  max-height: 600px;
 }
 
 .artist-card img {
-  width: 200px;
   height: 200px;
+  width: 200px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: -5px 5px 5px var(--midnight);
 }
 
+.artist-card-body {
+  min-height: 30%;
+  max-height: 30%;
+  /* background: #eadf95; */
+}
+
 .artist-card-title {
-  font-size: var(--sfont);
+  font-size: var(--mfont);
   font-weight: 700;
   color: var(--white);
 }
 
-.artist-card-container{
+.artist-card-container {
   height: 48px;
   display: flex;
   justify-content: center;
 }
 
-.artist-card-title2 {
-  font-size: var(--sfont);
-  font-weight: 700;
-  color: var(--white);
-}
-
-.artist-card-title3 {
-  font-size: var(--sfont);
-  font-weight: 700;
-  color: var(--white);
-}
 .artist-card-subtitle {
   font-size: var(--mfont);
   font-weight: 600;
@@ -289,7 +288,7 @@ html, body {
   color: white;
 }
 
-.genre-page-price{
+.genre-page-price {
   font-size: var(--sfont);
   padding-left: 5px;
   color: var(--pink);
@@ -363,7 +362,7 @@ html, body {
 
 /* event stylization */
 
-.event-box{
+.event-box {
   display: inline-block;
   padding: 10px;
   background-color: var(--lavander);
@@ -371,18 +370,18 @@ html, body {
   color: white;
 }
 
-.event-card{
+.event-card {
   background-color: var(--lavander);
   color: white;
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.event-name{
+.event-name {
   color: white;
   text-decoration: none;
 }
 
-.event-instance{
+.event-instance {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -393,25 +392,27 @@ html, body {
 .event-instance-image {
   width: 30vh;
   height: 30vh;
-  border: .2em solid;
+  border: 0.2em solid;
   border-radius: 5;
   border-color: var(--pink);
   margin-bottom: 2vh;
 }
 
-.event-address{
-  color:white;
-}
-
-.event-card-link{
+.event-address {
   color: white;
 }
 
-.event-instance-text{
+.event-card-link {
   color: white;
 }
 
-.link-container a{
+.event-instance-text {
+  color: white;
+}
+
+/* Search bar stylization */
+
+.link-container a {
   margin-right: 10px;
 }
 
@@ -438,5 +439,13 @@ html, body {
 .track {
   border-radius: 2px;
   height: 4px;
-  background-color : var(--pink)
+  background-color: var(--pink);
+}
+
+/* pagination */
+
+.page-buttonm {
+  background-color: var(--pink);
+  color: white;
+  padding: 5px;
 }

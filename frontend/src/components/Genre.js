@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import GenreCard from './GenreCard';
 import axios from 'axios';
 import SearchGenres from './SearchGenres';
+import Pagination from './Pagination';
+
 
 function Genre() {
   const [genresData, setGenresData] = useState([]);
@@ -36,8 +38,19 @@ function Genre() {
       });
 
       setGenresData(newGenres);
-      const responseLength = await axios.get(`/GetAllGenres`);
+      const responseLength = await axios.get(`/GetGenres`, {
+        params: {
+          page: currentPage,
+          per_page: 15,
+          sort_by: sortBy,
+          sort_order: orderby,
+          q: searchQuery,
+          'events_price_min.min': currentRange[0],
+          'events_price_max.max': currentRange[1],
+        },
+      });
       const totalGenres = responseLength.data.length;
+      console.log(totalGenres)
       setTotalPages(Math.ceil(totalGenres / 5));
     } catch (error) {
       console.error('Error:', error);
@@ -69,63 +82,44 @@ function Genre() {
   };
 
   return (
-    <>
-      <h1 className="m-5 page-title">Genres</h1>
-      <SearchGenres
-        onSearchChange={handleSearchQuery}
-        onValuesChange={handleValuesRange}
-        minValue={valuesRange[0]}
-        maxValue={valuesRange[1]}
-        onSortChange={handleSortBy}
-        onOrderChange={handleOrderBy}
-      />
-      <div className="row d-flex justify-content-center genre-card-container">
-        {genresData.length > 0 ? (
-          genresData.map((genre, index) => (
-            <GenreCard
-              key={index}
-              genreId={genre.id}
-              name={genre.name}
-              popularArtists={genre.popular_artists}
-              upcomingEvents={genre.upcoming_events}
-              topSongs={genre.top_songs}
-              events_price_min={genre.events_price_min}
-              events_price_max={genre.events_price_max}
-            />
-          ))
-        ) : (
-          <></>
-        )}
-      </div>
-
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="d-flex justify-content-center align-items-center">
-          <div className="pagination p-5">
-            <button
-              className="page-item"
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              Back
-            </button>
-            {Array.from({ length: totalPages }, (_, index) =>
-              currentPage === index + 1 ? (
-                <button className="page-item text-bg-dark">{currentPage}</button>
-              ) : (
-                <></>
-              )
-            )}
-            <button
-              className="page-item"
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              Next
-            </button>
-          </div>
+    
+      <div class = "pb-5">
+        <h1 className="m-5 page-title">Genres</h1>
+        <SearchGenres
+          onSearchChange={handleSearchQuery}
+          onValuesChange={handleValuesRange}
+          minValue={valuesRange[0]}
+          maxValue={valuesRange[1]}
+          onSortChange={handleSortBy}
+          onOrderChange={handleOrderBy}
+        />
+        <div className="row d-flex justify-content-center genre-card-container">
+          {genresData.length > 0 ? (
+            genresData.map((genre, index) => (
+              <GenreCard
+                key={index}
+                genreId={genre.id}
+                name={genre.name}
+                popularArtists={genre.popular_artists}
+                upcomingEvents={genre.upcoming_events}
+                topSongs={genre.top_songs}
+                events_price_min={genre.events_price_min}
+                events_price_max={genre.events_price_max}
+              />
+            ))
+          ) : (
+            <></>
+          )}
         </div>
+
+
+        <Pagination
+          handlePageChange={handlePageChange}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
-    </>
+    
   );
 }
 
