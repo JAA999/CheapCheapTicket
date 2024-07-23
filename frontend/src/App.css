@@ -69,14 +69,14 @@ body {
   background-color: var(--lavander);
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
   overflow-y: scroll;
-  flex: 1 1 600px; 
+  flex: 1 1 600px;
   min-height: 600px;
   max-height: 600px;
 }
 
 .artist-card img {
-  width: 200px;
   height: 200px;
+  width: 200px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: -5px 5px 5px var(--midnight);
@@ -444,7 +444,7 @@ body {
 
 /* pagination */
 
-.page-buttonm{
+.page-buttonm {
   background-color: var(--pink);
   color: white;
   padding: 5px;

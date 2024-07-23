@@ -91,8 +91,8 @@ function SearchContainer({ onOrderChange, onSortChange, onFilterChange, onValues
                         <li>
                             <div className="d-flex flex-column align-items-start p-2">
                                 <span>Popularity out of 100 </span>
-                                <span>Highest : {rangeDisplay[0]}</span>
-                                <span>Lowest : {rangeDisplay[1]}</span>
+                                <span>Lowest : {rangeDisplay[0]}</span>
+                                <span>Highest : {rangeDisplay[1]}</span>
                                 <ReactSlider
                                     className="horizontal-slider d-flex align-items-center"
                                     thumbClassName="thumb"
