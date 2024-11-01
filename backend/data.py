@@ -32,10 +32,6 @@ additional_artists = []
 event_instances = []
 genre_instances = {}
 
-spotify_access_token = ''
-# ticketmaster_access_token = 'Y7AR2Y8hCu4MFHUa1acKZxWrvvvthY4d'
-ticketmaster_access_token = "NRIBwkAE7TQeXGmkRA39mtt3oN4fR54k"
-
 def main():
     get_spotify_access_token()
     populate_genres()
@@ -93,18 +89,6 @@ def create_json_files():
 # Create access point to the Spotify API and return given access token
 def get_spotify_access_token():
     global spotify_access_token
-
-    # Spotify API Credentials
-    # spotify_client_id = '50effcfa2b804d1bafe4b0e9371b079a'
-    # spotify_client_secret = 'e4fbac04b3a44da4b0fb7b4ffe25ef12'
-
-    # Spotify API Test Credentials
-    # spotify_client_id = '9159ae5d05f84da8a969181af1b786cf'
-    # spotify_client_secret = '96161c4bf45f410980432c795170494b'
-
-    # Other Spotify API Test Credentials
-    spotify_client_id = '7d2528d10ff84e74bf1a787663306a4b'
-    spotify_client_secret = '34ac9a2a174247249dda4a866d4af6f0'
 
     auth_str = f"{spotify_client_id}:{spotify_client_secret}"
     b64_auth_str = base64.b64encode(auth_str.encode()).decode()
